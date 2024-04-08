@@ -1,7 +1,10 @@
 #!/bin/bash
 set -euo pipefail
 IFS=$'\n'
-
+#
+# Build a set of redirects as HTML meta redirect pages under dist/{id}/index.html
+# (so they can be accessed as /{id})
+#
 mkdir -p dist
 awk -F, <redirects.csv 'NF != 0 {
     system("mkdir -p dist/"$1)
