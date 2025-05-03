@@ -1,4 +1,4 @@
-import { readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { renderToString } from "react-dom/server";
 import React from "react";
 
@@ -9,10 +9,22 @@ const redirects =
         .split("\n").filter(line => line.length > 0)
         .map(line => line.split(","))
 
-await Promise.all(
-  redirects.map(([ id, name, link ]) => 
-    writeFile(
-      `dist/${id}/index.html`, 
-      "<!DOCTYPE html>\n" + renderToString(React.createElement(Page, { id, name, link }))
-    ))
+const results = await Promise.all(
+  redirects.map(async ([ id, name, link ]) => 
+    {
+      try {
+        await mkdir(`dist/${id}`, { recursive: true });
+        await writeFile(
+          `dist/${id}/index.html`,
+          "<!DOCTYPE html>\n" + renderToString(React.createElement(Page, { id, name, link }))
+        );
+        return `Built ${id}: ${name}`
+      } catch (e) {
+        return `Error ${id}: ${e}`
+      }
+    })
 )
+
+for (const result of results) {
+  console.log(result);
+}

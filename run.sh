@@ -75,6 +75,10 @@ build() {
     with:tools npm run build
 }
 
+clean() {
+    with:tools npm run clean
+}
+
 ci:release() {
     npm ci
     npm run release
