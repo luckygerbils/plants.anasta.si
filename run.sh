@@ -75,6 +75,10 @@ build() {
     with:tools npm run build
 }
 
+dev() {
+    with:tools npm run watch
+}
+
 clean() {
     with:tools npm run clean
 }

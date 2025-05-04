@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "tsx build.ts",
+    "watch": "tsx watch --include './src/**/*' --include plants.json build.ts",
     "test": "eslint src build.ts",
     "release": "npm run test && npm run build",
     "clean": "rm -rf ./dist",
