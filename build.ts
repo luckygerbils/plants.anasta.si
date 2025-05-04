@@ -8,6 +8,8 @@ type Plant = Parameters<typeof Page>[0]["plant"];
 
 const plants = JSON.parse(await readFile("plants.json", "utf8"));
 
+await mkdir(`dist`);
+
 const results = await Promise.all([
   copyFile("src/page.css", "dist/page.css").then(() => `Copied src/page.css`),
   ...plants.map(async (plant: Plant, i: number) => 
