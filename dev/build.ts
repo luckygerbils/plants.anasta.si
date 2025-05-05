@@ -10,7 +10,7 @@ type Plant = Parameters<typeof Page>[0]["plant"];
 const plants = (JSON.parse(await readFile("plants.json", "utf8")) as Plant[])
   .sort(comparing(p => p.location, nullsFirst(localeCompare)));
 
-await mkdir(`dist`);
+await mkdir(`dist`, { recursive: true });
 
 const results = await Promise.all([
   copyFile("src/page.css", "dist/page.css").then(() => `Copied src/page.css`),

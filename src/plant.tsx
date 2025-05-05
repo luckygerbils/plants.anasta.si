@@ -83,7 +83,7 @@ export function PlantPage({
             <li key={id}>
               <div className="counter">{i+1}/{sortedPhotos.length}</div>
               <div className="date">{modifyDate?.substring(0, 10)}</div>
-              <PhotoImg loading="lazy" sizes="100vw" photoId={`${plantId}/${id}`} />
+              <PhotoImg loading="lazy" sizes="100vw" photoId={`${plantId}/${id}`} dev={dev} />
             </li>
           ))}
         </ul>

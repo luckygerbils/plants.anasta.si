@@ -149,6 +149,7 @@ function CameraView({
       
       {showOverlay && overlayPhotoId &&
         <PhotoImg ref={setOverlayImageRef}
+          dev={true}
           photoId={overlayPhotoId} 
           sizes="100vw"
           style={{
