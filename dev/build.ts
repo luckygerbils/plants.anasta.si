@@ -20,7 +20,7 @@ const results = await Promise.all([
         await mkdir(`dist/${plant.id}`, { recursive: true });
         await writeFile(
           `dist/${plant.id}/index.html`,
-          "<!DOCTYPE html>\n" + renderToString(React.createElement(Page, { plant, prev: plants[i - 1]?.id, next: plants[i +1 ]?.id }))
+          "<!DOCTYPE html>\n" + renderToString(React.createElement(Page, { plant, allPlants: plants, prev: plants[i - 1]?.id, next: plants[i +1 ]?.id }))
         );
         return `Built ${plant.id}: ${plant.name}`
       } catch (e) {

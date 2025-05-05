@@ -1,4 +1,4 @@
-import { PlantPage } from "./plant";
+import { PlantPage } from "./plant-page";
 
 export function Page(props: Parameters<typeof PlantPage>[0]) {
   return (

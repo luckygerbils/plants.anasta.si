@@ -47,6 +47,11 @@ body {
   color: var(--fg);
 }
 
+[contenteditable=true] {
+  outline: 1px dashed white;
+  border-radius: 2px;
+}
+
 header {
   background-color: var(--bg-primary);
   color: var(--fg-dark);
@@ -69,8 +74,8 @@ nav {
   & a, & div, & button {
     padding: calc(3*var(--spacing));
     background-color: var(--bg-primary);
-  }
-  
+    color: var(--fg-dark);
+  } 
 }
 
 section.quick-info {
@@ -78,6 +83,21 @@ section.quick-info {
   margin-bottom: calc(2*var(--spacing));
   padding: calc(2*var(--spacing));
   background-color: var(--bg-table-stripe-odd);
+
+  .tags {
+    display: flex;
+    flex-direction: column;
+    label {
+      display: flex;
+      margin-bottom: calc(1*var(--spacing));
+      &:first-child {
+        margin-top: calc(1*var(--spacing));
+      }
+    }
+    input {
+      margin-right: 0.5em;
+    }
+  }
 }
 
 section.links {
@@ -133,6 +153,8 @@ section.photos {
     margin: calc(2*var(--spacing));
     padding: calc(2*var(--spacing));
     background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
   }
 
   & .date {
@@ -142,6 +164,12 @@ section.photos {
     margin: calc(2*var(--spacing));
     padding: calc(2*var(--spacing));
     background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  & button.delete {
+    margin-top: calc(2*var(--spacing));
+    padding: calc(2*var(--spacing));
+    background-color: var(--bg-primary);
   }
 }
 
@@ -204,6 +232,56 @@ section.photos {
     button {
       background-color: transparent;
       border: none;
+    }
+  }
+}
+
+.location-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10;
+  display: flex;
+
+  & .dialog {
+    margin: calc(10*var(--spacing));
+    background-color: var(--bg);
+    overflow-y: scroll;
+    overscroll-behavior-y: contain;
+    flex-grow: 1;
+  }
+
+  & ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & li {
+    list-style-type: none;
+  }
+
+  & .location {
+    display: block;
+    padding: calc(2*var(--spacing));
+    background-color: var(--bg-primary);
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  & .plant {
+    & a {
+      display: block;
+      padding: calc(2*var(--spacing));
+      color: var(--fg);
+    }
+    &:nth-child(odd) a {
+      background-color: var(--bg-table-stripe-odd);
+    }
+    &:nth-child(even) a {
+      background-color: var(--bg-table-stripe-even);
     }
   }
 }

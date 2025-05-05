@@ -8,7 +8,8 @@ type Plant = Parameters<typeof Page>[0]["plant"];
 const rl = createInterface({ input: process.stdin, output: process.stdout, });
 
 const plants = JSON.parse(await readFile("plants.json", "utf8")) as Plant[];
-const locations: string[] = [];
+const locations: string[] = Array.from(new Set(plants.map(({location}) => location).filter(l => l != null)));
+console.log(locations);
 for (const plant of plants) {
   if (plant.location == null) {
     const locationInput = await rl.question(`Where is ${plant.name}? `);

@@ -1,5 +1,5 @@
 import { hydrateRoot } from "react-dom/client"
-import { PlantPage } from "./plant"
+import { PlantPage } from "./plant-page"
 import { createElement } from "react"
 
 declare global {

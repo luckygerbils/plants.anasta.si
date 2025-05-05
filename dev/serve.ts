@@ -2,7 +2,7 @@
  * A server for local testing and uploading
  */
 
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import https from "node:https";
 import http from "node:http";
 import process from "node:process";
@@ -47,6 +47,7 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
             status: 200, 
             body: "<!DOCTYPE html>\n" + renderToString(createElement(Page, { 
               plant: plants[plantIndex], 
+              allPlants: plants,
               prev: plants[plantIndex - 1]?.id, 
               next: plants[plantIndex + 1]?.id,
               dev: true,
@@ -55,6 +56,44 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
               "content-type": "text/html",
             }
           };
+        }
+      },
+      {
+        pattern: /^api\/putPlant$/,
+        handler: async () => {
+          const { plant }: { plant: Plant } = JSON.parse(await getBody(req));
+          const existingPlant = plants.find(({id}) => id === plant.id);
+          if (existingPlant != null) {
+            Object.assign(existingPlant, plant);
+          } else {
+            plants.push(plant);
+          }
+          await writeFile("plants.json", JSON.stringify(plants, null, "  "));
+          console.log(`Saved ${JSON.stringify(plant)}`);
+          return {
+            status: 200,
+            body: JSON.stringify({}),
+            headers: {
+              "content-type": "application/json"
+            }
+          }
+        }
+      },
+      {
+        pattern: /^api\/deletePlant$/,
+        handler: async () => {
+          const { plantId }: { plantId: string } = JSON.parse(await getBody(req));
+          const plantIndex = plants.findIndex(({id}) => id === plantId);
+          const deletedPlant = plants.splice(plantIndex, 1);
+          await writeFile("plants.json", JSON.stringify(plants, null, "  "));
+          console.log(`Deleted ${JSON.stringify(deletedPlant)}`);
+          return {
+            status: 200,
+            body: JSON.stringify({}),
+            headers: {
+              "content-type": "application/json"
+            }
+          }
         }
       },
       {
@@ -126,6 +165,31 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
               photoId,
               modifyDate: modifyDate?.toISOString(),
             }),
+            headers: {
+              "content-type": "application/json",
+            }
+          }
+        }
+      },
+      {
+        pattern: /^api\/deletePhoto$/,
+        handler: async () => {
+          const { photoId, plantId, } = JSON.parse(await getBody(req));
+          const plant = plants.find(({id}) => id === plantId)!;
+          if (plant == null) {
+            throw new Error(`No plant found with id ${plantId}`);
+          }
+          const photoIndex = plant.photos.findIndex(({id}) => id === photoId);
+          if (photoIndex === -1) {
+            throw new Error(`No photo found with id ${photoId}`);
+          }
+          const deletedPhoto = plant.photos.splice(photoIndex, 1);
+          await rm(`photos/${plantId}/${photoId}`, { recursive: true });
+          await writeFile("plants.json", JSON.stringify(plants, null, "  "));
+          console.log(`Deleted ${JSON.stringify(deletedPhoto)}`);
+          return {
+            status: 200,
+            body: JSON.stringify({}),
             headers: {
               "content-type": "application/json",
             }
