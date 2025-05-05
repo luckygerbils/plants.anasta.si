@@ -2,11 +2,13 @@ import { mkdir, readFile, writeFile, copyFile } from "node:fs/promises";
 import { renderToString } from "react-dom/server";
 import React from "react";
 
-import { Page } from "./src/page";
+import { Page } from "../src/html";
+import { comparing, localeCompare, nullsFirst } from "../src/sorting";
 
 type Plant = Parameters<typeof Page>[0]["plant"];
 
-const plants = JSON.parse(await readFile("plants.json", "utf8"));
+const plants = (JSON.parse(await readFile("plants.json", "utf8")) as Plant[])
+  .sort(comparing(p => p.location, nullsFirst(localeCompare)));
 
 await mkdir(`dist`);
 

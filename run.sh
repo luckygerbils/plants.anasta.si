@@ -1,8 +1,11 @@
 #!/bin/bash
 set -euo pipefail
 if [ -n "${DEBUG:-}" ]; then set -x; fi
-IFS=$'\n'
 BASE_DIR=$(realpath "$(dirname "$0")")
+DEV_HOSTNAME=dev.plants.anasta.si
+CERT_DIR=~/credentials/certificates/$DEV_HOSTNAME/config/live/$DEV_HOSTNAME
+DEV_HTTPS_KEY=$CERT_DIR/privkey.pem
+DEV_HTTPS_CERT=$CERT_DIR/fullchain.pem
 
 log() { printf "%s\n" "$@" >&2; }
 die() { log "$@" && exit 1; }
@@ -32,9 +35,10 @@ with:tools() {
     local OPTIND=1
     local publish_opts=() env_variables=()
     local use_tty=true
-    while getopts 'p:te:' opt; do
+    while getopts 'p:v:te:' opt; do
         case $opt in
             p) publish_opts+=($OPTARG) ;;
+            v) volume_opts+=($OPTARG) ;;
             t) use_tty=false ;;
             e) env_variables+=($OPTARG) ;;
         esac
@@ -57,6 +61,7 @@ with:tools() {
         --volume "$BASE_DIR:/usr/src/app" \
         --volume ~/.aws:/home/user/.aws \
         $(printf "%s\n" "${publish_opts[@]}" | xargs -I '{}' echo --publish '{}' | paste -sd' ') \
+        $(printf "%s\n" "${volume_opts[@]}" | xargs -I '{}' echo --volume '{}' | paste -sd' ') \
         $(printf "%s\n" "${env_variables[@]}" | xargs -I '{}' echo --env '{}' | paste -sd' ') \
         --add-host=host.docker.internal:host-gateway \
         --interactive ${tty_opts:-} \
@@ -76,6 +81,26 @@ build() {
 }
 
 dev() {
+    with:tools \
+        -p 8443:8443 \
+        -v "$DEV_HTTPS_KEY:$DEV_HTTPS_KEY" \
+        -v "$DEV_HTTPS_CERT:$DEV_HTTPS_CERT" \
+        npm run serve -- --port=8443 --key="$DEV_HTTPS_KEY" --cert="$DEV_HTTPS_CERT"
+}
+
+register-dns() {
+    #/ register DEV_HOSTNAME as an A record pointing to this machine's local network IP
+    #/ an actual hostname is necessary to test over HTTPS and this can't just be an /etc/hosts entry because I want to be able to test from my phone as well
+
+    LOCAL_IP=$(ip -json -family inet addr | jq -r 'map(select(.ifname != "lo" and (.ifname | test("^docker") | not))) | .[0].addr_info[0].local')
+    if [ $(dig +short "$DEV_HOSTNAME") != "$LOCAL_IP" ]; then
+        with:tools dev/register-dns.sh A "${DEV_HOSTNAME}" "$LOCAL_IP"
+    else
+        log "$DEV_HOSTNAME already points to local IP $LOCAL_IP"
+    fi
+}
+
+watch() {
     with:tools npm run watch
 }
 

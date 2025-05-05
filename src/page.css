@@ -51,6 +51,7 @@ header {
   background-color: var(--bg-primary);
   color: var(--fg-dark);
   padding: calc(2*var(--spacing));
+  margin-bottom: calc(2*var(--spacing));
 }
 
 .scientific-name {
@@ -58,19 +59,30 @@ header {
 }
 
 nav {
-  padding: calc(2*var(--spacing));
+  margin: 0 calc(2*var(--spacing));
+  margin-bottom: calc(2*var(--spacing));
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 
-  & a {
+  & a, & div, & button {
     padding: calc(3*var(--spacing));
     background-color: var(--bg-primary);
   }
+  
+}
+
+section.quick-info {
+  margin: 0 calc(2*var(--spacing));
+  margin-bottom: calc(2*var(--spacing));
+  padding: calc(2*var(--spacing));
+  background-color: var(--bg-table-stripe-odd);
 }
 
 section.links {
-  padding: calc(2*var(--spacing));
+  margin: 0 calc(2*var(--spacing));
+  margin-bottom: calc(2*var(--spacing));
 
   & li {
     list-style-type: none;
@@ -91,7 +103,8 @@ section.links {
 }
 
 section.photos {
-  padding: calc(2*var(--spacing));
+  margin: 0 calc(2*var(--spacing));
+  margin-bottom: calc(2*var(--spacing));
 
   & ul {
     display: flex;
@@ -105,10 +118,92 @@ section.photos {
     width: 100%;
     scroll-snap-align: center;
     flex-shrink: 0;
+    position: relative;
   }
 
   & img {
     width: 100%;
     object-fit: cover;
+  }
+
+  & .counter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: calc(2*var(--spacing));
+    padding: calc(2*var(--spacing));
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  & .date {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: calc(2*var(--spacing));
+    padding: calc(2*var(--spacing));
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+.camera-view {
+  width: 100vw;
+  height: 100dvh;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: black;
+
+  & video {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  & .buttons button.shutter {
+    width: calc(20*var(--spacing));
+    height: calc(20*var(--spacing));
+    background-color: var(--bg-light);
+    border-radius: calc(infinity * 1px);
+    border: 3px var(--bg-light);
+    padding: calc(1.5*var(--spacing));
+    background-clip: content-box;
+  }
+}
+
+.review-view {
+  width: 100vw;
+  height: 100dvh;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  background-color: black;
+  z-index: 10;
+  color: white;
+
+  & img {
+    object-fit: contain;
+  }
+}
+
+.review-view, .camera-view {
+  & .buttons {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    width: 100vw;
+    bottom: 0;
+    padding-bottom: calc(10*var(--spacing));
+
+    button {
+      background-color: transparent;
+      border: none;
+    }
   }
 }

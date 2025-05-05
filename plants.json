@@ -1,35 +1,5 @@
 [
   {
-    "id": "b7f5579d",
-    "name": "Blueberry",
-    "scientificName": "Vaccinium",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Blueberry"
-      }
-    ]
-  },
-  {
-    "id": "5ef23fd6",
-    "name": "Big Leaved Lupine",
-    "scientificName": "Lupinus polyphyllus",
-    "photos": [
-      {
-        "id": "e05bdb41"
-      },
-      {
-        "id": "86b8eb7e"
-      }
-    ],
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Lupinus_polyphyllus"
-      }
-    ]
-  },
-  {
     "id": "e7a053dc",
     "name": "Toadshade",
     "scientificName": "Trillium sessile",
@@ -41,9 +11,15 @@
     ],
     "photos": [
       {
-        "id": "ba59a03a"
+        "id": "ba59a03a",
+        "modifyDate": "2024-04-27T11:13:48.000Z"
+      },
+      {
+        "id": "be22f5c5",
+        "modifyDate": "2025-05-04T12:04:22.000Z"
       }
-    ]
+    ],
+    "location": "Garden North"
   },
   {
     "id": "010d1830",
@@ -54,43 +30,12 @@
         "site": "Wikipedia",
         "url": "https://en.wikipedia.org/wiki/Magnolia_grandiflora"
       }
-    ]
-  },
-  {
-    "id": "a6e5e5e1",
-    "name": "Star Magnolia",
-    "scientificName": "Magnolia stellata",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Magnolia_stellata"
-      }
-    ]
-  },
-  {
-    "id": "969f30f1",
-    "name": "Oak Leaf Hydrangea",
-    "scientificName": "Hydrangea quercifolia",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Hydrangea_quercifolia"
-      }
-    ]
-  },
-  {
-    "id": "b5be7c62",
-    "name": "Variegated Solomon's Seal",
-    "scientificName": "Polygonatum odoratum",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Polygonatum_odoratum"
-      }
     ],
+    "location": "Garden North",
     "photos": [
       {
-        "id": "e598fcfa"
+        "id": "6fedcf21",
+        "modifyDate": "2025-05-04T12:04:53.000Z"
       }
     ]
   },
@@ -103,35 +48,12 @@
         "site": "Wikipedia",
         "url": "https://en.wikipedia.org/wiki/Lamprocapnos"
       }
-    ]
-  },
-  {
-    "id": "704f9646",
-    "name": "Soft Shield Fern",
-    "scientificName": "Polystichum setiferum",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Polystichum_setiferum"
-      }
-    ]
-  },
-  {
-    "id": "da201ada",
-    "name": "Redwood Sorrel",
-    "scientificName": "Oxalis oregana",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Oxalis_oregana"
-      }
     ],
+    "location": "Garden North",
     "photos": [
       {
-        "id": "28c1a270"
-      },
-      {
-        "id": "8c567d6f"
+        "id": "fbf35453",
+        "modifyDate": "2025-05-04T12:05:15.000Z"
       }
     ]
   },
@@ -144,987 +66,12 @@
         "site": "Wikipedia",
         "url": "https://en.wikipedia.org/wiki/Trachelospermum_jasminoides"
       }
-    ]
-  },
-  {
-    "id": "fde3a4b9",
-    "name": "Sweet Woodruff",
-    "scientificName": "Galium odoratum",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Galium_odoratum"
-      }
-    ]
-  },
-  {
-    "id": "83b7c210",
-    "name": "Japanese Spurge",
-    "scientificName": "Pachysandra terminalis",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Pachysandra_terminalis"
-      }
-    ]
-  },
-  {
-    "id": "d486f60f",
-    "name": "Ghost Lamium",
-    "scientificName": "Lamium maculatum",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Lamium_maculatum"
-      }
-    ]
-  },
-  {
-    "id": "3a1322a4",
-    "name": "Dwarf Soft Shield Fern",
-    "scientificName": "Polystichum setiferum",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Polystichum_setiferum"
-      }
     ],
+    "location": "Garden North",
     "photos": [
       {
-        "id": "c2b0869c"
-      },
-      {
-        "id": "8985a40c"
-      },
-      {
-        "id": "933bc866"
-      }
-    ]
-  },
-  {
-    "id": "65c1b702",
-    "name": "Himalayan Sweet Box",
-    "scientificName": "Sarcococca hookeriana",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Sarcococca_hookeriana"
-      }
-    ],
-    "photos": [
-      {
-        "id": "1c00cb6a"
-      },
-      {
-        "id": "aa20ce42"
-      }
-    ]
-  },
-  {
-    "id": "da395ff1",
-    "name": "Sweet Box",
-    "scientificName": "Sarcococca confusa",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Sarcococca_confusa"
-      }
-    ],
-    "photos": [
-      {
-        "id": "2ea43cf1"
-      },
-      {
-        "id": "9f499a44"
-      }
-    ]
-  },
-  {
-    "id": "3621899c",
-    "name": "Tassel Fern",
-    "scientificName": "Polystichum polyblepharum",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Polystichum_polyblepharum"
-      }
-    ]
-  },
-  {
-    "id": "f7e469ac",
-    "name": "False Lily of the Valley",
-    "scientificName": "Maianthemum dilatatum",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Maianthemum_dilatatum"
-      }
-    ],
-    "photos": [
-      {
-        "id": "3266d24e"
-      },
-      {
-        "id": "a2c775f7"
-      }
-    ]
-  },
-  {
-    "id": "78bfcd5f",
-    "name": "Fringecup",
-    "scientificName": "Tellima",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Tellima"
-      }
-    ],
-    "photos": [
-      {
-        "id": "df005c05"
-      },
-      {
-        "id": "3ea3d855"
-      },
-      {
-        "id": "b6efc959"
-      }
-    ]
-  },
-  {
-    "id": "242d4303",
-    "name": "Henderson's Shooting Star",
-    "scientificName": "Primula hendersonii",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Primula_hendersonii"
-      }
-    ],
-    "photos": [
-      {
-        "id": "31f8772c"
-      },
-      {
-        "id": "ab7e199b"
-      }
-    ]
-  },
-  {
-    "id": "f1fef069",
-    "name": "Umbrella Plant",
-    "scientificName": "Darmera",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Darmera"
-      }
-    ],
-    "photos": [
-      {
-        "id": "380501fe"
-      },
-      {
-        "id": "4ea45ebb"
-      }
-    ]
-  },
-  {
-    "id": "6e16d572",
-    "name": "Deer Fern",
-    "scientificName": "Struthiopteris spicant",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Struthiopteris_spicant"
-      }
-    ],
-    "photos": [
-      {
-        "id": "8608401d"
-      },
-      {
-        "id": "7c46e40b"
-      }
-    ]
-  },
-  {
-    "id": "e5ffea38",
-    "name": "Western Sword Fern",
-    "scientificName": "Polystichum munitum",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Polystichum_munitum"
-      }
-    ],
-    "photos": [
-      {
-        "id": "e8e238bb"
-      },
-      {
-        "id": "c9355628"
-      },
-      {
-        "id": "076355d9"
-      },
-      {
-        "id": "98d6f75c"
-      }
-    ]
-  },
-  {
-    "id": "250bc8b8",
-    "name": "Green Spice Coral Bells",
-    "scientificName": "Heuchera americana",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Heuchera_americana"
-      }
-    ],
-    "photos": [
-      {
-        "id": "cf2299cc"
-      },
-      {
-        "id": "b7518365"
-      },
-      {
-        "id": "cc0cef20"
-      }
-    ]
-  },
-  {
-    "id": "c85ee938",
-    "name": "Grape Hyacinth",
-    "scientificName": "Muscari armeniacum",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Muscari_armeniacum"
-      }
-    ],
-    "photos": [
-      {
-        "id": "72c2294a"
-      }
-    ]
-  },
-  {
-    "id": "124b6bf6",
-    "name": "White Bleeding Heart",
-    "scientificName": "Lamprocapnos",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Lamprocapnos"
-      }
-    ],
-    "photos": [
-      {
-        "id": "10ab16df"
-      }
-    ]
-  },
-  {
-    "id": "c4285448",
-    "name": "Inside-out Flower",
-    "scientificName": "Vancouveria hexandra",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Vancouveria_hexandra"
-      }
-    ],
-    "photos": [
-      {
-        "id": "aa3fc485"
-      },
-      {
-        "id": "9071f7d9"
-      }
-    ]
-  },
-  {
-    "id": "c50bd68b",
-    "name": "Barrenwort",
-    "scientificName": "Epimedium",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Epimedium"
-      }
-    ],
-    "photos": [
-      {
-        "id": "a75d6417"
-      },
-      {
-        "id": "e9985c59"
-      }
-    ]
-  },
-  {
-    "id": "2315db76",
-    "name": "Window Box Wood Sorrel",
-    "scientificName": "Oxalis articulata",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Oxalis_articulata"
-      }
-    ],
-    "photos": [
-      {
-        "id": "7f094dae"
-      }
-    ]
-  },
-  {
-    "id": "1d2597de",
-    "name": "Great Masterwort",
-    "scientificName": "Astrantia major",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Astrantia_major"
-      }
-    ],
-    "photos": [
-      {
-        "id": "b7fb14d4"
-      },
-      {
-        "id": "baa7a9fd"
-      }
-    ]
-  },
-  {
-    "id": "019add74",
-    "name": "Bolander's Phalacea",
-    "scientificName": "Phacelia bolanderi",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Phacelia_bolanderi"
-      }
-    ],
-    "photos": [
-      {
-        "id": "1f568b3c"
-      },
-      {
-        "id": "326aa10b"
-      }
-    ]
-  },
-  {
-    "id": "0b3fbb44",
-    "name": "Western Star Flower",
-    "scientificName": "Lysimachia latifolia",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Lysimachia_latifolia"
-      }
-    ],
-    "photos": [
-      {
-        "id": "c27b81dc"
-      },
-      {
-        "id": "9f0516cd"
-      }
-    ]
-  },
-  {
-    "id": "e3885c82",
-    "name": "Columbine Black Barlow",
-    "scientificName": "Aquilegia vulgaris",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Aquilegia_vulgaris"
-      }
-    ]
-  },
-  {
-    "id": "045ae4e5",
-    "name": "Columbine Ruby Port",
-    "scientificName": "Aquilegia vulgaris",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Aquilegia_vulgaris"
-      }
-    ],
-    "photos": [
-      {
-        "id": "cf3a1860"
-      }
-    ]
-  },
-  {
-    "id": "3e6e04c5",
-    "name": "Bunchberry",
-    "scientificName": "Cornus canadensis",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Cornus_canadensis"
-      }
-    ],
-    "photos": [
-      {
-        "id": "c7c55f5d"
-      }
-    ]
-  },
-  {
-    "id": "42c8613e",
-    "name": "Brilliance Autumn Fern",
-    "scientificName": "Dryopteris erythrosora",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Dryopteris_erythrosora"
-      }
-    ],
-    "photos": [
-      {
-        "id": "85d7d2be"
-      }
-    ]
-  },
-  {
-    "id": "3a9ff548",
-    "name": "Pasque Flower",
-    "scientificName": "Pulsatilla vulgaris",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Pulsatilla_vulgaris"
-      }
-    ],
-    "photos": [
-      {
-        "id": "40014ac1"
-      },
-      {
-        "id": "733720f1"
-      },
-      {
-        "id": "6b58bfaa"
-      }
-    ]
-  },
-  {
-    "id": "51106d08",
-    "name": "Sea Thrift",
-    "scientificName": "Armeria maritima",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Armeria_maritima"
-      }
-    ],
-    "photos": [
-      {
-        "id": "fbd19c87"
-      }
-    ]
-  },
-  {
-    "id": "f09f5452",
-    "name": "Miner's Lettuce",
-    "scientificName": "Claytonia perfoliata",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Claytonia_perfoliata"
-      }
-    ],
-    "photos": [
-      {
-        "id": "12e6c721"
-      },
-      {
-        "id": "ae3dd87d"
-      }
-    ]
-  },
-  {
-    "id": "0f577390",
-    "name": "Calico Aster",
-    "scientificName": "Symphyotrichum_lateriflorum",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Symphyotrichum_lateriflorum"
-      }
-    ],
-    "photos": [
-      {
-        "id": "3a329c1d"
-      }
-    ]
-  },
-  {
-    "id": "577aaef6",
-    "name": "Coastal Mitrewort",
-    "scientificName": "Mitella ovalis",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Mitella_ovalis"
-      }
-    ],
-    "photos": [
-      {
-        "id": "64b81a56"
-      }
-    ]
-  },
-  {
-    "id": "16f8b881",
-    "name": "Evergreen Huckleberry",
-    "scientificName": "Vaccinium ovatum",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Vaccinium_ovatum"
-      }
-    ],
-    "photos": [
-      {
-        "id": "bf8eb534"
-      },
-      {
-        "id": "8d0bc53b"
-      }
-    ]
-  },
-  {
-    "id": "ce727fb8",
-    "name": "Cheviot Sun Rose",
-    "scientificName": "Helianthemum",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Helianthemum"
-      }
-    ]
-  },
-  {
-    "id": "075588f7",
-    "name": "Professor Kippenburg Aster",
-    "scientificName": "Symphyotrichum dumosum",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Symphyotrichum_dumosum"
-      }
-    ],
-    "photos": [
-      {
-        "id": "52fd8fe7"
-      }
-    ]
-  },
-  {
-    "id": "b51b63b7",
-    "name": "False Sunflower",
-    "scientificName": "Heliopsis helianthoides",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Heliopsis_helianthoides"
-      }
-    ],
-    "photos": [
-      {
-        "id": "6fc8a9c9"
-      }
-    ]
-  },
-  {
-    "id": "597131cb",
-    "name": "Puget Sound Gumweed",
-    "scientificName": "Grindelia integrifolia",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Grindelia_integrifolia"
-      }
-    ],
-    "photos": [
-      {
-        "id": "0d70079e"
-      }
-    ]
-  },
-  {
-    "id": "363d2fac",
-    "name": "American Wintergreen",
-    "scientificName": "Gaultheria procumbens",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Gaultheria_procumbens"
-      }
-    ],
-    "photos": [
-      {
-        "id": "b4e7d9e3"
-      }
-    ]
-  },
-  {
-    "id": "1bd4582f",
-    "name": "Kinnikinnick",
-    "scientificName": "Arctous alpina",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Arctous_alpina"
-      }
-    ],
-    "photos": [
-      {
-        "id": "c1158ab3"
-      }
-    ]
-  },
-  {
-    "id": "213045a2",
-    "name": "Strawberry 'Eversweet'",
-    "scientificName": "Fragaria",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Strawberry"
-      }
-    ],
-    "photos": [
-      {
-        "id": "dac69093"
-      }
-    ]
-  },
-  {
-    "id": "99b90b1c",
-    "name": "Mint 'Mojito'",
-    "scientificName": "Mentha × villosa",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Mentha_%C3%97_villosa"
-      }
-    ]
-  },
-  {
-    "id": "30dbc125",
-    "name": "Chinese Ground Orchid",
-    "scientificName": "Bletilla striata",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Bletilla_striata"
-      }
-    ],
-    "photos": [
-      {
-        "id": "dbadf49e"
-      }
-    ]
-  },
-  {
-    "id": "1ab396d5",
-    "name": "Kaleidoscope Abelia",
-    "scientificName": "Abelia × grandiflora",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Linnaea_%C3%97_grandiflora"
-      }
-    ]
-  },
-  {
-    "id": "2320014a",
-    "name": "Quicksilver Wild Ginger",
-    "scientificName": "Asarum splendens",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Asarum_splendens"
-      }
-    ]
-  },
-  {
-    "id": "99b6a6b2",
-    "name": "Raspberry 'Shortcake'",
-    "scientificName": "Rubus idaeus",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Rubus_idaeus"
-      }
-    ]
-  },
-  {
-    "id": "e161b860",
-    "name": "Plantain Lily",
-    "scientificName": "Hosta plantaginea",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Hosta_plantaginea"
-      }
-    ]
-  },
-  {
-    "id": "e9f0676a",
-    "name": "Wild Ginger",
-    "scientificName": "Asarum caudatum",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Asarum_caudatum"
-      }
-    ]
-  },
-  {
-    "id": "7353591a",
-    "name": "Giant Allium",
-    "scientificName": "Allium giganteum",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Allium_giganteum"
-      }
-    ]
-  },
-  {
-    "id": "e2927e31",
-    "name": "Agapanthus Summer Skies",
-    "scientificName": "Agapanthus",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Agapanthus"
-      }
-    ],
-    "photos": [
-      {
-        "id": "0789fa2e"
-      },
-      {
-        "id": "cb9f60fb"
-      }
-    ]
-  },
-  {
-    "id": "35952aed",
-    "name": "Dwarf Jasmine",
-    "scientificName": "Jasminum parkeri",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Jasminum_parkeri"
-      }
-    ],
-    "photos": [
-      {
-        "id": "b2bd9930"
-      },
-      {
-        "id": "56f83381"
-      }
-    ]
-  },
-  {
-    "id": "a89dd1c4",
-    "name": "Dwarf Slender Deutzia",
-    "scientificName": "Deutzia gracilis",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Deutzia_gracilis"
-      }
-    ],
-    "photos": [
-      {
-        "id": "30362bdf"
-      },
-      {
-        "id": "0d6a75eb"
-      }
-    ]
-  },
-  {
-    "id": "096eea7e",
-    "name": "Moench's Aster",
-    "scientificName": "Aster × frikartii 'Mönch'",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Aster_%C3%97_frikartii"
-      }
-    ],
-    "photos": [
-      {
-        "id": "44cea1ce"
-      }
-    ]
-  },
-  {
-    "id": "ee86c432",
-    "name": "Burgundy Beardtongue",
-    "scientificName": "Penstemon digitalis",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Penstemon_digitalis"
-      }
-    ]
-  },
-  {
-    "id": "30b52ada",
-    "name": "Sicilian Honey Garlic",
-    "scientificName": "Allium siculum",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Allium_siculum"
-      }
-    ]
-  },
-  {
-    "id": "b94ca0f1",
-    "name": "Ruby Stella Daylily",
-    "scientificName": "Hemerocallis",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Daylily"
-      }
-    ],
-    "photos": [
-    ]
-  },
-  {
-    "id": "2d22a4ec",
-    "name": "Korean Rock Fern",
-    "scientificName": "Polystichum tsus-simense",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Polystichum_tsus-simense"
-      }
-    ]
-  },
-  {
-    "id": "71628314",
-    "name": "Chinese Fringe Tree",
-    "scientificName": "Chionanthus retusus",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Chionanthus_retusus"
-      }
-    ]
-  },
-  {
-    "id": "66e50240",
-    "name": "Red Oak",
-    "scientificName": "Quercus rubra",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Quercus_rubra"
-      }
-    ]
-  },
-  {
-    "id": "80099925",
-    "name": "Red Oak",
-    "scientificName": "Quercus rubra",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Quercus_rubra"
-      }
-    ]
-  },
-  {
-    "id": "822c750f",
-    "name": "Tea",
-    "scientificName": "Camellia sinensis",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Camellia_sinensis"
-      }
-    ],
-    "photos": [
-      {
-        "id": "0364e445"
-      }
-    ]
-  },
-  {
-    "id": "9354c92e",
-    "name": "Winter Daphne",
-    "scientificName": "Daphne odora",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Daphne_odora"
-      }
-    ]
-  },
-  {
-    "id": "301bb200",
-    "name": "Crown Imperial",
-    "scientificName": "Fritillaria imperialis",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Fritillaria_imperialis"
-      }
-    ]
-  },
-  {
-    "id": "2d15b336",
-    "name": "Crocosmia",
-    "scientificName": "Crocosmia",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Crocosmia"
-      }
-    ]
-  },
-  {
-    "id": "9e59fea6",
-    "name": "Hinoki cypress",
-    "scientificName": "Chamaecyparis obtusa",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Chamaecyparis_obtusa"
-      }
-    ]
-  },
-  {
-    "id": "5be5f07f",
-    "name": "Lenten Rose",
-    "scientificName": "Helleborus",
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Hellebore"
+        "id": "94d59a01",
+        "modifyDate": "2025-05-04T12:05:37.000Z"
       }
     ]
   },
@@ -1140,9 +87,15 @@
     ],
     "photos": [
       {
-        "id": "2ea27e48"
+        "id": "2ea27e48",
+        "modifyDate": "2024-04-27T11:13:51.000Z"
+      },
+      {
+        "id": "cf3bff3f",
+        "modifyDate": "2025-05-04T12:06:03.000Z"
       }
-    ]
+    ],
+    "location": "Garden North"
   },
   {
     "id": "67970ed6",
@@ -1153,117 +106,12 @@
         "site": "Wikipedia",
         "url": "https://en.wikipedia.org/wiki/Acer_palmatum"
       }
-    ]
-  },
-  {
-    "id": "4fc01431",
-    "name": "Pacific Coast Iris",
-    "scientificName": "Iris",
-    "photos": [
-      {
-        "id": "d234f7f0"
-      }
-    ]
-  },
-  {
-    "id": "041841ba",
-    "name": "Red Dragon Fleece Flower",
-    "scientificName": "Persicaria microcephala",
-    "photos": [
-      {
-        "id": "ef656e30"
-      }
     ],
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Persicaria_microcephala"
-      }
-    ]
-  },
-  {
-    "id": "98b86697",
-    "name": "Glory of the Snow",
-    "scientificName": "Scilla sect. Chionodoxa",
+    "location": "Garden North",
     "photos": [
       {
-        "id": "8b3c6ca0"
-      }
-    ],
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Scilla_sect._Chionodoxa"
-      }
-    ]
-  },
-  {
-    "id": "7c7e70e8",
-    "name": "Columbine (hybrid)",
-    "scientificName": "Aquilegia",
-    "photos": [
-      {
-        "id": "9cf45587"
-      }
-    ],
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Aquilegia"
-      }
-    ]
-  },
-  {
-    "id": "8ea7e3da",
-    "name": "Blue-eyed Grass",
-    "scientificName": "Sisyrinchium",
-    "photos": [
-      {
-        "id": "8bf586ef"
-      }
-    ],
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Sisyrinchium"
-      }
-    ]
-  },
-  {
-    "id": "349c9b79",
-    "name": "White-flowered Thrift",
-    "photos": [
-      {
-        "id": "469375a6"
-      }
-    ]
-  },
-  {
-    "id": "2f4483d7",
-    "name": "Prince Calico Aster",
-    "scientificName": "Symphyotrichum lateriflorum 'Prince'",
-    "photos": [
-      {
-        "id": "91d4de19"
-      }
-    ],
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Symphyotrichum_lateriflorum"
-      }
-    ]
-  },
-  {
-    "id": "fbe3f97c",
-    "name": "Fine Toothed Penstemon",
-    "scientificName": "Penstemon subserratus",
-    "photos": [
-      {
-        "id": "b9244185"
-      },
-      {
-        "id": "a5e353a8"
+        "id": "b6bddbd9",
+        "modifyDate": "2025-05-04T12:06:37.000Z"
       }
     ]
   },
@@ -1273,10 +121,12 @@
     "scientificName": "Adiantum",
     "photos": [
       {
-        "id": "3ab7eae7"
+        "id": "3ab7eae7",
+        "modifyDate": "2023-10-01T16:48:26.000Z"
       },
       {
-        "id": "dbc41217"
+        "id": "dbc41217",
+        "modifyDate": "2025-05-02T20:17:26.000Z"
       }
     ],
     "links": [
@@ -1284,90 +134,275 @@
         "site": "Wikipedia",
         "url": "https://en.wikipedia.org/wiki/Adiantum"
       }
-    ]
-  },
-  {
-    "id": "39dbb573",
-    "name": "Salal",
-    "scientificName": "Gaultheria shallon",
-    "photos": [
-      {
-        "id": "9c5a559d"
-      }
     ],
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Gaultheria_shallon"
-      }
-    ]
+    "location": "Garden North"
   },
   {
-    "id": "2e96fb33",
-    "name": "Coreopsis",
-    "scientificName": "Coreopsis",
+    "id": "8bc6719a",
+    "name": "Shikokuhuuro",
+    "scientificName": "Geranium shikokianum",
     "photos": [
       {
-        "id": "7f6f6cf4"
-      }
-    ],
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Coreopsis"
-      }
-    ]
-  },
-  {
-    "id": "96f9fc86",
-    "name": "Spanish bluebell",
-    "scientificName": "Hyacinthoides hispanica",
-    "photos": [
-      {
-        "id": "9143a8ec"
-      }
-    ],
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Hyacinthoides_hispanica"
-      }
-    ]
-  },
-  {
-    "id": "ceea1430",
-    "name": "Trillium",
-    "photos": [
-      {
-        "id": "0ef973f3"
+        "id": "8a810974",
+        "modifyDate": "2024-04-21T18:05:41.000Z"
       },
       {
-        "id": "12c4ef45"
+        "id": "b80cd8eb",
+        "modifyDate": "2025-05-02T20:17:53.000Z"
       }
     ],
+    "location": "Garden North"
+  },
+  {
+    "id": "99b6a6b2",
+    "name": "Raspberry 'Shortcake'",
+    "scientificName": "Rubus idaeus",
     "links": [
       {
         "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Trillium"
+        "url": "https://en.wikipedia.org/wiki/Rubus_idaeus"
+      }
+    ],
+    "location": "Garden Pots",
+    "photos": [
+      {
+        "id": "87c1abfc",
+        "modifyDate": "2025-05-04T12:07:22.000Z"
       }
     ]
   },
   {
-    "id": "ca235688",
-    "name": "Alpine Buckler Fern",
-    "scientificName": "Dryopteris expansa",
+    "id": "b94ca0f1",
+    "name": "Ruby Stella Daylily",
+    "scientificName": "Hemerocallis",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Daylily"
+      }
+    ],
     "photos": [
       {
-        "id": "8867d084"
+        "id": "7cc484ba",
+        "modifyDate": "2024-04-21T18:05:27.000Z"
       },
       {
-        "id": "3f147d0b"
+        "id": "84645369",
+        "modifyDate": "2025-05-04T12:07:43.000Z"
+      }
+    ],
+    "location": "Garden Pots"
+  },
+  {
+    "id": "96044d7a",
+    "name": "Red & White Columbine",
+    "scientificName": "Aquilegia 'Red & White'",
+    "photos": [
+      {
+        "id": "5d3e0da6",
+        "modifyDate": "2025-05-02T20:21:16.000Z"
+      },
+      {
+        "id": "ade851e7",
+        "modifyDate": "2025-05-02T20:17:23.000Z"
+      },
+      {
+        "id": "8c3c92b4",
+        "modifyDate": "2024-04-21T18:05:23.000Z"
       }
     ],
     "links": [
       {
         "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Dryopteris_expansa"
+        "url": "https://en.wikipedia.org/wiki/Aquilegia"
+      }
+    ],
+    "location": "Garden Pots"
+  },
+  {
+    "id": "e9c2a7d5",
+    "name": "Large-leaved Pachyphragma",
+    "scientificName": "Pachyphragma macrophyllum",
+    "photos": [
+      {
+        "id": "20f5f934",
+        "modifyDate": "2024-04-21T18:05:48.000Z"
+      },
+      {
+        "id": "d832e3c2",
+        "modifyDate": "2025-05-02T20:17:32.000Z"
+      }
+    ],
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Pachyphragma"
+      }
+    ],
+    "location": "Garden Pots"
+  },
+  {
+    "id": "c917976e",
+    "name": "Velociraptor Ribbon Fern",
+    "scientificName": "Pteris cretica",
+    "photos": [
+      {
+        "id": "257deb44",
+        "modifyDate": "2024-04-21T18:06:12.000Z"
+      },
+      {
+        "id": "a1853d87",
+        "modifyDate": "2025-05-02T20:21:58.000Z"
+      },
+      {
+        "id": "c90705a3",
+        "modifyDate": "2025-05-04T17:04:06.000Z"
+      }
+    ],
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Pteris_cretica"
+      }
+    ],
+    "location": "Garden Pots"
+  },
+  {
+    "id": "116a6a90",
+    "name": "Geranium",
+    "photos": [
+      {
+        "id": "a67ca445",
+        "modifyDate": "2024-04-21T18:02:55.000Z"
+      }
+    ],
+    "location": "Garden Pots"
+  },
+  {
+    "id": "a6e5e5e1",
+    "name": "Star Magnolia",
+    "scientificName": "Magnolia stellata",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Magnolia_stellata"
+      }
+    ],
+    "location": "Garden Shade",
+    "photos": [
+      {
+        "id": "14be205",
+        "modifyDate": "2025-05-04T12:08:36.000Z"
+      }
+    ]
+  },
+  {
+    "id": "969f30f1",
+    "name": "Oak Leaf Hydrangea",
+    "scientificName": "Hydrangea quercifolia",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Hydrangea_quercifolia"
+      }
+    ],
+    "photos": [
+      {
+        "id": "3cc01552",
+        "modifyDate": "2022-07-04T19:28:27.000Z"
+      },
+      {
+        "id": "814511a",
+        "modifyDate": "2025-05-04T12:09:00.000Z"
+      }
+    ],
+    "location": "Garden Shade"
+  },
+  {
+    "id": "2320014a",
+    "name": "Quicksilver Wild Ginger",
+    "scientificName": "Asarum splendens",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Asarum_splendens"
+      }
+    ],
+    "location": "Garden Shade"
+  },
+  {
+    "id": "e9f0676a",
+    "name": "Wild Ginger",
+    "scientificName": "Asarum caudatum",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Asarum_caudatum"
+      }
+    ],
+    "location": "Garden Shade",
+    "photos": [
+      {
+        "id": "4e2ea88e",
+        "modifyDate": "2025-05-04T12:09:17.000Z"
+      }
+    ]
+  },
+  {
+    "id": "301bb200",
+    "name": "Crown Imperial",
+    "scientificName": "Fritillaria imperialis",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Fritillaria_imperialis"
+      }
+    ],
+    "photos": [
+      {
+        "id": "e136225d",
+        "modifyDate": "2021-04-16T18:26:09.000Z"
+      },
+      {
+        "id": "e2780265",
+        "modifyDate": "2021-04-16T18:26:20.000Z"
+      }
+    ],
+    "location": "Garden Shade"
+  },
+  {
+    "id": "9e59fea6",
+    "name": "Hinoki cypress",
+    "scientificName": "Chamaecyparis obtusa",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Chamaecyparis_obtusa"
+      }
+    ],
+    "location": "Garden Shade",
+    "photos": [
+      {
+        "id": "22cd54c9",
+        "modifyDate": "2025-05-04T12:09:37.000Z"
+      }
+    ]
+  },
+  {
+    "id": "5be5f07f",
+    "name": "Lenten Rose",
+    "scientificName": "Helleborus",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Hellebore"
+      }
+    ],
+    "location": "Garden Shade",
+    "photos": [
+      {
+        "id": "66d86312",
+        "modifyDate": "2025-05-04T17:03:03.000Z"
       }
     ]
   },
@@ -1377,10 +412,12 @@
     "scientificName": "Woodwardia fimbriata",
     "photos": [
       {
-        "id": "035adc16"
+        "id": "035adc16",
+        "modifyDate": "2024-04-21T18:05:14.000Z"
       },
       {
-        "id": "f91f5d4f"
+        "id": "f91f5d4f",
+        "modifyDate": "2025-05-02T20:17:45.000Z"
       }
     ],
     "links": [
@@ -1388,26 +425,8 @@
         "site": "Wikipedia",
         "url": "https://en.wikipedia.org/wiki/Woodwardia_fimbriata"
       }
-    ]
-  },
-  {
-    "id": "96044d7a",
-    "name": "Red & White Columbine",
-    "scientificName": "Aquilegia 'Red & White'",
-    "photos": [
-      {
-        "id": "ade851e7"
-      },
-      {
-        "id": "5d3e0da6"
-      }
     ],
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Aquilegia"
-      }
-    ]
+    "location": "Garden Shade"
   },
   {
     "id": "125e41f5",
@@ -1421,168 +440,75 @@
     ],
     "photos": [
       {
-        "id": "9dd0bddf"
+        "id": "6fb60948",
+        "modifyDate": "2025-04-30T17:48:03.000Z"
       },
       {
-        "id": "6fb60948"
+        "id": "8ecd5d25",
+        "modifyDate": "2025-05-02T20:21:46.000Z"
       },
       {
-        "id": "8ecd5d25"
-      }
-    ]
-  },
-  {
-    "id": "8bc6719a",
-    "name": "Shikokuhuuro",
-    "scientificName": "Geranium shikokianum",
-    "photos": [
-      {
-        "id": "b80cd8eb"
+        "id": "9dd0bddf",
+        "modifyDate": "2024-04-21T18:05:37.000Z"
       },
       {
-        "id": "8a810974"
-      }
-    ]
-  },
-  {
-    "id": "e9c2a7d5",
-    "name": "Large-leaved Pachyphragma",
-    "scientificName": "Pachyphragma macrophyllum",
-    "photos": [
-      {
-        "id": "20f5f934"
-      },
-      {
-        "id": "d832e3c2"
+        "id": "7e2661e1",
+        "modifyDate": "2025-05-04T17:01:04.000Z"
       }
     ],
+    "location": "Garden Shade"
+  },
+  {
+    "id": "83b7c210",
+    "name": "Japanese Spurge",
+    "scientificName": "Pachysandra terminalis",
     "links": [
       {
         "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Pachyphragma"
+        "url": "https://en.wikipedia.org/wiki/Pachysandra_terminalis"
+      }
+    ],
+    "location": "Garden South",
+    "photos": [
+      {
+        "id": "43b83e5e",
+        "modifyDate": "2025-05-04T12:10:43.000Z"
       }
     ]
   },
   {
-    "id": "c917976e",
-    "name": "Velociraptor Ribbon Fern",
-    "scientificName": "Pteris cretica",
-    "photos": [
-      {
-        "id": "257deb44"
-      },
-      {
-        "id": "a1853d87"
-      }
-    ],
+    "id": "d486f60f",
+    "name": "Ghost Lamium",
+    "scientificName": "Lamium maculatum",
     "links": [
       {
         "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Pteris_cretica"
+        "url": "https://en.wikipedia.org/wiki/Lamium_maculatum"
+      }
+    ],
+    "location": "Garden South",
+    "photos": [
+      {
+        "id": "20d76883",
+        "modifyDate": "2025-05-04T12:10:54.000Z"
       }
     ]
   },
   {
-    "id": "e036cc83",
-    "name": "Pacific Trillium",
-    "scientificName": "Trillium ovatum",
-    "photos": [
-      {
-        "id": "2aa76991"
-      },
-      {
-        "id": "5801c90f"
-      }
-    ],
+    "id": "e161b860",
+    "name": "Plantain Lily",
+    "scientificName": "Hosta plantaginea",
     "links": [
       {
         "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Trillium_ovatum"
-      }
-    ]
-  },
-  {
-    "id": "80ca3fa7",
-    "name": "Common Camas",
-    "scientificName": "Camassia quamash",
-    "photos": [
-      {
-        "id": "af703d8e"
+        "url": "https://en.wikipedia.org/wiki/Hosta_plantaginea"
       }
     ],
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Camassia_quamash"
-      }
-    ]
-  },
-  {
-    "id": "51a58c8d",
-    "name": "Mossy Saxifrage",
+    "location": "Garden South",
     "photos": [
       {
-        "id": "8df78597"
-      },
-      {
-        "id": "b9dcf1bd"
-      }
-    ]
-  },
-  {
-    "id": "1e9786e5",
-    "name": "Great Camas",
-    "scientificName": "Camassia leichtlinii",
-    "photos": [
-      {
-        "id": "0db37fbf"
-      }
-    ],
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Camassia_leichtlinii"
-      }
-    ]
-  },
-  {
-    "id": "3d1d99db",
-    "name": "Seaside Daisy",
-    "scientificName": "Erigeron glaucus",
-    "photos": [
-      {
-        "id": "d4c519ee"
-      }
-    ],
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Erigeron_glaucus"
-      }
-    ]
-  },
-  {
-    "id": "2ebed876",
-    "name": "Summer Daphne",
-    "photos": [
-      {
-        "id": "5810e45c"
-      }
-    ]
-  },
-  {
-    "id": "ae51ced7",
-    "name": "Snowdrop",
-    "scientificName": "Galanthus",
-    "photos": [
-      {
-        "id": "aed1d7a6"
-      }
-    ],
-    "links": [
-      {
-        "site": "Wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Galanthus"
+        "id": "7b849431",
+        "modifyDate": "2025-05-04T12:11:11.000Z"
       }
     ]
   },
@@ -1592,7 +518,12 @@
     "scientificName": "Aegopodium podagraria",
     "photos": [
       {
-        "id": "2a820ba2"
+        "id": "abe51c1f",
+        "modifyDate": "2025-05-03T11:59:11.000Z"
+      },
+      {
+        "id": "2a820ba2",
+        "modifyDate": "2025-05-02T20:22:14.000Z"
       }
     ],
     "links": [
@@ -1600,36 +531,1775 @@
         "site": "Wikipedia",
         "url": "https://en.wikipedia.org/wiki/Aegopodium_podagraria"
       }
-    ]
+    ],
+    "location": "Garden South"
   },
   {
     "id": "2054e104",
     "name": "Hellebore",
     "photos": [
       {
-        "id": "dc2247b1"
+        "id": "a5680cb6",
+        "modifyDate": "2024-02-03T11:06:47.000Z"
       },
       {
-        "id": "a5680cb6"
+        "id": "dc2247b1",
+        "modifyDate": "2024-02-03T11:06:45.000Z"
+      },
+      {
+        "id": "2c3142c7",
+        "modifyDate": "2024-02-03T11:06:35.000Z"
+      },
+      {
+        "id": "df39c307",
+        "modifyDate": "2025-05-04T12:11:27.000Z"
+      }
+    ],
+    "location": "Garden South"
+  },
+  {
+    "id": "b5be7c62",
+    "name": "Variegated Solomon's Seal",
+    "scientificName": "Polygonatum odoratum",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Polygonatum_odoratum"
+      }
+    ],
+    "photos": [
+      {
+        "id": "e598fcfa",
+        "modifyDate": "2024-04-07T11:04:34.000Z"
+      },
+      {
+        "id": "9a82887b",
+        "modifyDate": "2025-05-04T12:11:54.000Z"
+      }
+    ],
+    "location": "Garden West"
+  },
+  {
+    "id": "704f9646",
+    "name": "Soft Shield Fern",
+    "scientificName": "Polystichum setiferum",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Polystichum_setiferum"
+      }
+    ],
+    "location": "Garden West",
+    "photos": [
+      {
+        "id": "62f7444e",
+        "modifyDate": "2025-05-04T12:12:06.000Z"
       }
     ]
+  },
+  {
+    "id": "da201ada",
+    "name": "Redwood Sorrel",
+    "scientificName": "Oxalis oregana",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Oxalis_oregana"
+      }
+    ],
+    "photos": [
+      {
+        "id": "28c1a270",
+        "modifyDate": "2024-04-21T18:03:50.000Z"
+      },
+      {
+        "id": "8c567d6f",
+        "modifyDate": "2025-05-02T20:19:56.000Z"
+      },
+      {
+        "id": "d205fc54",
+        "modifyDate": "2025-05-04T12:12:14.000Z"
+      }
+    ],
+    "location": "Garden West"
+  },
+  {
+    "id": "fde3a4b9",
+    "name": "Sweet Woodruff",
+    "scientificName": "Galium odoratum",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Galium_odoratum"
+      }
+    ],
+    "location": "Garden West",
+    "photos": [
+      {
+        "id": "6de86bb9",
+        "modifyDate": "2025-05-04T12:12:38.000Z"
+      }
+    ]
+  },
+  {
+    "id": "e036cc83",
+    "name": "Pacific Trillium",
+    "scientificName": "Trillium ovatum",
+    "photos": [
+      {
+        "id": "2aa76991",
+        "modifyDate": "2024-04-27T11:13:43.000Z"
+      },
+      {
+        "id": "5801c90f",
+        "modifyDate": "2025-05-02T20:17:16.000Z"
+      }
+    ],
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Trillium_ovatum"
+      }
+    ],
+    "location": "Garden West"
+  },
+  {
+    "id": "363d2fac",
+    "name": "American Wintergreen",
+    "scientificName": "Gaultheria procumbens",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Gaultheria_procumbens"
+      }
+    ],
+    "photos": [
+      {
+        "id": "b4e7d9e3",
+        "modifyDate": "2023-10-01T16:52:02.000Z"
+      },
+      {
+        "id": "b876820e",
+        "modifyDate": "2025-05-04T12:13:18.000Z"
+      }
+    ],
+    "location": "North Planting Strip"
+  },
+  {
+    "id": "1bd4582f",
+    "name": "Kinnikinnick",
+    "scientificName": "Arctous alpina",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Arctous_alpina"
+      }
+    ],
+    "photos": [
+      {
+        "id": "c1158ab3",
+        "modifyDate": "2023-10-01T16:51:53.000Z"
+      },
+      {
+        "id": "2453c7e3",
+        "modifyDate": "2025-05-04T12:13:34.000Z"
+      }
+    ],
+    "location": "North Planting Strip"
+  },
+  {
+    "id": "30dbc125",
+    "name": "Chinese Ground Orchid",
+    "scientificName": "Bletilla striata",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Bletilla_striata"
+      }
+    ],
+    "photos": [
+      {
+        "id": "dbadf49e",
+        "modifyDate": "2023-10-01T16:52:15.000Z"
+      },
+      {
+        "id": "a3fcc07f",
+        "modifyDate": "2025-05-04T12:14:00.000Z"
+      }
+    ],
+    "location": "North Planting Strip"
+  },
+  {
+    "id": "1ab396d5",
+    "name": "Kaleidoscope Abelia",
+    "scientificName": "Abelia × grandiflora",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Linnaea_%C3%97_grandiflora"
+      }
+    ],
+    "location": "North Planting Strip",
+    "photos": [
+      {
+        "id": "40c84b8e",
+        "modifyDate": "2025-05-04T12:14:19.000Z"
+      }
+    ]
+  },
+  {
+    "id": "71628314",
+    "name": "Chinese Fringe Tree",
+    "scientificName": "Chionanthus retusus",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Chionanthus_retusus"
+      }
+    ],
+    "location": "North Planting Strip",
+    "photos": [
+      {
+        "id": "328fe9a3",
+        "modifyDate": "2025-05-04T12:15:24.000Z"
+      },
+      {
+        "id": "292cfab6",
+        "modifyDate": "2025-05-04T12:15:38.000Z"
+      }
+    ]
+  },
+  {
+    "id": "822c750f",
+    "name": "Tea",
+    "scientificName": "Camellia sinensis",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Camellia_sinensis"
+      }
+    ],
+    "photos": [
+      {
+        "id": "0364e445",
+        "modifyDate": "2024-04-26T12:52:59.000Z"
+      },
+      {
+        "id": "2d49806d",
+        "modifyDate": "2025-05-04T12:16:02.000Z"
+      }
+    ],
+    "location": "North Planting Strip"
+  },
+  {
+    "id": "2d15b336",
+    "name": "Crocosmia",
+    "scientificName": "Crocosmia",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Crocosmia"
+      }
+    ],
+    "location": "North Planting Strip",
+    "photos": [
+      {
+        "id": "a5ab8f42",
+        "modifyDate": "2025-05-04T12:16:24.000Z"
+      }
+    ]
+  },
+  {
+    "id": "2e96fb33",
+    "name": "Coreopsis",
+    "scientificName": "Coreopsis",
+    "photos": [
+      {
+        "id": "7f6f6cf4",
+        "modifyDate": "2023-10-01T16:50:51.000Z"
+      }
+    ],
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Coreopsis"
+      }
+    ],
+    "location": "North Planting Strip"
+  },
+  {
+    "id": "80ca3fa7",
+    "name": "Common Camas",
+    "scientificName": "Camassia quamash",
+    "photos": [
+      {
+        "id": "af703d8e",
+        "modifyDate": "2024-05-03T17:48:15.000Z"
+      }
+    ],
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Camassia_quamash"
+      }
+    ],
+    "location": "North Planting Strip"
+  },
+  {
+    "id": "1e9786e5",
+    "name": "Great Camas",
+    "scientificName": "Camassia leichtlinii",
+    "photos": [
+      {
+        "id": "0db37fbf",
+        "modifyDate": "2025-05-02T20:18:28.000Z"
+      },
+      {
+        "id": "8649ce1c",
+        "modifyDate": "2025-05-04T12:16:43.000Z"
+      }
+    ],
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Camassia_leichtlinii"
+      }
+    ],
+    "location": "North Planting Strip"
+  },
+  {
+    "id": "99b90b1c",
+    "name": "Mint 'Mojito'",
+    "scientificName": "Mentha × villosa",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Mentha_%C3%97_villosa"
+      }
+    ],
+    "location": "Planter Box #1",
+    "photos": [
+      {
+        "id": "2e05381b",
+        "modifyDate": "2025-05-04T12:16:56.000Z"
+      }
+    ]
+  },
+  {
+    "id": "b7f5579d",
+    "name": "Blueberry",
+    "scientificName": "Vaccinium",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Blueberry"
+      }
+    ],
+    "location": "Planter Box #2",
+    "photos": [
+      {
+        "id": "aa13e204",
+        "modifyDate": "2025-05-04T12:17:14.000Z"
+      }
+    ]
+  },
+  {
+    "id": "213045a2",
+    "name": "Strawberry 'Eversweet'",
+    "scientificName": "Fragaria",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Strawberry"
+      }
+    ],
+    "photos": [
+      {
+        "id": "dac69093",
+        "modifyDate": "2023-10-01T16:51:33.000Z"
+      },
+      {
+        "id": "3133436a",
+        "modifyDate": "2025-05-04T12:17:34.000Z"
+      }
+    ],
+    "location": "Planter Box #2"
+  },
+  {
+    "id": "3a1322a4",
+    "name": "Dwarf Soft Shield Fern",
+    "scientificName": "Polystichum setiferum",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Polystichum_setiferum"
+      }
+    ],
+    "photos": [
+      {
+        "id": "8985a40c",
+        "modifyDate": "2023-10-01T16:47:49.000Z"
+      },
+      {
+        "id": "933bc866",
+        "modifyDate": "2023-10-01T16:47:54.000Z"
+      },
+      {
+        "id": "c2b0869c",
+        "modifyDate": "2023-10-01T16:47:46.000Z"
+      },
+      {
+        "id": "30926357",
+        "modifyDate": "2025-05-04T12:18:15.000Z"
+      }
+    ],
+    "location": "West Planting Strip"
   },
   {
     "id": "489d911b",
     "name": "Ground Tulip",
     "photos": [
       {
-        "id": "b398b3d8"
+        "id": "b398b3d8",
+        "modifyDate": "2024-04-12T12:41:13.000Z"
+      }
+    ],
+    "location": "West Planting Strip"
+  },
+  {
+    "id": "6e16d572",
+    "name": "Deer Fern",
+    "scientificName": "Struthiopteris spicant",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Struthiopteris_spicant"
+      }
+    ],
+    "photos": [
+      {
+        "id": "7c46e40b",
+        "modifyDate": "2023-10-01T16:07:08.000Z"
+      },
+      {
+        "id": "8608401d",
+        "modifyDate": "2023-10-01T16:06:59.000Z"
+      },
+      {
+        "id": "ffe801c",
+        "modifyDate": "2025-05-04T12:18:31.000Z"
+      }
+    ],
+    "location": "West Planting Strip Middle Zone"
+  },
+  {
+    "id": "e5ffea38",
+    "name": "Western Sword Fern",
+    "scientificName": "Polystichum munitum",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Polystichum_munitum"
+      }
+    ],
+    "photos": [
+      {
+        "id": "076355d9",
+        "modifyDate": "2023-10-01T16:06:24.000Z"
+      },
+      {
+        "id": "98d6f75c",
+        "modifyDate": "2023-10-01T16:06:26.000Z"
+      },
+      {
+        "id": "c9355628",
+        "modifyDate": "2023-10-01T16:06:20.000Z"
+      },
+      {
+        "id": "e8e238bb",
+        "modifyDate": "2023-10-01T16:06:14.000Z"
+      },
+      {
+        "id": "26bd3c33",
+        "modifyDate": "2025-05-04T12:20:00.000Z"
+      }
+    ],
+    "location": "West Planting Strip Middle Zone"
+  },
+  {
+    "id": "250bc8b8",
+    "name": "Green Spice Coral Bells",
+    "scientificName": "Heuchera americana",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Heuchera_americana"
+      }
+    ],
+    "photos": [
+      {
+        "id": "b7518365",
+        "modifyDate": "2023-10-01T16:06:47.000Z"
+      },
+      {
+        "id": "cc0cef20",
+        "modifyDate": "2024-04-07T11:09:57.000Z"
+      },
+      {
+        "id": "cf2299cc",
+        "modifyDate": "2023-05-09T15:44:30.000Z"
+      },
+      {
+        "id": "5d5d4ee7",
+        "modifyDate": "2025-05-04T12:20:33.000Z"
+      }
+    ],
+    "location": "West Planting Strip Middle Zone"
+  },
+  {
+    "id": "c85ee938",
+    "name": "Grape Hyacinth",
+    "scientificName": "Muscari armeniacum",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Muscari_armeniacum"
+      }
+    ],
+    "photos": [
+      {
+        "id": "72c2294a",
+        "modifyDate": "2023-10-01T16:05:24.000Z"
+      },
+      {
+        "id": "91bb1bc7",
+        "modifyDate": "2025-05-04T16:59:33.000Z"
+      }
+    ],
+    "location": "West Planting Strip Middle Zone"
+  },
+  {
+    "id": "124b6bf6",
+    "name": "White Bleeding Heart",
+    "scientificName": "Lamprocapnos",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Lamprocapnos"
+      }
+    ],
+    "photos": [
+      {
+        "id": "10ab16df",
+        "modifyDate": "2023-05-09T15:44:41.000Z"
+      },
+      {
+        "id": "c795cf78",
+        "modifyDate": "2025-05-04T12:20:51.000Z"
+      }
+    ],
+    "location": "West Planting Strip Middle Zone"
+  },
+  {
+    "id": "c4285448",
+    "name": "Inside-out Flower",
+    "scientificName": "Vancouveria hexandra",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Vancouveria_hexandra"
+      }
+    ],
+    "photos": [
+      {
+        "id": "9071f7d9",
+        "modifyDate": "2023-10-01T16:06:35.000Z"
+      },
+      {
+        "id": "aa3fc485",
+        "modifyDate": "2023-05-09T15:44:45.000Z"
+      },
+      {
+        "id": "b0f8e253",
+        "modifyDate": "2025-05-04T12:21:12.000Z"
+      }
+    ],
+    "location": "West Planting Strip Middle Zone"
+  },
+  {
+    "id": "c50bd68b",
+    "name": "Barrenwort",
+    "scientificName": "Epimedium",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Epimedium"
+      }
+    ],
+    "photos": [
+      {
+        "id": "a75d6417",
+        "modifyDate": "2023-05-09T15:44:51.000Z"
+      },
+      {
+        "id": "e9985c59",
+        "modifyDate": "2023-10-01T16:47:24.000Z"
+      },
+      {
+        "id": "a46bc9a5",
+        "modifyDate": "2025-05-04T12:21:24.000Z"
+      }
+    ],
+    "location": "West Planting Strip Middle Zone"
+  },
+  {
+    "id": "2315db76",
+    "name": "Window Box Wood Sorrel",
+    "scientificName": "Oxalis articulata",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Oxalis_articulata"
+      }
+    ],
+    "photos": [
+      {
+        "id": "7f094dae",
+        "modifyDate": "2023-10-01T16:08:14.000Z"
+      },
+      {
+        "id": "e9ed8a6f",
+        "modifyDate": "2023-04-30T18:13:51.000Z"
+      },
+      {
+        "id": "dbf80d9d",
+        "modifyDate": "2025-05-04T12:21:34.000Z"
+      }
+    ],
+    "location": "West Planting Strip Middle Zone"
+  },
+  {
+    "id": "1d2597de",
+    "name": "Great Masterwort",
+    "scientificName": "Astrantia major",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Astrantia_major"
+      }
+    ],
+    "photos": [
+      {
+        "id": "b7fb14d4",
+        "modifyDate": "2023-07-10T19:08:49.000Z"
+      },
+      {
+        "id": "baa7a9fd",
+        "modifyDate": "2023-10-01T16:06:02.000Z"
+      },
+      {
+        "id": "3093789d",
+        "modifyDate": "2025-05-04T12:21:45.000Z"
+      }
+    ],
+    "location": "West Planting Strip Middle Zone"
+  },
+  {
+    "id": "019add74",
+    "name": "Bolander's Phalacea",
+    "scientificName": "Phacelia bolanderi",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Phacelia_bolanderi"
+      }
+    ],
+    "photos": [
+      {
+        "id": "1f568b3c",
+        "modifyDate": "2023-07-10T19:08:45.000Z"
+      },
+      {
+        "id": "326aa10b",
+        "modifyDate": "2023-10-01T16:05:51.000Z"
+      },
+      {
+        "id": "babd2ea2",
+        "modifyDate": "2025-05-04T12:21:53.000Z"
+      }
+    ],
+    "location": "West Planting Strip Middle Zone"
+  },
+  {
+    "id": "0b3fbb44",
+    "name": "Western Star Flower",
+    "scientificName": "Lysimachia latifolia",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Lysimachia_latifolia"
+      }
+    ],
+    "photos": [
+      {
+        "id": "9f0516cd",
+        "modifyDate": "2023-10-01T16:07:41.000Z"
+      },
+      {
+        "id": "c27b81dc",
+        "modifyDate": "2023-07-10T19:09:24.000Z"
+      },
+      {
+        "id": "c2e01a90",
+        "modifyDate": "2025-05-04T12:22:10.000Z"
+      }
+    ],
+    "location": "West Planting Strip Middle Zone"
+  },
+  {
+    "id": "e3885c82",
+    "name": "Columbine Black Barlow",
+    "scientificName": "Aquilegia vulgaris",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Aquilegia_vulgaris"
+      }
+    ],
+    "location": "West Planting Strip Middle Zone"
+  },
+  {
+    "id": "045ae4e5",
+    "name": "Columbine Ruby Port",
+    "scientificName": "Aquilegia vulgaris",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Aquilegia_vulgaris"
+      }
+    ],
+    "photos": [
+      {
+        "id": "cf3a1860",
+        "modifyDate": "2023-10-01T16:07:51.000Z"
+      },
+      {
+        "id": "823e89b6",
+        "modifyDate": "2023-04-30T18:13:58.000Z"
+      },
+      {
+        "id": "816d27f1",
+        "modifyDate": "2025-05-04T12:22:24.000Z"
+      }
+    ],
+    "location": "West Planting Strip Middle Zone"
+  },
+  {
+    "id": "66e50240",
+    "name": "Red Oak",
+    "scientificName": "Quercus rubra",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Quercus_rubra"
+      }
+    ],
+    "location": "West Planting Strip Middle Zone",
+    "photos": [
+      {
+        "id": "feeabf79",
+        "modifyDate": "2025-05-04T12:23:23.000Z"
       }
     ]
   },
   {
-    "id": "116a6a90",
-    "name": "Geranium",
+    "id": "7c7e70e8",
+    "name": "Columbine (hybrid)",
+    "scientificName": "Aquilegia",
     "photos": [
       {
-        "id": "a67ca445"
+        "id": "9cf45587",
+        "modifyDate": "2023-04-30T18:13:54.000Z"
+      },
+      {
+        "id": "ba4ce18a",
+        "modifyDate": "2025-05-04T12:23:46.000Z"
+      }
+    ],
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Aquilegia"
+      }
+    ],
+    "location": "West Planting Strip Middle Zone"
+  },
+  {
+    "id": "ceea1430",
+    "name": "Trillium",
+    "photos": [
+      {
+        "id": "0ef973f3",
+        "modifyDate": "2024-04-21T18:03:41.000Z"
+      },
+      {
+        "id": "12c4ef45",
+        "modifyDate": "2025-05-02T20:19:37.000Z"
+      },
+      {
+        "id": "4a8a680",
+        "modifyDate": "2025-05-04T12:24:14.000Z"
+      }
+    ],
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Trillium"
+      }
+    ],
+    "location": "West Planting Strip Middle Zone"
+  },
+  {
+    "id": "5ef23fd6",
+    "name": "Big Leaved Lupine",
+    "scientificName": "Lupinus polyphyllus",
+    "photos": [
+      {
+        "id": "86b8eb7e",
+        "modifyDate": "2023-07-10T19:08:26.000Z"
+      },
+      {
+        "id": "e05bdb41",
+        "modifyDate": "2025-05-02T20:19:03.000Z"
+      }
+    ],
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Lupinus_polyphyllus"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "3e6e04c5",
+    "name": "Bunchberry",
+    "scientificName": "Cornus canadensis",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Cornus_canadensis"
+      }
+    ],
+    "photos": [
+      {
+        "id": "c7c55f5d",
+        "modifyDate": "2023-05-09T15:45:02.000Z"
+      },
+      {
+        "id": "bdc33874",
+        "modifyDate": "2023-10-01T16:02:14.000Z"
+      },
+      {
+        "id": "86ca0e6f",
+        "modifyDate": "2025-05-04T12:24:32.000Z"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "42c8613e",
+    "name": "Brilliance Autumn Fern",
+    "scientificName": "Dryopteris erythrosora",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Dryopteris_erythrosora"
+      }
+    ],
+    "photos": [
+      {
+        "id": "85d7d2be",
+        "modifyDate": "2023-10-01T16:04:54.000Z"
+      },
+      {
+        "id": "87d59c0a",
+        "modifyDate": "2025-05-04T16:44:41.000Z"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "3a9ff548",
+    "name": "Pasque Flower",
+    "scientificName": "Pulsatilla vulgaris",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Pulsatilla_vulgaris"
+      }
+    ],
+    "photos": [
+      {
+        "id": "40014ac1",
+        "modifyDate": "2023-04-30T18:12:55.000Z"
+      },
+      {
+        "id": "6b58bfaa",
+        "modifyDate": "2023-10-01T16:02:59.000Z"
+      },
+      {
+        "id": "733720f1",
+        "modifyDate": "2023-10-01T16:02:56.000Z"
+      },
+      {
+        "id": "fb7b77f3",
+        "modifyDate": "2025-05-04T16:45:15.000Z"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "51106d08",
+    "name": "Sea Thrift",
+    "scientificName": "Armeria maritima",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Armeria_maritima"
+      }
+    ],
+    "photos": [
+      {
+        "id": "fbd19c87",
+        "modifyDate": "2023-04-30T18:12:18.000Z"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "f09f5452",
+    "name": "Miner's Lettuce",
+    "scientificName": "Claytonia perfoliata",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Claytonia_perfoliata"
+      }
+    ],
+    "photos": [
+      {
+        "id": "12e6c721",
+        "modifyDate": "2023-04-30T18:13:09.000Z"
+      },
+      {
+        "id": "ae3dd87d",
+        "modifyDate": "2023-10-01T16:04:47.000Z"
+      },
+      {
+        "id": "6f9a0e25",
+        "modifyDate": "2025-05-04T16:46:16.000Z"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "0f577390",
+    "name": "Calico Aster",
+    "scientificName": "Symphyotrichum_lateriflorum",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Symphyotrichum_lateriflorum"
+      }
+    ],
+    "photos": [
+      {
+        "id": "3a329c1d",
+        "modifyDate": "2023-04-30T18:12:43.000Z"
+      },
+      {
+        "id": "d952a29a",
+        "modifyDate": "2025-05-04T16:46:39.000Z"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "577aaef6",
+    "name": "Coastal Mitrewort",
+    "scientificName": "Mitella ovalis",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Mitella_ovalis"
+      }
+    ],
+    "photos": [
+      {
+        "id": "64b81a56",
+        "modifyDate": "2023-10-01T16:03:39.000Z"
+      },
+      {
+        "id": "1a791822",
+        "modifyDate": "2023-04-30T18:13:44.000Z"
+      },
+      {
+        "id": "c5b652e6",
+        "modifyDate": "2025-05-04T16:46:59.000Z"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "16f8b881",
+    "name": "Evergreen Huckleberry",
+    "scientificName": "Vaccinium ovatum",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Vaccinium_ovatum"
+      }
+    ],
+    "photos": [
+      {
+        "id": "8d0bc53b",
+        "modifyDate": "2023-10-01T16:03:53.000Z"
+      },
+      {
+        "id": "bf8eb534",
+        "modifyDate": "2023-04-30T18:13:03.000Z"
+      },
+      {
+        "id": "e9614fea",
+        "modifyDate": "2025-05-04T16:47:12.000Z"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "ce727fb8",
+    "name": "Cheviot Sun Rose",
+    "scientificName": "Helianthemum",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Helianthemum"
+      }
+    ],
+    "location": "West Planting Strip North Zone",
+    "photos": [
+      {
+        "id": "97276177",
+        "modifyDate": "2025-05-04T16:47:32.000Z"
       }
     ]
+  },
+  {
+    "id": "075588f7",
+    "name": "Professor Kippenburg Aster",
+    "scientificName": "Symphyotrichum dumosum",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Symphyotrichum_dumosum"
+      }
+    ],
+    "photos": [
+      {
+        "id": "52fd8fe7",
+        "modifyDate": "2023-07-10T19:07:50.000Z"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "b51b63b7",
+    "name": "False Sunflower",
+    "scientificName": "Heliopsis helianthoides",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Heliopsis_helianthoides"
+      }
+    ],
+    "photos": [
+      {
+        "id": "6fc8a9c9",
+        "modifyDate": "2023-07-10T19:08:07.000Z"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "597131cb",
+    "name": "Puget Sound Gumweed",
+    "scientificName": "Grindelia integrifolia",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Grindelia_integrifolia"
+      }
+    ],
+    "photos": [
+      {
+        "id": "0d70079e",
+        "modifyDate": "2023-10-01T16:51:03.000Z"
+      },
+      {
+        "id": "1e5d40c0",
+        "modifyDate": "2025-05-04T16:48:24.000Z"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "7353591a",
+    "name": "Giant Allium",
+    "scientificName": "Allium giganteum",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Allium_giganteum"
+      }
+    ],
+    "location": "West Planting Strip North Zone",
+    "photos": [
+      {
+        "id": "6b1d0098",
+        "modifyDate": "2025-05-04T16:57:23.000Z"
+      }
+    ]
+  },
+  {
+    "id": "e2927e31",
+    "name": "Agapanthus Summer Skies",
+    "scientificName": "Agapanthus",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Agapanthus"
+      }
+    ],
+    "photos": [
+      {
+        "id": "0789fa2e",
+        "modifyDate": "2023-07-10T19:07:46.000Z"
+      },
+      {
+        "id": "cb9f60fb",
+        "modifyDate": "2023-10-01T15:54:58.000Z"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "35952aed",
+    "name": "Dwarf Jasmine",
+    "scientificName": "Jasminum parkeri",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Jasminum_parkeri"
+      }
+    ],
+    "photos": [
+      {
+        "id": "56f83381",
+        "modifyDate": "2023-10-01T16:04:06.000Z"
+      },
+      {
+        "id": "b2bd9930",
+        "modifyDate": "2023-04-30T18:13:15.000Z"
+      },
+      {
+        "id": "155f7538",
+        "modifyDate": "2025-05-04T16:48:57.000Z"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "a89dd1c4",
+    "name": "Dwarf Slender Deutzia",
+    "scientificName": "Deutzia gracilis",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Deutzia_gracilis"
+      }
+    ],
+    "photos": [
+      {
+        "id": "0d6a75eb",
+        "modifyDate": "2023-04-30T18:12:27.000Z"
+      },
+      {
+        "id": "30362bdf",
+        "modifyDate": "2023-04-30T18:12:25.000Z"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "096eea7e",
+    "name": "Moench's Aster",
+    "scientificName": "Aster × frikartii 'Mönch'",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Aster_%C3%97_frikartii"
+      }
+    ],
+    "photos": [
+      {
+        "id": "44cea1ce",
+        "modifyDate": "2023-07-10T19:07:28.000Z"
+      },
+      {
+        "id": "1ab2fc75",
+        "modifyDate": "2023-10-01T15:56:18.000Z"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "ee86c432",
+    "name": "Burgundy Beardtongue",
+    "scientificName": "Penstemon digitalis",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Penstemon_digitalis"
+      }
+    ],
+    "location": "West Planting Strip North Zone",
+    "photos": [
+      {
+        "id": "5761c0b8",
+        "modifyDate": "2025-05-04T16:49:28.000Z"
+      }
+    ]
+  },
+  {
+    "id": "30b52ada",
+    "name": "Sicilian Honey Garlic",
+    "scientificName": "Allium siculum",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Allium_siculum"
+      }
+    ],
+    "location": "West Planting Strip North Zone",
+    "photos": [
+      {
+        "id": "1e8db1ad",
+        "modifyDate": "2025-05-04T16:58:34.000Z"
+      }
+    ]
+  },
+  {
+    "id": "9354c92e",
+    "name": "Winter Daphne",
+    "scientificName": "Daphne odora",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Daphne_odora"
+      }
+    ],
+    "location": "West Planting Strip North Zone",
+    "photos": [
+      {
+        "id": "37a52eea",
+        "modifyDate": "2025-05-04T16:49:44.000Z"
+      }
+    ]
+  },
+  {
+    "id": "4fc01431",
+    "name": "Pacific Coast Iris",
+    "scientificName": "Iris",
+    "photos": [
+      {
+        "id": "d234f7f0",
+        "modifyDate": "2023-04-30T18:12:10.000Z"
+      },
+      {
+        "id": "31ae19bb",
+        "modifyDate": "2023-10-01T15:56:05.000Z"
+      },
+      {
+        "id": "79b2d4b1",
+        "modifyDate": "2023-04-30T18:12:07.000Z"
+      },
+      {
+        "id": "4c7afe59",
+        "modifyDate": "2025-05-04T16:50:25.000Z"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "041841ba",
+    "name": "Red Dragon Fleece Flower",
+    "scientificName": "Persicaria microcephala",
+    "photos": [
+      {
+        "id": "ef656e30",
+        "modifyDate": "2023-04-30T18:12:36.000Z"
+      }
+    ],
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Persicaria_microcephala"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "98b86697",
+    "name": "Glory of the Snow",
+    "scientificName": "Scilla sect. Chionodoxa",
+    "photos": [
+      {
+        "id": "8b3c6ca0",
+        "modifyDate": "2023-04-30T18:13:26.000Z"
+      },
+      {
+        "id": "ef6d3b28",
+        "modifyDate": "2025-05-04T16:50:40.000Z"
+      }
+    ],
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Scilla_sect._Chionodoxa"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "8ea7e3da",
+    "name": "Blue-eyed Grass",
+    "scientificName": "Sisyrinchium",
+    "photos": [
+      {
+        "id": "8bf586ef",
+        "modifyDate": "2023-07-10T19:07:37.000Z"
+      },
+      {
+        "id": "71fbf5a5",
+        "modifyDate": "2025-05-04T16:51:03.000Z"
+      }
+    ],
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Sisyrinchium"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "349c9b79",
+    "name": "White-flowered Thrift",
+    "photos": [
+      {
+        "id": "469375a6",
+        "modifyDate": "2023-07-10T19:07:42.000Z"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "2f4483d7",
+    "name": "Prince Calico Aster",
+    "scientificName": "Symphyotrichum lateriflorum 'Prince'",
+    "photos": [
+      {
+        "id": "91d4de19",
+        "modifyDate": "2023-07-10T19:07:55.000Z"
+      },
+      {
+        "id": "d86e3e8d",
+        "modifyDate": "2025-05-04T16:51:19.000Z"
+      }
+    ],
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Symphyotrichum_lateriflorum"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "fbe3f97c",
+    "name": "Fine Toothed Penstemon",
+    "scientificName": "Penstemon subserratus",
+    "photos": [
+      {
+        "id": "a5e353a8",
+        "modifyDate": "2023-10-01T16:02:35.000Z"
+      },
+      {
+        "id": "b9244185",
+        "modifyDate": "2023-07-10T19:08:40.000Z"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "51a58c8d",
+    "name": "Mossy Saxifrage",
+    "photos": [
+      {
+        "id": "8df78597",
+        "modifyDate": "2025-04-30T17:38:12.000Z"
+      },
+      {
+        "id": "b9dcf1bd",
+        "modifyDate": "2025-05-02T20:18:49.000Z"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "3d1d99db",
+    "name": "Seaside Daisy",
+    "scientificName": "Erigeron glaucus",
+    "photos": [
+      {
+        "id": "d4c519ee",
+        "modifyDate": "2025-05-02T20:18:42.000Z"
+      }
+    ],
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Erigeron_glaucus"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "2ebed876",
+    "name": "Summer Daphne",
+    "photos": [
+      {
+        "id": "5810e45c",
+        "modifyDate": "2025-05-02T20:19:07.000Z"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "ae51ced7",
+    "name": "Snowdrop",
+    "scientificName": "Galanthus",
+    "photos": [
+      {
+        "id": "aed1d7a6",
+        "modifyDate": "2025-05-02T20:20:20.000Z"
+      }
+    ],
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Galanthus"
+      }
+    ],
+    "location": "West Planting Strip North Zone"
+  },
+  {
+    "id": "65c1b702",
+    "name": "Himalayan Sweet Box",
+    "scientificName": "Sarcococca hookeriana",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Sarcococca_hookeriana"
+      }
+    ],
+    "photos": [
+      {
+        "id": "1c00cb6a",
+        "modifyDate": "2023-04-30T18:14:30.000Z"
+      },
+      {
+        "id": "aa20ce42",
+        "modifyDate": "2023-10-01T16:49:23.000Z"
+      },
+      {
+        "id": "2d5e7309",
+        "modifyDate": "2025-05-04T16:52:31.000Z"
+      }
+    ],
+    "location": "West Planting Strip South Zone"
+  },
+  {
+    "id": "da395ff1",
+    "name": "Sweet Box",
+    "scientificName": "Sarcococca confusa",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Sarcococca_confusa"
+      }
+    ],
+    "photos": [
+      {
+        "id": "2ea43cf1",
+        "modifyDate": "2023-04-30T18:14:24.000Z"
+      },
+      {
+        "id": "9f499a44",
+        "modifyDate": "2023-10-01T16:49:13.000Z"
+      },
+      {
+        "id": "20898155",
+        "modifyDate": "2025-05-04T16:52:45.000Z"
+      }
+    ],
+    "location": "West Planting Strip South Zone"
+  },
+  {
+    "id": "3621899c",
+    "name": "Tassel Fern",
+    "scientificName": "Polystichum polyblepharum",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Polystichum_polyblepharum"
+      }
+    ],
+    "location": "West Planting Strip South Zone",
+    "photos": [
+      {
+        "id": "5a3bfc5a",
+        "modifyDate": "2025-05-04T16:52:58.000Z"
+      }
+    ]
+  },
+  {
+    "id": "f7e469ac",
+    "name": "False Lily of the Valley",
+    "scientificName": "Maianthemum dilatatum",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Maianthemum_dilatatum"
+      }
+    ],
+    "photos": [
+      {
+        "id": "3266d24e",
+        "modifyDate": "2023-04-30T18:14:18.000Z"
+      },
+      {
+        "id": "a2c775f7",
+        "modifyDate": "2023-10-01T16:48:38.000Z"
+      },
+      {
+        "id": "fc0a650c",
+        "modifyDate": "2025-05-04T16:53:10.000Z"
+      }
+    ],
+    "location": "West Planting Strip South Zone"
+  },
+  {
+    "id": "78bfcd5f",
+    "name": "Fringecup",
+    "scientificName": "Tellima",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Tellima"
+      }
+    ],
+    "photos": [
+      {
+        "id": "3ea3d855",
+        "modifyDate": "2023-10-01T16:48:16.000Z"
+      },
+      {
+        "id": "b6efc959",
+        "modifyDate": "2024-04-07T11:09:52.000Z"
+      },
+      {
+        "id": "df005c05",
+        "modifyDate": "2023-04-30T18:14:10.000Z"
+      },
+      {
+        "id": "83a6b6c5",
+        "modifyDate": "2022-10-14T14:23:03.000Z"
+      },
+      {
+        "id": "18f6677d",
+        "modifyDate": "2025-05-04T16:53:21.000Z"
+      }
+    ],
+    "location": "West Planting Strip South Zone"
+  },
+  {
+    "id": "242d4303",
+    "name": "Henderson's Shooting Star",
+    "scientificName": "Primula hendersonii",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Primula_hendersonii"
+      }
+    ],
+    "photos": [
+      {
+        "id": "31f8772c",
+        "modifyDate": "2023-04-30T18:14:14.000Z"
+      },
+      {
+        "id": "ab7e199b",
+        "modifyDate": "2025-04-16T17:59:47.000Z"
+      },
+      {
+        "id": "a85f7698",
+        "modifyDate": "2025-05-04T16:53:51.000Z"
+      },
+      {
+        "id": "955e6a4b",
+        "modifyDate": "2025-05-04T16:54:04.000Z"
+      }
+    ],
+    "location": "West Planting Strip South Zone"
+  },
+  {
+    "id": "f1fef069",
+    "name": "Umbrella Plant",
+    "scientificName": "Darmera",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Darmera"
+      }
+    ],
+    "photos": [
+      {
+        "id": "380501fe",
+        "modifyDate": "2023-05-09T15:44:18.000Z"
+      },
+      {
+        "id": "4ea45ebb",
+        "modifyDate": "2023-10-01T16:48:06.000Z"
+      },
+      {
+        "id": "edc9b7a0",
+        "modifyDate": "2025-05-04T16:54:16.000Z"
+      }
+    ],
+    "location": "West Planting Strip South Zone"
+  },
+  {
+    "id": "2d22a4ec",
+    "name": "Korean Rock Fern",
+    "scientificName": "Polystichum tsus-simense",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Polystichum_tsus-simense"
+      }
+    ],
+    "location": "West Planting Strip South Zone",
+    "photos": [
+      {
+        "id": "93fc67d6",
+        "modifyDate": "2025-05-04T16:54:43.000Z"
+      }
+    ]
+  },
+  {
+    "id": "80099925",
+    "name": "Red Oak",
+    "scientificName": "Quercus rubra",
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Quercus_rubra"
+      }
+    ],
+    "location": "West Planting Strip South Zone",
+    "photos": [
+      {
+        "id": "4346027a",
+        "modifyDate": "2025-05-04T16:55:05.000Z"
+      }
+    ]
+  },
+  {
+    "id": "39dbb573",
+    "name": "Salal",
+    "scientificName": "Gaultheria shallon",
+    "photos": [
+      {
+        "id": "9c5a559d",
+        "modifyDate": "2023-10-01T16:49:41.000Z"
+      },
+      {
+        "id": "84d29ea8",
+        "modifyDate": "2025-05-04T16:55:19.000Z"
+      }
+    ],
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Gaultheria_shallon"
+      }
+    ],
+    "location": "West Planting Strip South Zone"
+  },
+  {
+    "id": "96f9fc86",
+    "name": "Spanish bluebell",
+    "scientificName": "Hyacinthoides hispanica",
+    "photos": [
+      {
+        "id": "9143a8ec",
+        "modifyDate": "2024-04-12T12:41:49.000Z"
+      },
+      {
+        "id": "a3501cc8",
+        "modifyDate": "2025-05-04T16:55:29.000Z"
+      }
+    ],
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Hyacinthoides_hispanica"
+      }
+    ],
+    "location": "West Planting Strip South Zone"
+  },
+  {
+    "id": "ca235688",
+    "name": "Alpine Buckler Fern",
+    "scientificName": "Dryopteris expansa",
+    "photos": [
+      {
+        "id": "3f147d0b",
+        "modifyDate": "2025-05-02T20:19:51.000Z"
+      },
+      {
+        "id": "8867d084",
+        "modifyDate": "2024-04-21T18:03:54.000Z"
+      }
+    ],
+    "links": [
+      {
+        "site": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Dryopteris_expansa"
+      }
+    ],
+    "location": "West Planting Strip South Zone"
   }
 ]
