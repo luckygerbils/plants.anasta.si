@@ -32,7 +32,8 @@
         "modifyDate": "2025-05-04T17:05:50.000Z"
       }
     ],
-    "location": "Bonsai"
+    "location": "Bonsai",
+    "scientificName": "Juniperus"
   },
   {
     "id": "0303e17c",
@@ -44,7 +45,7 @@
       }
     ],
     "location": "Bonsai",
-    "scientificName": "Styrax japonica"
+    "scientificName": "Styrax japonicus"
   },
   {
     "id": "7b74bd2b",
@@ -72,7 +73,7 @@
   },
   {
     "id": "a63efba4",
-    "name": "Katsura Tree",
+    "name": "Katsura",
     "photos": [
       {
         "id": "599fc1f1",
@@ -150,7 +151,8 @@
         "modifyDate": "2025-05-04T17:16:31.000Z"
       }
     ],
-    "location": "Bonsai"
+    "location": "Bonsai",
+    "scientificName": "Quercus garryana"
   },
   {
     "id": "7283b983",
@@ -190,14 +192,15 @@
   },
   {
     "id": "9ad1f00c",
-    "name": "Norway Maple 'Emerald Queen'",
+    "name": "Emerald Queen Norway Maple",
     "photos": [
       {
         "id": "db99c5ff",
         "modifyDate": "2025-05-04T17:18:11.000Z"
       }
     ],
-    "location": "Bonsai"
+    "location": "Bonsai",
+    "scientificName": "Acer platanoides 'Emerald Queen'"
   },
   {
     "id": "48bda07f",
@@ -232,7 +235,8 @@
         "modifyDate": "2025-05-04T17:18:58.000Z"
       }
     ],
-    "location": "Bonsai"
+    "location": "Bonsai",
+    "scientificName": "Acer platanoides"
   },
   {
     "id": "33e253ba",
@@ -256,7 +260,7 @@
       }
     ],
     "location": "Bonsai",
-    "scientificName": "Arctustaphylos columbianA"
+    "scientificName": "Arctostaphylos columbiana"
   },
   {
     "id": "80a2337b",
@@ -272,14 +276,15 @@
   },
   {
     "id": "ff515b23",
-    "name": "Cherry",
+    "name": "Higan (Spring) Cherry",
     "photos": [
       {
         "id": "bea9c4f3",
         "modifyDate": "2025-05-04T17:19:57.000Z"
       }
     ],
-    "location": "Bonsai"
+    "location": "Bonsai",
+    "scientificName": "Prunus x subhirtella"
   },
   {
     "id": "eaa1f6d3",
@@ -302,7 +307,8 @@
         "modifyDate": "2025-05-04T17:21:49.000Z"
       }
     ],
-    "location": "Bonsai"
+    "location": "Bonsai",
+    "scientificName": "Juniperus"
   },
   {
     "id": "bfa41238",
@@ -326,7 +332,7 @@
       }
     ],
     "location": "Garden East",
-    "needsIdenfication": true,
+    
     "scientificName": "Pieris japonica 'Little Heath Variegata'"
   },
   {
@@ -339,7 +345,8 @@
       }
     ],
     "location": "Garden East",
-    "needsIdenfication": true
+    
+    "needsIdentification": true
   },
   {
     "id": "e7a053dc",
@@ -509,7 +516,7 @@
   },
   {
     "id": "e2a44ea9",
-    "name": "Tall Original Plant",
+    "name": "Japanese Euonymus",
     "photos": [
       {
         "id": "811d2ba3",
@@ -517,7 +524,9 @@
       }
     ],
     "location": "Garden North",
-    "needsIdenfication": true
+    
+    "needsIdentification": true,
+    "scientificName": "Euonymus japonicus"
   },
   {
     "id": "677b5eed",
@@ -529,7 +538,7 @@
       }
     ],
     "location": "Garden North",
-    "needsIdenfication": true,
+    
     "scientificName": "Spirea japonica 'White Gold'"
   },
   {
@@ -541,7 +550,8 @@
         "modifyDate": "2025-05-04T17:20:47.000Z"
       }
     ],
-    "location": "Garden North"
+    "location": "Garden North",
+    "needsIdentification": true
   },
   {
     "id": "edce7c57",
@@ -553,7 +563,7 @@
       }
     ],
     "location": "Garden North",
-    "needsIdenfication": true,
+    
     "scientificName": "Pieris japonica 'Valley Valentino'"
   },
   {
@@ -566,7 +576,7 @@
       }
     ],
     "location": "Garden North",
-    "needsIdenfication": true,
+    
     "needsIdentification": true
   },
   {
@@ -579,7 +589,8 @@
       }
     ],
     "location": "Garden North",
-    "needsIdenfication": true
+    
+    "needsIdentification": true
   },
   {
     "id": "8d00df7c",
@@ -590,7 +601,8 @@
         "modifyDate": "2025-05-04T17:21:14.000Z"
       }
     ],
-    "location": "Garden North"
+    "location": "Garden North",
+    "needsIdentification": true
   },
   {
     "id": "dd2bec14",
@@ -602,7 +614,8 @@
       }
     ],
     "location": "Garden North",
-    "needsIdenfication": true
+    
+    "needsIdentification": true
   },
   {
     "id": "99b6a6b2",
@@ -727,7 +740,8 @@
         "modifyDate": "2024-04-21T18:02:55.000Z"
       }
     ],
-    "location": "Garden Pots"
+    "location": "Garden Pots",
+    "likelyDead": true
   },
   {
     "id": "8ddea561",
@@ -761,7 +775,8 @@
         "modifyDate": "2025-05-04T17:07:49.000Z"
       }
     ],
-    "location": "Garden Pots"
+    "location": "Garden Pots",
+    "needsIdentification": true
   },
   {
     "id": "1a4474e9",
@@ -773,7 +788,8 @@
       }
     ],
     "location": "Garden Pots",
-    "scientificName": "Pieris japonica"
+    "scientificName": "Pieris japonica",
+    "needsIdentification": true
   },
   {
     "id": "a6e5e5e1",
@@ -825,7 +841,8 @@
         "url": "https://en.wikipedia.org/wiki/Asarum_splendens"
       }
     ],
-    "location": "Garden Shade"
+    "location": "Garden Shade",
+    "likelyDead": true
   },
   {
     "id": "e9f0676a",
@@ -964,11 +981,12 @@
         "modifyDate": "2025-05-04T17:05:45.000Z"
       }
     ],
-    "location": "Garden Shade"
+    "location": "Garden Shade",
+    "needsIdentification": true
   },
   {
     "id": "3b8ad956",
-    "name": "Flat Fern",
+    "name": "Japanese holly fern",
     "photos": [
       {
         "id": "8467d5f2",
@@ -976,11 +994,13 @@
       }
     ],
     "location": "Garden Shade",
-    "needsIdenfication": true
+    
+    "needsIdentification": true,
+    "scientificName": "Cyrtomium falcatum"
   },
   {
     "id": "aade9df1",
-    "name": "Willow Gentian",
+    "name": "White Willow Gentian",
     "photos": [
       {
         "id": "7c4992f4",
@@ -988,7 +1008,9 @@
       }
     ],
     "location": "Garden Shade",
-    "needsIdenfication": true
+    
+    "scientificName": "Gentiana asclepiadea 'Alba'",
+    "needsIdentification": true
   },
   {
     "id": "83b7c210",
@@ -1083,7 +1105,8 @@
         "modifyDate": "2025-05-04T12:11:27.000Z"
       }
     ],
-    "location": "Garden South"
+    "location": "Garden South",
+    "needsIdentification": true
   },
   {
     "id": "9fa71beb",
@@ -1094,7 +1117,8 @@
         "modifyDate": "2025-05-04T17:05:12.000Z"
       }
     ],
-    "location": "Garden South"
+    "location": "Garden South",
+    "needsIdentification": true
   },
   {
     "id": "b8fcf407",
@@ -1106,7 +1130,8 @@
       }
     ],
     "location": "Garden South",
-    "needsIdenfication": true
+    
+    "needsIdentification": true
   },
   {
     "id": "95b4a2cf",
@@ -1118,7 +1143,8 @@
       }
     ],
     "location": "Garden South",
-    "needsIdenfication": true
+    
+    "needsIdentification": true
   },
   {
     "id": "b5be7c62",
@@ -1236,8 +1262,7 @@
         "modifyDate": "2025-05-04T17:05:34.000Z"
       }
     ],
-    "location": "Garden West",
-    "annual": true
+    "location": "Garden West"
   },
   {
     "id": "574ee881",
@@ -1435,7 +1460,8 @@
         "url": "https://en.wikipedia.org/wiki/Coreopsis"
       }
     ],
-    "location": "North Planting Strip"
+    "location": "North Planting Strip",
+    "likelyDead": true
   },
   {
     "id": "80ca3fa7",
@@ -1575,7 +1601,8 @@
       }
     ],
     "location": "Office",
-    "needsIdenfication": true
+    
+    "needsIdentification": true
   },
   {
     "id": "f9ef071a",
@@ -1598,8 +1625,7 @@
         "modifyDate": "2025-05-04T17:28:32.000Z"
       }
     ],
-    "location": "Office",
-    "needsIdenfication": true
+    "location": "Office"
   },
   {
     "id": "5484648e",
@@ -1750,7 +1776,8 @@
         "modifyDate": "2024-04-12T12:41:13.000Z"
       }
     ],
-    "location": "West Planting Strip"
+    "location": "West Planting Strip",
+    "needsIdentification": true
   },
   {
     "id": "6e16d572",
@@ -2052,7 +2079,8 @@
         "url": "https://en.wikipedia.org/wiki/Aquilegia_vulgaris"
       }
     ],
-    "location": "West Planting Strip Middle Zone"
+    "location": "West Planting Strip Middle Zone",
+    "likelyDead": true
   },
   {
     "id": "045ae4e5",
@@ -2352,7 +2380,7 @@
   {
     "id": "0f577390",
     "name": "Calico Aster",
-    "scientificName": "Symphyotrichum_lateriflorum",
+    "scientificName": "Symphyotrichum lateriflorum",
     "links": [
       {
         "site": "Wikipedia",
@@ -2537,7 +2565,8 @@
         "modifyDate": "2023-10-01T15:54:58.000Z"
       }
     ],
-    "location": "West Planting Strip North Zone"
+    "location": "West Planting Strip North Zone",
+    "likelyDead": true
   },
   {
     "id": "35952aed",
@@ -2585,7 +2614,8 @@
         "modifyDate": "2023-04-30T18:12:25.000Z"
       }
     ],
-    "location": "West Planting Strip North Zone"
+    "location": "West Planting Strip North Zone",
+    "likelyDead": true
   },
   {
     "id": "096eea7e",
@@ -2703,7 +2733,8 @@
         "url": "https://en.wikipedia.org/wiki/Persicaria_microcephala"
       }
     ],
-    "location": "West Planting Strip North Zone"
+    "location": "West Planting Strip North Zone",
+    "likelyDead": true
   },
   {
     "id": "98b86697",
@@ -2713,10 +2744,6 @@
       {
         "id": "8b3c6ca0",
         "modifyDate": "2023-04-30T18:13:26.000Z"
-      },
-      {
-        "id": "ef6d3b28",
-        "modifyDate": "2025-05-04T16:50:40.000Z"
       }
     ],
     "links": [
@@ -2725,7 +2752,8 @@
         "url": "https://en.wikipedia.org/wiki/Scilla_sect._Chionodoxa"
       }
     ],
-    "location": "West Planting Strip North Zone"
+    "location": "West Planting Strip North Zone",
+    "likelyDead": true
   },
   {
     "id": "8ea7e3da",
@@ -2796,7 +2824,8 @@
         "modifyDate": "2023-07-10T19:08:40.000Z"
       }
     ],
-    "location": "West Planting Strip North Zone"
+    "location": "West Planting Strip North Zone",
+    "likelyDead": true
   },
   {
     "id": "51a58c8d",
