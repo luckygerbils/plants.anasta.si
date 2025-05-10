@@ -27,5 +27,5 @@ export interface Plant {
   likelyDead?: boolean,
   plantedDate?: string,
   idConfidence?: IdConfidence,
-  tags: Tag[]
+  tags: Partial<Record<TagKey, string>>,
 }

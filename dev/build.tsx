@@ -9,7 +9,7 @@ import { PublicIndexPage } from "../src/public-index-page";
 
 const plants = (JSON.parse(await readFile("plants.json", "utf8")) as Plant[]);
 const [ publicPlants, privatePlants ] = plants.reduce((result: [Plant[], Plant[]], plant) => {
-  if (plant.tags.find(t => t.key === "public" && t.value === "true")) {
+  if (plant.tags.public === "true") {
     result[0].push(plant);
   } else {
     result[1].push(plant);
@@ -47,13 +47,13 @@ const results = await Promise.all([
     `dist/index.html`,
     "<!DOCTYPE html>\n" + renderToString(
       <Html title="All Plants">
-        <PublicIndexPage allPlants={plants} />
+        <PublicIndexPage allPlants={publicPlants} />
       </Html>
     )
   ).then(() => `Built index.html`),
   Promise.all(
     publicPlants
-      .sort(comparing(p => p.tags.find(({key}) => key == "location")?.value, nullsFirst(localeCompare)))
+      .sort(comparing(p => p.tags.location, nullsFirst(localeCompare)))
       .map(async (plant: Plant, i: number) => 
       {
         try {

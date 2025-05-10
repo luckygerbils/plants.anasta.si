@@ -9,24 +9,12 @@
       }
     ],
     "scientificName": "Chaenomeles speciosa",
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2025"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "bonsai",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "2025",
+      "confidence": "high",
+      "bonsai": "true"
+    }
   },
   {
     "id": "424ac330",
@@ -38,24 +26,12 @@
       }
     ],
     "scientificName": "Ceanothus x 'Victoria'",
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2025"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "bonsai",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "2025",
+      "confidence": "high",
+      "bonsai": "true"
+    }
   },
   {
     "id": "c8af8126",
@@ -67,24 +43,12 @@
       }
     ],
     "scientificName": "Juniperus",
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2022"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "bonsai",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "2022",
+      "confidence": "high",
+      "bonsai": "true"
+    }
   },
   {
     "id": "0303e17c",
@@ -96,24 +60,12 @@
       }
     ],
     "scientificName": "Styrax japonicus",
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2022"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "bonsai",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "2022",
+      "confidence": "high",
+      "bonsai": "true"
+    }
   },
   {
     "id": "7b74bd2b",
@@ -125,24 +77,12 @@
       }
     ],
     "scientificName": "Chamaecyparis pisifera 'Snow'",
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2022"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "bonsai",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "2022",
+      "confidence": "high",
+      "bonsai": "true"
+    }
   },
   {
     "id": "2d639cb5",
@@ -154,24 +94,12 @@
         "modifyDate": "2025-05-04T17:07:21.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "bonsai",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "2024",
+      "confidence": "high",
+      "bonsai": "true"
+    }
   },
   {
     "id": "a63efba4",
@@ -183,24 +111,12 @@
       }
     ],
     "scientificName": "Cercidiphyllum japonicum",
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2022"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "bonsai",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "2022",
+      "confidence": "high",
+      "bonsai": "true"
+    }
   },
   {
     "id": "9a9c45aa",
@@ -212,24 +128,12 @@
         "modifyDate": "2025-05-04T17:08:18.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "bonsai",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "2024",
+      "confidence": "high",
+      "bonsai": "true"
+    }
   },
   {
     "id": "73e8f8bf",
@@ -240,24 +144,12 @@
         "modifyDate": "2025-05-04T17:08:31.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2025"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "bonsai",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "2025",
+      "confidence": "high",
+      "bonsai": "true"
+    }
   },
   {
     "id": "0873631d",
@@ -269,23 +161,12 @@
       }
     ],
     "scientificName": "Ginko biloba",
-    "tags": [
-      {
-        "key": "bonsai"
-      },
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "bonsai": null,
+      "location": "Garden North",
+      "planted": "2024",
+      "confidence": "high"
+    }
   },
   {
     "id": "075767ea",
@@ -297,23 +178,12 @@
       }
     ],
     "scientificName": "Thuja plicata",
-    "tags": [
-      {
-        "key": "bonsai"
-      },
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "bonsai": null,
+      "location": "Garden North",
+      "planted": "2023",
+      "confidence": "high"
+    }
   },
   {
     "id": "a61ca2ba",
@@ -325,23 +195,12 @@
       }
     ],
     "scientificName": "Toona sinensis",
-    "tags": [
-      {
-        "key": "bonsai"
-      },
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "bonsai": null,
+      "location": "Garden North",
+      "planted": "2024",
+      "confidence": "high"
+    }
   },
   {
     "id": "af583c70",
@@ -353,23 +212,12 @@
       }
     ],
     "scientificName": "Quercus garryana",
-    "tags": [
-      {
-        "key": "bonsai"
-      },
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "bonsai": null,
+      "location": "Garden North",
+      "planted": "2024",
+      "confidence": "high"
+    }
   },
   {
     "id": "7283b983",
@@ -381,23 +229,12 @@
       }
     ],
     "scientificName": "Jasminium nudiflorum",
-    "tags": [
-      {
-        "key": "bonsai"
-      },
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "bonsai": null,
+      "location": "Garden North",
+      "planted": "2024",
+      "confidence": "high"
+    }
   },
   {
     "id": "f858ca6d",
@@ -409,23 +246,12 @@
         "modifyDate": "2025-05-04T17:17:35.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "bonsai"
-      },
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "bonsai": null,
+      "location": "Garden North",
+      "planted": "2023",
+      "confidence": "high"
+    }
   },
   {
     "id": "ee12a821",
@@ -437,23 +263,12 @@
       }
     ],
     "scientificName": "Syringa meyeri 'Palabin'",
-    "tags": [
-      {
-        "key": "bonsai"
-      },
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2025"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "bonsai": null,
+      "location": "Garden North",
+      "planted": "2025",
+      "confidence": "high"
+    }
   },
   {
     "id": "9ad1f00c",
@@ -465,23 +280,12 @@
       }
     ],
     "scientificName": "Acer platanoides 'Emerald Queen'",
-    "tags": [
-      {
-        "key": "bonsai"
-      },
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "medium"
-      }
-    ]
+    "tags": {
+      "bonsai": null,
+      "location": "Garden North",
+      "planted": "2023",
+      "confidence": "medium"
+    }
   },
   {
     "id": "48bda07f",
@@ -493,23 +297,12 @@
       }
     ],
     "scientificName": "Millettia japonica 'Hime fuji'",
-    "tags": [
-      {
-        "key": "bonsai"
-      },
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "bonsai": null,
+      "location": "Garden North",
+      "planted": "2024",
+      "confidence": "high"
+    }
   },
   {
     "id": "eb64d824",
@@ -521,23 +314,12 @@
         "modifyDate": "2025-05-04T17:18:45.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "bonsai"
-      },
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "bonsai": null,
+      "location": "Garden North",
+      "planted": "2023",
+      "confidence": "high"
+    }
   },
   {
     "id": "04775d21",
@@ -549,23 +331,12 @@
       }
     ],
     "scientificName": "Acer platanoides",
-    "tags": [
-      {
-        "key": "bonsai"
-      },
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "medium"
-      }
-    ]
+    "tags": {
+      "bonsai": null,
+      "location": "Garden North",
+      "planted": "2023",
+      "confidence": "medium"
+    }
   },
   {
     "id": "33e253ba",
@@ -577,23 +348,12 @@
       }
     ],
     "scientificName": "Acer palmatum",
-    "tags": [
-      {
-        "key": "bonsai"
-      },
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "bonsai": null,
+      "location": "Garden North",
+      "planted": "2023",
+      "confidence": "high"
+    }
   },
   {
     "id": "04210d9e",
@@ -605,23 +365,12 @@
       }
     ],
     "scientificName": "Arctostaphylos columbiana",
-    "tags": [
-      {
-        "key": "bonsai"
-      },
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "bonsai": null,
+      "location": "Garden North",
+      "planted": "2024",
+      "confidence": "high"
+    }
   },
   {
     "id": "80a2337b",
@@ -633,23 +382,12 @@
       }
     ],
     "scientificName": "Acer palmatum",
-    "tags": [
-      {
-        "key": "bonsai"
-      },
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "bonsai": null,
+      "location": "Garden North",
+      "planted": "2023",
+      "confidence": "high"
+    }
   },
   {
     "id": "ff515b23",
@@ -661,23 +399,12 @@
       }
     ],
     "scientificName": "Prunus x subhirtella",
-    "tags": [
-      {
-        "key": "bonsai"
-      },
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "bonsai": null,
+      "location": "Garden North",
+      "planted": "2024",
+      "confidence": "high"
+    }
   },
   {
     "id": "eaa1f6d3",
@@ -689,23 +416,12 @@
         "modifyDate": "2025-05-04T17:20:17.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "bonsai"
-      },
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "bonsai": null,
+      "location": "Garden North",
+      "planted": "2024",
+      "confidence": "high"
+    }
   },
   {
     "id": "fbdc7256",
@@ -717,23 +433,12 @@
       }
     ],
     "scientificName": "Juniperus",
-    "tags": [
-      {
-        "key": "bonsai"
-      },
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2022"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "bonsai": null,
+      "location": "Garden North",
+      "planted": "2022",
+      "confidence": "high"
+    }
   },
   {
     "id": "bfa41238",
@@ -745,20 +450,11 @@
         "modifyDate": "2025-05-04T17:21:29.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden East"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden East",
+      "planted": "2023",
+      "confidence": "high"
+    }
   },
   {
     "id": "0fd46631",
@@ -770,20 +466,11 @@
       }
     ],
     "scientificName": "Pieris japonica 'Little Heath Variegata'",
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden East"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden East",
+      "planted": "Unknown",
+      "confidence": "high"
+    }
   },
   {
     "id": "f1f7c27c",
@@ -794,20 +481,11 @@
         "modifyDate": "2025-05-04T17:22:10.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden East"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      },
-      {
-        "key": "needsIdentification",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "Garden East",
+      "planted": "Unknown",
+      "needsIdentification": "true"
+    }
   },
   {
     "id": "e7a053dc",
@@ -829,20 +507,11 @@
         "modifyDate": "2025-05-04T12:04:22.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2018"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "2018",
+      "confidence": "high"
+    }
   },
   {
     "id": "010d1830",
@@ -860,20 +529,11 @@
         "modifyDate": "2025-05-04T12:04:53.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "Unknown",
+      "confidence": "high"
+    }
   },
   {
     "id": "3a7294b0",
@@ -891,20 +551,11 @@
         "modifyDate": "2025-05-04T12:05:15.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "2023",
+      "confidence": "high"
+    }
   },
   {
     "id": "57e0ebf8",
@@ -922,20 +573,11 @@
         "modifyDate": "2025-05-04T12:05:37.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "Unknown",
+      "confidence": "high"
+    }
   },
   {
     "id": "011e63e4",
@@ -957,20 +599,11 @@
         "modifyDate": "2025-05-04T12:06:03.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "2023",
+      "confidence": "high"
+    }
   },
   {
     "id": "67970ed6",
@@ -988,20 +621,11 @@
         "modifyDate": "2025-05-04T12:06:37.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "Unknown",
+      "confidence": "high"
+    }
   },
   {
     "id": "45e17da1",
@@ -1023,24 +647,12 @@
         "url": "https://en.wikipedia.org/wiki/Adiantum"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2017"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "needsIdentification",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "2017",
+      "confidence": "high",
+      "needsIdentification": "true"
+    }
   },
   {
     "id": "8bc6719a",
@@ -1056,20 +668,11 @@
         "modifyDate": "2025-05-02T20:17:53.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "2024",
+      "confidence": "high"
+    }
   },
   {
     "id": "dbe9b580",
@@ -1081,20 +684,11 @@
         "modifyDate": "2025-05-04T17:20:33.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "2023",
+      "confidence": "high"
+    }
   },
   {
     "id": "e2a44ea9",
@@ -1106,20 +700,11 @@
       }
     ],
     "scientificName": "Euonymus japonicus",
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "Unknown",
+      "confidence": "high"
+    }
   },
   {
     "id": "677b5eed",
@@ -1131,20 +716,11 @@
       }
     ],
     "scientificName": "Spirea japonica 'White Gold'",
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "Unknown",
+      "confidence": "high"
+    }
   },
   {
     "id": "17f03531",
@@ -1155,20 +731,11 @@
         "modifyDate": "2025-05-04T17:20:47.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      },
-      {
-        "key": "needsIdentification",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "Unknown",
+      "needsIdentification": "true"
+    }
   },
   {
     "id": "edce7c57",
@@ -1180,20 +747,11 @@
       }
     ],
     "scientificName": "Pieris japonica 'Valley Valentino'",
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "Unknown",
+      "confidence": "high"
+    }
   },
   {
     "id": "1554ddbe",
@@ -1204,20 +762,11 @@
         "modifyDate": "2025-05-04T17:20:53.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      },
-      {
-        "key": "needsIdentification",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "Unknown",
+      "needsIdentification": "true"
+    }
   },
   {
     "id": "417e84f3",
@@ -1228,20 +777,11 @@
         "modifyDate": "2025-05-04T17:20:57.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      },
-      {
-        "key": "confidence",
-        "value": "medium"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "Unknown",
+      "confidence": "medium"
+    }
   },
   {
     "id": "8d00df7c",
@@ -1252,20 +792,11 @@
         "modifyDate": "2025-05-04T17:21:14.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      },
-      {
-        "key": "needsIdentification",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "Unknown",
+      "needsIdentification": "true"
+    }
   },
   {
     "id": "dd2bec14",
@@ -1276,20 +807,11 @@
         "modifyDate": "2025-05-04T17:25:47.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden North"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      },
-      {
-        "key": "needsIdentification",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "Garden North",
+      "planted": "Unknown",
+      "needsIdentification": "true"
+    }
   },
   {
     "id": "99b6a6b2",
@@ -1307,20 +829,11 @@
         "modifyDate": "2025-05-04T12:07:22.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden Pots"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden Pots",
+      "planted": "2024",
+      "confidence": "high"
+    }
   },
   {
     "id": "b94ca0f1",
@@ -1342,20 +855,11 @@
         "modifyDate": "2025-05-04T12:07:43.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden Pots"
-      },
-      {
-        "key": "planted",
-        "value": "2017"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden Pots",
+      "planted": "2017",
+      "confidence": "high"
+    }
   },
   {
     "id": "96044d7a",
@@ -1381,20 +885,11 @@
         "url": "https://en.wikipedia.org/wiki/Aquilegia"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden Pots"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden Pots",
+      "planted": "2024",
+      "confidence": "high"
+    }
   },
   {
     "id": "e9c2a7d5",
@@ -1416,20 +911,11 @@
         "url": "https://en.wikipedia.org/wiki/Pachyphragma"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden Pots"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden Pots",
+      "planted": "2024",
+      "confidence": "high"
+    }
   },
   {
     "id": "c917976e",
@@ -1455,20 +941,11 @@
         "url": "https://en.wikipedia.org/wiki/Pteris_cretica"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden Pots"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden Pots",
+      "planted": "2024",
+      "confidence": "high"
+    }
   },
   {
     "id": "116a6a90",
@@ -1479,24 +956,12 @@
         "modifyDate": "2024-04-21T18:02:55.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden Pots"
-      },
-      {
-        "key": "likelyDead",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden Pots",
+      "likelyDead": "true",
+      "planted": "2024",
+      "confidence": "high"
+    }
   },
   {
     "id": "8ddea561",
@@ -1507,20 +972,11 @@
         "modifyDate": "2025-05-04T17:06:30.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden Pots"
-      },
-      {
-        "key": "planted",
-        "value": "2019"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden Pots",
+      "planted": "2019",
+      "confidence": "high"
+    }
   },
   {
     "id": "d159e6aa",
@@ -1532,20 +988,11 @@
         "modifyDate": "2025-05-04T17:07:36.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden Pots"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden Pots",
+      "planted": "2024",
+      "confidence": "high"
+    }
   },
   {
     "id": "b9159538",
@@ -1556,20 +1003,11 @@
         "modifyDate": "2025-05-04T17:07:49.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden Pots"
-      },
-      {
-        "key": "needsIdentification",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      }
-    ]
+    "tags": {
+      "location": "Garden Pots",
+      "needsIdentification": "true",
+      "planted": "2024"
+    }
   },
   {
     "id": "1a4474e9",
@@ -1581,20 +1019,11 @@
       }
     ],
     "scientificName": "Pieris japonica",
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden Pots"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "planted",
-        "value": "2015"
-      }
-    ]
+    "tags": {
+      "location": "Garden Pots",
+      "confidence": "high",
+      "planted": "2015"
+    }
   },
   {
     "id": "a6e5e5e1",
@@ -1612,20 +1041,11 @@
         "modifyDate": "2025-05-04T12:08:36.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden Shade"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      }
-    ]
+    "tags": {
+      "location": "Garden Shade",
+      "confidence": "high",
+      "planted": "Unknown"
+    }
   },
   {
     "id": "969f30f1",
@@ -1647,20 +1067,11 @@
         "modifyDate": "2025-05-04T12:09:00.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden Shade"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden Shade",
+      "planted": "Unknown",
+      "confidence": "high"
+    }
   },
   {
     "id": "2320014a",
@@ -1672,16 +1083,10 @@
         "url": "https://en.wikipedia.org/wiki/Asarum_splendens"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden Shade"
-      },
-      {
-        "key": "likelyDead",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "Garden Shade",
+      "likelyDead": "true"
+    }
   },
   {
     "id": "e9f0676a",
@@ -1699,20 +1104,11 @@
         "modifyDate": "2025-05-04T12:09:17.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden Shade"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      }
-    ]
+    "tags": {
+      "location": "Garden Shade",
+      "confidence": "high",
+      "planted": "Unknown"
+    }
   },
   {
     "id": "301bb200",
@@ -1734,20 +1130,11 @@
         "modifyDate": "2021-04-16T18:26:20.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden Shade"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      }
-    ]
+    "tags": {
+      "location": "Garden Shade",
+      "confidence": "high",
+      "planted": "Unknown"
+    }
   },
   {
     "id": "9e59fea6",
@@ -1765,20 +1152,11 @@
         "modifyDate": "2025-05-04T12:09:37.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden Shade"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden Shade",
+      "planted": "Unknown",
+      "confidence": "high"
+    }
   },
   {
     "id": "5be5f07f",
@@ -1796,20 +1174,11 @@
         "modifyDate": "2025-05-04T17:03:03.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden Shade"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      }
-    ]
+    "tags": {
+      "location": "Garden Shade",
+      "confidence": "high",
+      "planted": "2023"
+    }
   },
   {
     "id": "586f11d5",
@@ -1831,20 +1200,11 @@
         "url": "https://en.wikipedia.org/wiki/Woodwardia_fimbriata"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden Shade"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden Shade",
+      "planted": "2024",
+      "confidence": "high"
+    }
   },
   {
     "id": "125e41f5",
@@ -1874,20 +1234,11 @@
         "modifyDate": "2025-05-04T17:01:04.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden Shade"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "planted",
-        "value": "2022"
-      }
-    ]
+    "tags": {
+      "location": "Garden Shade",
+      "confidence": "high",
+      "planted": "2022"
+    }
   },
   {
     "id": "e2f5049b",
@@ -1898,20 +1249,11 @@
         "modifyDate": "2025-05-04T17:05:45.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden Shade"
-      },
-      {
-        "key": "needsIdentification",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "~2014"
-      }
-    ]
+    "tags": {
+      "location": "Garden Shade",
+      "needsIdentification": "true",
+      "planted": "~2014"
+    }
   },
   {
     "id": "3b8ad956",
@@ -1923,24 +1265,12 @@
       }
     ],
     "scientificName": "Cyrtomium falcatum",
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden Shade"
-      },
-      {
-        "key": "confidence",
-        "value": "low"
-      },
-      {
-        "key": "needsIdentification",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      }
-    ]
+    "tags": {
+      "location": "Garden Shade",
+      "confidence": "low",
+      "needsIdentification": "true",
+      "planted": "Unknown"
+    }
   },
   {
     "id": "aade9df1",
@@ -1952,20 +1282,11 @@
       }
     ],
     "scientificName": "Gentiana asclepiadea 'Alba'",
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden Shade"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "medium"
-      }
-    ]
+    "tags": {
+      "location": "Garden Shade",
+      "planted": "2023",
+      "confidence": "medium"
+    }
   },
   {
     "id": "83b7c210",
@@ -1983,24 +1304,12 @@
         "modifyDate": "2025-05-04T12:10:43.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden South"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "planted",
-        "value": "2022"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "Garden South",
+      "confidence": "high",
+      "planted": "2022",
+      "public": "true"
+    }
   },
   {
     "id": "d486f60f",
@@ -2018,24 +1327,12 @@
         "modifyDate": "2025-05-04T12:10:54.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden South"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "2022"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden South",
+      "public": "true",
+      "planted": "2022",
+      "confidence": "high"
+    }
   },
   {
     "id": "e161b860",
@@ -2053,20 +1350,11 @@
         "modifyDate": "2025-05-04T12:11:11.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden South"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      }
-    ]
+    "tags": {
+      "location": "Garden South",
+      "confidence": "high",
+      "planted": "Unknown"
+    }
   },
   {
     "id": "86f7a82f",
@@ -2084,20 +1372,11 @@
         "url": "https://en.wikipedia.org/wiki/Aegopodium_podagraria"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden South"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden South",
+      "planted": "Unknown",
+      "confidence": "high"
+    }
   },
   {
     "id": "2054e104",
@@ -2120,20 +1399,11 @@
         "modifyDate": "2025-05-04T12:11:27.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden South"
-      },
-      {
-        "key": "needsIdentification",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      }
-    ]
+    "tags": {
+      "location": "Garden South",
+      "needsIdentification": "true",
+      "planted": "Unknown"
+    }
   },
   {
     "id": "9fa71beb",
@@ -2144,24 +1414,12 @@
         "modifyDate": "2025-05-04T17:05:12.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden South"
-      },
-      {
-        "key": "needsIdentification",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden South",
+      "needsIdentification": "true",
+      "planted": "Unknown",
+      "confidence": "high"
+    }
   },
   {
     "id": "b8fcf407",
@@ -2172,20 +1430,11 @@
         "modifyDate": "2025-05-04T17:24:45.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden South"
-      },
-      {
-        "key": "needsIdentification",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "~2017"
-      }
-    ]
+    "tags": {
+      "location": "Garden South",
+      "needsIdentification": "true",
+      "planted": "~2017"
+    }
   },
   {
     "id": "95b4a2cf",
@@ -2196,20 +1445,11 @@
         "modifyDate": "2025-05-04T17:26:39.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden South"
-      },
-      {
-        "key": "needsIdentification",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      }
-    ]
+    "tags": {
+      "location": "Garden South",
+      "needsIdentification": "true",
+      "planted": "Unknown"
+    }
   },
   {
     "id": "b5be7c62",
@@ -2231,20 +1471,11 @@
         "modifyDate": "2025-05-04T12:11:54.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden West"
-      },
-      {
-        "key": "planted",
-        "value": "2022"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden West",
+      "planted": "2022",
+      "confidence": "high"
+    }
   },
   {
     "id": "704f9646",
@@ -2262,20 +1493,11 @@
         "modifyDate": "2025-05-04T12:12:06.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden West"
-      },
-      {
-        "key": "planted",
-        "value": "2022"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden West",
+      "planted": "2022",
+      "confidence": "high"
+    }
   },
   {
     "id": "da201ada",
@@ -2301,20 +1523,11 @@
         "modifyDate": "2025-05-04T12:12:14.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden West"
-      },
-      {
-        "key": "planted",
-        "value": "2022"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden West",
+      "planted": "2022",
+      "confidence": "high"
+    }
   },
   {
     "id": "fde3a4b9",
@@ -2332,20 +1545,11 @@
         "modifyDate": "2025-05-04T12:12:38.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden West"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden West",
+      "planted": "Unknown",
+      "confidence": "high"
+    }
   },
   {
     "id": "e036cc83",
@@ -2367,20 +1571,11 @@
         "url": "https://en.wikipedia.org/wiki/Trillium_ovatum"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden West"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      }
-    ]
+    "tags": {
+      "location": "Garden West",
+      "confidence": "high",
+      "planted": "2023"
+    }
   },
   {
     "id": "6d524ffa",
@@ -2392,20 +1587,11 @@
         "modifyDate": "2025-05-04T17:05:34.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden West"
-      },
-      {
-        "key": "planted",
-        "value": "2025"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden West",
+      "planted": "2025",
+      "confidence": "high"
+    }
   },
   {
     "id": "574ee881",
@@ -2417,20 +1603,11 @@
         "modifyDate": "2025-05-04T17:06:36.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden West"
-      },
-      {
-        "key": "planted",
-        "value": "2025"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden West",
+      "planted": "2025",
+      "confidence": "high"
+    }
   },
   {
     "id": "65b1198e",
@@ -2441,20 +1618,11 @@
         "modifyDate": "2025-05-04T17:07:32.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden West"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Garden West",
+      "planted": "Unknown",
+      "confidence": "high"
+    }
   },
   {
     "id": "d3e773c6",
@@ -2465,20 +1633,11 @@
         "modifyDate": "2025-05-04T17:26:08.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Garden West"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      }
-    ]
+    "tags": {
+      "location": "Garden West",
+      "confidence": "high",
+      "planted": "2023"
+    }
   },
   {
     "id": "363d2fac",
@@ -2500,24 +1659,12 @@
         "modifyDate": "2025-05-04T12:13:18.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "North Planting Strip"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "North Planting Strip",
+      "public": "true",
+      "planted": "2023",
+      "confidence": "high"
+    }
   },
   {
     "id": "1bd4582f",
@@ -2539,24 +1686,12 @@
         "modifyDate": "2025-05-04T12:13:34.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "North Planting Strip"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      }
-    ]
+    "tags": {
+      "location": "North Planting Strip",
+      "public": "true",
+      "confidence": "high",
+      "planted": "2024"
+    }
   },
   {
     "id": "30dbc125",
@@ -2578,24 +1713,12 @@
         "modifyDate": "2025-05-04T12:14:00.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "North Planting Strip"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "North Planting Strip",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "1ab396d5",
@@ -2613,24 +1736,12 @@
         "modifyDate": "2025-05-04T12:14:19.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "North Planting Strip"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "North Planting Strip",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "71628314",
@@ -2652,24 +1763,12 @@
         "modifyDate": "2025-05-04T12:15:38.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "North Planting Strip"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "North Planting Strip",
+      "planted": "Unknown",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "822c750f",
@@ -2691,24 +1790,12 @@
         "modifyDate": "2025-05-04T12:16:02.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "North Planting Strip"
-      },
-      {
-        "key": "planted",
-        "value": "~2018"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "North Planting Strip",
+      "planted": "~2018",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "2d15b336",
@@ -2726,24 +1813,12 @@
         "modifyDate": "2025-05-04T12:16:24.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "North Planting Strip"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "North Planting Strip",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "2e96fb33",
@@ -2761,24 +1836,12 @@
         "url": "https://en.wikipedia.org/wiki/Coreopsis"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "North Planting Strip"
-      },
-      {
-        "key": "likelyDead",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "North Planting Strip",
+      "likelyDead": "true",
+      "planted": "2024",
+      "confidence": "high"
+    }
   },
   {
     "id": "80ca3fa7",
@@ -2796,24 +1859,12 @@
         "url": "https://en.wikipedia.org/wiki/Camassia_quamash"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "North Planting Strip"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "North Planting Strip",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "1e9786e5",
@@ -2835,24 +1886,12 @@
         "url": "https://en.wikipedia.org/wiki/Camassia_leichtlinii"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "North Planting Strip"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      }
-    ]
+    "tags": {
+      "location": "North Planting Strip",
+      "public": "true",
+      "confidence": "high",
+      "planted": "2023"
+    }
   },
   {
     "id": "674cf59d",
@@ -2864,24 +1903,12 @@
         "modifyDate": "2025-05-04T17:22:26.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "North Planting Strip"
-      },
-      {
-        "key": "planted",
-        "value": "2025"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "North Planting Strip",
+      "planted": "2025",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "0f3cc9a9",
@@ -2893,24 +1920,12 @@
         "modifyDate": "2025-05-04T17:22:34.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "North Planting Strip"
-      },
-      {
-        "key": "planted",
-        "value": "2025"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "North Planting Strip",
+      "planted": "2025",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "f4900cd3",
@@ -2922,24 +1937,12 @@
         "modifyDate": "2025-05-04T17:22:43.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "North Planting Strip"
-      },
-      {
-        "key": "planted",
-        "value": "2025"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "North Planting Strip",
+      "planted": "2025",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "f31ba3a0",
@@ -2951,24 +1954,12 @@
         "modifyDate": "2025-05-04T17:23:22.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "North Planting Strip"
-      },
-      {
-        "key": "planted",
-        "value": "2025"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "North Planting Strip",
+      "planted": "2025",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "a67fdfd6",
@@ -2980,24 +1971,12 @@
         "modifyDate": "2025-05-04T20:35:01.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "North Planting Strip"
-      },
-      {
-        "key": "planted",
-        "value": "2025"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "North Planting Strip",
+      "planted": "2025",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "e1f5cdd2",
@@ -3009,20 +1988,11 @@
         "modifyDate": "2025-05-04T17:28:06.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Office"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Office",
+      "planted": "2024",
+      "confidence": "high"
+    }
   },
   {
     "id": "91a1d9ff",
@@ -3038,20 +2008,11 @@
         "modifyDate": "2025-05-04T17:28:16.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Office"
-      },
-      {
-        "key": "planted",
-        "value": "2025-02-22"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Office",
+      "planted": "2025-02-22",
+      "confidence": "high"
+    }
   },
   {
     "id": "32919db0",
@@ -3062,24 +2023,12 @@
         "modifyDate": "2025-05-04T17:28:21.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Office"
-      },
-      {
-        "key": "planted",
-        "value": "2024-09-14"
-      },
-      {
-        "key": "needsIdentification",
-        "value": "true"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Office",
+      "planted": "2024-09-14",
+      "needsIdentification": "true",
+      "confidence": "high"
+    }
   },
   {
     "id": "f9ef071a",
@@ -3090,16 +2039,10 @@
         "modifyDate": "2025-05-04T17:28:26.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Office"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      }
-    ]
+    "tags": {
+      "location": "Office",
+      "planted": "2024"
+    }
   },
   {
     "id": "b93594db",
@@ -3111,20 +2054,11 @@
         "modifyDate": "2025-05-04T17:28:32.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Office"
-      },
-      {
-        "key": "planted",
-        "value": "2024-12-22"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Office",
+      "planted": "2024-12-22",
+      "confidence": "high"
+    }
   },
   {
     "id": "5484648e",
@@ -3140,24 +2074,12 @@
         "modifyDate": "2025-05-04T17:29:09.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Office"
-      },
-      {
-        "key": "planted",
-        "value": "2025-04-06"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "bonsai",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "Office",
+      "planted": "2025-04-06",
+      "confidence": "high",
+      "bonsai": "true"
+    }
   },
   {
     "id": "99b90b1c",
@@ -3175,24 +2097,12 @@
         "modifyDate": "2025-05-04T12:16:56.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Planter Box #1"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "2022"
-      }
-    ]
+    "tags": {
+      "location": "Planter Box #1",
+      "confidence": "high",
+      "public": "true",
+      "planted": "2022"
+    }
   },
   {
     "id": "b7f5579d",
@@ -3210,24 +2120,12 @@
         "modifyDate": "2025-05-04T12:17:14.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Planter Box #2"
-      },
-      {
-        "key": "planted",
-        "value": "~2018"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "Planter Box #2",
+      "planted": "~2018",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "213045a2",
@@ -3249,24 +2147,12 @@
         "modifyDate": "2025-05-04T12:17:34.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Planter Box #2"
-      },
-      {
-        "key": "planted",
-        "value": "2022"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Planter Box #2",
+      "planted": "2022",
+      "public": "true",
+      "confidence": "high"
+    }
   },
   {
     "id": "c715e28f",
@@ -3278,24 +2164,12 @@
         "modifyDate": "2025-05-04T17:23:00.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Planter Box #2"
-      },
-      {
-        "key": "planted",
-        "value": "2025"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "Planter Box #2",
+      "planted": "2025",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "8efc51b3",
@@ -3307,24 +2181,12 @@
         "modifyDate": "2025-05-04T17:23:09.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "Planter Box #2"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "2025"
-      }
-    ]
+    "tags": {
+      "location": "Planter Box #2",
+      "confidence": "high",
+      "public": "true",
+      "planted": "2025"
+    }
   },
   {
     "id": "972d01de",
@@ -3336,16 +2198,10 @@
       }
     ],
     "scientificName": "Erythronium revolutum",
-    "tags": [
-      {
-        "key": "location",
-        "value": "Unplanted"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "Unplanted",
+      "confidence": "high"
+    }
   },
   {
     "id": "3a1322a4",
@@ -3375,24 +2231,12 @@
         "modifyDate": "2025-05-04T12:18:15.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip"
-      },
-      {
-        "key": "planted",
-        "value": "April 2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip",
+      "planted": "April 2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "489d911b",
@@ -3403,28 +2247,13 @@
         "modifyDate": "2024-04-12T12:41:13.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "needsIdentification",
-        "value": "true"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip",
+      "planted": "2023",
+      "needsIdentification": "true",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "6e16d572",
@@ -3450,24 +2279,12 @@
         "modifyDate": "2025-05-04T12:18:31.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip Middle Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip Middle Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "e5ffea38",
@@ -3501,28 +2318,13 @@
         "modifyDate": "2025-05-04T12:20:00.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip Middle Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "needsIdentification",
-        "value": "true"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip Middle Zone",
+      "planted": "2023",
+      "needsIdentification": "true",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "250bc8b8",
@@ -3552,24 +2354,12 @@
         "modifyDate": "2025-05-04T12:20:33.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip Middle Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip Middle Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "c85ee938",
@@ -3591,24 +2381,12 @@
         "modifyDate": "2025-05-04T16:59:33.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip Middle Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2033"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip Middle Zone",
+      "planted": "2033",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "124b6bf6",
@@ -3630,24 +2408,12 @@
         "modifyDate": "2025-05-04T12:20:51.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip Middle Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip Middle Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "c4285448",
@@ -3673,24 +2439,12 @@
         "modifyDate": "2025-05-04T12:21:12.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip Middle Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip Middle Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "c50bd68b",
@@ -3716,24 +2470,12 @@
         "modifyDate": "2025-05-04T12:21:24.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip Middle Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip Middle Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "2315db76",
@@ -3759,24 +2501,12 @@
         "modifyDate": "2025-05-04T12:21:34.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip Middle Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip Middle Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "1d2597de",
@@ -3802,24 +2532,12 @@
         "modifyDate": "2025-05-04T12:21:45.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip Middle Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip Middle Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "019add74",
@@ -3845,24 +2563,12 @@
         "modifyDate": "2025-05-04T12:21:53.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip Middle Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip Middle Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "0b3fbb44",
@@ -3888,24 +2594,12 @@
         "modifyDate": "2025-05-04T12:22:10.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip Middle Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip Middle Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "e3885c82",
@@ -3917,28 +2611,13 @@
         "url": "https://en.wikipedia.org/wiki/Aquilegia_vulgaris"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip Middle Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "likelyDead",
-        "value": "true"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip Middle Zone",
+      "planted": "2023",
+      "likelyDead": "true",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "045ae4e5",
@@ -3964,24 +2643,12 @@
         "modifyDate": "2025-05-04T12:22:24.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip Middle Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip Middle Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "66e50240",
@@ -3999,24 +2666,12 @@
         "modifyDate": "2025-05-04T12:23:23.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip Middle Zone"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "~2018"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip Middle Zone",
+      "confidence": "high",
+      "public": "true",
+      "planted": "~2018"
+    }
   },
   {
     "id": "7c7e70e8",
@@ -4038,24 +2693,12 @@
         "url": "https://en.wikipedia.org/wiki/Aquilegia"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip Middle Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip Middle Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "ceea1430",
@@ -4080,24 +2723,12 @@
         "url": "https://en.wikipedia.org/wiki/Trillium"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip Middle Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip Middle Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "8af61769",
@@ -4109,24 +2740,12 @@
         "modifyDate": "2025-05-04T17:23:43.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip Middle Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2025"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip Middle Zone",
+      "planted": "2025",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "693a6f48",
@@ -4138,24 +2757,12 @@
         "modifyDate": "2025-05-04T17:23:52.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip Middle Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2025"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip Middle Zone",
+      "planted": "2025",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "8249c3da",
@@ -4167,24 +2774,12 @@
         "modifyDate": "2025-05-04T17:23:59.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip Middle Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2025"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip Middle Zone",
+      "planted": "2025",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "e59c5fbf",
@@ -4196,24 +2791,12 @@
         "modifyDate": "2025-05-04T17:24:04.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip Middle Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2025"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip Middle Zone",
+      "planted": "2025",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "50b29dac",
@@ -4225,24 +2808,12 @@
         "modifyDate": "2025-05-04T17:26:57.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip Middle Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip Middle Zone",
+      "planted": "2024",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "5ef23fd6",
@@ -4264,24 +2835,12 @@
         "url": "https://en.wikipedia.org/wiki/Lupinus_polyphyllus"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2024",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "3e6e04c5",
@@ -4307,24 +2866,12 @@
         "modifyDate": "2025-05-04T12:24:32.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "42c8613e",
@@ -4346,24 +2893,12 @@
         "modifyDate": "2025-05-04T16:44:41.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2023",
+      "public": "true",
+      "confidence": "high"
+    }
   },
   {
     "id": "3a9ff548",
@@ -4393,24 +2928,12 @@
         "modifyDate": "2025-05-04T16:45:15.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "51106d08",
@@ -4428,24 +2951,12 @@
         "modifyDate": "2023-04-30T18:12:18.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "f09f5452",
@@ -4471,24 +2982,12 @@
         "modifyDate": "2025-05-04T16:46:16.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "0f577390",
@@ -4510,24 +3009,12 @@
         "modifyDate": "2025-05-04T16:46:39.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "577aaef6",
@@ -4553,24 +3040,12 @@
         "modifyDate": "2025-05-04T16:46:59.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "16f8b881",
@@ -4596,24 +3071,12 @@
         "modifyDate": "2025-05-04T16:47:12.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "ce727fb8",
@@ -4631,24 +3094,12 @@
         "modifyDate": "2025-05-04T16:47:32.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "075588f7",
@@ -4666,24 +3117,12 @@
         "modifyDate": "2023-07-10T19:07:50.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "b51b63b7",
@@ -4701,24 +3140,12 @@
         "modifyDate": "2023-07-10T19:08:07.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "597131cb",
@@ -4740,24 +3167,12 @@
         "modifyDate": "2025-05-04T16:48:24.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "7353591a",
@@ -4775,24 +3190,12 @@
         "modifyDate": "2025-05-04T16:57:23.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "e2927e31",
@@ -4814,28 +3217,13 @@
         "modifyDate": "2023-10-01T15:54:58.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "likelyDead",
-        "value": "true"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2023",
+      "likelyDead": "true",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "35952aed",
@@ -4861,24 +3249,12 @@
         "modifyDate": "2025-05-04T16:48:57.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "a89dd1c4",
@@ -4900,28 +3276,13 @@
         "modifyDate": "2023-04-30T18:12:25.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "likelyDead",
-        "value": "true"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2023",
+      "likelyDead": "true",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "096eea7e",
@@ -4943,24 +3304,12 @@
         "modifyDate": "2023-10-01T15:56:18.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "ee86c432",
@@ -4978,24 +3327,12 @@
         "modifyDate": "2025-05-04T16:49:28.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "confidence": "high",
+      "public": "true",
+      "planted": "2023"
+    }
   },
   {
     "id": "30b52ada",
@@ -5013,24 +3350,12 @@
         "modifyDate": "2025-05-04T16:58:34.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "2022"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "confidence": "high",
+      "public": "true",
+      "planted": "2022"
+    }
   },
   {
     "id": "9354c92e",
@@ -5048,24 +3373,12 @@
         "modifyDate": "2025-05-04T16:49:44.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "confidence": "high",
+      "public": "true",
+      "planted": "2023"
+    }
   },
   {
     "id": "4fc01431",
@@ -5089,24 +3402,12 @@
         "modifyDate": "2025-05-04T16:50:25.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "confidence": "high",
+      "public": "true",
+      "planted": "2023"
+    }
   },
   {
     "id": "041841ba",
@@ -5124,28 +3425,13 @@
         "url": "https://en.wikipedia.org/wiki/Persicaria_microcephala"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "likelyDead",
-        "value": "true"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "likelyDead": "true",
+      "confidence": "high",
+      "public": "true",
+      "planted": "2023"
+    }
   },
   {
     "id": "98b86697",
@@ -5163,28 +3449,13 @@
         "url": "https://en.wikipedia.org/wiki/Scilla_sect._Chionodoxa"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "likelyDead",
-        "value": "true"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "likelyDead": "true",
+      "confidence": "high",
+      "public": "true",
+      "planted": "2023"
+    }
   },
   {
     "id": "8ea7e3da",
@@ -5206,24 +3477,12 @@
         "url": "https://en.wikipedia.org/wiki/Sisyrinchium"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2025"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2025",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "349c9b79",
@@ -5234,24 +3493,12 @@
         "modifyDate": "2023-07-10T19:07:42.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "2f4483d7",
@@ -5273,24 +3520,12 @@
         "url": "https://en.wikipedia.org/wiki/Symphyotrichum_lateriflorum"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "fbe3f97c",
@@ -5306,28 +3541,13 @@
         "modifyDate": "2023-07-10T19:08:40.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "likelyDead",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "likelyDead": "true",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "51a58c8d",
@@ -5342,24 +3562,12 @@
         "modifyDate": "2025-05-02T20:18:49.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "confidence": "high",
+      "planted": "2023",
+      "public": "true"
+    }
   },
   {
     "id": "3d1d99db",
@@ -5377,24 +3585,12 @@
         "url": "https://en.wikipedia.org/wiki/Erigeron_glaucus"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "confidence": "high",
+      "planted": "2024",
+      "public": "true"
+    }
   },
   {
     "id": "2ebed876",
@@ -5405,28 +3601,13 @@
         "modifyDate": "2025-05-02T20:19:07.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      },
-      {
-        "key": "needsIdentification",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2024",
+      "confidence": "high",
+      "public": "true",
+      "needsIdentification": "true"
+    }
   },
   {
     "id": "ae51ced7",
@@ -5444,24 +3625,12 @@
         "url": "https://en.wikipedia.org/wiki/Galanthus"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip North Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip North Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "65c1b702",
@@ -5487,24 +3656,12 @@
         "modifyDate": "2025-05-04T16:52:31.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip South Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip South Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "da395ff1",
@@ -5530,24 +3687,12 @@
         "modifyDate": "2025-05-04T16:52:45.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip South Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip South Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "3621899c",
@@ -5565,24 +3710,12 @@
         "modifyDate": "2025-05-04T16:52:58.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip South Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip South Zone",
+      "planted": "2024",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "f7e469ac",
@@ -5608,24 +3741,12 @@
         "modifyDate": "2025-05-04T16:53:10.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip South Zone"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip South Zone",
+      "confidence": "high",
+      "public": "true",
+      "planted": "2023"
+    }
   },
   {
     "id": "78bfcd5f",
@@ -5659,24 +3780,12 @@
         "modifyDate": "2025-05-04T16:53:21.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip South Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip South Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "242d4303",
@@ -5706,24 +3815,12 @@
         "modifyDate": "2025-05-04T16:54:04.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip South Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip South Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "f1fef069",
@@ -5749,24 +3846,12 @@
         "modifyDate": "2025-05-04T16:54:16.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip South Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip South Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "2d22a4ec",
@@ -5784,24 +3869,12 @@
         "modifyDate": "2025-05-04T16:54:43.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip South Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip South Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "80099925",
@@ -5819,24 +3892,12 @@
         "modifyDate": "2025-05-04T16:55:05.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip South Zone"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip South Zone",
+      "planted": "Unknown",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "39dbb573",
@@ -5858,24 +3919,12 @@
         "url": "https://en.wikipedia.org/wiki/Gaultheria_shallon"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip South Zone"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip South Zone",
+      "confidence": "high",
+      "public": "true",
+      "planted": "2023"
+    }
   },
   {
     "id": "96f9fc86",
@@ -5897,24 +3946,12 @@
         "url": "https://en.wikipedia.org/wiki/Hyacinthoides_hispanica"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip South Zone"
-      },
-      {
-        "key": "planted",
-        "value": "Unknown"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip South Zone",
+      "planted": "Unknown",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "ca235688",
@@ -5936,24 +3973,12 @@
         "url": "https://en.wikipedia.org/wiki/Dryopteris_expansa"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip South Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2024"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip South Zone",
+      "planted": "2024",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "be0b3add",
@@ -5965,24 +3990,12 @@
         "modifyDate": "2025-05-04T17:24:26.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip South Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2025"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip South Zone",
+      "planted": "2025",
+      "confidence": "high",
+      "public": "true"
+    }
   },
   {
     "id": "00a20b9f",
@@ -5993,23 +4006,11 @@
         "modifyDate": "2025-05-04T17:24:37.000Z"
       }
     ],
-    "tags": [
-      {
-        "key": "location",
-        "value": "West Planting Strip South Zone"
-      },
-      {
-        "key": "planted",
-        "value": "2023"
-      },
-      {
-        "key": "confidence",
-        "value": "high"
-      },
-      {
-        "key": "public",
-        "value": "true"
-      }
-    ]
+    "tags": {
+      "location": "West Planting Strip South Zone",
+      "planted": "2023",
+      "confidence": "high",
+      "public": "true"
+    }
   }
 ]

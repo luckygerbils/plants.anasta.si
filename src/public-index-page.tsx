@@ -10,7 +10,7 @@ export function PublicIndexPage({
 }: PublicIndexProps) {
   const plantsByLocation = allPlants
     .reduce((map, plant) => {
-      const location = plant.tags.find(({key}) => key === "location")?.value;
+      const location = plant.tags.location;
       return map.set(location!, [...(map.get(location!) ?? []), plant])
     }, new Map<string, Plant[]>());
 

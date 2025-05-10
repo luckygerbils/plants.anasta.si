@@ -39,11 +39,11 @@ export function PlantPage({
 
   function setTag(key: TagKey, value: string|boolean) {
     if (typeof value === "string") {
-      setTags(tags => [...tags.filter(tag => tag.key !== key), { key, value }]);
+      setTags(tags => ({ ...tags, [key]: value}));
     } else if (value) {
-      setTags(tags => [...tags.filter(tag => tag.key !== key), { key, value: "true" }]);
+      setTags(tags => ({ ...tags, [key]: "true"}));
     } else {
-      setTags(tags => [...tags.filter(tag => tag.key !== key)]);
+      setTags(({[key]: oldValue, ...rest}) => rest);
     }
   }
 
@@ -161,10 +161,10 @@ export function PlantPage({
           onCapture={uploadPhoto} />}
       {error && <div className="error">{error}</div>}
       <section className="tags">
-        {!editing && <ul>{tags.map(tag => <li key={tag.key} className="tag">{tag.key}: {tag.value}</li>)}</ul>}
+        {!editing && <ul>{TAG_KEYS.filter(key => key in tags).map(key => <li key={key} className="tag">{key}: {tags[key]}</li>)}</ul>}
         {editing && (
           TAG_KEYS.map(key => {
-            const value = tags.find(t => t.key === key)?.value;
+            const value = tags[key];
             return (
               <div key={key}>{
                 {

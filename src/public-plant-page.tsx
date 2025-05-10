@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { PhotoImg } from "./photo-img";
 import { comparing, dateCompare, explicit, nullsFirst, reversed } from "./sorting";
-import { Plant } from "./plant";
+import { Plant, TAG_KEYS } from "./plant";
 import { HamburgerIcon, QuestionIcon } from "./icons";
 
 interface PublicPageProps {
@@ -36,31 +36,33 @@ export function PublicPlantPage({
       </header>
       <section className="tags">
         <ul>
-          {tags.filter(t => t.key !== "public")
-            .sort(comparing(t => t.key, explicit(["location", "planted", "needsIdentification", "confidence", "bonsai", "likelyDead",])))
-            .map(tag => {
-              const El = tag.key === "confidence" ? "button" : "span";
-              return <El key={tag.key} className="tag">{
+          {TAG_KEYS.filter(key => key in tags && key != "public")
+            .map(key => {
+              const value = tags[key]!;
+              const El = key === "confidence" ? "button" : "span";
+              return <El key={key} className="tag">{
                 ({
-                  location: <strong>{tag.value}</strong>,
-                  planted: <><strong>Planted:</strong>{tag.value}</>,
-                  confidence: <><strong>Confidence:</strong><span>{tag.value}</span><QuestionIcon size="sm" /></>,
+                  location: <strong>{value}</strong>,
+                  planted: <><strong>Planted:</strong>{value}</>,
+                  confidence: <><strong>Confidence:</strong><span>{value}</span><QuestionIcon size="sm" /></>,
                   bonsai: <strong>Bonsai</strong>,
                   needsIdentification: <strong>Needs Identification</strong>,
                   likelyDead: <strong>Likely Dead</strong>,
                   public: null,
-                }[tag.key] ?? tag.value?.toString() ?? tag.key)
+                }[key] ?? value?.toString() ?? key)
               }</El>;
             })}
         </ul>
-        <div id="confidence-tooltip" className="tag-tooltip">
-          <QuestionIcon size="sm" />
-          {{
-            "high": "This came with a plant label I trust",
-            "medium": "I've personally ID'd this, but I'm not a biologist",
-            "low": "I've personally ID'd this, but there are similar-looking plants",
-          }[tags.find(({key}) => key === "confidence")?.value ?? ""]}
-        </div>
+        {tags.confidence && (
+          <div id="confidence-tooltip" className="tag-tooltip">
+            <QuestionIcon size="sm" />
+            {{
+              "high": "This came with a plant label I trust",
+              "medium": "I've personally ID'd this, but I'm not a biologist",
+              "low": "I've personally ID'd this, but there are similar-looking plants",
+            }[tags.confidence]}
+          </div>
+        )}
       </section>
       <section className="links">
         <ul>
