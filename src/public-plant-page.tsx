@@ -28,11 +28,16 @@ export function PublicPlantPage({
   return (
     <>
       <header>
-        <h1><a href={`/#${plantId}`}><HamburgerIcon /></a> {name}</h1>
-        {scientificName && 
-          <h2 className="scientific-name">
-            {scientificName}
-          </h2>}
+        <div>
+          <h1>{name}</h1>
+          {scientificName && 
+            <h2 className="scientific-name">
+              {scientificName}
+            </h2>}
+        </div>
+        <a href={`/#${plantId}`}>
+          <HamburgerIcon />
+        </a>
       </header>
       <section className="tags">
         <ul>

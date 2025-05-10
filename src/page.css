@@ -66,20 +66,16 @@ main > header {
   color: var(--fg-dark);
   padding: calc(2*var(--spacing));
   margin-bottom: calc(2*var(--spacing));
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 
-  & h1 {
+  & a {
     display: flex;
     align-items: center;
-
-    & a {
-      display: flex;
-      align-items: center;
-      color: inherit;
-    }
-
-    & svg {
-      margin-right: 0.25em;
-    }
+    color: inherit;
+    margin: 0.25em;
+    font-size: 3em;
   }
 }
 
