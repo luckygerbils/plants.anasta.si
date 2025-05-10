@@ -2,7 +2,8 @@ import { useState } from "react";
 import { CameraPopup } from "./camera-popup";
 import { PhotoImg } from "./photo-img";
 import { comparing, dateCompare, nullsFirst, reversed } from "./sorting";
-import { Plant, TAG_KEYS, TagKey } from "./plant";
+import { Plant, Tag, TAG_KEYS, TagKey } from "./plant";
+import { TagPopup } from "./tag-popup";
 
 interface PageProps {
   plant: Plant,
@@ -23,6 +24,7 @@ export function PlantPage({
     photos,
   } = plant;
   const [ cameraOpen, setCameraOpen ] = useState(false);
+  const [ selectedTag, setSelectedTag ] = useState<Tag|null>(null);
 
   const [ editing, setEditing ] = useState(false);
   const [ saving, setSaving ] = useState(false);
@@ -161,7 +163,15 @@ export function PlantPage({
           onCapture={uploadPhoto} />}
       {error && <div className="error">{error}</div>}
       <section className="tags">
-        {!editing && <ul>{TAG_KEYS.filter(key => key in tags).map(key => <li key={key} className="tag">{key}: {tags[key]}</li>)}</ul>}
+        {!editing && (
+          <ul>
+            {TAG_KEYS.filter(key => key in tags).map(key => 
+              <li key={key} className="tag" onClick={() => setSelectedTag({ key, value: tags[key] })}>
+                {key}: {tags[key]}
+              </li>
+            )}
+          </ul>
+        )}
         {editing && (
           TAG_KEYS.map(key => {
             const value = tags[key];
@@ -188,6 +198,7 @@ export function PlantPage({
           })
         )}
       </section>
+      {selectedTag && <TagPopup allPlants={allPlants} tag={selectedTag} onClose={() => setSelectedTag(null)} />}
       <section className="links">
         <ul>
           {(links ?? []).map(({site, url}) => 

@@ -162,7 +162,7 @@
     ],
     "scientificName": "Ginko biloba",
     "tags": {
-      "bonsai": null,
+      "bonsai": "true",
       "location": "Garden North",
       "planted": "2024",
       "confidence": "high"
@@ -179,7 +179,7 @@
     ],
     "scientificName": "Thuja plicata",
     "tags": {
-      "bonsai": null,
+      "bonsai": "true",
       "location": "Garden North",
       "planted": "2023",
       "confidence": "high"
@@ -196,7 +196,7 @@
     ],
     "scientificName": "Toona sinensis",
     "tags": {
-      "bonsai": null,
+      "bonsai": "true",
       "location": "Garden North",
       "planted": "2024",
       "confidence": "high"
@@ -213,7 +213,7 @@
     ],
     "scientificName": "Quercus garryana",
     "tags": {
-      "bonsai": null,
+      "bonsai": "true",
       "location": "Garden North",
       "planted": "2024",
       "confidence": "high"
@@ -230,7 +230,7 @@
     ],
     "scientificName": "Jasminium nudiflorum",
     "tags": {
-      "bonsai": null,
+      "bonsai": "true",
       "location": "Garden North",
       "planted": "2024",
       "confidence": "high"
@@ -247,7 +247,7 @@
       }
     ],
     "tags": {
-      "bonsai": null,
+      "bonsai": "true",
       "location": "Garden North",
       "planted": "2023",
       "confidence": "high"
@@ -264,7 +264,7 @@
     ],
     "scientificName": "Syringa meyeri 'Palabin'",
     "tags": {
-      "bonsai": null,
+      "bonsai": "true",
       "location": "Garden North",
       "planted": "2025",
       "confidence": "high"
@@ -281,7 +281,7 @@
     ],
     "scientificName": "Acer platanoides 'Emerald Queen'",
     "tags": {
-      "bonsai": null,
+      "bonsai": "true",
       "location": "Garden North",
       "planted": "2023",
       "confidence": "medium"
@@ -298,7 +298,7 @@
     ],
     "scientificName": "Millettia japonica 'Hime fuji'",
     "tags": {
-      "bonsai": null,
+      "bonsai": "true",
       "location": "Garden North",
       "planted": "2024",
       "confidence": "high"
@@ -315,7 +315,7 @@
       }
     ],
     "tags": {
-      "bonsai": null,
+      "bonsai": "true",
       "location": "Garden North",
       "planted": "2023",
       "confidence": "high"
@@ -332,7 +332,7 @@
     ],
     "scientificName": "Acer platanoides",
     "tags": {
-      "bonsai": null,
+      "bonsai": "true",
       "location": "Garden North",
       "planted": "2023",
       "confidence": "medium"
@@ -349,7 +349,7 @@
     ],
     "scientificName": "Acer palmatum",
     "tags": {
-      "bonsai": null,
+      "bonsai": "true",
       "location": "Garden North",
       "planted": "2023",
       "confidence": "high"
@@ -366,7 +366,7 @@
     ],
     "scientificName": "Arctostaphylos columbiana",
     "tags": {
-      "bonsai": null,
+      "bonsai": "true",
       "location": "Garden North",
       "planted": "2024",
       "confidence": "high"
@@ -383,7 +383,7 @@
     ],
     "scientificName": "Acer palmatum",
     "tags": {
-      "bonsai": null,
+      "bonsai": "true",
       "location": "Garden North",
       "planted": "2023",
       "confidence": "high"
@@ -400,7 +400,7 @@
     ],
     "scientificName": "Prunus x subhirtella",
     "tags": {
-      "bonsai": null,
+      "bonsai": "true",
       "location": "Garden North",
       "planted": "2024",
       "confidence": "high"
@@ -417,7 +417,7 @@
       }
     ],
     "tags": {
-      "bonsai": null,
+      "bonsai": "true",
       "location": "Garden North",
       "planted": "2024",
       "confidence": "high"
@@ -434,7 +434,7 @@
     ],
     "scientificName": "Juniperus",
     "tags": {
-      "bonsai": null,
+      "bonsai": "true",
       "location": "Garden North",
       "planted": "2022",
       "confidence": "high"
@@ -1085,7 +1085,9 @@
     ],
     "tags": {
       "location": "Garden Shade",
-      "likelyDead": "true"
+      "likelyDead": "true",
+      "planted": "2022",
+      "confidence": "high"
     }
   },
   {
@@ -1761,6 +1763,10 @@
       {
         "id": "292cfab6",
         "modifyDate": "2025-05-04T12:15:38.000Z"
+      },
+      {
+        "id": "eae9344b",
+        "modifyDate": "2025-05-10T12:12:27.000Z"
       }
     ],
     "tags": {
