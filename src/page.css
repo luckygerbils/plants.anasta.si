@@ -53,6 +53,7 @@ body {
 
 main {
   max-width: 8.5in;
+  width: 100%;
 }
 
 [contenteditable=true] {
@@ -73,15 +74,12 @@ main > header {
     & a {
       display: flex;
       align-items: center;
+      color: inherit;
     }
 
     & svg {
       margin-right: 0.25em;
     }
-  }
-
-  & a[href='/'] {
-    color: inherit
   }
 }
 
@@ -364,9 +362,12 @@ section.photos {
 }
 
 .index {
-  list-style-type: none;
+  width: 100%;
+
   & ul {
     list-style-type: none;
+    display: flex;
+    flex-direction: column;
   }
 
   .location {
@@ -376,9 +377,16 @@ section.photos {
   }
 
   & a {
-    display: block;
+    display: flex;
+    justify-content: space-between;
     padding: calc(2*var(--spacing));
     color: var(--fg);
+  }
+
+  & img {
+    object-fit: cover;
+    max-height: 10dvh;
+    width: 50%;
   }
 
   & li {

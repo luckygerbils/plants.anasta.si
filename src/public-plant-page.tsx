@@ -28,7 +28,7 @@ export function PublicPlantPage({
   return (
     <>
       <header>
-        <h1><a href="/"><HamburgerIcon /></a> {name}</h1>
+        <h1><a href={`/#${plantId}`}><HamburgerIcon /></a> {name}</h1>
         {scientificName && 
           <h2 className="scientific-name">
             {scientificName}

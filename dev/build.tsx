@@ -21,9 +21,10 @@ await mkdir(`dist`, { recursive: true });
 
 interface HtmlProps {
   title: string;
+  className?: string;
 }
 
-function Html({ title, children }: PropsWithChildren<HtmlProps>) {
+function Html({ title, children, className }: PropsWithChildren<HtmlProps>) {
   return (
     <html>
       <head>
@@ -35,7 +36,7 @@ function Html({ title, children }: PropsWithChildren<HtmlProps>) {
         <link rel="stylesheet" href="/page.css" />
       </head>
       <body>  
-        <main>{children}</main>
+        <main className={className}>{children}</main>
       </body>
     </html>
   );
@@ -46,7 +47,7 @@ const results = await Promise.all([
   await writeFile(
     `dist/index.html`,
     "<!DOCTYPE html>\n" + renderToString(
-      <Html title="All Plants">
+      <Html title="All Plants" className="index">
         <PublicIndexPage allPlants={publicPlants} />
       </Html>
     )
@@ -84,7 +85,7 @@ const results = await Promise.all([
           "<!DOCTYPE html>\n" + renderToString(
             <html>
             <head>
-              <meta http-equiv="refresh" content={`0; url=https://dev.plants.anasta.si:8443/${plant.id}`} />
+              <meta httpEquiv="refresh" content={`0; url=https://dev.plants.anasta.si:8443/${plant.id}`} />
             </head>
           </html>
           )

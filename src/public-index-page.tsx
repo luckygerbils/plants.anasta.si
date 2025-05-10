@@ -1,3 +1,4 @@
+import { PhotoImg } from "./photo-img";
 import { Plant } from "./plant";
 import { comparing, localeCompare } from "./sorting";
 
@@ -15,14 +16,25 @@ export function PublicIndexPage({
     }, new Map<string, Plant[]>());
 
   return (
-    <ul className="index">
+    <ul>
       {Array.from(plantsByLocation.keys()).sort().map(location => (
         <li key={location}>
           <div className="location">{location}</div>
           <ul>
-            {plantsByLocation.get(location)!.sort(comparing(p => p.name, localeCompare)).map(plant => (
-              <li key={plant.id} className="plant"><a href={`/${plant.id}`}>{plant.name}</a></li>
-            ))}
+            {plantsByLocation.get(location)!.sort(comparing(p => p.name, localeCompare)).map(plant => {
+              const latestPhotoId = plant.photos.sort(comparing(p => p.modifyDate, localeCompare))?.[0]?.id;
+              return (
+                <li key={plant.id} className="plant">
+                  <a href={`/${plant.id}`} id={plant.id}>
+                    {plant.name}
+                    {latestPhotoId &&
+                      <PhotoImg
+                        loading="lazy" sizes="50vw"
+                        photoId={`${plant.id}/${latestPhotoId}`} />}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </li>
       ))}
