@@ -7,9 +7,15 @@ import { PublicPlantPage } from "../src/public-plant-page";
 import { PropsWithChildren } from "react";
 import { PublicIndexPage } from "../src/public-index-page";
 
-const plants = (JSON.parse(await readFile("plants.json", "utf8")) as Plant[])
-  .filter(p => p.tags.find(t => t.key === "public" && t.value === "true"))
-  .sort(comparing(p => p.location, nullsFirst(localeCompare)));
+const plants = (JSON.parse(await readFile("plants.json", "utf8")) as Plant[]);
+const [ publicPlants, privatePlants ] = plants.reduce((result: [Plant[], Plant[]], plant) => {
+  if (plant.tags.find(t => t.key === "public" && t.value === "true")) {
+    result[0].push(plant);
+  } else {
+    result[1].push(plant);
+  }
+  return result;
+}, [[], []]); 
 
 await mkdir(`dist`, { recursive: true });
 
@@ -46,7 +52,9 @@ const results = await Promise.all([
     )
   ).then(() => `Built index.html`),
   Promise.all(
-    plants.map(async (plant: Plant, i: number) => 
+    publicPlants
+      .sort(comparing(p => p.tags.find(({key}) => key == "location")?.value, nullsFirst(localeCompare)))
+      .map(async (plant: Plant, i: number) => 
       {
         try {
           await mkdir(`dist/${plant.id}`, { recursive: true });
@@ -64,9 +72,32 @@ const results = await Promise.all([
         }
       })
     ).then(results => [
-      `Built: ${results.filter(({ error }) => error == null).length}`, 
+      `Public Plants: ${results.filter(({ error }) => error == null).length}`, 
       `Errors: ${results.filter(({ error }) => error != null).length}`
-    ])
+    ]),
+  Promise.all(
+    privatePlants.map(async (plant: Plant) => {
+      try {
+        await mkdir(`dist/${plant.id}`, { recursive: true });
+        await writeFile(
+          `dist/${plant.id}/index.html`,
+          "<!DOCTYPE html>\n" + renderToString(
+            <html>
+            <head>
+              <meta http-equiv="refresh" content={`0; url=https://dev.plants.anasta.si:8443/${plant.id}`} />
+            </head>
+          </html>
+          )
+        );
+        return { plant };
+      } catch (e) {
+        return { error: e as Error, plant };
+      }
+    })
+  ).then(results => [
+    `Private Plants: ${results.filter(({ error }) => error == null).length}`, 
+    `Errors: ${results.filter(({ error }) => error != null).length}`
+  ]),
 ])
 
 for (const result of results.flat()) {
