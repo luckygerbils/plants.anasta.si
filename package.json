@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "tsx dev/build.ts",
-    "watch": "tsx watch --include './src/**/*' --include plants.json dev/build.ts",
-    "serve": "tsx watch --include './src/**/*' dev/serve.ts",
-    "test": "eslint src dev/build.ts",
+    "build": "tsx dev/build.tsx",
+    "watch": "tsx watch --include './src/**/*' --include plants.json dev/build.tsx",
+    "serve": "tsx watch --include './src/**/*' dev/serve.tsx",
+    "test": "eslint src dev/build.tsx",
     "release": "npm run test && npm run build",
     "clean": "rm -rf ./dist",
     "clean:full": "npm run clean && rm -rf ./node_modules"

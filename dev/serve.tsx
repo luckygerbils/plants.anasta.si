@@ -2,27 +2,27 @@
  * A server for local testing and uploading
  */
 
-import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import https from "node:https";
 import http from "node:http";
 import process from "node:process";
-import { renderToString } from "react-dom/server";
-import { createElement } from "react";
-import * as esbuild from 'esbuild'
 import sharp from "sharp";
 
-await esbuild.build({
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { renderToString } from "react-dom/server";
+import { build } from 'esbuild'
+
+import { getExifModifyDate } from "./exif";
+import { comparing, nullsFirst, localeCompare } from "../src/sorting";
+import { PlantPage } from "../src/plant-page";
+import { Plant } from "../src/plant";
+
+
+await build({
   entryPoints: [ 'src/page.ts' ],
   bundle: true,
   outfile: 'dist/page.js',
   logLevel: "info",
 });
-
-import { Page } from "../src/html";
-import { getExifModifyDate } from "./exif";
-import { comparing, nullsFirst, localeCompare } from "../src/sorting";
-
-type Plant = Parameters<typeof Page>[0]["plant"];
 
 const options = Object.fromEntries(process.argv.slice(2).map(arg => arg.split("=")) as [string, string][])
 
@@ -43,15 +43,27 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
         pattern: /^(?<id>[a-z0-9]{8})\/?/,
         handler: async (match: RegExpMatchArray) => {
           const plantIndex = plants.findIndex(({id}) => match.groups!["id"] === id);
+          const plant = plants[plantIndex];
+          const props = { plant, allPlants: plants, prev: plants[plantIndex-1]?.id, next: plants[plantIndex+1]?.id };
           return { 
             status: 200, 
-            body: "<!DOCTYPE html>\n" + renderToString(createElement(Page, { 
-              plant: plants[plantIndex], 
-              allPlants: plants,
-              prev: plants[plantIndex - 1]?.id, 
-              next: plants[plantIndex + 1]?.id,
-              dev: true,
-            })),
+            body: "<!DOCTYPE html>\n" + renderToString(
+              <html>
+                <head>
+                  <meta charSet="utf-8" />
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
+                  <meta name="theme-color" content="#223225"/>
+                  <link rel="icon" href="images/favicon.svg" sizes="any" type="image/svg+xml" />
+                  <title>{plant.name}</title>
+                  <link rel="stylesheet" href="/page.css" />
+                  <script>{`window.props = ${JSON.stringify(JSON.stringify(props))}`}</script>
+                </head>
+                <body>  
+                  <main id="root"><PlantPage {...props} /></main>
+                  <script src="/page.js"></script>
+                </body>
+              </html>
+            ),
             headers: {
               "content-type": "text/html",
             }

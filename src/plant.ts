@@ -1,3 +1,21 @@
+export type IdConfidence = "high" | "medium" | "low";
+
+export const TAG_KEYS = [
+  "location", 
+  "planted", 
+  "confidence", 
+  "public",
+  "bonsai", 
+  "needsIdentification", 
+  "likelyDead",
+] as const;
+export type TagKey = typeof TAG_KEYS[number];
+
+export interface Tag {
+  key: TagKey,
+  value?: string,
+}
+
 export interface Plant {
   id: string,
   name: string,
@@ -7,4 +25,7 @@ export interface Plant {
   location?: string,
   needsIdentification?: boolean,
   likelyDead?: boolean,
+  plantedDate?: string,
+  idConfidence?: IdConfidence,
+  tags: Tag[]
 }

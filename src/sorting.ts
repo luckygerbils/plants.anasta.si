@@ -16,6 +16,10 @@ export function dateCompare<T extends string>(a: T, b: T) {
   return comparing((d: T) => +new Date(d), numberCompare)(a, b);
 }
 
+export function explicit<T>(order: T[]) {
+  return comparing<T, number>(t => order.indexOf(t), numberCompare);
+}
+
 export function nullsFirst<T>(compareFn: CompareFn<NonNullable<T>>) {
   return (a: T, b: T) => {
     if (a == null) {

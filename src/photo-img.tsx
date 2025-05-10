@@ -4,7 +4,7 @@ type OmittedImgProps = "src"|"srcset"|"sizes";
 interface PhotoImgPropsBase extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, OmittedImgProps> {
   photoId: string,
   ref?: Ref<{naturalWidth?: number, naturalHeight?: number}>,
-  dev: boolean,
+  dev?: boolean,
 }
 
 type OriginalPhotoImgProps = PhotoImgPropsBase & { original: true, }
@@ -15,7 +15,7 @@ type PhotoImgProps = OriginalPhotoImgProps | ProgressivePhotoImgProps | SizedPho
 export const PhotoImg = function PhotoImg({ 
   photoId,
   ref,
-  dev,
+  dev=false,
   ...restProps
 }: PropsWithChildren<PhotoImgProps>) {
   const img = useRef<HTMLImageElement>(null);
