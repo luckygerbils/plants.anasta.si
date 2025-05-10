@@ -9,7 +9,7 @@ import { PublicIndexPage } from "../src/public-index-page";
 
 const plants = (JSON.parse(await readFile("plants.json", "utf8")) as Plant[]);
 const [ publicPlants, privatePlants ] = plants.reduce((result: [Plant[], Plant[]], plant) => {
-  if (plant.tags.public === "true") {
+  if (plant.tags.public === "true" && plant.tags.likelyDead !== "true") {
     result[0].push(plant);
   } else {
     result[1].push(plant);
