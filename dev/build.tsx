@@ -58,7 +58,7 @@ const results = await Promise.all([
     )
   ).then(() => `Built index.html`),
   Promise.all(
-    publicPlants
+    plants
       .sort(comparing(p => p.tags.location, nullsFirst(localeCompare)))
       .map(async (plant: Plant, i: number) => 
       {
@@ -78,32 +78,9 @@ const results = await Promise.all([
         }
       })
     ).then(results => [
-      `Public Plants: ${results.filter(({ error }) => error == null).length}`, 
+      `Plants: ${results.filter(({ error }) => error == null).length}`, 
       `Errors: ${results.filter(({ error }) => error != null).length}`
     ]),
-  Promise.all(
-    privatePlants.map(async (plant: Plant) => {
-      try {
-        await mkdir(`dist/${plant.id}`, { recursive: true });
-        await writeFile(
-          `dist/${plant.id}/index.html`,
-          "<!DOCTYPE html>\n" + renderToString(
-            <html>
-            <head>
-              <meta httpEquiv="refresh" content={`0; url=https://dev.plants.anasta.si:8443/${plant.id}`} />
-            </head>
-          </html>
-          )
-        );
-        return { plant };
-      } catch (e) {
-        return { error: e as Error, plant };
-      }
-    })
-  ).then(results => [
-    `Private Plants: ${results.filter(({ error }) => error == null).length}`, 
-    `Errors: ${results.filter(({ error }) => error != null).length}`
-  ]),
 ])
 
 for (const result of results.flat()) {
