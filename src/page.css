@@ -98,6 +98,20 @@ nav {
   } 
 }
 
+.edit-button {
+  display: none;
+  padding: calc(2*var(--spacing));
+  padding-top: 0;
+  margin-top: calc(-2*var(--spacing));
+  margin-bottom: calc(2*var(--spacing));
+  background-color: var(--bg-primary);
+  color: var(--fg-dark);
+  
+  body.editor & {
+    display: block;
+  }
+}
+
 section.tags {
   margin: 0 calc(2*var(--spacing));
   margin-bottom: calc(2*var(--spacing));
@@ -365,9 +379,10 @@ section.photos {
   }
 
   .location {
-    padding: calc(2*var(--spacing));
+    padding: calc(3*var(--spacing));
     background-color: var(--bg-primary);
     color: var(--fg-dark);
+    font-size: 1.2em;
   }
 
   & a {
@@ -383,7 +398,7 @@ section.photos {
     width: 50%;
   }
 
-  & li {
+  & li.plant {
     &:nth-child(odd) a {
       background-color: var(--bg-table-stripe-odd);
     }

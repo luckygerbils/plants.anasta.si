@@ -39,6 +39,7 @@ export function PublicPlantPage({
           <HamburgerIcon />
         </a>
       </header>
+      <a className="edit-button" href={`https://dev.plants.anasta.si:8443/${plantId}`}>Edit</a>
       <section className="tags">
         <ul>
           {TAG_KEYS.filter(key => key in tags && key != "public")
