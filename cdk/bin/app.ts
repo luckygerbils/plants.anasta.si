@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
-import { CodePipeline, CodePipelineSource, ShellStep } from 'aws-cdk-lib/pipelines';
+import { CodeBuildStep, CodePipeline, CodePipelineSource } from 'aws-cdk-lib/pipelines';
 import { App, Stack, Stage } from 'aws-cdk-lib';
 import { PrimaryStack } from '../lib/stacks/primary';
 import { nonNull } from "../lib/util";
@@ -21,22 +21,22 @@ const instanceStacks = Object.fromEntries(ALL_INSTANCES.map(instance => {
   return [instance.name, { primary }];
 }));
 
-const pipeline = new CodePipeline(pipelineStack, 'Pipeline', {
-  pipelineName: 'PlantsPipeline',
-  synth: new ShellStep('Synth', {
-    input: CodePipelineSource.gitHub('luckygerbils/plants.anasta.si', 'main'),
-    // additionalInputs: {
-    //   data: CodePipelineSource.s3(Bucket.fromBucketName(pipelineStack, "BetaDataBucket", DataBucket.bucketName(Beta)), "published-plants.json.zip")
-    // },
-    commands: [
-      'aws sts get-caller-identity',
-      './run.sh ci:synth'
-    ],
-    primaryOutputDirectory: "cdk/cdk.out",
-    env: {
-      CI: "true",
-    },
-  }),
-});
+const synth = new CodeBuildStep("BuildAndSynth", {
+  input: CodePipelineSource.gitHub('luckygerbils/plants.anasta.si', 'main'),
+  env: {
+    DATA_BUCKET: DataBucket.bucketName(Beta),
+  },
+  commands: [
+    'aws s3 cp "s3://$DATA_BUCKET/plants.json" plants.json',
+    './run.sh ci:synth'
+  ],
+  primaryOutputDirectory: "cdk/cdk.out",
+})
 
+const pipeline = new CodePipeline(pipelineStack, 'Pipeline', { pipelineName: 'PlantsPipeline', synth, });
 ALL_INSTANCES.forEach(instance => pipeline.addStage(instanceStages[instance.name]));
+pipeline.buildPipeline();
+
+Bucket.fromBucketName(pipelineStack, "BetaDataBucket", DataBucket.bucketName(Beta))
+  .grantRead(synth.grantPrincipal);
+
