@@ -1,4 +1,4 @@
-import { RemovalPolicy } from "aws-cdk-lib";
+import { Duration, RemovalPolicy } from "aws-cdk-lib";
 import { Bucket } from "aws-cdk-lib/aws-s3";
 import { Construct } from "constructs";
 import { AppInstance, Beta } from "../../instances";
@@ -17,6 +17,11 @@ export class DataBucket extends Bucket {
       removalPolicy: RemovalPolicy.RETAIN,
       bucketName: DataBucket.bucketName(instance),
       versioned: true,
+      lifecycleRules: [
+        {
+          noncurrentVersionExpiration: Duration.days(7),
+        }
+      ]
     });
 
     this.grantReadWrite(roles.api);
