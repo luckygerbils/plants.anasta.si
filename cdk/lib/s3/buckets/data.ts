@@ -16,6 +16,7 @@ export class DataBucket extends Bucket {
     super(scope, "DataBucket", {
       removalPolicy: RemovalPolicy.RETAIN,
       bucketName: DataBucket.bucketName(instance),
+      versioned: true,
     });
 
     this.grantReadWrite(roles.api);

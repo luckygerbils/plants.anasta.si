@@ -29,7 +29,6 @@ export class PrimaryStack extends Stack {
       data: new DataBucket(this, { instance, roles, }),
       staticSite: new StaticSiteBucket(this),
     };
-    this.dataBucket = buckets.data;
     
     new StaticSiteDeployment(this, { instance, buckets, });
   }
