@@ -113,4 +113,12 @@ ci:release() {
     npm run release
 }
 
+ci:synth() {
+    in:cdk npm ci
+    in:cdk npx cdk synth
+}
+
+in:cdk() { ( cd cdk && ../run.sh "$@" ); }
+in:lambda() { ( cd lambda && ../run.sh "$@" ); }
+
 "${@:-help}"

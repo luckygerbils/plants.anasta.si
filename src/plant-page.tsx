@@ -134,21 +134,23 @@ export function PlantPage({
   return (
     <>
       <header>
-        <h1 
-          contentEditable={editing} 
-          suppressContentEditableWarning={editing} 
-          onBlur={e => setName(e.target.innerText)}
-        >
-            {name}
-        </h1>
-        {(scientificName || editing) && 
-          <h2 className="scientific-name" 
+        <div>
+          <h1
             contentEditable={editing} 
             suppressContentEditableWarning={editing}
-            onBlur={e => setScientificName(e.target.innerText)}
+            onBlur={e => setName(e.target.innerText)}
           >
-            {scientificName}
-          </h2>}
+              {name}
+          </h1>
+          {(scientificName || editing) &&
+            <h2 className="scientific-name"
+              contentEditable={editing}
+              suppressContentEditableWarning={editing}
+              onBlur={e => setScientificName(e.target.innerText)}
+            >
+              {scientificName}
+            </h2>}
+        </div>
       </header>
       <nav>
         { prev ? <a href={`/${prev}`}>Prev</a> : <div>Prev</div>}
