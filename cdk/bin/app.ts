@@ -26,7 +26,7 @@ const pipeline = new CodePipeline(pipelineStack, 'Pipeline', {
   synth: new ShellStep('Synth', {
     input: CodePipelineSource.gitHub('luckygerbils/plants.anasta.si', 'main'),
     additionalInputs: {
-      data: CodePipelineSource.s3(Bucket.fromBucketName(pipelineStack, "BetaDataBucket", DataBucket.bucketName(Beta)), "published-plants.json")
+      data: CodePipelineSource.s3(Bucket.fromBucketName(pipelineStack, "BetaDataBucket", DataBucket.bucketName(Beta)), "published-plants.json.zip")
     },
     commands: ['./run.sh ci:synth'],
     primaryOutputDirectory: "cdk/cdk.out",
