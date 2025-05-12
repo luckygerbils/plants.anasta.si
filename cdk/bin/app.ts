@@ -25,15 +25,18 @@ const pipeline = new CodePipeline(pipelineStack, 'Pipeline', {
   pipelineName: 'PlantsPipeline',
   synth: new ShellStep('Synth', {
     input: CodePipelineSource.gitHub('luckygerbils/plants.anasta.si', 'main'),
-    additionalInputs: {
-      data: CodePipelineSource.s3(Bucket.fromBucketName(pipelineStack, "BetaDataBucket", DataBucket.bucketName(Beta)), "published-plants.json.zip")
-    },
-    commands: ['./run.sh ci:synth'],
+    // additionalInputs: {
+    //   data: CodePipelineSource.s3(Bucket.fromBucketName(pipelineStack, "BetaDataBucket", DataBucket.bucketName(Beta)), "published-plants.json.zip")
+    // },
+    commands: [
+      'aws sts get-caller-identity',
+      './run.sh ci:synth'
+    ],
     primaryOutputDirectory: "cdk/cdk.out",
     env: {
       CI: "true",
     },
-  })
+  }),
 });
 
 ALL_INSTANCES.forEach(instance => pipeline.addStage(instanceStages[instance.name]));
