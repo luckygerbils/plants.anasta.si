@@ -114,6 +114,7 @@ ci:release() {
 }
 
 ci:synth() {
+    ci:release
     in:cdk npm ci
     in:cdk npx cdk synth
 }
