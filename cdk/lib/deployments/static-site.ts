@@ -27,6 +27,7 @@ export class StaticSiteDeployment extends BucketDeployment {
       ],
       destinationBucket: buckets.staticSite,
       distribution: distributions.primary,
+      contentType: "text/html"
     });
   }
 }
