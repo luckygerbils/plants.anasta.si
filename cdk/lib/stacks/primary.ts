@@ -1,11 +1,12 @@
 import { Stack } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { AppInstance } from '../instances';
-import { ApiRole } from '../iam/roles';
+import { ApiRole, EditorRole } from '../iam/roles';
 import { DataBucket, StaticSiteBucket } from '../s3/buckets';
 import { StaticSiteDeployment, StaticSiteHtmlPathsDeployment } from '../deployments';
 import { IBucket } from 'aws-cdk-lib/aws-s3';
 import { PrimaryCloudFrontDistribution } from '../cloudfront/distributions';
+import { EditorIdentityPool } from '../cognito/identity-pools';
 
 interface PrimaryStackProps {
   instance: AppInstance,
@@ -30,12 +31,16 @@ export class PrimaryStack extends Stack {
 
     const roles = {
       api: new ApiRole(this),
+      editor: new EditorRole(this),
     };
 
     const buckets = {
       data: new DataBucket(this, { instance, roles, }),
       staticSite: new StaticSiteBucket(this),
     };
+
+    const identityPool = 
+      new EditorIdentityPool(this, { roles, });
 
     const distributions = {
       primary: new PrimaryCloudFrontDistribution(this, { instance, buckets }),
