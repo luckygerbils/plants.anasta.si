@@ -1,5 +1,5 @@
 import { hydrateRoot } from "react-dom/client"
-import { PlantPage } from "./plant-page"
+import { EditPlantPage } from "./plant-page"
 import { createElement } from "react"
 
 declare global {
@@ -11,5 +11,5 @@ document.cookie = `editor=true;Domain=plants.anasta.si;Max-Age=52560000`
 
 hydrateRoot(
   document.getElementById("root")!, 
-  createElement(PlantPage, JSON.parse(globalThis.props))
+  createElement(EditPlantPage, JSON.parse(globalThis.props))
 );

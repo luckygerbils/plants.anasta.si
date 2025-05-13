@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import { CameraPopup } from "./camera-popup";
 import { PhotoImg } from "./photo-img";
 import { comparing, dateCompare, nullsFirst, reversed } from "./sorting";
@@ -6,23 +6,63 @@ import { Plant, Tag, TAG_KEYS, TagKey } from "./plant";
 import { TagPopup } from "./tag-popup";
 
 interface PageProps {
-  plant: Plant,
-  allPlants: Plant[],
-  prev?: string,
-  next?: string,
+  plantId: string,
+}
+
+interface GetPlantResponse { 
+  plant?: Plant, 
+  next?: string, 
+  prev?: string 
+}
+
+const cache = new Map();
+export function fetchData(input: string | URL | globalThis.Request, init?: RequestInit,) {
+  if (!cache.has(input)) {
+    cache.set(input, fetch(input, init));
+  }
+  return cache.get(input);
+}
+
+async function getPlant(plantId: string): Promise<GetPlantResponse> {
+  const response = await fetchData(`/api/getPlant`, { 
+    method: "POST", 
+    headers: { "content-type": "application/json" }, 
+    body: JSON.stringify({ plantId }) 
+  });
+  return response.json()
+}
+
+export function EditPlantPage({
+  plantId
+}: PageProps) {
+  const [ { props, loading, error }, setState ] = useState<{ props?: Parameters<typeof PlantPage>[0], loading?: boolean, error?: Error }>({ loading: true })
+  useEffect(() => {
+    (async () => {
+      try {
+        setState({ props: await getPlant(plantId) });
+      } catch (e) {
+        setState({ error: e as Error });
+      }
+    })();
+  }, []);
+  if (loading) {
+    return "Loading..."
+  } else if (error) {
+    return <div>{error.message}</div>;
+  } else {
+    return <PlantPage {...props} />
+  }
 }
 
 export function PlantPage({
-  plant,
-  allPlants,
-  prev,
-  next,
-}: PageProps) {
-  const {
-    id: plantId,
-    links,
-    photos,
-  } = plant;
+  plant, prev, next,
+}: GetPlantResponse) {
+  if (plant == null) {
+    throw new Error("Not found");
+  }
+
+  const { id: plantId, links, photos } = plant;
+
   const [ cameraOpen, setCameraOpen ] = useState(false);
   const [ selectedTag, setSelectedTag ] = useState<Tag|null>(null);
 
@@ -89,9 +129,9 @@ export function PlantPage({
 
   async function savePlant() {
     setSaving(true);
-    plant.name = name;
-    plant.scientificName = scientificName;
-    plant.tags = tags;
+    plant!.name = name;
+    plant!.scientificName = scientificName;
+    plant!.tags = tags;
     try {
       await fetch(`/api/putPlant`, {
         method: "POST",
@@ -153,11 +193,11 @@ export function PlantPage({
         </div>
       </header>
       <nav>
-        { prev ? <a href={`/${prev}`}>Prev</a> : <div>Prev</div>}
+        { prev ? <a href={`/edit?plantId=${prev}`}>Prev</a> : <div>Prev</div>}
         <button disabled={buttonsDisabled} type="button" onClick={() => editing ? savePlant() : setEditing(true)}>{editing ? "Save" : "Edit"}</button>
         <button disabled={buttonsDisabled} type="button" onClick={() => setCameraOpen(true)}>Add Photo</button>
         <button disabled={buttonsDisabled} type="button" onClick={() => confirmingDelete ? deletePlant() : setConfirmingDelete(true)}>{confirmingDelete ? "Confirm?" : "Delete"}</button>
-        {next ? <a href={`/${next}`}>Next</a> : <div>Next</div>}
+        {next ? <a href={`/edit?plantId=${next}`}>Next</a> : <div>Next</div>}
       </nav>
       {cameraOpen && 
         <CameraPopup 
@@ -200,7 +240,7 @@ export function PlantPage({
           })
         )}
       </section>
-      {selectedTag && <TagPopup allPlants={allPlants} tag={selectedTag} onClose={() => setSelectedTag(null)} />}
+      {/* {selectedTag && <TagPopup allPlants={allPlants} tag={selectedTag} onClose={() => setSelectedTag(null)} />} */}
       <section className="links">
         <ul>
           {(links ?? []).map(({site, url}) => 

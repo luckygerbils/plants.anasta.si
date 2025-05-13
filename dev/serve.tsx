@@ -13,11 +13,11 @@ import { build } from 'esbuild'
 
 import { getExifModifyDate } from "./exif";
 import { comparing, nullsFirst, localeCompare } from "../src/sorting";
-import { PlantPage } from "../src/plant-page";
+import { EditPlantPage, PlantPage } from "../src/plant-page";
 import { Plant } from "../src/plant";
-import { PropsWithChildren } from "react";
 import { PublicPlantPage } from "../src/public-plant-page";
-
+import { Html } from "../src/html";
+import { Suspense } from "react";
 
 await build({
   entryPoints: [ 'src/page.ts' ],
@@ -35,38 +35,6 @@ const [ key, cert ] = await Promise.all([
   readFile(options["--key"]), 
   readFile(options["--cert"])
 ]);
-
-interface HtmlProps {
-  title: string;
-  className?: string;
-  props?: object,
-  script?: string,
-}
-
-function Html({ title, children, className, props, script }: PropsWithChildren<HtmlProps>) {
-  return (
-    <html>
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
-        <meta name="theme-color" content="#223225"/>
-        <link rel="icon" href="images/favicon.svg" sizes="any" type="image/svg+xml" />
-        <title>{title}</title>
-        <link rel="stylesheet" href="/page.css" />
-        {props && <script>{`window.props = ${JSON.stringify(JSON.stringify(props))}`}</script>}
-      </head>
-      <body>  
-        <main id="root" className={className}>{children}</main>
-        <script>{`
-          if (Object.fromEntries(document.cookie.split(";").map(c => c.split("=").map(s => s.trim())))["editor"] === "true"){
-            document.body.classList.add("editor");
-           }
-        `}</script>
-        {script && <script src={script}></script>}
-      </body>
-    </html>
-  );
-}
 
 const server = https.createServer({ key, cert, }, async (req, res) => {
   const url = req.url ?? "/";
@@ -95,14 +63,12 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
       {
         pattern: /^edit/,
         handler: async (_: unknown, url: URL) => {
-          const plantIndex = plants.findIndex(({id}) => url.searchParams.get("plantId") === id);
-          const plant = plants[plantIndex];
-          const props = { plant, allPlants: plants, prev: plants[plantIndex-1]?.id, next: plants[plantIndex+1]?.id };
+          const props = { plantId: url.searchParams.get("plantId")! };
           return { 
             status: 200, 
             body: "<!DOCTYPE html>\n" + renderToString(
-                <Html title={plant.name} props={props} script="/page.js">
-                  <PlantPage {...props} />
+                <Html title={`Edit ${props.plantId}`} props={props} script="/page.js">
+                  <EditPlantPage {...props} />
                 </Html>
               ),
             headers: {
@@ -110,6 +76,35 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
             }
           };
         }
+      },
+      {
+        pattern: /^api\/getPlant$/,
+        handler: async () => {
+          const { plantId } = JSON.parse(await getBody(req));
+          const plantIndex = plants.findIndex(({id}) => plantId === id);
+          const plant = plants[plantIndex];
+          if (plant != null) {
+            return {
+              status: 200,
+              body: JSON.stringify({ 
+                plant, 
+                prev: plants[plantIndex-1]?.id, 
+                next: plants[plantIndex+1]?.id
+              }),
+              headers: {
+                "content-type": "application/json"
+              }
+            };
+          } else {
+            return {
+              status: 404,
+              body: JSON.stringify({}),
+              headers: {
+                "content-type": "application/json"
+              }
+            };
+          }
+        },
       },
       {
         pattern: /^api\/putPlant$/,
