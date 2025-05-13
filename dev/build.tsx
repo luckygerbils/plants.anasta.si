@@ -7,6 +7,7 @@ import { PublicPlantPage } from "../src/public-plant-page";
 import { PropsWithChildren } from "react";
 import { PublicIndexPage } from "../src/public-index-page";
 import { Html } from "../src/html";
+import { EditPlantPage } from "../src/plant-page";
 
 const plants = (JSON.parse(await readFile("plants.json", "utf8")) as Plant[]);
 const [ publicPlants, privatePlants ] = plants.reduce((result: [Plant[], Plant[]], plant) => {
@@ -30,6 +31,14 @@ const results = await Promise.all([
       </Html>
     )
   ).then(() => `Built index.html`),
+  await writeFile(
+    `dist/edit`,
+    "<!DOCTYPE html>\n" + renderToString(
+      <Html title="Edit" script="/page.js">
+        <EditPlantPage />
+      </Html>
+    )
+  ).then(() => `Built edit`),
   Promise.all(
     plants
       .sort(comparing(p => p.tags.location, nullsFirst(localeCompare)))

@@ -3,11 +3,10 @@ import { PropsWithChildren } from "react";
 interface HtmlProps {
   title: string;
   className?: string;
-  props?: object,
   script?: string,
 }
 
-export function Html({ title, children, className, props, script }: PropsWithChildren<HtmlProps>) {
+export function Html({ title, children, className, script }: PropsWithChildren<HtmlProps>) {
   return (
     <html>
       <head>
@@ -17,7 +16,6 @@ export function Html({ title, children, className, props, script }: PropsWithChi
         <link rel="icon" href="images/favicon.svg" sizes="any" type="image/svg+xml" />
         <title>{title}</title>
         <link rel="stylesheet" href="/page.css" />
-        {props && <script>{`window.props = ${JSON.stringify(JSON.stringify(props))}`}</script>}
       </head>
       <body>  
         <main id="root" className={className}>{children}</main>

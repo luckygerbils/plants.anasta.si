@@ -17,7 +17,6 @@ import { EditPlantPage, PlantPage } from "../src/plant-page";
 import { Plant } from "../src/plant";
 import { PublicPlantPage } from "../src/public-plant-page";
 import { Html } from "../src/html";
-import { Suspense } from "react";
 
 await build({
   entryPoints: [ 'src/page.ts' ],
@@ -63,12 +62,11 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
       {
         pattern: /^edit/,
         handler: async (_: unknown, url: URL) => {
-          const props = { plantId: url.searchParams.get("plantId")! };
           return { 
             status: 200, 
             body: "<!DOCTYPE html>\n" + renderToString(
-                <Html title={`Edit ${props.plantId}`} props={props} script="/page.js">
-                  <EditPlantPage {...props} />
+                <Html title="Edit" script="/page.js">
+                  <EditPlantPage />
                 </Html>
               ),
             headers: {

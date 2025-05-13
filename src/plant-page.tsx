@@ -6,7 +6,7 @@ import { Plant, Tag, TAG_KEYS, TagKey } from "./plant";
 import { TagPopup } from "./tag-popup";
 
 interface PageProps {
-  plantId: string,
+  plantId?: string,
 }
 
 interface GetPlantResponse { 
@@ -37,6 +37,10 @@ export function EditPlantPage({
 }: PageProps) {
   const [ { props, loading, error }, setState ] = useState<{ props?: Parameters<typeof PlantPage>[0], loading?: boolean, error?: Error }>({ loading: true })
   useEffect(() => {
+    if (plantId == null) {
+      return;
+    }
+
     (async () => {
       try {
         setState({ props: await getPlant(plantId) });

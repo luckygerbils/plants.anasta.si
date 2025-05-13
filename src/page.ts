@@ -7,9 +7,10 @@ declare global {
   var props: string;
 }
 
-document.cookie = `editor=true;Domain=plants.anasta.si;Max-Age=52560000`
+document.cookie = `editor=true;Domain=plants.anasta.si;Max-Age=52560000`;
 
+const plantId = new URLSearchParams(location.search).get("plantId") ?? undefined;
 hydrateRoot(
   document.getElementById("root")!, 
-  createElement(EditPlantPage, JSON.parse(globalThis.props))
+  createElement(EditPlantPage, { plantId })
 );
