@@ -223,7 +223,7 @@ export function PlantPage({
               </div>
               <div className="date">{modifyDate?.substring(0, 10)}</div>
               
-              <PhotoImg loading="lazy" sizes="100vw" photoId={`${plantId}/${id}`} dev={true} />
+              <PhotoImg loading="lazy" sizes="100vw" photoId={`${plantId}/${id}`} />
             </li>
           ))}
         </ul>
