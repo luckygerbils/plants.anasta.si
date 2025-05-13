@@ -15,6 +15,8 @@ import { getExifModifyDate } from "./exif";
 import { comparing, nullsFirst, localeCompare } from "../src/sorting";
 import { PlantPage } from "../src/plant-page";
 import { Plant } from "../src/plant";
+import { PropsWithChildren } from "react";
+import { PublicPlantPage } from "../src/public-plant-page";
 
 
 await build({
@@ -34,13 +36,45 @@ const [ key, cert ] = await Promise.all([
   readFile(options["--cert"])
 ]);
 
+interface HtmlProps {
+  title: string;
+  className?: string;
+  props?: object,
+  script?: string,
+}
+
+function Html({ title, children, className, props, script }: PropsWithChildren<HtmlProps>) {
+  return (
+    <html>
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
+        <meta name="theme-color" content="#223225"/>
+        <link rel="icon" href="images/favicon.svg" sizes="any" type="image/svg+xml" />
+        <title>{title}</title>
+        <link rel="stylesheet" href="/page.css" />
+        {props && <script>{`window.props = ${JSON.stringify(JSON.stringify(props))}`}</script>}
+      </head>
+      <body>  
+        <main id="root" className={className}>{children}</main>
+        <script>{`
+          if (Object.fromEntries(document.cookie.split(";").map(c => c.split("=").map(s => s.trim())))["editor"] === "true"){
+            document.body.classList.add("editor");
+           }
+        `}</script>
+        {script && <script src={script}></script>}
+      </body>
+    </html>
+  );
+}
+
 const server = https.createServer({ key, cert, }, async (req, res) => {
   const url = req.url ?? "/";
 
   try {
     const patterns = [
       {
-        pattern: /^(?<id>[a-z0-9]{8})\/?/,
+        pattern: /^(?<id>[a-z0-9]{8})$/,
         handler: async (match: RegExpMatchArray) => {
           const plantIndex = plants.findIndex(({id}) => match.groups!["id"] === id);
           const plant = plants[plantIndex];
@@ -48,22 +82,29 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
           return { 
             status: 200, 
             body: "<!DOCTYPE html>\n" + renderToString(
-              <html>
-                <head>
-                  <meta charSet="utf-8" />
-                  <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
-                  <meta name="theme-color" content="#223225"/>
-                  <link rel="icon" href="images/favicon.svg" sizes="any" type="image/svg+xml" />
-                  <title>{plant.name}</title>
-                  <link rel="stylesheet" href="/page.css" />
-                  <script>{`window.props = ${JSON.stringify(JSON.stringify(props))}`}</script>
-                </head>
-                <body>  
-                  <main id="root"><PlantPage {...props} /></main>
-                  <script src="/page.js"></script>
-                </body>
-              </html>
-            ),
+                <Html title={plant.name}>
+                  <PublicPlantPage {...props} />
+                </Html>
+              ),
+            headers: {
+              "content-type": "text/html",
+            }
+          };
+        }
+      },
+      {
+        pattern: /^edit/,
+        handler: async (_: unknown, url: URL) => {
+          const plantIndex = plants.findIndex(({id}) => url.searchParams.get("plantId") === id);
+          const plant = plants[plantIndex];
+          const props = { plant, allPlants: plants, prev: plants[plantIndex-1]?.id, next: plants[plantIndex+1]?.id };
+          return { 
+            status: 200, 
+            body: "<!DOCTYPE html>\n" + renderToString(
+                <Html title={plant.name} props={props} script="/page.js">
+                  <PlantPage {...props} />
+                </Html>
+              ),
             headers: {
               "content-type": "text/html",
             }
@@ -265,7 +306,7 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
     for (const { pattern, handler } of patterns) {
       const match = url.replace(/^\//, "").match(pattern);
       if (match != null) {
-        response = await Promise.resolve(handler(match));
+        response = await Promise.resolve(handler(match, new URL(url, "http://dev.plants.anasta.si")));
         break;
       }
     }

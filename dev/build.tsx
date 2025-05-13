@@ -36,7 +36,7 @@ function Html({ title, children, className }: PropsWithChildren<HtmlProps>) {
         <link rel="stylesheet" href="/page.css" />
       </head>
       <body>  
-        <main className={className}>{children}</main>
+        <main id="root" className={className}>{children}</main>
         <script>{`
           if (Object.fromEntries(document.cookie.split(";").map(c => c.split("=").map(s => s.trim())))["editor"] === "true"){
             document.body.classList.add("editor");
