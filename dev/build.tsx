@@ -63,9 +63,8 @@ const results = await Promise.all([
       .map(async (plant: Plant, i: number) => 
       {
         try {
-          await mkdir(`dist/${plant.id}`, { recursive: true });
           await writeFile(
-            `dist/${plant.id}/index.html`,
+            `dist/${plant.id}`,
             "<!DOCTYPE html>\n" + renderToString(
               <Html title={plant.name}>
                 <PublicPlantPage plant={plant} allPlants={plants} prev={plants[i-1]?.id} next={plants[i+1]?.id} />
