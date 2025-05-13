@@ -1,9 +1,9 @@
-import { Distribution, ViewerProtocolPolicy } from "aws-cdk-lib/aws-cloudfront";
+import { Distribution, ResponseHeadersPolicy, ViewerProtocolPolicy } from "aws-cdk-lib/aws-cloudfront";
 import { PrimaryStack } from "../../stacks/primary";
 import { Certificate, CertificateValidation } from "aws-cdk-lib/aws-certificatemanager";
 import { AppInstance } from "../../instances";
 import { ARecord, PublicHostedZone, RecordTarget } from "aws-cdk-lib/aws-route53";
-import { Bucket } from "aws-cdk-lib/aws-s3";
+import { Bucket, IBucket } from "aws-cdk-lib/aws-s3";
 import { S3BucketOrigin } from "aws-cdk-lib/aws-cloudfront-origins";
 import { CloudFrontTarget } from "aws-cdk-lib/aws-route53-targets";
 import { Construct } from "constructs";
@@ -11,7 +11,8 @@ import { Construct } from "constructs";
 interface PrimaryCloudFrontDistributionProps {
   instance: AppInstance,
   buckets: {
-    staticSite: Bucket,
+    staticSite: IBucket,
+    data: IBucket,
   }
 }
 
@@ -37,6 +38,11 @@ export class PrimaryCloudFrontDistribution extends Distribution {
         origin: S3BucketOrigin.withOriginAccessControl(buckets.staticSite),
         viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
       },
+      additionalBehaviors: {
+        "/data/*": {
+          origin: S3BucketOrigin.withOriginAccessControl(buckets.data),
+        }
+      }
     });
 
     new ARecord(this, "WebsiteARecord", {
