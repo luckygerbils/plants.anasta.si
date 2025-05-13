@@ -2,7 +2,6 @@ import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment";
 import { Construct } from "constructs";
 import { IBucket } from "aws-cdk-lib/aws-s3";
 import { AppInstance } from "../instances";
-import { Distribution } from "aws-cdk-lib/aws-logs";
 import { IDistribution } from "aws-cdk-lib/aws-cloudfront";
 
 interface StaticSiteDeploymentProps {
@@ -13,22 +12,26 @@ interface StaticSiteDeploymentProps {
   distributions: {
     primary: IDistribution,
   },
+  prune: boolean,
 }
 
-export class StaticSiteDeployment extends BucketDeployment {
+/*
+ * Copy all the files representing rendered HTML paths to the static site bucket, setting a text/html content type
+ */
+export class StaticSiteHtmlPathsDeployment extends BucketDeployment {
   constructor(scope: Construct, {
     instance,
     buckets,
     distributions,
   }: StaticSiteDeploymentProps) {
-    super(scope, "DeployStaticSite", {
+    super(scope, "DeployStaticSiteHtmlPaths", {
       sources: [
         Source.asset("../dist"),
       ],
       destinationBucket: buckets.staticSite,
       distribution: distributions.primary,
-      exclude: ["*"],
-      include: ["*.*"], // Include only files with a .
+      contentType: "text/html",
+      exclude: [ "*.*" ], // Exclude any file with a .
     });
   }
 }

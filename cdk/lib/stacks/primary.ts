@@ -3,7 +3,7 @@ import { Construct } from 'constructs';
 import { AppInstance } from '../instances';
 import { ApiRole } from '../iam/roles';
 import { DataBucket, StaticSiteBucket } from '../s3/buckets';
-import { StaticSiteDeployment } from '../deployments';
+import { StaticSiteDeployment, StaticSiteHtmlPathsDeployment } from '../deployments';
 import { IBucket } from 'aws-cdk-lib/aws-s3';
 import { PrimaryCloudFrontDistribution } from '../cloudfront/distributions';
 
@@ -41,6 +41,8 @@ export class PrimaryStack extends Stack {
       primary: new PrimaryCloudFrontDistribution(this, { instance, buckets }),
     };
     
-    new StaticSiteDeployment(this, { instance, buckets, distributions, });
+    const staticSite = new StaticSiteDeployment(this, { instance, buckets, distributions, });
+    const htmlPaths = new StaticSiteHtmlPathsDeployment(this, { instance, buckets, distributions, prune: false });
+    htmlPaths.node.addDependency(staticSite);
   }
 }
