@@ -8,6 +8,7 @@ import { PropsWithChildren } from "react";
 import { PublicIndexPage } from "../src/public-index-page";
 import { Html } from "../src/html";
 import { EditPlantPage } from "../src/plant-page";
+import { build } from "esbuild";
 
 const plants = (JSON.parse(await readFile("plants.json", "utf8")) as Plant[]);
 const [ publicPlants, privatePlants ] = plants.reduce((result: [Plant[], Plant[]], plant) => {
@@ -23,7 +24,13 @@ await mkdir(`dist`, { recursive: true });
 
 const results = await Promise.all([
   copyFile("src/page.css", "dist/page.css").then(() => `Copied src/page.css`),
-  await writeFile(
+  build({
+    entryPoints: [ 'src/page.ts' ],
+    bundle: true,
+    outfile: 'dist/page.js',
+    logLevel: "info",
+  }),
+  writeFile(
     `dist/index.html`,
     "<!DOCTYPE html>\n" + renderToString(
       <Html title="All Plants" className="index">
@@ -31,7 +38,7 @@ const results = await Promise.all([
       </Html>
     )
   ).then(() => `Built index.html`),
-  await writeFile(
+  writeFile(
     `dist/edit`,
     "<!DOCTYPE html>\n" + renderToString(
       <Html title="Edit" script="/page.js">
