@@ -5,6 +5,7 @@ import { AppInstance } from "../instances";
 import { IDistribution } from "aws-cdk-lib/aws-cloudfront";
 import { readFileSync } from "node:fs";
 import { EditorIdentityPool } from "../cognito/identity-pools";
+import { FunctionUrl } from "aws-cdk-lib/aws-lambda";
 
 interface StaticSiteDeploymentProps {
   instance: AppInstance,
@@ -13,6 +14,9 @@ interface StaticSiteDeploymentProps {
   },
   distributions: {
     primary: IDistribution,
+  },
+  lambdas: {
+    api: { url: FunctionUrl },
   },
   identityPool: EditorIdentityPool,
 }
@@ -25,6 +29,7 @@ export class StaticSiteHtmlPathsDeployment extends BucketDeployment {
     instance,
     buckets,
     distributions,
+    lambdas,
     identityPool,
   }: StaticSiteDeploymentProps) {
     super(scope, "DeployStaticSiteHtmlPaths", {
@@ -37,7 +42,7 @@ export class StaticSiteHtmlPathsDeployment extends BucketDeployment {
               userPoolId: identityPool.userPool.userPoolId,
               userPoolClientId: identityPool.userPoolClient.userPoolClientId,
               identityPoolId: identityPool.identityPoolId,
-              // apiUrl: lambdas.writer.url.url,
+              apiUrl: lambdas.api.url.url,
               region: instance.region,
             })))
         ),

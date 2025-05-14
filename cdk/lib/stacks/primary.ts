@@ -52,7 +52,7 @@ export class PrimaryStack extends Stack {
     };
     
     const staticSite = new StaticSiteDeployment(this, { instance, buckets, distributions, });
-    const htmlPaths = new StaticSiteHtmlPathsDeployment(this, { instance, buckets, distributions, identityPool });
+    const htmlPaths = new StaticSiteHtmlPathsDeployment(this, { instance, buckets, distributions, lambdas, identityPool });
     htmlPaths.node.addDependency(staticSite);
   }
 }

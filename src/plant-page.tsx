@@ -4,8 +4,8 @@ import { PhotoImg } from "./photo-img";
 import { comparing, dateCompare, nullsFirst, reversed } from "./sorting";
 import { Plant, Tag, TAG_KEYS, TagKey } from "./plant";
 import { TagPopup } from "./tag-popup";
-import { LoginGateway, LoginPage } from "./login-page";
-import { getCallerIdentity, loggedIn } from "./auth";
+import { LoginGateway } from "./login-page";
+import { apiFetch } from "./auth";
 
 interface PageProps {
   plantId?: string,
@@ -19,21 +19,13 @@ interface GetPlantResponse {
   caller: string,
 }
 
-const cache = new Map();
-export function fetchData(input: string | URL | globalThis.Request, init?: RequestInit,) {
-  if (!cache.has(input)) {
-    cache.set(input, fetch(input, init));
-  }
-  return cache.get(input);
-}
-
 async function getPlant(plantId: string): Promise<GetPlantResponse> {
-  const response = await fetchData(`/api/getPlant`, { 
+  const response = await apiFetch(`/api/getPlant`, { 
     method: "POST", 
     headers: { "content-type": "application/json" }, 
     body: JSON.stringify({ plantId }) 
   });
-  return {...response.json(), caller: await getCallerIdentity()};
+  return response.json();
 }
 
 export function EditPlantPage(props: PageProps) {

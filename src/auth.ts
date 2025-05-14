@@ -1,4 +1,4 @@
-let props: { userPoolClientId: string, userPoolId: string, identityPoolId: string }|null = null;
+let props: { userPoolClientId: string, userPoolId: string, identityPoolId: string, apiUrl: string, region: string }|null = null;
 function getProps() {
   if (props == null) {
     props = JSON.parse(window.props);
@@ -148,18 +148,7 @@ async function getCredentials(): Promise<AwsCredentials|null> {
   return credentials;
 }
 
-export async function getCallerIdentity() {
-  const response = await sigV4Fetch("sts", "us-west-2", "https://sts.us-west-2.amazonaws.com/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
-    },
-    body: "Action=GetCallerIdentity&Version=2011-06-15",
-  });
-  return await response.text();
-}
-
-async function sigV4Fetch(service: string, region: string, input: RequestInfo | URL, init?: RequestInit) {
+export async function apiFetch(input: RequestInfo | URL, init?: RequestInit) {
 	const fetchRequest = new Request(input, init);
 	const url = new URL(fetchRequest.url, location.href);
 	const headers = new Headers(fetchRequest.headers);
@@ -172,6 +161,8 @@ async function sigV4Fetch(service: string, region: string, input: RequestInfo | 
   }
 
   const { accessKeyId, secretKey, sessionToken } = credentials;
+  const { region, apiUrl } = getProps();
+  const service = "lambda";
 
   const now = new Date();
   const year = now.getUTCFullYear();
@@ -187,7 +178,7 @@ async function sigV4Fetch(service: string, region: string, input: RequestInfo | 
 
 	// host is required by AWS Signature V4: https://docs.aws.amazon.com/general/latest/gr/sigv4-create-canonical-request.html
 	// headers.append("host", new URL(config.apiUrl).host);
-  headers.append("host", url.host);
+  headers.append("host", new URL(apiUrl).host);
   headers.append('X-Amz-Date', amzDate);
   headers.append('X-Amz-Content-Sha256', requestBodyHash);
   headers.append('X-Amz-Security-Token', sessionToken);
