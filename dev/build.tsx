@@ -31,10 +31,9 @@ const results = await Promise.all([
       outfile: 'lambda/dist/api.mjs',
       format: "esm",
       target: 'node20',
-      // external: [
-      //     ...Object.keys(packageJson.dependencies ?? {}),
-      //     ...Object.keys(packageJson.devDependencies ?? {}),
-      // ],
+      external: [
+          "@aws-sdk/client-s3"
+      ],
       logLevel: "info",
   }),
   build({
