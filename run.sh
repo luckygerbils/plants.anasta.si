@@ -46,7 +46,9 @@ with:tools() {
     shift "$((OPTIND-1))"
 
     local tty_opts
-    if $use_tty; then tty_opts="--tty"; fi
+    if [ -t 1 ]; then
+        tty_opts="--tty"
+    fi
 
     local file_time image_time
     file_time=$(stat -c %Y "dev/Dockerfile")
@@ -98,6 +100,47 @@ register-dns() {
     else
         log "$DEV_HOSTNAME already points to local IP $LOCAL_IP"
     fi
+}
+
+copy-photos() {
+    local stage=${1?-Stage is required} 
+    local data_bucket_name
+    data_bucket_name=$(
+        aws --region us-west-2 --profile AdministratorAccess \
+            cloudformation describe-stack-resources \
+            --stack-name $stage-Plants-PrimaryStack \
+            --query "StackResources[?starts_with(LogicalResourceId, 'DataBucket')].PhysicalResourceId | [0]" \
+            --output text)
+    aws --profile AdministratorAccess --region us-west-2 \
+        s3 sync photos "s3://$data_bucket_name/data/photos/"
+}
+
+create-user() {
+    local stage=${1?-Stage is required} username=${2?-Username is required}
+    local user_pool_id temporary_password
+    user_pool_id=$(
+        aws --region us-west-2 --profile AdministratorAccess \
+            cloudformation describe-stack-resources \
+            --stack-name $stage-Plants-PrimaryStack \
+            --query "StackResources[?ResourceType=='AWS::Cognito::UserPool' && starts_with(LogicalResourceId, 'EditorUserPool')].PhysicalResourceId | [0]" \
+            --output text)
+    log "User Pool Id: $user_pool_id"
+    set +o pipefail
+    password=$(cat /dev/urandom | tr -dc '[:graph:]' | head -c 30)
+    set -o pipefail
+    log "Password: $password"
+    aws --region us-west-2 --profile AdministratorAccess \
+        cognito-idp admin-create-user \
+        --user-pool-id "$user_pool_id" \
+        --username "$username" \
+        --message-action SUPPRESS \
+        --temporary-password "$password"
+    aws --region us-west-2 --profile AdministratorAccess \
+        cognito-idp admin-set-user-password \
+        --user-pool-id "$user_pool_id" \
+        --username "$username" \
+        --password "$password" \
+        --permanent
 }
 
 watch() {
