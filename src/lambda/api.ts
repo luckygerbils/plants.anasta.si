@@ -6,18 +6,6 @@ const DATA_BUCKET: string = process.env.DATA_BUCKET ??
   (() => { throw new Error("Environment variable DATA_BUCKET not set"); })();
 
 const s3 = new S3Client();
-let plants: {id: string}[];
-try {
-  plants = JSON.parse(await s3.send(new GetObjectCommand({
-    Key: "plants.json",
-    Bucket: DATA_BUCKET,
-  })));
-} catch (e) {
-  console.log(`caught ${e}`);
-  if (e instanceof NoSuchKey) {
-    console.log("plants.json doesn't exist")
-  }
-}
 
 export const handler: LambdaFunctionURLHandler = async (event: LambdaFunctionURLEvent): Promise<LambdaFunctionURLResult> => {
   const operation = event.rawPath.replace(/^\/api\//, "");
@@ -51,6 +39,7 @@ export const handler: LambdaFunctionURLHandler = async (event: LambdaFunctionURL
 }
 
 async function invoke(operation: string, input: unknown) {
+  const plants = await getPlants();
   switch (operation) {
     case "getPlant": {
       const { plantId } = JSON.parse(input as string);
@@ -67,4 +56,19 @@ async function invoke(operation: string, input: unknown) {
       throw new Error("Unknown operation " + operation);
   }
   
+}
+
+async function getPlants(): Promise<{id: string}[]> {
+  try {
+    return JSON.parse(await s3.send(new GetObjectCommand({
+      Key: "plants.json",
+      Bucket: DATA_BUCKET,
+    })));
+  } catch (e) {
+    console.log(`caught ${e}`);
+    if (e instanceof NoSuchKey) {
+      throw new Error("plants.json doesn't exist")
+    }
+    throw e;
+  }
 }
