@@ -31,7 +31,7 @@ export class EditorIdentityPool extends IdentityPool {
     const userPoolClient = new UserPoolClient(scope, "EditorUserPoolClient", {
       userPool,
       authFlows: {
-        userSrp: true,
+        userPassword: true,
       },
       supportedIdentityProviders: [
         UserPoolClientIdentityProvider.COGNITO,
