@@ -47,7 +47,7 @@ export class PrimaryStack extends Stack {
     };
     
     const staticSite = new StaticSiteDeployment(this, { instance, buckets, distributions, });
-    const htmlPaths = new StaticSiteHtmlPathsDeployment(this, { instance, buckets, distributions, prune: false });
+    const htmlPaths = new StaticSiteHtmlPathsDeployment(this, { instance, buckets, distributions, identityPool });
     htmlPaths.node.addDependency(staticSite);
   }
 }

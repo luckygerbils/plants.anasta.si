@@ -41,7 +41,7 @@ const results = await Promise.all([
   writeFile(
     `dist/edit`,
     "<!DOCTYPE html>\n" + renderToString(
-      <Html title="Edit" script="/page.js">
+      <Html title="Edit" script="/page.js" props={{}}>
         <EditPlantPage />
       </Html>
     )

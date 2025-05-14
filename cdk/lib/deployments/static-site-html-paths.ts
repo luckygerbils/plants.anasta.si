@@ -3,6 +3,8 @@ import { Construct } from "constructs";
 import { IBucket } from "aws-cdk-lib/aws-s3";
 import { AppInstance } from "../instances";
 import { IDistribution } from "aws-cdk-lib/aws-cloudfront";
+import { readFileSync } from "node:fs";
+import { EditorIdentityPool } from "../cognito/identity-pools";
 
 interface StaticSiteDeploymentProps {
   instance: AppInstance,
@@ -12,7 +14,7 @@ interface StaticSiteDeploymentProps {
   distributions: {
     primary: IDistribution,
   },
-  prune: boolean,
+  identityPool: EditorIdentityPool,
 }
 
 /*
@@ -23,10 +25,22 @@ export class StaticSiteHtmlPathsDeployment extends BucketDeployment {
     instance,
     buckets,
     distributions,
+    identityPool,
   }: StaticSiteDeploymentProps) {
     super(scope, "DeployStaticSiteHtmlPaths", {
       sources: [
         Source.asset("../dist"),
+        Source.data(
+          "edit",
+          readFileSync("../dist/edit", { encoding: "utf-8"})
+            .replace(/window.props = "{}"/m, 'window.props = ' + JSON.stringify(JSON.stringify({
+              userPoolId: identityPool.userPool.userPoolId,
+              userPoolClientId: identityPool.userPoolClient.userPoolClientId,
+              identityPoolId: identityPool.identityPoolId,
+              // apiUrl: lambdas.writer.url.url,
+              region: instance.region,
+            })))
+        ),
       ],
       destinationBucket: buckets.staticSite,
       distribution: distributions.primary,

@@ -1,18 +1,22 @@
-import { use, useEffect, useState } from "react";
+import { FormEvent, FormEventHandler, useEffect, useState } from "react";
 import { CameraPopup } from "./camera-popup";
 import { PhotoImg } from "./photo-img";
 import { comparing, dateCompare, nullsFirst, reversed } from "./sorting";
 import { Plant, Tag, TAG_KEYS, TagKey } from "./plant";
 import { TagPopup } from "./tag-popup";
+import { LoginGateway, LoginPage } from "./login-page";
+import { getCallerIdentity, loggedIn } from "./auth";
 
 interface PageProps {
   plantId?: string,
 }
 
 interface GetPlantResponse { 
+  plantId: string,
   plant?: Plant, 
   next?: string, 
-  prev?: string 
+  prev?: string,
+  caller: string,
 }
 
 const cache = new Map();
@@ -29,13 +33,22 @@ async function getPlant(plantId: string): Promise<GetPlantResponse> {
     headers: { "content-type": "application/json" }, 
     body: JSON.stringify({ plantId }) 
   });
-  return response.json()
+  return {...response.json(), caller: await getCallerIdentity()};
 }
 
-export function EditPlantPage({
+export function EditPlantPage(props: PageProps) {
+  return (
+    <LoginGateway>
+      <PageContents {...props} />
+    </LoginGateway>
+  );
+}
+
+function PageContents({
   plantId
 }: PageProps) {
   const [ { props, loading, error }, setState ] = useState<{ props?: Parameters<typeof PlantPage>[0], loading?: boolean, error?: Error }>({ loading: true })
+  
   useEffect(() => {
     if (plantId == null) {
       return;
@@ -49,23 +62,32 @@ export function EditPlantPage({
       }
     })();
   }, []);
+
   if (loading) {
     return "Loading..."
   } else if (error) {
     return <div>{error.message}</div>;
   } else {
-    return <PlantPage {...props} />
+    return <PlantPage {...props!} />
   }
 }
 
 export function PlantPage({
-  plant, prev, next,
+  plantId,
+  plant, 
+  prev, 
+  next,
+  caller,
 }: GetPlantResponse) {
   if (plant == null) {
-    throw new Error("Not found");
+    return (
+      <div>
+        No plant found with id {plantId}
+      </div>
+    )
   }
 
-  const { id: plantId, links, photos } = plant;
+  const { links, photos } = plant;
 
   const [ cameraOpen, setCameraOpen ] = useState(false);
   const [ selectedTag, setSelectedTag ] = useState<Tag|null>(null);
@@ -272,6 +294,7 @@ export function PlantPage({
           ))}
         </ul>
       </section>
+      <pre>{caller}</pre>
     </>
   )
 }

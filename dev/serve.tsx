@@ -13,10 +13,11 @@ import { build } from 'esbuild'
 
 import { getExifModifyDate } from "./exif";
 import { comparing, nullsFirst, localeCompare } from "../src/sorting";
-import { EditPlantPage, PlantPage } from "../src/plant-page";
+import { EditPlantPage } from "../src/plant-page";
 import { Plant } from "../src/plant";
 import { PublicPlantPage } from "../src/public-plant-page";
 import { Html } from "../src/html";
+import { execSync } from "node:child_process";
 
 await build({
   entryPoints: [ 'src/page.ts' ],
@@ -34,6 +35,18 @@ const [ key, cert ] = await Promise.all([
   readFile(options["--key"]), 
   readFile(options["--cert"])
 ]);
+
+function getResourceId(type: string, logicalResourceId: string) {
+  return execSync(`aws --region us-west-2 --profile AdministratorAccess \
+    cloudformation describe-stack-resources \
+    --stack-name Beta-Plants-PrimaryStack \
+    --query "StackResources[?ResourceType=='${type}' && starts_with(LogicalResourceId, '${logicalResourceId}')].PhysicalResourceId | [0]" \
+    --output text`, { encoding: "utf8" }).trim()
+}
+
+const userPoolClientId = getResourceId("AWS::Cognito::UserPoolClient", "EditorUserPoolClient");
+const userPoolId = getResourceId("AWS::Cognito::UserPool", "EditorUserPool");
+const identityPoolId = getResourceId("AWS::Cognito::IdentityPool", "EditorIdentityPool");
 
 const server = https.createServer({ key, cert, }, async (req, res) => {
   const url = req.url ?? "/";
@@ -65,7 +78,7 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
           return { 
             status: 200, 
             body: "<!DOCTYPE html>\n" + renderToString(
-                <Html title="Edit" script="/page.js">
+                <Html title="Edit" script="/page.js" props={{ userPoolClientId, userPoolId, identityPoolId }}>
                   <EditPlantPage />
                 </Html>
               ),
@@ -81,27 +94,18 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
           const { plantId } = JSON.parse(await getBody(req));
           const plantIndex = plants.findIndex(({id}) => plantId === id);
           const plant = plants[plantIndex];
-          if (plant != null) {
-            return {
-              status: 200,
-              body: JSON.stringify({ 
-                plant, 
-                prev: plants[plantIndex-1]?.id, 
-                next: plants[plantIndex+1]?.id
-              }),
-              headers: {
-                "content-type": "application/json"
-              }
-            };
-          } else {
-            return {
-              status: 404,
-              body: JSON.stringify({}),
-              headers: {
-                "content-type": "application/json"
-              }
-            };
-          }
+          return {
+            status: 200,
+            body: JSON.stringify({ 
+              plantId,
+              plant, 
+              prev: plants[plantIndex-1]?.id, 
+              next: plants[plantIndex+1]?.id
+            }),
+            headers: {
+              "content-type": "application/json"
+            }
+          };
         },
       },
       {
