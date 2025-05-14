@@ -7,6 +7,7 @@ import { StaticSiteDeployment, StaticSiteHtmlPathsDeployment } from '../deployme
 import { IBucket } from 'aws-cdk-lib/aws-s3';
 import { PrimaryCloudFrontDistribution } from '../cloudfront/distributions';
 import { EditorIdentityPool } from '../cognito/identity-pools';
+import { ApiFunction } from '../lambda/functions';
 
 interface PrimaryStackProps {
   instance: AppInstance,
@@ -38,12 +39,16 @@ export class PrimaryStack extends Stack {
       data: new DataBucket(this, { instance, roles, }),
       staticSite: new StaticSiteBucket(this),
     };
+    
+    const lambdas = {
+      api: new ApiFunction(this, { buckets, roles }),
+    };
 
     const identityPool = 
       new EditorIdentityPool(this, { roles, });
 
     const distributions = {
-      primary: new PrimaryCloudFrontDistribution(this, { instance, buckets }),
+      primary: new PrimaryCloudFrontDistribution(this, { instance, buckets, lambdas }),
     };
     
     const staticSite = new StaticSiteDeployment(this, { instance, buckets, distributions, });
