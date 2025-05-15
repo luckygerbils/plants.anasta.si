@@ -1,3 +1,4 @@
+import { Duration } from "aws-cdk-lib";
 import { IRole } from "aws-cdk-lib/aws-iam";
 import { Code, Function, FunctionUrl, FunctionUrlAuthType, Runtime } from "aws-cdk-lib/aws-lambda";
 import { Bucket } from "aws-cdk-lib/aws-s3";
@@ -27,7 +28,9 @@ export class ApiFunction extends Function {
       environment: {
         DATA_BUCKET: buckets.data.bucketName,
         NODE_OPTIONS: '--enable-source-maps'
-      }
+      },
+      timeout: Duration.seconds(30),
+      memorySize: 512,
     });
 
     this.url = this.addFunctionUrl({

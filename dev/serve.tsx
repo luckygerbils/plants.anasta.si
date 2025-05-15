@@ -104,7 +104,7 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
           return { 
             status: 200, 
             body: "<!DOCTYPE html>\n" + renderToString(
-                <Html className="edit" title="Edit" script="/page.js" props={props}>
+                <Html className="edit" title="Edit" script="/js/edit.js" props={props}>
                   <EditPlantPage />
                 </Html>
               ),
