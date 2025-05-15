@@ -74,7 +74,7 @@ async function invoke(operation: string, input: unknown) {
       console.log(`Deleted ${JSON.stringify(deletedPlant)}`);
       return {}
     }
-    case "putPhoto": {
+    case "uploadPhoto": {
       const { photo: { dataUrl, }, rotation, plantId, } = JSON.parse(input as string);
 
       const plants = await getPlants();

@@ -38,7 +38,7 @@ export function LoginPage({ searchParams }: LoginPageProps) {
   return (
     <form onSubmit={submit}>
       <label htmlFor="username">Username:</label>
-      <input id="username" value={username} onChange={e => setUsername(e.target.value)} disabled={submitting} />
+      <input autoFocus id="username" value={username} onChange={e => setUsername(e.target.value)} disabled={submitting} />
       <label htmlFor="password">Password:</label>
       <input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} disabled={submitting} />
       <button type="submit" disabled={submitting}>Login</button>
