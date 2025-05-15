@@ -1,6 +1,6 @@
 // Quick script to backfill photo sizes and modified dates
 import { readdir, readFile, writeFile } from "fs/promises";
-import { getExifModifyDate } from "./exif";
+import { getExifModifyDate } from "../src/lambda/exif";
 import { Page } from "../src/html";
 import sharp from "sharp";
 import { existsSync } from "fs";

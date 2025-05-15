@@ -1,7 +1,9 @@
 import { LambdaFunctionURLEvent, LambdaFunctionURLHandler, LambdaFunctionURLResult } from 'aws-lambda';
 
-import { GetObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { DeleteObjectCommand, DeleteObjectsCommand, GetObjectCommand, ListObjectsV2Command, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { Plant } from '../plant';
+import sharp from 'sharp';
+import { getExifModifyDate } from './exif';
 
 const DATA_BUCKET: string = process.env.DATA_BUCKET ?? 
   (() => { throw new Error("Environment variable DATA_BUCKET not set"); })();
@@ -72,6 +74,85 @@ async function invoke(operation: string, input: unknown) {
       console.log(`Deleted ${JSON.stringify(deletedPlant)}`);
       return {}
     }
+    case "putPhoto": {
+      const { photo: { dataUrl, }, rotation, plantId, } = JSON.parse(input as string);
+
+      const plants = await getPlants();
+
+      const dataUrlWithoutPrefix =
+      dataUrl.substring(dataUrl.indexOf(";base64,") + ";base64,".length);
+      const original = sharp(Buffer.from(dataUrlWithoutPrefix, "base64"));
+
+      const metadata = await original.metadata();
+      if (!(metadata.format === "jpeg" || metadata.format === "jpg")) {
+        throw new Error(`Format ${metadata.format} unsupported. JPEG only for now`);
+      }
+
+      // Initial rotate to match Exif orientation data
+      const exifRotated = sharp(await original.rotate().toBuffer());
+
+      const rotated = rotation ? exifRotated.rotate(rotation) : exifRotated;
+
+      const [
+        rotatedOriginal,
+        progressive,
+        size100,
+        size250,
+        size500,
+        size1000,
+      ] = await Promise.all([
+        rotated.toBuffer(),
+        rotated.jpeg({ progressive: true, }).toBuffer(),
+        rotated.resize(100).toBuffer(),
+        rotated.resize(250).toBuffer(),
+        rotated.resize(500).toBuffer(),
+        rotated.resize(1000).toBuffer(),
+      ]);
+
+      const modifyDate = (metadata.exif ? await getExifModifyDate(metadata.exif) : null) ?? new Date();
+
+      const photoId = Math.floor(Math.random() * 0xffffffff).toString(16);
+
+      const plant = plants.find(({id}) => id === plantId)!;
+      plant.photos ??= [];
+      plant.photos.push({ id: photoId, modifyDate: modifyDate.toISOString() });
+
+      await Promise.all([
+        s3Put(`data/photos/${plantId}/${photoId}/original.jpg`, rotatedOriginal),
+        s3Put(`data/photos/${plantId}/${photoId}/progressive.jpg`, progressive),
+        s3Put(`data/photos/${plantId}/${photoId}/size-100.jpg`, size100),
+        s3Put(`data/photos/${plantId}/${photoId}/size-250.jpg`, size250),
+        s3Put(`data/photos/${plantId}/${photoId}/size-500.jpg`, size500),
+        s3Put(`data/photos/${plantId}/${photoId}/size-1000.jpg`, size1000),
+        persistPlants(),
+      ]);
+
+      console.log(`Added`, plantId, photoId);
+      return {
+        photoId,
+        modifyDate: modifyDate?.toISOString(),
+      };
+    }
+    case "deletePhoto": {
+      const { photoId, plantId, } = JSON.parse(input as string);
+      const plants = await getPlants();
+      const plant = plants.find(({id}) => id === plantId)!;
+      if (plant == null) {
+        throw new Error(`No plant found with id ${plantId}`);
+      }
+      const photoIndex = plant.photos.findIndex(({id}) => id === photoId);
+      if (photoIndex === -1) {
+        throw new Error(`No photo found with id ${photoId}`);
+      }
+      const deletedPhoto = plant.photos.splice(photoIndex, 1);
+
+      await Promise.all([
+        s3List(`data/photos/${plantId}/${photoId}`).then(s3Delete),
+        persistPlants(),
+      ])
+      console.log(`Deleted ${JSON.stringify(deletedPhoto)}`);
+      return {};
+    }
     default: 
       throw new Error("Unknown operation " + operation);
   }
@@ -87,8 +168,17 @@ async function getPlants(): Promise<Plant[]> {
 }
 
 async function persistPlants(): Promise<void> {
-  await s3.send(new PutObjectCommand({ Key: "plants.json", Bucket: DATA_BUCKET, Body: JSON.stringify(plants, null, " ") }));
+  return s3Put("plants.json", JSON.stringify(plants, null, " "))
 }
+
+async function s3Put(key: string, value: string|Buffer): Promise<void> {
+  await s3.send(new PutObjectCommand({ Key: key, Bucket: DATA_BUCKET, Body: value }));
+}
+
+async function s3Delete(keys: string[]): Promise<void> {
+  await s3.send(new DeleteObjectsCommand({ Bucket: DATA_BUCKET, Delete: { Objects: keys.map(key => ({ Key: key })) } }));
+}
+
 
 async function s3Get<T>(key: string): Promise<T> {
   const response = await s3.send(new GetObjectCommand({ Key: key, Bucket: DATA_BUCKET, }));
@@ -96,4 +186,9 @@ async function s3Get<T>(key: string): Promise<T> {
     throw new Error("Body is missing in response " + response);
   }
   return JSON.parse(Buffer.from(await response.Body.transformToByteArray()).toString())
+}
+
+async function s3List(prefix: string): Promise<string[]> {
+  const response = await s3.send(new ListObjectsV2Command({ Prefix: prefix, Bucket: DATA_BUCKET }));
+  return (response.Contents ?? []).map(o => o.Key!);
 }

@@ -11,7 +11,7 @@ import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { renderToString } from "react-dom/server";
 import { build } from 'esbuild'
 
-import { getExifModifyDate } from "./exif";
+import { getExifModifyDate } from "../src/lambda/exif";
 import { comparing, nullsFirst, localeCompare } from "../src/sorting";
 import { EditPlantPage } from "../src/plant-page";
 import { Plant } from "../src/plant";
@@ -44,9 +44,19 @@ function getResourceId(type: string, logicalResourceId: string) {
     --output text`, { encoding: "utf8" }).trim()
 }
 
+function getFunctionUrl(functionName: string) {
+  return execSync(`aws --region us-west-2 --profile AdministratorAccess \
+    lambda get-function-url-config \
+    --function-name "${functionName}" \
+    --query "FunctionUrl" \
+    --output text`, { encoding: "utf8" }).trim()
+}
+
+const region = "us-west-2";
 const userPoolClientId = getResourceId("AWS::Cognito::UserPoolClient", "EditorUserPoolClient");
 const userPoolId = getResourceId("AWS::Cognito::UserPool", "EditorUserPool");
 const identityPoolId = getResourceId("AWS::Cognito::IdentityPool", "EditorIdentityPool");
+const apiUrl = getFunctionUrl(getResourceId("AWS::Lambda::Function", "ApiFunction"));
 
 const server = https.createServer({ key, cert, }, async (req, res) => {
   const url = req.url ?? "/";
@@ -78,7 +88,7 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
           return { 
             status: 200, 
             body: "<!DOCTYPE html>\n" + renderToString(
-                <Html title="Edit" script="/page.js" props={{ userPoolClientId, userPoolId, identityPoolId }}>
+                <Html title="Edit" script="/page.js" props={{ userPoolClientId, userPoolId, identityPoolId, apiUrl, region }}>
                   <EditPlantPage />
                 </Html>
               ),
