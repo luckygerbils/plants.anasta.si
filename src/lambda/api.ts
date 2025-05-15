@@ -1,6 +1,6 @@
 import { LambdaFunctionURLEvent, LambdaFunctionURLHandler, LambdaFunctionURLResult } from 'aws-lambda';
 
-import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { GetObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { Plant } from '../plant';
 
 const DATA_BUCKET: string = process.env.DATA_BUCKET ?? 
@@ -38,7 +38,6 @@ export const handler: LambdaFunctionURLHandler = async (event: LambdaFunctionURL
 }
 
 async function invoke(operation: string, input: unknown) {
- 
   switch (operation) {
     case "getPlant": {
       const { plantId } = JSON.parse(input as string);
@@ -51,6 +50,28 @@ async function invoke(operation: string, input: unknown) {
         next: plants[plantIndex+1]?.id
       };
     }
+    case "putPlant": {
+      const { plant }: { plant: Plant } = JSON.parse(input as string);
+      const plants = await getPlants();
+      const existingPlant = plants.find(({id}) => id === plant.id);
+      if (existingPlant != null) {
+        Object.assign(existingPlant, plant);
+      } else {
+        plants.push(plant);
+      }
+      await persistPlants();
+      console.log(`Saved ${JSON.stringify(plant)}`);
+      return {};
+    }
+    case "deletePlant": {
+      const { plantId }: { plantId: string } = JSON.parse(input as string);
+      const plants = await getPlants();
+      const plantIndex = plants.findIndex(({id}) => id === plantId);
+      const deletedPlant = plants.splice(plantIndex, 1);
+      await persistPlants();
+      console.log(`Deleted ${JSON.stringify(deletedPlant)}`);
+      return {}
+    }
     default: 
       throw new Error("Unknown operation " + operation);
   }
@@ -59,10 +80,14 @@ async function invoke(operation: string, input: unknown) {
 
 let plants: Plant[]|null = null;
 async function getPlants(): Promise<Plant[]> {
-    if (plants == null) {
-      plants = await s3Get("plants.json");
-    }
-    return plants!;
+  if (plants == null) {
+    plants = await s3Get("plants.json");
+  }
+  return plants!;
+}
+
+async function persistPlants(): Promise<void> {
+  await s3.send(new PutObjectCommand({ Key: "plants.json", Bucket: DATA_BUCKET, Body: JSON.stringify(plants, null, " ") }));
 }
 
 async function s3Get<T>(key: string): Promise<T> {
