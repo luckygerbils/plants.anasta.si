@@ -21,7 +21,7 @@ export class ApiFunction extends Function {
   }: ApiFunctionProps) {
     super(scope, "ApiFunction", {
       runtime: Runtime.NODEJS_20_X,
-      handler: "api.handler",
+      handler: "lambda/api.handler",
       code: Code.fromAsset("../lambda/dist"),
       role: roles.api,
       environment: {
