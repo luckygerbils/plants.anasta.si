@@ -1,6 +1,7 @@
 import { LambdaFunctionURLEvent, LambdaFunctionURLHandler, LambdaFunctionURLResult } from 'aws-lambda';
 
-import { DeleteObjectCommand, GetObjectCommand, NoSuchKey, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { Plant } from '../plant';
 
 const DATA_BUCKET: string = process.env.DATA_BUCKET ?? 
   (() => { throw new Error("Environment variable DATA_BUCKET not set"); })();
@@ -10,8 +11,6 @@ const s3 = new S3Client();
 export const handler: LambdaFunctionURLHandler = async (event: LambdaFunctionURLEvent): Promise<LambdaFunctionURLResult> => {
   const operation = event.rawPath.replace(/^\/api\//, "");
   const input = event.body;
-
-  console.log(input);
 
   let output;
   try {
@@ -39,15 +38,15 @@ export const handler: LambdaFunctionURLHandler = async (event: LambdaFunctionURL
 }
 
 async function invoke(operation: string, input: unknown) {
-  const plants = await getPlants();
+ 
   switch (operation) {
     case "getPlant": {
       const { plantId } = JSON.parse(input as string);
+      const plants = await getPlants();
       const plantIndex = plants.findIndex(({id}) => plantId === id);
-      const plant = plants[plantIndex];
       return { 
         plantId,
-        plant, 
+        plant: plants[plantIndex], 
         prev: plants[plantIndex-1]?.id, 
         next: plants[plantIndex+1]?.id
       };
@@ -58,17 +57,18 @@ async function invoke(operation: string, input: unknown) {
   
 }
 
-async function getPlants(): Promise<{id: string}[]> {
-  try {
-    return JSON.parse(await s3.send(new GetObjectCommand({
-      Key: "plants.json",
-      Bucket: DATA_BUCKET,
-    })));
-  } catch (e) {
-    console.log(`caught ${e}`);
-    if (e instanceof NoSuchKey) {
-      throw new Error("plants.json doesn't exist")
+let plants: Plant[]|null = null;
+async function getPlants(): Promise<Plant[]> {
+    if (plants == null) {
+      plants = await s3Get("plants.json");
     }
-    throw e;
+    return plants!;
+}
+
+async function s3Get<T>(key: string): Promise<T> {
+  const response = await s3.send(new GetObjectCommand({ Key: key, Bucket: DATA_BUCKET, }));
+  if (response.Body == null) {
+    throw new Error("Body is missing in response " + response);
   }
+  return JSON.parse(Buffer.from(await response.Body.transformToByteArray()).toString())
 }
