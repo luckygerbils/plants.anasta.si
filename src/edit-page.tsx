@@ -106,7 +106,7 @@ export function PlantPage({
 
   async function uploadPhoto(photo: { dataUrl: string }, rotation?: number) {
     try {
-      await fetch(`/api/uploadPhoto`, {
+      await apiFetch(`/api/uploadPhoto`, {
         method: "POST",
         headers: {
           "content-type": "application/json"
@@ -126,7 +126,7 @@ export function PlantPage({
   async function deletePhoto(photoId: string) {
     setDeletingPhoto(true);
     try {
-      await fetch(`/api/deletePhoto`, {
+      await apiFetch(`/api/deletePhoto`, {
         method: "POST",
         headers: {
           "content-type": "application/json"
@@ -148,7 +148,7 @@ export function PlantPage({
     plant!.scientificName = scientificName;
     plant!.tags = tags;
     try {
-      await fetch(`/api/putPlant`, {
+      await apiFetch(`/api/putPlant`, {
         method: "POST",
         headers: {
           "content-type": "application/json"
@@ -167,7 +167,7 @@ export function PlantPage({
   async function deletePlant() {
     setDeleting(true);
     try {
-      await fetch(`/api/deletePlant`, {
+      await apiFetch(`/api/deletePlant`, {
         method: "POST",
         headers: {
           "content-type": "application/json"
