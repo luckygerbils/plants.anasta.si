@@ -4,7 +4,7 @@
     "target": "es2023",
     "strict": true,
     "preserveConstEnums": true,
-    "sourceMap": false,
+    "sourceMap": true,
     "module":"commonjs",
     "moduleResolution":"node",
     "esModuleInterop": true, 
