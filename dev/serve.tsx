@@ -13,19 +13,25 @@ import { build } from 'esbuild'
 
 import { getExifModifyDate } from "../src/lambda/exif";
 import { comparing, nullsFirst, localeCompare } from "../src/sorting";
-import { EditPlantPage } from "../src/plant-page";
+import { EditPlantPage } from "../src/edit-page";
 import { Plant } from "../src/plant";
 import { PublicPlantPage } from "../src/public-plant-page";
 import { Html } from "../src/html";
 import { execSync } from "node:child_process";
 import { existsSync } from "node:fs";
+import { LoginPage } from "../src/login-page";
 
-await build({
-  entryPoints: [ 'src/page.ts' ],
-  bundle: true,
-  outfile: 'dist/page.js',
-  logLevel: "info",
-});
+await Promise.all(
+  [
+    ["src/edit-page-script.ts", "dist/js/edit.js"],
+    ["src/login-page-script.ts", "dist/js/login.js"]
+  ].map(([ entryPoint, outfile ]) => build({
+    entryPoints: [ entryPoint ],
+    bundle: true,
+    outfile: outfile,
+    logLevel: "info",
+  })),
+)
 
 const options = Object.fromEntries(process.argv.slice(2).map(arg => arg.split("=")) as [string, string][])
 
@@ -100,6 +106,22 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
             body: "<!DOCTYPE html>\n" + renderToString(
                 <Html className="edit" title="Edit" script="/page.js" props={props}>
                   <EditPlantPage />
+                </Html>
+              ),
+            headers: {
+              "content-type": "text/html",
+            }
+          };
+        }
+      },
+      {
+        pattern: /^login/,
+        handler: async (_: unknown, url: URL) => {
+          return { 
+            status: 200, 
+            body: "<!DOCTYPE html>\n" + renderToString(
+                <Html className="login" title="Login" script="/js/login.js" props={props}>
+                  <LoginPage />
                 </Html>
               ),
             headers: {
@@ -284,6 +306,18 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
           return { 
             status: 200, 
             body: await readFile("dist/page.js"),
+            headers: {
+              "content-type": "application/javascript",
+            }
+          };
+        }
+      },
+      {
+        pattern: /^(?<filename>js\/.*)$/,
+        handler: async (match: RegExpMatchArray) => {
+          return { 
+            status: 200, 
+            body: await readFile(`dist/${match.groups!["filename"]}`),
             headers: {
               "content-type": "application/javascript",
             }

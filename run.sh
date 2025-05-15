@@ -177,12 +177,12 @@ tail() {
     local stage=${1?-Stage is required}
     local lambda_name
     lambda_name=$(
-        aws --region us-west-2 --profile AdministratorAccess \
+        with:tools aws --region us-west-2 --profile AdministratorAccess \
             cloudformation describe-stack-resources \
             --stack-name "$stage-Plants-PrimaryStack" \
             --query "StackResources[?ResourceType=='AWS::Lambda::Function' && starts_with(LogicalResourceId, 'ApiFunction')].PhysicalResourceId | [0]" \
             --output text)
-    aws --region us-west-2 --profile AdministratorAccess \
+    with:tools aws --region us-west-2 --profile AdministratorAccess \
         logs tail "/aws/lambda/$lambda_name" --format short --follow
 }
 

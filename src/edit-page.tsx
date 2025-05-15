@@ -1,11 +1,10 @@
-import { FormEvent, FormEventHandler, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CameraPopup } from "./camera-popup";
 import { PhotoImg } from "./photo-img";
 import { comparing, dateCompare, nullsFirst, reversed } from "./sorting";
 import { Plant, Tag, TAG_KEYS, TagKey } from "./plant";
 import { TagPopup } from "./tag-popup";
-import { LoginGateway } from "./login-page";
-import { apiFetch } from "./auth";
+import { apiFetch, loggedIn } from "./auth";
 
 interface PageProps {
   plantId?: string,
@@ -28,20 +27,18 @@ async function getPlant(plantId: string): Promise<GetPlantResponse> {
   return response.json();
 }
 
-export function EditPlantPage(props: PageProps) {
-  return (
-    <LoginGateway>
-      <PageContents {...props} />
-    </LoginGateway>
-  );
-}
-
-function PageContents({
+export function EditPlantPage({
   plantId
 }: PageProps) {
   const [ { props, loading, error }, setState ] = useState<{ props?: Parameters<typeof PlantPage>[0], loading?: boolean, error?: Error }>({ loading: true })
   
   useEffect(() => {
+    if (!loggedIn()) {
+      const redirect = `${location.pathname}${location.search}`
+      location.assign(`/login?${new URLSearchParams({ redirect })}`);
+      return;
+    }
+
     if (plantId == null) {
       return;
     }

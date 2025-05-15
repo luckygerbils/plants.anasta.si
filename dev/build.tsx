@@ -6,8 +6,9 @@ import { Plant } from "../src/plant";
 import { PublicPlantPage } from "../src/public-plant-page";
 import { PublicIndexPage } from "../src/public-index-page";
 import { Html } from "../src/html";
-import { EditPlantPage } from "../src/plant-page";
+import { EditPlantPage } from "../src/edit-page";
 import { build } from "esbuild";
+import { LoginPage } from "../src/login-page";
 
 const plants = (JSON.parse(await readFile("plants.json", "utf8")) as Plant[]);
 const [ publicPlants, privatePlants ] = plants.reduce((result: [Plant[], Plant[]], plant) => {
@@ -23,12 +24,17 @@ await mkdir(`dist`, { recursive: true });
 
 const results = await Promise.all([
   copyFile("src/page.css", "dist/page.css").then(() => `Copied src/page.css`),
-  build({
-    entryPoints: [ 'src/page.ts' ],
-    bundle: true,
-    outfile: 'dist/page.js',
-    logLevel: "info",
-  }),
+  Promise.all(
+    [
+      ["src/edit-page-script.ts", "dist/js/edit.js"],
+      ["src/login-page-script.ts", "dist/js/login.js"]
+    ].map(([ entryPoint, outfile ]) => build({
+      entryPoints: [ entryPoint ],
+      bundle: true,
+      outfile: outfile,
+      logLevel: "info",
+    })),
+  ),
   writeFile(
     `dist/index.html`,
     "<!DOCTYPE html>\n" + renderToString(
@@ -40,8 +46,16 @@ const results = await Promise.all([
   writeFile(
     `dist/edit`,
     "<!DOCTYPE html>\n" + renderToString(
-      <Html className="edit" title="Edit" script="/page.js" props={{}}>
+      <Html className="edit" title="Edit" script="/js/edit.js" props={{}}>
         <EditPlantPage />
+      </Html>
+    )
+  ).then(() => `Built edit`),
+  writeFile(
+    `dist/login`,
+    "<!DOCTYPE html>\n" + renderToString(
+      <Html className="login" title="Login" script="/js/login.js" props={{}}>
+        <LoginPage />
       </Html>
     )
   ).then(() => `Built edit`),
