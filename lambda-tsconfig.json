@@ -1,0 +1,16 @@
+{
+  "include": ["src/lambda/api.ts"],
+  "compilerOptions": {
+    "target": "es2023",
+    "strict": true,
+    "preserveConstEnums": true,
+    "sourceMap": false,
+    "module":"commonjs",
+    "moduleResolution":"node",
+    "esModuleInterop": true, 
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true, 
+    "isolatedModules": true,
+    "outDir": "lambda/dist"
+  }
+}

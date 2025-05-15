@@ -28,7 +28,9 @@ const synth = new CodeBuildStep("BuildAndSynth", {
   },
   commands: [
     'aws s3 cp "s3://$DATA_BUCKET/plants.json" plants.json',
-    './run.sh ci:synth'
+    './run.sh ci',
+    './run.sh release',
+    './run.sh synth'
   ],
   primaryOutputDirectory: "cdk/cdk.out",
 })

@@ -2,14 +2,8 @@
   "name": "plants.anasta.si",
   "version": "1.0.0",
   "type": "module",
-  "scripts": {
-    "build": "tsx dev/build.tsx",
-    "watch": "tsx watch --include './src/**/*' --include plants.json dev/build.tsx",
-    "serve": "tsx watch --include './src/**/*' dev/serve.tsx",
-    "test": "eslint src dev/build.tsx",
-    "release": "npm run test && npm run build",
-    "clean": "rm -rf ./dist",
-    "clean:full": "npm run clean && rm -rf ./node_modules"
+  "dependencies": {
+    "sharp": "^0.34.1"
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.810.0",
@@ -18,7 +12,6 @@
     "@tsconfig/node20": "^20.1.5",
     "@tsconfig/recommended": "^1.0.8",
     "@types/aws-lambda": "^8.10.149",
-    "@types/eslint__js": "^9.14.0",
     "@types/node": "^22.15.3",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.3",
@@ -26,7 +19,6 @@
     "esbuild": "^0.25.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "sharp": "^0.34.1",
     "tsx": "^4.19.4",
     "typescript-eslint": "^8.31.1"
   }

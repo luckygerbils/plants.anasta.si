@@ -4,7 +4,6 @@ import { renderToString } from "react-dom/server";
 import { comparing, localeCompare, nullsFirst } from "../src/sorting";
 import { Plant } from "../src/plant";
 import { PublicPlantPage } from "../src/public-plant-page";
-import { PropsWithChildren } from "react";
 import { PublicIndexPage } from "../src/public-index-page";
 import { Html } from "../src/html";
 import { EditPlantPage } from "../src/plant-page";
@@ -32,7 +31,8 @@ const results = await Promise.all([
       format: "esm",
       target: 'node20',
       external: [
-          "@aws-sdk/client-s3"
+          "@aws-sdk/client-s3",
+          "sharp"
       ],
       logLevel: "info",
   }),

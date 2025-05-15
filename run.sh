@@ -78,8 +78,38 @@ private:update() {
     eval npm install --save-dev $(npm pkg get devDependencies | jq -r 'keys | map("\(.)@latest") | .[]' | paste -sd' ')
 }
 
+ci() {
+    #/ install all NPM dependencies for CI
+    npm ci
+    in:cdk npm ci
+}
+
 build() {
-    with:tools npm run build
+    #/ build the project
+    npx tsx dev/build.tsx
+    npx tsc -p lambda-tsconfig.json
+    jq 'del(.devDependencies)' package.json >lambda/dist/package.json
+    cp package-lock.json lambda/dist/
+    ( cd lambda/dist && npm ci --omit dev)
+}
+
+release() {
+    #/ test and build the project
+    npx eslint src dev/build.tsx
+    build
+}
+
+synth() {
+    #/ build the CDK project
+    in:cdk npx cdk synth
+}
+
+clean() {
+    rm -rf ./dist
+}
+
+watch() {
+    with:tools npx tsx watch --include './src/**/*' --include plants.json dev/build.tsx
 }
 
 dev() {
@@ -87,7 +117,7 @@ dev() {
         -p 8443:8443 \
         -v "$DEV_HTTPS_KEY:$DEV_HTTPS_KEY" \
         -v "$DEV_HTTPS_CERT:$DEV_HTTPS_CERT" \
-        npm run serve -- --port=8443 --key="$DEV_HTTPS_KEY" --cert="$DEV_HTTPS_CERT"
+        npx tsx watch --include './src/**/*' dev/serve.tsx -- --port=8443 --key="$DEV_HTTPS_KEY" --cert="$DEV_HTTPS_CERT"
 }
 
 register-dns() {
@@ -121,7 +151,7 @@ create-user() {
     user_pool_id=$(
         aws --region us-west-2 --profile AdministratorAccess \
             cloudformation describe-stack-resources \
-            --stack-name $stage-Plants-PrimaryStack \
+            --stack-name "$stage-Plants-PrimaryStack" \
             --query "StackResources[?ResourceType=='AWS::Cognito::UserPool' && starts_with(LogicalResourceId, 'EditorUserPool')].PhysicalResourceId | [0]" \
             --output text)
     log "User Pool Id: $user_pool_id"
@@ -143,23 +173,17 @@ create-user() {
         --permanent
 }
 
-watch() {
-    with:tools npm run watch
-}
-
-clean() {
-    with:tools npm run clean
-}
-
-ci:release() {
-    npm ci
-    npm run release
-}
-
-ci:synth() {
-    ci:release
-    in:cdk npm ci
-    in:cdk npx cdk synth
+tail() {
+    local stage=${1?-Stage is required}
+    local lambda_name
+    lambda_name=$(
+        aws --region us-west-2 --profile AdministratorAccess \
+            cloudformation describe-stack-resources \
+            --stack-name "$stage-Plants-PrimaryStack" \
+            --query "StackResources[?ResourceType=='AWS::Lambda::Function' && starts_with(LogicalResourceId, 'ApiFunction')].PhysicalResourceId | [0]" \
+            --output text)
+    aws --region us-west-2 --profile AdministratorAccess \
+        logs tail "/aws/lambda/$lambda_name" --format short --follow
 }
 
 in:cdk() { ( cd cdk && ../run.sh "$@" ); }
