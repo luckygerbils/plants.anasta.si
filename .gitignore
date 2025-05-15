@@ -2,3 +2,4 @@
 /dist
 /photos
 *.bak
+/dev-props.json

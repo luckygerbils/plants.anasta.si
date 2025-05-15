@@ -36,8 +36,10 @@ export function LoginPage({ onLogin }: LoginPageProps) {
 
   return (
     <form onSubmit={submit}>
-      <label>Username: <input value={username} onChange={e => setUsername(e.target.value)} disabled={submitting} /></label>
-      <label>Password: <input type="password" value={password} onChange={e => setPassword(e.target.value)} disabled={submitting} /></label>
+      <label htmlFor="username">Username:</label>
+      <input id="username" value={username} onChange={e => setUsername(e.target.value)} disabled={submitting} />
+      <label htmlFor="password">Password:</label>
+      <input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} disabled={submitting} />
       <button type="submit" disabled={submitting}>Login</button>
       {error && <div>Error: {error.message}</div>}
     </form>

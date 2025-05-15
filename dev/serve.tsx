@@ -18,6 +18,7 @@ import { Plant } from "../src/plant";
 import { PublicPlantPage } from "../src/public-plant-page";
 import { Html } from "../src/html";
 import { execSync } from "node:child_process";
+import { existsSync } from "node:fs";
 
 await build({
   entryPoints: [ 'src/page.ts' ],
@@ -36,6 +37,7 @@ const [ key, cert ] = await Promise.all([
   readFile(options["--cert"])
 ]);
 
+
 function getResourceId(type: string, logicalResourceId: string) {
   return execSync(`aws --region us-west-2 --profile AdministratorAccess \
     cloudformation describe-stack-resources \
@@ -52,11 +54,19 @@ function getFunctionUrl(functionName: string) {
     --output text`, { encoding: "utf8" }).trim()
 }
 
-const region = "us-west-2";
-const userPoolClientId = getResourceId("AWS::Cognito::UserPoolClient", "EditorUserPoolClient");
-const userPoolId = getResourceId("AWS::Cognito::UserPool", "EditorUserPool");
-const identityPoolId = getResourceId("AWS::Cognito::IdentityPool", "EditorIdentityPool");
-const apiUrl = getFunctionUrl(getResourceId("AWS::Lambda::Function", "ApiFunction"));
+let props;
+if (existsSync("dev-props.json")) {
+  props = JSON.parse(await readFile("dev-props.json", {encoding: "utf8"}));
+} else {
+  props = {
+    region: "us-west-2",
+    userPoolClientId: getResourceId("AWS::Cognito::UserPoolClient", "EditorUserPoolClient"),
+    userPoolId: getResourceId("AWS::Cognito::UserPool", "EditorUserPool"),
+    identityPoolId: getResourceId("AWS::Cognito::IdentityPool", "EditorIdentityPool"),
+    apiUrl: getFunctionUrl(getResourceId("AWS::Lambda::Function", "ApiFunction")),
+  };
+  await writeFile("dev-props.json", JSON.stringify(props, null, " "))
+} 
 
 const server = https.createServer({ key, cert, }, async (req, res) => {
   const url = req.url ?? "/";
@@ -88,7 +98,7 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
           return { 
             status: 200, 
             body: "<!DOCTYPE html>\n" + renderToString(
-                <Html title="Edit" script="/page.js" props={{ userPoolClientId, userPoolId, identityPoolId, apiUrl, region }}>
+                <Html className="edit" title="Edit" script="/page.js" props={props}>
                   <EditPlantPage />
                 </Html>
               ),
