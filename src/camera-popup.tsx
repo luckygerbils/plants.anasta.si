@@ -149,7 +149,6 @@ function CameraView({
       
       {showOverlay && overlayPhotoId &&
         <PhotoImg ref={setOverlayImageRef}
-          dev={true}
           photoId={overlayPhotoId} 
           sizes="100vw"
           style={{
@@ -207,6 +206,7 @@ function ReviewView({
 
   useEffect(() => {
     // Assume if width > height this was taken in landscape
+    // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
     const updateRotation = () => setRotation(image.naturalWidth < image.naturalHeight ? 0 : -9);
     if (image.complete) {
       updateRotation();

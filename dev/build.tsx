@@ -24,19 +24,6 @@ await mkdir(`dist`, { recursive: true });
 const results = await Promise.all([
   copyFile("src/page.css", "dist/page.css").then(() => `Copied src/page.css`),
   build({
-      entryPoints: [ 'src/lambda/api.ts' ],
-      bundle: true,
-      platform: 'node',
-      outfile: 'lambda/dist/api.mjs',
-      format: "esm",
-      target: 'node20',
-      external: [
-          "@aws-sdk/client-s3",
-          "sharp"
-      ],
-      logLevel: "info",
-  }),
-  build({
     entryPoints: [ 'src/page.ts' ],
     bundle: true,
     outfile: 'dist/page.js',
