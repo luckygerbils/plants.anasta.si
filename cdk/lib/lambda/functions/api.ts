@@ -22,7 +22,7 @@ export class ApiFunction extends Function {
     super(scope, "ApiFunction", {
       runtime: Runtime.NODEJS_20_X,
       handler: "lambda/api.handler",
-      code: Code.fromAsset("../lambda/dist"),
+      code: Code.fromAsset("../dist/lambda"),
       role: roles.api,
       environment: {
         DATA_BUCKET: buckets.data.bucketName,

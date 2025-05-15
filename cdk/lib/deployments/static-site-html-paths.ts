@@ -34,10 +34,10 @@ export class StaticSiteHtmlPathsDeployment extends BucketDeployment {
   }: StaticSiteDeploymentProps) {
     super(scope, "DeployStaticSiteHtmlPaths", {
       sources: [
-        Source.asset("../dist"),
-        Source.data(
-          "edit",
-          readFileSync("../dist/edit", { encoding: "utf-8"})
+        Source.asset("../dist/website"),
+        ...["edit", "login"].map(page => Source.data(
+          page,
+          readFileSync(`../dist/website/${page}`, { encoding: "utf-8"})
             .replace(/window.props = "{}"/m, 'window.props = ' + JSON.stringify(JSON.stringify({
               userPoolId: identityPool.userPool.userPoolId,
               userPoolClientId: identityPool.userPoolClient.userPoolClientId,
@@ -45,7 +45,7 @@ export class StaticSiteHtmlPathsDeployment extends BucketDeployment {
               apiUrl: lambdas.api.url.url,
               region: instance.region,
             })))
-        ),
+        )),
       ],
       destinationBucket: buckets.staticSite,
       distribution: distributions.primary,

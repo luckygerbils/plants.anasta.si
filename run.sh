@@ -88,9 +88,9 @@ build() {
     #/ build the project
     npx tsx dev/build.tsx
     npx tsc -p lambda-tsconfig.json
-    jq 'del(.devDependencies, .type)' package.json >lambda/dist/package.json
-    cp package-lock.json lambda/dist/
-    ( cd lambda/dist && npm ci --omit dev)
+    jq 'del(.devDependencies, .type)' package.json >dist/lambda/package.json
+    cp package-lock.json dist/lambda/
+    ( cd dist/lambda && npm ci --omit dev)
 }
 
 release() {

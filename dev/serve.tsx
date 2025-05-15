@@ -23,8 +23,8 @@ import { LoginPage } from "../src/login-page";
 
 await Promise.all(
   [
-    ["src/edit-page-script.ts", "dist/js/edit.js"],
-    ["src/login-page-script.ts", "dist/js/login.js"]
+    ["src/edit-page-script.ts", "dist/website/js/edit.js"],
+    ["src/login-page-script.ts", "dist/website/js/login.js"]
   ].map(([ entryPoint, outfile ]) => build({
     entryPoints: [ entryPoint ],
     bundle: true,
@@ -301,23 +301,11 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
         }
       },
       {
-        pattern: /^page.js$/,
-        handler: async () => {
-          return { 
-            status: 200, 
-            body: await readFile("dist/page.js"),
-            headers: {
-              "content-type": "application/javascript",
-            }
-          };
-        }
-      },
-      {
         pattern: /^(?<filename>js\/.*)$/,
         handler: async (match: RegExpMatchArray) => {
           return { 
             status: 200, 
-            body: await readFile(`dist/${match.groups!["filename"]}`),
+            body: await readFile(`dist/website/${match.groups!["filename"]}`),
             headers: {
               "content-type": "application/javascript",
             }

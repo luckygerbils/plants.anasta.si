@@ -20,14 +20,14 @@ const [ publicPlants, privatePlants ] = plants.reduce((result: [Plant[], Plant[]
   return result;
 }, [[], []]); 
 
-await mkdir(`dist`, { recursive: true });
+await mkdir(`dist/website`, { recursive: true });
 
 const results = await Promise.all([
-  copyFile("src/page.css", "dist/page.css").then(() => `Copied src/page.css`),
+  copyFile("src/page.css", "dist/website/page.css").then(() => `Copied src/page.css`),
   Promise.all(
     [
-      ["src/edit-page-script.ts", "dist/js/edit.js"],
-      ["src/login-page-script.ts", "dist/js/login.js"]
+      ["src/edit-page-script.ts", "dist/website/js/edit.js"],
+      ["src/login-page-script.ts", "dist/website/js/login.js"]
     ].map(([ entryPoint, outfile ]) => build({
       entryPoints: [ entryPoint ],
       bundle: true,
@@ -36,7 +36,7 @@ const results = await Promise.all([
     })),
   ),
   writeFile(
-    `dist/index.html`,
+    `dist/website/index.html`,
     "<!DOCTYPE html>\n" + renderToString(
       <Html title="All Plants" className="index">
         <PublicIndexPage allPlants={publicPlants} />
@@ -44,7 +44,7 @@ const results = await Promise.all([
     )
   ).then(() => `Built index.html`),
   writeFile(
-    `dist/edit`,
+    `dist/website/edit`,
     "<!DOCTYPE html>\n" + renderToString(
       <Html className="edit" title="Edit" script="/js/edit.js" props={{}}>
         <EditPlantPage />
@@ -52,7 +52,7 @@ const results = await Promise.all([
     )
   ).then(() => `Built edit`),
   writeFile(
-    `dist/login`,
+    `dist/website/login`,
     "<!DOCTYPE html>\n" + renderToString(
       <Html className="login" title="Login" script="/js/login.js" props={{}}>
         <LoginPage />
@@ -66,7 +66,7 @@ const results = await Promise.all([
       {
         try {
           await writeFile(
-            `dist/${plant.id}`,
+            `dist/website/${plant.id}`,
             "<!DOCTYPE html>\n" + renderToString(
               <Html title={plant.name}>
                 <PublicPlantPage plant={plant} allPlants={plants} prev={plants[i-1]?.id} next={plants[i+1]?.id} />
