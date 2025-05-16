@@ -134,48 +134,42 @@ register-dns() {
     fi
 }
 
-copy-photos() {
-    local stage=${1?-Stage is required} 
-    local data_bucket_name
-    data_bucket_name=$(
-        aws --region us-west-2 --profile AdministratorAccess \
+get-data-bucket-name() {
+    local stage=${1?Stage is required} 
+     aws --region us-west-2 --profile AdministratorAccess \
             cloudformation describe-stack-resources \
             --stack-name $stage-Plants-PrimaryStack \
             --query "StackResources[?starts_with(LogicalResourceId, 'DataBucket')].PhysicalResourceId | [0]" \
-            --output text)
+            --output text
+}
+
+copy-photos() {
+    local stage=${1?Stage is required} 
+    local data_bucket_name
+    data_bucket_name=$(get-data-bucket-name "$stage")
     aws --profile AdministratorAccess --region us-west-2 \
         s3 sync photos "s3://$data_bucket_name/data/photos/"
 }
 
 backup-plants() {
-    local stage=${1?-Stage is required} 
+    local stage=${1?Stage is required} 
     local data_bucket_name
-    data_bucket_name=$(
-        aws --region us-west-2 --profile AdministratorAccess \
-            cloudformation describe-stack-resources \
-            --stack-name $stage-Plants-PrimaryStack \
-            --query "StackResources[?starts_with(LogicalResourceId, 'DataBucket')].PhysicalResourceId | [0]" \
-            --output text)
+    data_bucket_name=$(get-data-bucket-name "$stage")
     aws --profile AdministratorAccess --region us-west-2 \
         s3 cp "s3://$data_bucket_name/plants.json" plants.json.bak
 }
 
-restore-backup-plants() {
-    local stage=${1?-Stage is required} 
+restore-plants() {
+    local stage=${1?Stage is required} 
     local data_bucket_name
-    data_bucket_name=$(
-        aws --region us-west-2 --profile AdministratorAccess \
-            cloudformation describe-stack-resources \
-            --stack-name $stage-Plants-PrimaryStack \
-            --query "StackResources[?starts_with(LogicalResourceId, 'DataBucket')].PhysicalResourceId | [0]" \
-            --output text)
+    data_bucket_name=$(get-data-bucket-name "$stage")
     aws --profile AdministratorAccess --region us-west-2 \
         s3 cp plants.json.bak "s3://$data_bucket_name/plants.json"
 }
 
 create-user() {
-    local stage=${1?-Stage is required} username=${2?-Username is required}
-    local user_pool_id temporary_password
+    local stage=${1?Stage is required} username=${2?Username is required}
+    local user_pool_id password
     user_pool_id=$(
         aws --region us-west-2 --profile AdministratorAccess \
             cloudformation describe-stack-resources \
