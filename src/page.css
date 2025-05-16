@@ -38,6 +38,17 @@
   padding: 0;
 }
 
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
 html {
     background-color: var(--bg);
 }
@@ -405,6 +416,15 @@ section.photos {
     &:nth-child(even) a {
       background-color: var(--bg-table-stripe-even);
     }
+  }
+}
+
+main.edit {
+  & .loading-page {
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 

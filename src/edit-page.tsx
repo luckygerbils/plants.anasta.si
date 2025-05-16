@@ -5,6 +5,7 @@ import { comparing, dateCompare, nullsFirst, reversed } from "./sorting";
 import { Plant, Tag, TAG_KEYS, TagKey } from "./plant";
 import { TagPopup } from "./tag-popup";
 import { apiFetch, loggedIn } from "./auth";
+import { Spinner } from "./icons";
 
 interface PageProps {
   plantId?: string,
@@ -30,7 +31,11 @@ async function getPlant(plantId: string): Promise<GetPlantResponse> {
 export function EditPlantPage({
   plantId
 }: PageProps) {
-  const [ { props, loading, error }, setState ] = useState<{ props?: Parameters<typeof PlantPage>[0], loading?: boolean, error?: Error }>({ loading: true })
+  const [ { props, loading, error }, setState ] = useState<{ 
+    props?: Parameters<typeof PlantPage>[0], 
+    loading?: boolean, 
+    error?: Error 
+  }>({ loading: true })
   
   useEffect(() => {
     if (!loggedIn()) {
@@ -53,7 +58,11 @@ export function EditPlantPage({
   }, []);
 
   if (loading) {
-    return "Loading..."
+    return (
+      <div className="loading-page">
+        <Spinner />
+      </div>
+    );
   } else if (error) {
     return <div>{error.message}</div>;
   } else {

@@ -35,7 +35,8 @@ await Promise.all(
 
 const options = Object.fromEntries(process.argv.slice(2).map(arg => arg.split("=")) as [string, string][])
 
-const plants = (JSON.parse(await readFile("plants.json", "utf8")) as Plant[])
+const plantsFile = `plants/Beta.json`
+const plants = (JSON.parse(await readFile(plantsFile, "utf8")) as Plant[])
   .sort(comparing(p => p.location, nullsFirst(localeCompare)));
 
 const [ key, cert ] = await Promise.all([
@@ -160,7 +161,7 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
           } else {
             plants.push(plant);
           }
-          await writeFile("plants.json", JSON.stringify(plants, null, "  "));
+          await writeFile(plantsFile, JSON.stringify(plants, null, "  "));
           console.log(`Saved ${JSON.stringify(plant)}`);
           return {
             status: 200,
@@ -177,7 +178,7 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
           const { plantId }: { plantId: string } = JSON.parse(await getBody(req));
           const plantIndex = plants.findIndex(({id}) => id === plantId);
           const deletedPlant = plants.splice(plantIndex, 1);
-          await writeFile("plants.json", JSON.stringify(plants, null, "  "));
+          await writeFile(plantsFile, JSON.stringify(plants, null, "  "));
           console.log(`Deleted ${JSON.stringify(deletedPlant)}`);
           return {
             status: 200,
@@ -246,7 +247,7 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
             writeFile(`photos/${plantId}/${photoId}/size-250.jpg`, size250),
             writeFile(`photos/${plantId}/${photoId}/size-500.jpg`, size500),
             writeFile(`photos/${plantId}/${photoId}/size-1000.jpg`, size1000),
-            writeFile("plants.json", JSON.stringify(plants, null, "  "))
+            writeFile(plantsFile, JSON.stringify(plants, null, "  "))
           ]);
 
           console.log(`Added`, plantId, photoId);
@@ -277,7 +278,7 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
           }
           const deletedPhoto = plant.photos.splice(photoIndex, 1);
           await rm(`photos/${plantId}/${photoId}`, { recursive: true });
-          await writeFile("plants.json", JSON.stringify(plants, null, "  "));
+          await writeFile(plantsFile, JSON.stringify(plants, null, "  "));
           console.log(`Deleted ${JSON.stringify(deletedPhoto)}`);
           return {
             status: 200,
@@ -355,7 +356,6 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
       body: `Not found`,
     };
     for (const { pattern, handler } of patterns) {
-      console.log(pattern, url)
       const match = url.replace(/^\//, "").match(pattern);
       if (match != null) {
         response = await Promise.resolve(handler(match, new URL(url, "http://dev.plants.anasta.si")));
