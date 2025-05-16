@@ -301,6 +301,18 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
         }
       },
       {
+        pattern: /^images\/favicon\.svg$/,
+        handler: async () => {
+          return { 
+            status: 200, 
+            body: await readFile("src/images/favicon.svg"),
+            headers: {
+              "content-type": "image/svg+xml",
+            }
+          };
+        }
+      },
+      {
         pattern: /^(?<filename>js\/.*)$/,
         handler: async (match: RegExpMatchArray) => {
           return { 
@@ -343,6 +355,7 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
       body: `Not found`,
     };
     for (const { pattern, handler } of patterns) {
+      console.log(pattern, url)
       const match = url.replace(/^\//, "").match(pattern);
       if (match != null) {
         response = await Promise.resolve(handler(match, new URL(url, "http://dev.plants.anasta.si")));

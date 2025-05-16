@@ -21,9 +21,11 @@ const [ publicPlants, privatePlants ] = plants.reduce((result: [Plant[], Plant[]
 }, [[], []]); 
 
 await mkdir(`dist/website`, { recursive: true });
+await mkdir(`dist/website/images`, { recursive: true });
 
 const results = await Promise.all([
   copyFile("src/page.css", "dist/website/page.css").then(() => `Copied src/page.css`),
+  copyFile("src/images/favicon.svg", "dist/website/images/favicon.svg").then(() => `Copied src/images/favicon.svg`),
   Promise.all(
     [
       ["src/edit-page-script.ts", "dist/website/js/edit.js"],
