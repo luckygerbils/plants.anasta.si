@@ -8,10 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: ./run.sh ci:release
+      - run:
+        - ./run.sh ci
+        - ./run.sh release
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: dist/website
   deploy:
     needs: release
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
