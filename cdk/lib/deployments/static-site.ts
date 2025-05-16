@@ -23,7 +23,7 @@ export class StaticSiteDeployment extends BucketDeployment {
   }: StaticSiteDeploymentProps) {
     super(scope, "DeployStaticSite", {
       sources: [
-        Source.asset("../dist/website"),
+        Source.asset(`../dist/website/${instance.name}`),
       ],
       destinationBucket: buckets.staticSite,
       distribution: distributions.primary,

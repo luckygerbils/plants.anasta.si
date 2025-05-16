@@ -1,7 +1,7 @@
 import { Duration, RemovalPolicy } from "aws-cdk-lib";
 import { Bucket } from "aws-cdk-lib/aws-s3";
 import { Construct } from "constructs";
-import { AppInstance, Beta } from "../../instances";
+import { AppInstance, Beta, Prod } from "../../instances";
 import { IRole } from "aws-cdk-lib/aws-iam";
 
 interface DataBucketProps {
@@ -30,6 +30,7 @@ export class DataBucket extends Bucket {
   static bucketName(instance: AppInstance): string {
     return new Map()
         .set(Beta, `beta-plants-primarystack-databuckete3889a50-iytembxt8apg`)
+        .set(Prod, `prod-plants-primarystack-databuckete3889a50-yg1fx0fttm77`)
         .get(instance) ?? (() => { throw new Error(`No bucket name defined for ${instance.name}`); })();
   }
 }

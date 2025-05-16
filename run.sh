@@ -86,7 +86,9 @@ ci() {
 
 build() {
     #/ build the project
-    npx tsx dev/build.tsx
+    for file in plants/*; do
+        npx tsx dev/build.tsx "$file"
+    done
     npx tsc -p lambda-tsconfig.json
     jq 'del(.devDependencies, .type)' package.json >dist/lambda/package.json
     cp package-lock.json dist/lambda/

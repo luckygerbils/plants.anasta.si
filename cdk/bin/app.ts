@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
-import { CodeBuildStep, CodePipeline, CodePipelineSource } from 'aws-cdk-lib/pipelines';
+import { CodeBuildStep, CodePipeline, CodePipelineSource, ManualApprovalStep } from 'aws-cdk-lib/pipelines';
 import { App, Stack, Stage } from 'aws-cdk-lib';
 import { PrimaryStack } from '../lib/stacks/primary';
 import { nonNull } from "../lib/util";
@@ -24,10 +24,11 @@ const instanceStacks = Object.fromEntries(ALL_INSTANCES.map(instance => {
 const synth = new CodeBuildStep("BuildAndSynth", {
   input: CodePipelineSource.gitHub('luckygerbils/plants.anasta.si', 'main'),
   env: {
-    DATA_BUCKET: DataBucket.bucketName(Beta),
+    ...Object.fromEntries(ALL_INSTANCES.map(instance => 
+      [`DATA_BUCKET_${instance.name}`, DataBucket.bucketName(instance)]))
   },
   commands: [
-    'aws s3 cp "s3://$DATA_BUCKET/plants.json" plants.json',
+    ...ALL_INSTANCES.map(instance => `aws s3 cp "s3://$DATA_BUCKET_${instance.name}/plants.json" "plants/${instance.name}.json"`),
     './run.sh ci',
     './run.sh release',
     './run.sh synth'
@@ -36,9 +37,15 @@ const synth = new CodeBuildStep("BuildAndSynth", {
 })
 
 const pipeline = new CodePipeline(pipelineStack, 'Pipeline', { pipelineName: 'PlantsPipeline', synth, });
-ALL_INSTANCES.forEach(instance => pipeline.addStage(instanceStages[instance.name]));
+ALL_INSTANCES.forEach((instance, i) => {
+  const stage = pipeline.addStage(instanceStages[instance.name]);
+  if (i != ALL_INSTANCES.length - 1) {
+    stage.addPost(new ManualApprovalStep("Manual Approval"));
+  }
+});
 pipeline.buildPipeline();
 
-Bucket.fromBucketName(pipelineStack, "BetaDataBucket", DataBucket.bucketName(Beta))
-  .grantRead(synth.grantPrincipal);
+ALL_INSTANCES.forEach(instance => 
+  Bucket.fromBucketName(pipelineStack, `${instance.name}DataBucket`, DataBucket.bucketName(instance))
+    .grantRead(synth.grantPrincipal));
 

@@ -34,10 +34,10 @@ export class StaticSiteHtmlPathsDeployment extends BucketDeployment {
   }: StaticSiteDeploymentProps) {
     super(scope, "DeployStaticSiteHtmlPaths", {
       sources: [
-        Source.asset("../dist/website"),
+        Source.asset(`../dist/website/${instance.name}`),
         ...["edit", "login"].map(page => Source.data(
           page,
-          readFileSync(`../dist/website/${page}`, { encoding: "utf-8"})
+          readFileSync(`../dist/website/${instance.name}/${page}`, { encoding: "utf-8"})
             .replace(/window.props = "{}"/m, 'window.props = ' + JSON.stringify(JSON.stringify({
               userPoolId: identityPool.userPool.userPoolId,
               userPoolClientId: identityPool.userPoolClient.userPoolClientId,

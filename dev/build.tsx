@@ -9,8 +9,16 @@ import { Html } from "../src/html";
 import { EditPlantPage } from "../src/edit-page";
 import { build } from "esbuild";
 import { LoginPage } from "../src/login-page";
+import { basename } from "node:path";
 
-const plants = (JSON.parse(await readFile("plants.json", "utf8")) as Plant[]);
+const plantsFile = process.argv[2];
+if (plantsFile == null) {
+  throw new Error("plants file is required");
+}
+
+const outputDir = `dist/website/${basename(plantsFile, ".json")}`
+
+const plants = (JSON.parse(await readFile(plantsFile, "utf8")) as Plant[]);
 const [ publicPlants, privatePlants ] = plants.reduce((result: [Plant[], Plant[]], plant) => {
   if (plant.tags.public === "true" && plant.tags.likelyDead !== "true") {
     result[0].push(plant);
@@ -20,16 +28,17 @@ const [ publicPlants, privatePlants ] = plants.reduce((result: [Plant[], Plant[]
   return result;
 }, [[], []]); 
 
-await mkdir(`dist/website`, { recursive: true });
-await mkdir(`dist/website/images`, { recursive: true });
+await mkdir(outputDir, { recursive: true });
+await mkdir(`${outputDir}/css`, { recursive: true });
+await mkdir(`${outputDir}/images`, { recursive: true });
 
 const results = await Promise.all([
-  copyFile("src/page.css", "dist/website/page.css").then(() => `Copied src/page.css`),
-  copyFile("src/images/favicon.svg", "dist/website/images/favicon.svg").then(() => `Copied src/images/favicon.svg`),
+  copyFile("src/page.css", `${outputDir}/page.css`).then(() => `Copied src/page.css`),
+  copyFile("src/images/favicon.svg", `${outputDir}/images/favicon.svg`).then(() => `Copied src/images/favicon.svg`),
   Promise.all(
     [
-      ["src/edit-page-script.ts", "dist/website/js/edit.js"],
-      ["src/login-page-script.ts", "dist/website/js/login.js"]
+      ["src/edit-page-script.ts", `${outputDir}/js/edit.js`],
+      ["src/login-page-script.ts", `${outputDir}/js/login.js`]
     ].map(([ entryPoint, outfile ]) => build({
       entryPoints: [ entryPoint ],
       bundle: true,
@@ -38,7 +47,7 @@ const results = await Promise.all([
     })),
   ),
   writeFile(
-    `dist/website/index.html`,
+    `${outputDir}/index.html`,
     "<!DOCTYPE html>\n" + renderToString(
       <Html title="All Plants" className="index">
         <PublicIndexPage allPlants={publicPlants} />
@@ -46,7 +55,7 @@ const results = await Promise.all([
     )
   ).then(() => `Built index.html`),
   writeFile(
-    `dist/website/edit`,
+    `${outputDir}/edit`,
     "<!DOCTYPE html>\n" + renderToString(
       <Html className="edit" title="Edit" script="/js/edit.js" props={{}}>
         <EditPlantPage />
@@ -54,7 +63,7 @@ const results = await Promise.all([
     )
   ).then(() => `Built edit`),
   writeFile(
-    `dist/website/login`,
+    `${outputDir}/login`,
     "<!DOCTYPE html>\n" + renderToString(
       <Html className="login" title="Login" script="/js/login.js" props={{}}>
         <LoginPage />
@@ -68,7 +77,7 @@ const results = await Promise.all([
       {
         try {
           await writeFile(
-            `dist/website/${plant.id}`,
+            `${outputDir}/${plant.id}`,
             "<!DOCTYPE html>\n" + renderToString(
               <Html title={plant.name}>
                 <PublicPlantPage plant={plant} allPlants={plants} prev={plants[i-1]?.id} next={plants[i+1]?.id} />
