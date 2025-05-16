@@ -16,11 +16,16 @@ export interface Tag {
   value?: string,
 }
 
+export interface Photo { 
+  id: string, 
+  modifyDate: string 
+}
+
 export interface Plant {
   id: string,
   name: string,
   scientificName?: string,
-  photos: { id: string, modifyDate: string }[],
+  photos: Photo[],
   links: { site: string, url: string }[],
   location?: string,
   needsIdentification?: boolean,

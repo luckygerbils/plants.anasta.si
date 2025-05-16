@@ -1,8 +1,8 @@
 import { mkdir, readFile, writeFile, copyFile } from "node:fs/promises";
 import { renderToString } from "react-dom/server";
 
-import { comparing, localeCompare, nullsFirst } from "../src/sorting";
-import { Plant } from "../src/plant";
+import { comparing, localeCompare, nullsFirst } from "../src/util/sorting";
+import { Plant } from "../src/model/plant";
 import { PublicPlantPage } from "../src/public-plant-page";
 import { PublicIndexPage } from "../src/public-index-page";
 import { Html } from "../src/html";

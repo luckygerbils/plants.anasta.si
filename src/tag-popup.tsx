@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Plant, Tag } from "./plant";
-import { comparing, localeCompare } from "./sorting";
-import { ChevronLeft, ChevronRight, XIcon } from "./icons";
+import { Plant, Tag } from "./model/plant";
+import { comparing, localeCompare } from "./util/sorting";
+import { ChevronLeft, ChevronRight, XIcon } from "./components/icons";
 
 interface TagPopupProps {
   allPlants: Plant[],

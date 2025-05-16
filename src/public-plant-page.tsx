@@ -1,8 +1,8 @@
 import { Fragment } from "react";
-import { PhotoImg } from "./photo-img";
-import { comparing, dateCompare, explicit, nullsFirst, reversed } from "./sorting";
-import { Plant, TAG_KEYS } from "./plant";
-import { HamburgerIcon, QuestionIcon } from "./icons";
+import { PhotoImg } from "./components/photo-img";
+import { comparing, dateCompare, explicit, nullsFirst, reversed } from "./util/sorting";
+import { Plant, TAG_KEYS } from "./model/plant";
+import { HamburgerIcon, QuestionIcon } from "./components/icons";
 
 interface PublicPageProps {
   plant: Plant,

@@ -1,5 +1,5 @@
 import { useState, FormEvent, useEffect } from "react";
-import { loggedIn, login } from "./auth";
+import { loggedIn, login } from "./util/auth";
 
 interface LoginPageProps {
   searchParams?: URLSearchParams,

@@ -12,9 +12,9 @@ import { renderToString } from "react-dom/server";
 import { build } from 'esbuild'
 
 import { getExifModifyDate } from "../src/lambda/exif";
-import { comparing, nullsFirst, localeCompare } from "../src/sorting";
+import { comparing, nullsFirst, localeCompare } from "../src/util/sorting";
 import { EditPlantPage } from "../src/edit-page";
-import { Plant } from "../src/plant";
+import { Plant } from "../src/model/plant";
 import { PublicPlantPage } from "../src/public-plant-page";
 import { Html } from "../src/html";
 import { execSync } from "node:child_process";

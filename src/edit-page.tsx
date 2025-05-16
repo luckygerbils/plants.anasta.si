@@ -1,38 +1,21 @@
 import { useEffect, useState } from "react";
-import { CameraPopup } from "./camera-popup";
-import { PhotoImg } from "./photo-img";
-import { comparing, dateCompare, nullsFirst, reversed } from "./sorting";
-import { Plant, Tag, TAG_KEYS, TagKey } from "./plant";
-import { TagPopup } from "./tag-popup";
-import { apiFetch, loggedIn } from "./auth";
-import { Spinner } from "./icons";
+import { CameraPopup } from "./components/camera-popup";
+import { PhotoImg } from "./components/photo-img";
+import { comparing, dateCompare, nullsFirst, reversed } from "./util/sorting";
+import { Plant, Tag, TAG_KEYS, TagKey } from "./model/plant";
+import { loggedIn } from "./util/auth";
+import { Spinner } from "./components/icons";
+import { deletePhoto, deletePlant, getPlant, putPlant, uploadPhoto } from "./util/api";
 
 interface PageProps {
   plantId?: string,
 }
 
-interface GetPlantResponse { 
-  plantId: string,
-  plant?: Plant, 
-  next?: string, 
-  prev?: string,
-  caller: string,
-}
-
-async function getPlant(plantId: string): Promise<GetPlantResponse> {
-  const response = await apiFetch(`/api/getPlant`, { 
-    method: "POST", 
-    headers: { "content-type": "application/json" }, 
-    body: JSON.stringify({ plantId }) 
-  });
-  return response.json();
-}
-
 export function EditPlantPage({
   plantId
 }: PageProps) {
-  const [ { props, loading, error }, setState ] = useState<{ 
-    props?: Parameters<typeof PlantPage>[0], 
+  const [ { result, loading, error }, setState ] = useState<{ 
+    result?: Awaited<ReturnType<typeof getPlant>>, 
     loading?: boolean, 
     error?: Error 
   }>({ loading: true })
@@ -50,7 +33,7 @@ export function EditPlantPage({
 
     (async () => {
       try {
-        setState({ props: await getPlant(plantId) });
+        setState({ result: await getPlant(plantId) });
       } catch (e) {
         setState({ error: e as Error });
       }
@@ -65,27 +48,29 @@ export function EditPlantPage({
     );
   } else if (error) {
     return <div>{error.message}</div>;
+  } else if (result?.plant == null) {
+    return (
+      <div className="not-found-page">
+        <div>No plant found with id <code>{plantId}</code></div>
+      </div>
+    )
   } else {
-    return <PlantPage {...props!} />
+    return <PlantPage plant={result.plant} next={result.next} prev={result.prev} />
   }
 }
 
+interface PlantPageProps {
+  plant: Plant, 
+  prev?: string, 
+  next?: string,
+}
+
 export function PlantPage({
-  plantId,
   plant, 
   prev, 
   next,
-  caller,
-}: GetPlantResponse) {
-  if (plant == null) {
-    return (
-      <div>
-        No plant found with id {plantId}
-      </div>
-    )
-  }
-
-  const { links, photos } = plant;
+}: PlantPageProps) {
+  const { links } = plant;
 
   const [ cameraOpen, setCameraOpen ] = useState(false);
   const [ selectedTag, setSelectedTag ] = useState<Tag|null>(null);
@@ -100,6 +85,7 @@ export function PlantPage({
   const [ name, setName ] = useState(plant.name);
   const [ scientificName, setScientificName ] = useState(plant.scientificName);
   const [ tags, setTags ] = useState(plant.tags);
+  const [ photos, setPhotos ] = useState(plant.photos);
 
   const [ error, setError ] = useState<string|null>(null);
 
@@ -113,59 +99,41 @@ export function PlantPage({
     }
   }
 
-  async function uploadPhoto(photo: { dataUrl: string }, rotation?: number) {
+  async function doUploadPhoto({ dataUrl }: { dataUrl: string }, rotation?: number) {
     try {
-      await apiFetch(`/api/uploadPhoto`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json"
-        },
-        body: JSON.stringify({
-          plantId,
-          photo,
-          rotation,
-        })
-      })
+      const photo = await uploadPhoto(plant.id, { dataUrl }, rotation);
+      setPhotos(photos => [...photos, photo]);
+      setCameraOpen(false);
     } catch (e) {
       setError((e as Error).message);
+      return;
     }
-    setCameraOpen(false);
   }
 
-  async function deletePhoto(photoId: string) {
+  async function doDeletePhoto(photoId: string) {
     setDeletingPhoto(true);
     try {
-      await apiFetch(`/api/deletePhoto`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json"
-        },
-        body: JSON.stringify({
-          plantId,
-          photoId,
-        })
-      })
+      await deletePhoto(plant.id, photoId);
+      setPhotos(photos => {
+        const photoIndex = photos.findIndex(({id}) => id === photoId);
+        const newPhotos = [...photos];
+        newPhotos.splice(photoIndex, 1);
+        return newPhotos;
+      });
+      setDeletingPhoto(false);
     } catch (e) {
       setError((e as Error).message);
+      return;
     }
-    setDeletingPhoto(false);
   }
 
-  async function savePlant() {
+  async function doPutPlant() {
     setSaving(true);
     plant!.name = name;
     plant!.scientificName = scientificName;
     plant!.tags = tags;
     try {
-      await apiFetch(`/api/putPlant`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json"
-        },
-        body: JSON.stringify({
-          plant,
-        })
-      });
+      await putPlant(plant!);
     } catch (e) {
       setError((e as Error).message);
     }
@@ -173,18 +141,10 @@ export function PlantPage({
     setSaving(false);
   }
 
-  async function deletePlant() {
+  async function doDeletePlant() {
     setDeleting(true);
     try {
-      await apiFetch(`/api/deletePlant`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json"
-        },
-        body: JSON.stringify({
-          plantId,
-        })
-      });
+      await deletePlant(plant.id);
     } catch (e) {
       setError((e as Error).message);
     }
@@ -218,15 +178,15 @@ export function PlantPage({
       </header>
       <nav>
         { prev ? <a href={`/edit?plantId=${prev}`}>Prev</a> : <div>Prev</div>}
-        <button disabled={buttonsDisabled} type="button" onClick={() => editing ? savePlant() : setEditing(true)}>{editing ? "Save" : "Edit"}</button>
+        <button disabled={buttonsDisabled} type="button" onClick={() => editing ? doPutPlant() : setEditing(true)}>{editing ? "Save" : "Edit"}</button>
         <button disabled={buttonsDisabled} type="button" onClick={() => setCameraOpen(true)}>Add Photo</button>
-        <button disabled={buttonsDisabled} type="button" onClick={() => confirmingDelete ? deletePlant() : setConfirmingDelete(true)}>{confirmingDelete ? "Confirm?" : "Delete"}</button>
+        <button disabled={buttonsDisabled} type="button" onClick={() => confirmingDelete ? doDeletePlant() : setConfirmingDelete(true)}>{confirmingDelete ? "Confirm?" : "Delete"}</button>
         {next ? <a href={`/edit?plantId=${next}`}>Next</a> : <div>Next</div>}
       </nav>
       {cameraOpen && 
         <CameraPopup 
           onCancel={() => setCameraOpen(false)} 
-          onCapture={uploadPhoto} />}
+          onCapture={doUploadPhoto} />}
       {error && <div className="error">{error}</div>}
       <section className="tags">
         {!editing && (
@@ -279,20 +239,21 @@ export function PlantPage({
                 <span>{i+1}/{sortedPhotos.length}</span>
                 {editing && (
                   <button type="button" className="delete" disabled={buttonsDisabled}
-                    onClick={confirmingDeletePhotoId === id ? () => deletePhoto(confirmingDeletePhotoId) : () => setConfirmingDeletePhotoId(id)}
+                    onClick={confirmingDeletePhotoId === id ? () => doDeletePhoto(confirmingDeletePhotoId) : () => setConfirmingDeletePhotoId(id)}
                   >
-                    {confirmingDeletePhotoId === id ? "Confirm?" : "Delete"}
+                    {deleting && <Spinner /> }
+                    {!deleting && confirmingDeletePhotoId === id && "Confirm?"}
+                    {!deleting && !confirmingDeletePhotoId && "Delete"}
                   </button>
                 )}
               </div>
               <div className="date">{modifyDate?.substring(0, 10)}</div>
               
-              <PhotoImg loading="lazy" sizes="100vw" photoId={`${plantId}/${id}`} />
+              <PhotoImg loading="lazy" sizes="100vw" photoId={`${plant.id}/${id}`} />
             </li>
           ))}
         </ul>
       </section>
-      <pre>{caller}</pre>
     </>
-  )
+  );
 }

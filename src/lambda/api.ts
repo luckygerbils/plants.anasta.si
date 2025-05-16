@@ -1,7 +1,7 @@
 import { LambdaFunctionURLEvent, LambdaFunctionURLHandler, LambdaFunctionURLResult } from 'aws-lambda';
 
 import { DeleteObjectCommand, DeleteObjectsCommand, GetObjectCommand, ListObjectsV2Command, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
-import { Plant } from '../plant';
+import { Plant } from '../model/plant';
 import sharp from 'sharp';
 import { getExifModifyDate } from './exif';
 

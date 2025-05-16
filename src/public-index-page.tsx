@@ -1,6 +1,6 @@
-import { PhotoImg } from "./photo-img";
-import { Plant } from "./plant";
-import { comparing, localeCompare } from "./sorting";
+import { PhotoImg } from "./components/photo-img";
+import { Plant } from "./model/plant";
+import { comparing, localeCompare } from "./util/sorting";
 
 interface PublicIndexProps {
   allPlants: Plant[],
