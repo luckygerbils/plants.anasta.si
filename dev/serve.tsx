@@ -20,6 +20,7 @@ import { Html } from "../src/html";
 import { execSync } from "node:child_process";
 import { existsSync } from "node:fs";
 import { LoginPage } from "../src/login-page";
+import { PublicIndexPage } from "../src/public-index-page";
 
 await Promise.all(
   [
@@ -38,6 +39,15 @@ const options = Object.fromEntries(process.argv.slice(2).map(arg => arg.split("=
 const plantsFile = `plants/Beta.json`
 const plants = (JSON.parse(await readFile(plantsFile, "utf8")) as Plant[])
   .sort(comparing(p => p.location, nullsFirst(localeCompare)));
+const [ publicPlants, privatePlants ] = plants.reduce((result: [Plant[], Plant[]], plant) => {
+  if (plant.tags.public === "true" && plant.tags.likelyDead !== "true") {
+    result[0].push(plant);
+  } else {
+    result[1].push(plant);
+  }
+  return result;
+}, [[], []]); 
+
 
 const [ key, cert ] = await Promise.all([
   readFile(options["--key"]), 
@@ -91,6 +101,22 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
             body: "<!DOCTYPE html>\n" + renderToString(
                 <Html title={plant.name}>
                   <PublicPlantPage {...props} />
+                </Html>
+              ),
+            headers: {
+              "content-type": "text/html",
+            }
+          };
+        }
+      },
+      {
+        pattern: /^$/,
+        handler: async () => {
+          return { 
+            status: 200, 
+            body: "<!DOCTYPE html>\n" + renderToString(
+                <Html title="All Plants" className="index">
+                  <PublicIndexPage allPlants={publicPlants} />
                 </Html>
               ),
             headers: {

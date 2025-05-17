@@ -1,6 +1,6 @@
 import { PhotoImg } from "./components/photo-img";
 import { Plant } from "./model/plant";
-import { comparing, localeCompare } from "./util/sorting";
+import { comparing, localeCompare, reversed } from "./util/sorting";
 
 interface PublicIndexProps {
   allPlants: Plant[],
@@ -22,7 +22,7 @@ export function PublicIndexPage({
           <div className="location">{location}</div>
           <ul>
             {plantsByLocation.get(location)!.sort(comparing(p => p.name, localeCompare)).map(plant => {
-              const latestPhotoId = plant.photos.sort(comparing(p => p.modifyDate, localeCompare))?.[0]?.id;
+              const latestPhotoId = plant.photos.sort(comparing(p => p.modifyDate, reversed(localeCompare)))?.[0]?.id;
               return (
                 <li key={plant.id} className="plant">
                   <a href={`/${plant.id}`} id={plant.id}>
