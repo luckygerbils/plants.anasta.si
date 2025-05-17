@@ -117,13 +117,15 @@ async function invoke(operation: string, input: unknown) {
       plant.photos ??= [];
       plant.photos.push({ id: photoId, modifyDate: modifyDate.toISOString() });
 
+      const cacheControl = `public, max-age=${356*24*60*60}, immutable`
+
       await Promise.all([
-        s3Put(`data/photos/${plantId}/${photoId}/original.jpg`, rotatedOriginal),
-        s3Put(`data/photos/${plantId}/${photoId}/progressive.jpg`, progressive),
-        s3Put(`data/photos/${plantId}/${photoId}/size-100.jpg`, size100),
-        s3Put(`data/photos/${plantId}/${photoId}/size-250.jpg`, size250),
-        s3Put(`data/photos/${plantId}/${photoId}/size-500.jpg`, size500),
-        s3Put(`data/photos/${plantId}/${photoId}/size-1000.jpg`, size1000),
+        s3Put(`data/photos/${plantId}/${photoId}/original.jpg`, rotatedOriginal, { cacheControl }),
+        s3Put(`data/photos/${plantId}/${photoId}/progressive.jpg`, progressive, { cacheControl }),
+        s3Put(`data/photos/${plantId}/${photoId}/size-100.jpg`, size100, { cacheControl }),
+        s3Put(`data/photos/${plantId}/${photoId}/size-250.jpg`, size250, { cacheControl }),
+        s3Put(`data/photos/${plantId}/${photoId}/size-500.jpg`, size500, { cacheControl }),
+        s3Put(`data/photos/${plantId}/${photoId}/size-1000.jpg`, size1000, { cacheControl }),
         persistPlants(),
       ]);
 
@@ -171,8 +173,12 @@ async function persistPlants(): Promise<void> {
   return s3Put("plants.json", JSON.stringify(plants, null, " "))
 }
 
-async function s3Put(key: string, value: string|Buffer): Promise<void> {
-  await s3.send(new PutObjectCommand({ Key: key, Bucket: DATA_BUCKET, Body: value }));
+interface S3MetaData {
+  cacheControl: string,
+}
+
+async function s3Put(key: string, value: string|Buffer, metadata?: S3MetaData): Promise<void> {
+  await s3.send(new PutObjectCommand({ Key: key, Bucket: DATA_BUCKET, Body: value, CacheControl: metadata?.cacheControl }));
 }
 
 async function s3Delete(keys: string[]): Promise<void> {
