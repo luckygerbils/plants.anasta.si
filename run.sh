@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euo pipefail
+shopt -s nullglob
 if [ -n "${DEBUG:-}" ]; then set -x; fi
+
 BASE_DIR=$(realpath "$(dirname "$0")")
 DEV_HOSTNAME=dev.plants.anasta.si
 CERT_DIR=~/credentials/certificates/$DEV_HOSTNAME/config/live/$DEV_HOSTNAME
