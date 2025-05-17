@@ -1,9 +1,10 @@
-import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment";
+import { BucketDeployment, CacheControl, Source } from "aws-cdk-lib/aws-s3-deployment";
 import { Construct } from "constructs";
 import { IBucket } from "aws-cdk-lib/aws-s3";
 import { AppInstance } from "../instances";
 import { Distribution } from "aws-cdk-lib/aws-logs";
 import { IDistribution } from "aws-cdk-lib/aws-cloudfront";
+import { Duration } from "aws-cdk-lib";
 
 interface StaticSiteDeploymentProps {
   instance: AppInstance,
@@ -15,26 +16,32 @@ interface StaticSiteDeploymentProps {
   },
 }
 
-/**
- * Copy static site files that aren't either content hashed or represent plain HTML paths
- * These have content type inferred but don't have long-lived cache-control headers added
+/*
+ * Copy all the static asset files that have content hashes to the static site bucket,
+ * setting long-lived cache-control headers on them
  */
-export class StaticSiteDeployment extends BucketDeployment {
+export class StaticSiteHashedAssetsDeployment extends BucketDeployment {
   constructor(scope: Construct, {
     instance,
     buckets,
     distributions,
   }: StaticSiteDeploymentProps) {
-    super(scope, "DeployStaticSite", {
+    super(scope, "DeployStaticSiteHashedAssets", {
       sources: [
         Source.asset(`../dist/website/${instance.name}`),
       ],
       destinationBucket: buckets.staticSite,
       distribution: distributions.primary,
       
-      // Include only files with a single .
-      exclude: ["*", "*.*.*"],
-      include: ["*.*"],
+      // Include only files with two .
+      exclude: ["*"],
+      include: ["*.*.*"], 
+
+      cacheControl: [
+        CacheControl.setPublic(),
+        CacheControl.maxAge(Duration.days(365)),
+        CacheControl.immutable(),
+      ]
     });
   }
 }

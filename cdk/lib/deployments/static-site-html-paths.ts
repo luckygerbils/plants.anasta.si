@@ -49,8 +49,11 @@ export class StaticSiteHtmlPathsDeployment extends BucketDeployment {
       ],
       destinationBucket: buckets.staticSite,
       distribution: distributions.primary,
+
+      // Exclude any file with a .
+      exclude: [ "*.*" ],
+
       contentType: "text/html",
-      exclude: [ "*.*" ], // Exclude any file with a .
     });
   }
 }

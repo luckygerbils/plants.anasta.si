@@ -1,22 +1,33 @@
-import { PropsWithChildren } from "react";
+import React, { PropsWithChildren, use } from "react";
 
 interface HtmlProps {
   title: string;
   className?: string;
   props?: object,
   script?: string,
+  assetHashes?: Record<string, string>,
 }
 
-export function Html({ title, children, className, props, script }: PropsWithChildren<HtmlProps>) {
+export function Html({ title, children, className, props, script, assetHashes }: PropsWithChildren<HtmlProps>) {
+  function assetWithHash(asset: string) {
+    if (assetHashes && assetHashes[asset] == null) {
+      throw new Error(`No hashed asset for ${asset} (${JSON.stringify(assetHashes)})`)
+    }
+    return assetHashes?.[asset] ?? asset;
+  }
+
   return (
     <html>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
         <meta name="theme-color" content="#223225"/>
-        <link rel="icon" href="images/favicon.svg" sizes="any" type="image/svg+xml" />
+        <link rel="icon" type="image/png" href={`/${assetWithHash("images/favicon-96x96.png")}`} sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href={`/${assetWithHash("images/favicon.svg")}`} sizes="any"  />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href={`/${assetWithHash("images/apple-touch-icon.png")}`} />
         <title>{title}</title>
-        <link rel="stylesheet" href="/page.css" />
+        <link rel="stylesheet" href={`/${assetWithHash("page.css")}`} />
         {props && <script>{`window.props = ${JSON.stringify(JSON.stringify(props))}`}</script>}
       </head>
       <body>  
@@ -28,7 +39,7 @@ export function Html({ title, children, className, props, script }: PropsWithChi
              }
           `}</script>
         )}
-        {script && <script src={script}></script>}
+        {script && <script src={`/${assetWithHash(script)}`}></script>}
       </body>
     </html>
   );

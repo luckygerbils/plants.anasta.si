@@ -35,7 +35,7 @@ with:tools() {
     hash docker || die "docker is required"
 
     local OPTIND=1
-    local publish_opts=() env_variables=()
+    local publish_opts=() env_variables=(HAVE_TOOLS=true)
     local use_tty=true
     while getopts 'p:v:te:' opt; do
         case $opt in
@@ -87,6 +87,7 @@ ci() {
 }
 
 build() {
+    if [ -z "${HAVE_TOOLS:-}" ] && [ -z "${CI:-}" ]; then exec "$0" with:tools build "$@"; fi
     #/ build the project
     for file in plants/*; do
         npx tsx dev/build.tsx "$file"
