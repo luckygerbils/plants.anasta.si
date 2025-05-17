@@ -25,7 +25,8 @@ const synth = new CodeBuildStep("BuildAndSynth", {
   input: CodePipelineSource.gitHub('luckygerbils/plants.anasta.si', 'main'),
   env: {
     ...Object.fromEntries(ALL_INSTANCES.map(instance => 
-      [`DATA_BUCKET_${instance.name}`, DataBucket.bucketName(instance)]))
+      [`DATA_BUCKET_${instance.name}`, DataBucket.bucketName(instance)])),
+    CI: "true",
   },
   commands: [
     ...ALL_INSTANCES.map(instance => `aws s3 cp "s3://$DATA_BUCKET_${instance.name}/plants.json" "plants/${instance.name}.json"`),
