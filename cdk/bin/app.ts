@@ -39,8 +39,8 @@ const synth = new CodeBuildStep("BuildAndSynth", {
 const pipeline = new CodePipeline(pipelineStack, 'Pipeline', { pipelineName: 'PlantsPipeline', synth, });
 ALL_INSTANCES.forEach((instance, i) => {
   const stage = pipeline.addStage(instanceStages[instance.name]);
-  if (i != ALL_INSTANCES.length - 1) {
-    stage.addPost(new ManualApprovalStep("Manual Approval"));
+  if ("requiresApproval" in instance) {
+    stage.addPre(new ManualApprovalStep("Manual Approval"));
   }
 });
 pipeline.buildPipeline();
