@@ -7,6 +7,7 @@ export const TAG_KEYS = [
   "public",
   "bonsai", 
   "needsIdentification", 
+  "needsLabel",
   "likelyDead",
 ] as const;
 export type TagKey = typeof TAG_KEYS[number];
@@ -27,10 +28,5 @@ export interface Plant {
   scientificName?: string,
   photos: Photo[],
   links: { site: string, url: string }[],
-  location?: string,
-  needsIdentification?: boolean,
-  likelyDead?: boolean,
-  plantedDate?: string,
-  idConfidence?: IdConfidence,
   tags: Partial<Record<TagKey, string>>,
 }

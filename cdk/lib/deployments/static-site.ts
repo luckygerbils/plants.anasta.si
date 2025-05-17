@@ -2,7 +2,6 @@ import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment";
 import { Construct } from "constructs";
 import { IBucket } from "aws-cdk-lib/aws-s3";
 import { AppInstance } from "../instances";
-import { Distribution } from "aws-cdk-lib/aws-logs";
 import { IDistribution } from "aws-cdk-lib/aws-cloudfront";
 
 interface StaticSiteDeploymentProps {
@@ -31,7 +30,7 @@ export class StaticSiteDeployment extends BucketDeployment {
       ],
       destinationBucket: buckets.staticSite,
       distribution: distributions.primary,
-      
+
       // Include only files with a single .
       exclude: ["*", "*.*.*"],
       include: ["*.*"],

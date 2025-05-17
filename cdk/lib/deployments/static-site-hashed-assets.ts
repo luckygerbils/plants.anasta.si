@@ -2,7 +2,6 @@ import { BucketDeployment, CacheControl, Source } from "aws-cdk-lib/aws-s3-deplo
 import { Construct } from "constructs";
 import { IBucket } from "aws-cdk-lib/aws-s3";
 import { AppInstance } from "../instances";
-import { Distribution } from "aws-cdk-lib/aws-logs";
 import { IDistribution } from "aws-cdk-lib/aws-cloudfront";
 import { Duration } from "aws-cdk-lib";
 
@@ -32,7 +31,7 @@ export class StaticSiteHashedAssetsDeployment extends BucketDeployment {
       ],
       destinationBucket: buckets.staticSite,
       distribution: distributions.primary,
-      
+
       // Include only files with two .
       exclude: ["*"],
       include: ["*.*.*"], 

@@ -42,21 +42,24 @@ export function PublicPlantPage({
       <a className="edit-button" href={`/edit?plantId=${plantId}`}>Edit</a>
       <section className="tags">
         <ul>
-          {TAG_KEYS.filter(key => key in tags && key != "public")
+          {TAG_KEYS.filter(key => key in tags)
             .map(key => {
               const value = tags[key]!;
+              const content = ({
+                location: <strong>{value}</strong>,
+                planted: <><strong>Planted:</strong>{value}</>,
+                confidence: <><strong>Confidence:</strong><span>{value}</span><QuestionIcon size="sm" /></>,
+                bonsai: <strong>Bonsai</strong>,
+                needsIdentification: <strong>Needs Identification</strong>,
+                likelyDead: <strong>Likely Dead</strong>,
+              }[key as string]);
+
+              if (content == null) {
+                return null;
+              }
+
               const El = key === "confidence" ? "button" : "span";
-              return <El key={key} className="tag">{
-                ({
-                  location: <strong>{value}</strong>,
-                  planted: <><strong>Planted:</strong>{value}</>,
-                  confidence: <><strong>Confidence:</strong><span>{value}</span><QuestionIcon size="sm" /></>,
-                  bonsai: <strong>Bonsai</strong>,
-                  needsIdentification: <strong>Needs Identification</strong>,
-                  likelyDead: <strong>Likely Dead</strong>,
-                  public: null,
-                }[key] ?? value?.toString() ?? key)
-              }</El>;
+              return <El key={key} className="tag">{content}</El>;
             })}
         </ul>
         {tags.confidence && (

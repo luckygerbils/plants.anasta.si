@@ -38,7 +38,7 @@ const options = Object.fromEntries(process.argv.slice(2).map(arg => arg.split("=
 
 const plantsFile = `plants/Beta.json`
 const plants = (JSON.parse(await readFile(plantsFile, "utf8")) as Plant[])
-  .sort(comparing(p => p.location, nullsFirst(localeCompare)));
+  .sort(comparing(p => p.tags.location, nullsFirst(localeCompare)));
 const [ publicPlants, privatePlants ] = plants.reduce((result: [Plant[], Plant[]], plant) => {
   if (plant.tags.public === "true" && plant.tags.likelyDead !== "true") {
     result[0].push(plant);
@@ -131,7 +131,7 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
           return { 
             status: 200, 
             body: "<!DOCTYPE html>\n" + renderToString(
-                <Html className="edit" title="Edit" script="/js/edit.js" props={props}>
+                <Html className="edit" title="Edit" script="js/edit.js" props={props}>
                   <EditPlantPage />
                 </Html>
               ),
@@ -147,7 +147,7 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
           return { 
             status: 200, 
             body: "<!DOCTYPE html>\n" + renderToString(
-                <Html className="login" title="Login" script="/js/login.js" props={props}>
+                <Html className="login" title="Login" script="js/login.js" props={props}>
                   <LoginPage />
                 </Html>
               ),
