@@ -1,19 +1,18 @@
-import { BucketDeployment, CacheControl, ISource } from "aws-cdk-lib/aws-s3-deployment";
+import { BucketDeployment, CacheControl, Source } from "aws-cdk-lib/aws-s3-deployment";
 import { Construct } from "constructs";
 import { IBucket } from "aws-cdk-lib/aws-s3";
 import { IDistribution } from "aws-cdk-lib/aws-cloudfront";
 import { Duration } from "aws-cdk-lib";
-import { basename } from "node:path";
+import { AppInstance } from "../instances";
 
 interface StaticSiteDeploymentProps {
-  source: (filterFn: (path: string) => boolean) => ISource,
+  instance: AppInstance,
   buckets: {
     staticSite: IBucket,
   },
   distributions: {
     primary: IDistribution,
   },
-  prune: boolean,
 }
 
 /*
@@ -22,17 +21,19 @@ interface StaticSiteDeploymentProps {
  */
 export class StaticSiteHashedAssetsDeployment extends BucketDeployment {
   constructor(scope: Construct, {
-    source,
+    instance,
     buckets,
     distributions,
-    prune,
   }: StaticSiteDeploymentProps) {
     super(scope, "DeployStaticSiteHashedAssets", {
-      // Non-hashed assets have names like {name}.{hash}.{extension}
-      sources: [ source(path => /^[^.]*\.[^.]*\.[^.]*$/.test(basename(path))) ],
+      sources: [ Source.asset(`../dist/website/${instance.name}`) ],
       destinationBucket: buckets.staticSite,
       distribution: distributions.primary,
-      prune,
+
+      // Hashed assets have names like {name}.{hash}.{extension}
+      exclude: [ "*" ],
+      include: ["*.*.*"],
+
       cacheControl: [
         CacheControl.setPublic(),
         CacheControl.maxAge(Duration.days(365)),

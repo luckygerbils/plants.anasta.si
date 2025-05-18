@@ -10,7 +10,6 @@ import { basename } from "node:path";
 
 interface StaticSiteDeploymentProps {
   instance: AppInstance,
-  source: (filterFn: (path: string) => boolean) => ISource,
   buckets: {
     staticSite: IBucket,
   },
@@ -21,7 +20,6 @@ interface StaticSiteDeploymentProps {
     api: { url: FunctionUrl },
   },
   identityPool: EditorIdentityPool,
-  prune: boolean,
 }
 
 /*
@@ -35,12 +33,10 @@ export class StaticSiteHtmlPathsDeployment extends BucketDeployment {
     distributions,
     lambdas,
     identityPool,
-    prune,
   }: StaticSiteDeploymentProps) {
     super(scope, "DeployStaticSiteHtmlPaths", {
       sources: [
-        // HTML paths have no `.`s for extensions or hashes
-        source(path => /^[^.]*$/.test(basename(path))),
+        Source.asset(`../dist/website/${instance.name}`),
         ...["edit", "login"].map(page => Source.data(
           page,
           readFileSync(`../dist/website/${instance.name}/${page}`, { encoding: "utf-8"})
@@ -55,7 +51,10 @@ export class StaticSiteHtmlPathsDeployment extends BucketDeployment {
       ],
       destinationBucket: buckets.staticSite,
       distribution: distributions.primary,
-      prune,
+      // HTML paths have no `.`s for extension
+      // s or hashes
+      exclude: [ "*.*" ],
+
       contentType: "text/html",
     });
   }

@@ -1,18 +1,17 @@
-import { BucketDeployment, ISource } from "aws-cdk-lib/aws-s3-deployment";
+import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment";
 import { Construct } from "constructs";
 import { IBucket } from "aws-cdk-lib/aws-s3";
 import { IDistribution } from "aws-cdk-lib/aws-cloudfront";
-import { basename } from "node:path";
+import { AppInstance } from "../instances";
 
 interface StaticSiteDeploymentProps {
-  source: (filterFn: (path: string) => boolean) => ISource,
+  instance: AppInstance,
   buckets: {
     staticSite: IBucket,
   },
   distributions: {
     primary: IDistribution,
   },
-  prune: boolean,
 }
 
 /**
@@ -21,17 +20,17 @@ interface StaticSiteDeploymentProps {
  */
 export class StaticSiteNonHashedAssetsDeployment extends BucketDeployment {
   constructor(scope: Construct, {
-    source,
+    instance,
     buckets,
     distributions,
-    prune,
   }: StaticSiteDeploymentProps) {
     super(scope, "DeployStaticSiteNonHashedAssets", {
-      // Non-hashed assets have names like {name}.{extension}
-      sources: [ source(path => /^[^.]*\.[^.]*$/.test(basename(path))) ],
+      sources: [ Source.asset(`../dist/website/${instance.name}`) ],
       destinationBucket: buckets.staticSite,
       distribution: distributions.primary,
-      prune,
+      exclude: [ "*" ],
+      // Non-hashed, non-html path assets should be a limited list we can hard-code
+      include: [ "favicon.ico", "index.html" ]
     });
   }
 }

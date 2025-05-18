@@ -8,8 +8,6 @@ import { IBucket } from 'aws-cdk-lib/aws-s3';
 import { PrimaryCloudFrontDistribution } from '../cloudfront/distributions';
 import { EditorIdentityPool } from '../cognito/identity-pools';
 import { ApiFunction } from '../lambda/functions';
-import { readdirSync, statSync } from 'node:fs';
-import { Source, ISource } from "aws-cdk-lib/aws-s3-deployment";
 
 interface PrimaryStackProps {
   instance: AppInstance,
@@ -53,24 +51,9 @@ export class PrimaryStack extends Stack {
       primary: new PrimaryCloudFrontDistribution(this, { instance, buckets, lambdas }),
     };
 
-    // Allow the deployments to split up subsets of the static files to deploy with slightly different configurations
-    const websiteAssetsDir =  `../dist/website/${instance.name}`;
-    const staticSiteFiles = readdirSync(websiteAssetsDir, { recursive: true, encoding: "utf8" })
-    function source(filterFn: (path: string) => boolean) {
-      return Source.asset(websiteAssetsDir, { 
-        exclude: staticSiteFiles.filter(path => statSync(`${websiteAssetsDir}/${path}`).isFile() && !filterFn(path))
-      });
-    }
-    
-    const deployments = [
-      new StaticSiteHashedAssetsDeployment(this, { source, buckets, distributions, prune: true, }),
-      new StaticSiteNonHashedAssetsDeployment(this, { source, buckets, distributions, prune: false, }),
-      new StaticSiteHtmlPathsDeployment(this, { instance, source, buckets, distributions, lambdas, identityPool, prune: false, }),
-    ];
-    deployments.forEach((deployment, i) => {
-      if (i != 0) {
-        deployment.node.addDependency(deployments[i-1]);
-      }
-    });
+    // Split up subsets of the static files to deploy with slightly different configurations
+    new StaticSiteHashedAssetsDeployment(this, { instance, buckets, distributions, });
+    new StaticSiteNonHashedAssetsDeployment(this, { instance, buckets, distributions, });
+    new StaticSiteHtmlPathsDeployment(this, { instance, buckets, distributions, lambdas, identityPool, });
   }
 }
