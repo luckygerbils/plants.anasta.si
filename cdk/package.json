@@ -10,9 +10,9 @@
   "author": "Sean Anastasi <sean@anasta.si>",
   "license": "GPL-3.0-only",
   "devDependencies": {
-    "@types/node": "^22.15.17",
-    "aws-cdk": "^2.1014.0",
-    "aws-cdk-lib": "^2.195.0",
+    "@types/node": "^22.15.18",
+    "aws-cdk": "^2.1016.0",
+    "aws-cdk-lib": "^2.196.0",
     "constructs": "^10.4.2",
     "source-map-support": "^0.5.21",
     "ts-node": "^10.9.2",
