@@ -159,6 +159,10 @@ section.tags {
     color: var(--fg-dark);
   }
 
+  & a {
+    color: white;
+  }
+
   & .tag-tooltip {
     display: none;
     padding: calc(2*var(--spacing));

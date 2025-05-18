@@ -1,6 +1,5 @@
-import { Fragment } from "react";
 import { PhotoImg } from "./components/photo-img";
-import { comparing, dateCompare, explicit, nullsFirst, reversed } from "./util/sorting";
+import { comparing, dateCompare, nullsFirst, reversed } from "./util/sorting";
 import { Plant, TAG_KEYS } from "./model/plant";
 import { HamburgerIcon, QuestionIcon } from "./components/icons";
 
@@ -35,9 +34,6 @@ export function PublicPlantPage({
               {scientificName}
             </h2>}
         </div>
-        <a href={`/#${plantId}`}>
-          <HamburgerIcon />
-        </a>
       </header>
       <a className="edit-button" href={`/admin/plant?plantId=${plantId}`}>Edit</a>
       <section className="tags">
@@ -46,7 +42,7 @@ export function PublicPlantPage({
             .map(key => {
               const value = tags[key]!;
               const content = ({
-                location: <strong>{value}</strong>,
+                location: <strong><a href={`/#${plantId}`}>{value}</a></strong>,
                 planted: <><strong>Planted:</strong>{value}</>,
                 confidence: <><strong>Confidence:</strong><span>{value}</span><QuestionIcon size="sm" /></>,
                 bonsai: <strong>Bonsai</strong>,

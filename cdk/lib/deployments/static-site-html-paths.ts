@@ -49,8 +49,7 @@ export class StaticSiteHtmlPathsDeployment extends BucketDeployment {
       ],
       destinationBucket: buckets.staticSite,
       distribution: distributions.primary,
-      // HTML paths have no `.`s for extension
-      // s or hashes
+      // HTML paths have no `.`s for extensions or hashes
       exclude: [ "*.*" ],
 
       contentType: "text/html",
