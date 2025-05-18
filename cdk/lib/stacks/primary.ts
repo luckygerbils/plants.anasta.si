@@ -62,8 +62,15 @@ export class PrimaryStack extends Stack {
       });
     }
     
-    new StaticSiteHashedAssetsDeployment(this, { source, buckets, distributions, });
-    new StaticSiteNonHashedAssetsDeployment(this, { source, buckets, distributions, });
-    new StaticSiteHtmlPathsDeployment(this, { instance, source, buckets, distributions, lambdas, identityPool });
+    const deployments = [
+      new StaticSiteHashedAssetsDeployment(this, { source, buckets, distributions, prune: true, }),
+      new StaticSiteNonHashedAssetsDeployment(this, { source, buckets, distributions, prune: false, }),
+      new StaticSiteHtmlPathsDeployment(this, { instance, source, buckets, distributions, lambdas, identityPool, prune: false, }),
+    ];
+    deployments.forEach((deployment, i) => {
+      if (i != 0) {
+        deployment.node.addDependency(deployments[i-1]);
+      }
+    });
   }
 }

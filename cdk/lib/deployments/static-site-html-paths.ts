@@ -21,6 +21,7 @@ interface StaticSiteDeploymentProps {
     api: { url: FunctionUrl },
   },
   identityPool: EditorIdentityPool,
+  prune: boolean,
 }
 
 /*
@@ -34,6 +35,7 @@ export class StaticSiteHtmlPathsDeployment extends BucketDeployment {
     distributions,
     lambdas,
     identityPool,
+    prune,
   }: StaticSiteDeploymentProps) {
     super(scope, "DeployStaticSiteHtmlPaths", {
       sources: [
@@ -53,7 +55,7 @@ export class StaticSiteHtmlPathsDeployment extends BucketDeployment {
       ],
       destinationBucket: buckets.staticSite,
       distribution: distributions.primary,
-
+      prune,
       contentType: "text/html",
     });
   }

@@ -13,6 +13,7 @@ interface StaticSiteDeploymentProps {
   distributions: {
     primary: IDistribution,
   },
+  prune: boolean,
 }
 
 /*
@@ -24,13 +25,14 @@ export class StaticSiteHashedAssetsDeployment extends BucketDeployment {
     source,
     buckets,
     distributions,
+    prune,
   }: StaticSiteDeploymentProps) {
     super(scope, "DeployStaticSiteHashedAssets", {
       // Non-hashed assets have names like {name}.{hash}.{extension}
       sources: [ source(path => /^[^.]*\.[^.]*\.[^.]*$/.test(basename(path))) ],
       destinationBucket: buckets.staticSite,
       distribution: distributions.primary,
-
+      prune,
       cacheControl: [
         CacheControl.setPublic(),
         CacheControl.maxAge(Duration.days(365)),
