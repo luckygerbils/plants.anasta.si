@@ -1,4 +1,4 @@
-import { BucketDeployment, ISource, Source } from "aws-cdk-lib/aws-s3-deployment";
+import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment";
 import { Construct } from "constructs";
 import { IBucket } from "aws-cdk-lib/aws-s3";
 import { AppInstance } from "../instances";
@@ -6,7 +6,6 @@ import { IDistribution } from "aws-cdk-lib/aws-cloudfront";
 import { readFileSync } from "node:fs";
 import { EditorIdentityPool } from "../cognito/identity-pools";
 import { FunctionUrl } from "aws-cdk-lib/aws-lambda";
-import { basename } from "node:path";
 
 interface StaticSiteDeploymentProps {
   instance: AppInstance,
@@ -28,7 +27,6 @@ interface StaticSiteDeploymentProps {
 export class StaticSiteHtmlPathsDeployment extends BucketDeployment {
   constructor(scope: Construct, {
     instance,
-    source,
     buckets,
     distributions,
     lambdas,
