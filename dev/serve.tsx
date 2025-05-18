@@ -13,7 +13,7 @@ import { build } from 'esbuild'
 
 import { getExifModifyDate } from "../src/lambda/exif";
 import { comparing, nullsFirst, localeCompare } from "../src/util/sorting";
-import { EditPlantPage } from "../src/edit-page";
+import { AdminPlantPage } from "../src/admin-plant-page";
 import { Plant } from "../src/model/plant";
 import { PublicPlantPage } from "../src/public-plant-page";
 import { Html } from "../src/html";
@@ -21,10 +21,11 @@ import { execSync } from "node:child_process";
 import { existsSync } from "node:fs";
 import { LoginPage } from "../src/login-page";
 import { PublicIndexPage } from "../src/public-index-page";
+import { extname } from "node:path";
 
 await Promise.all(
   [
-    ["src/edit-page-script.ts", "dist/website/js/edit.js"],
+    ["src/admin-plant-page-script.ts", "dist/website/js/admin/plant.js"],
     ["src/login-page-script.ts", "dist/website/js/login.js"]
   ].map(([ entryPoint, outfile ]) => build({
     entryPoints: [ entryPoint ],
@@ -126,13 +127,13 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
         }
       },
       {
-        pattern: /^edit/,
+        pattern: /^admin\/plant/,
         handler: async (_: unknown, url: URL) => {
           return { 
             status: 200, 
             body: "<!DOCTYPE html>\n" + renderToString(
-                <Html className="edit" title="Edit" script="js/edit.js" props={props}>
-                  <EditPlantPage />
+                <Html className="edit" title="Edit" script="js/admin/plant.js" props={props}>
+                  <AdminPlantPage />
                 </Html>
               ),
             headers: {
@@ -328,13 +329,18 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
         }
       },
       {
-        pattern: /^images\/favicon\.svg$/,
-        handler: async () => {
+        pattern: /^images\/(?<filename>.*)$/,
+        handler: async (match: RegExpMatchArray) => {
+          const filename = match.groups!["filename"];
+          const extension = extname(filename);
           return { 
             status: 200, 
-            body: await readFile("src/images/favicon.svg"),
+            body: await readFile(`src/images/${filename}`),
             headers: {
-              "content-type": "image/svg+xml",
+              "content-type": `image/${{
+                ".svg": "svg+xml",
+                ".jpg": "jpeg",
+              }[extension] ?? extname(filename).substring(1)}`
             }
           };
         }

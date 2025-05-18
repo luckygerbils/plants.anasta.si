@@ -7,13 +7,13 @@ import { loggedIn } from "./util/auth";
 import { Spinner } from "./components/icons";
 import { deletePhoto, deletePlant, getPlant, putPlant, uploadPhoto } from "./util/api";
 
-interface PageProps {
+interface AdminPlantPageProps {
   plantId?: string,
 }
 
-export function EditPlantPage({
+export function AdminPlantPage({
   plantId
-}: PageProps) {
+}: AdminPlantPageProps) {
   const [ { result, loading, error }, setState ] = useState<{ 
     result?: Awaited<ReturnType<typeof getPlant>>, 
     loading?: boolean, 
@@ -55,21 +55,21 @@ export function EditPlantPage({
       </div>
     )
   } else {
-    return <PlantPage plant={result.plant} next={result.next} prev={result.prev} />
+    return <AdminPlantPageInternal plant={result.plant} next={result.next} prev={result.prev} />
   }
 }
 
-interface PlantPageProps {
+interface AdminPlantPageInternalProps {
   plant: Plant, 
   prev?: string, 
   next?: string,
 }
 
-export function PlantPage({
+function AdminPlantPageInternal({
   plant, 
   prev, 
   next,
-}: PlantPageProps) {
+}: AdminPlantPageInternalProps) {
   const { links } = plant;
 
   const [ cameraOpen, setCameraOpen ] = useState(false);
@@ -176,6 +176,7 @@ export function PlantPage({
             </h2>}
         </div>
       </header>
+      <a className="edit-button" href={`/${plant.id}`}>Public</a>
       <nav>
         { prev ? <a href={`/edit?plantId=${prev}`}>Prev</a> : <div>Prev</div>}
         <button disabled={buttonsDisabled} type="button" onClick={() => editing ? doPutPlant() : setEditing(true)}>{editing ? "Save" : "Edit"}</button>

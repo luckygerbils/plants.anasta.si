@@ -34,8 +34,8 @@ export function Html({ title, children, className, props, script, assetHashes }:
         <main id="root" className={className}>{children}</main>
         {!script && (
           <script>{`
-            if (Object.fromEntries(document.cookie.split(";").map(c => c.split("=").map(s => s.trim())))["editor"] === "true"){
-              document.body.classList.add("editor");
+            if (typeof localStorage !== "undefined" && localStorage.getItem("previously-logged-in") === "true"){
+              document.body.classList.add("previously-logged-in");
              }
           `}</script>
         )}

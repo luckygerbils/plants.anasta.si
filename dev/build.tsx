@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile, copyFile, stat, glob, cp, readdir } from "node:fs/promises";
+import { mkdir, readFile, writeFile, copyFile, stat, readdir } from "node:fs/promises";
 import { renderToString } from "react-dom/server";
 
 import { comparing, localeCompare, nullsFirst } from "../src/util/sorting";
@@ -6,11 +6,12 @@ import { Plant } from "../src/model/plant";
 import { PublicPlantPage } from "../src/public-plant-page";
 import { PublicIndexPage } from "../src/public-index-page";
 import { Html } from "../src/html";
-import { EditPlantPage } from "../src/edit-page";
+import { AdminPlantPage } from "../src/admin-plant-page";
 import { build } from "esbuild";
 import { LoginPage } from "../src/login-page";
-import { basename, dirname, extname, normalize, relative, resolve } from "node:path";
+import { basename, dirname, extname, normalize, relative } from "node:path";
 import { createHash } from "node:crypto";
+import { ReactNode } from "react";
 
 const plantsFile = process.argv[2];
 if (plantsFile == null) {
@@ -78,6 +79,18 @@ async function bundle(entryPoint: string, outfile: string) {
     .then(() => `Bundled ${entryPoint} to ${outputPath}`)
 }
 
+async function render(outfile: string, htmlProps: Omit<Parameters<typeof Html>[0], "children"|"assetHashes">, page: ReactNode) {
+  const outputPath = `${outputDir}/${outfile}`;
+  return writeFile(
+    outputPath,
+    "<!DOCTYPE html>\n" + renderToString(
+      <Html {...htmlProps} assetHashes={assetHashes}>
+        {page}
+      </Html>
+    )
+  ).then(() => `Built ${outfile}`)
+}
+
 const staticFilesWithHashes = Promise.all(
   [ `${srcDir}/page.css`, `${srcDir}/images`, ]
     .map(path => copy(srcDir, path, { hash: true }))
@@ -90,60 +103,33 @@ const staticFilesWithoutHashes = Promise.all(
 
 const scriptEntryPoints = Promise.all(
   [
-    [`${srcDir}/edit-page-script.ts`, `js/edit.js`],
+    [`${srcDir}/admin-plant-page-script.ts`, `js/admin/plant.js`],
     [`${srcDir}/login-page-script.ts`, `js/login.js`]
   ].map(([ entryPoint, outfile ]) => bundle(entryPoint, outfile))
 );
 
-const htmlFiles = Promise.all([staticFilesWithHashes, scriptEntryPoints]).then(() => Promise.all([
-  writeFile(
-    `${outputDir}/index.html`,
-    "<!DOCTYPE html>\n" + renderToString(
-      <Html title="All Plants" className="index" assetHashes={assetHashes}>
-          <PublicIndexPage allPlants={publicPlants} />
-        </Html>
-    )
-  ).then(() => `Built index.html`),
-  writeFile(
-    `${outputDir}/edit`,
-    "<!DOCTYPE html>\n" + renderToString(
-      <Html className="edit" title="Edit" script="js/edit.js" props={{}} assetHashes={assetHashes}>
-        <EditPlantPage />
-      </Html>
-    )
-  ).then(() => `Built edit`),
-  writeFile(
-    `${outputDir}/login`,
-    "<!DOCTYPE html>\n" + renderToString(
-      <Html className="login" title="Login" script="js/login.js" props={{}} assetHashes={assetHashes}>
-        <LoginPage />
-      </Html>
-    )
-  ).then(() => `Built login`),
+const htmlFiles = Promise.all([staticFilesWithHashes, scriptEntryPoints])
+.then(() => Promise.all([
+  render("index.html", { className: "index", title: "All Plants"}, <PublicIndexPage allPlants={publicPlants} />),
+  render("admin/plant", { className: "edit", title: "Edit", script: `js/admin/plant.js`, props: {}}, <AdminPlantPage />),
+  render("login", { className: "login", title: "Login", script: `js/login.js`, props: {}}, <LoginPage />),
   Promise.all(
     plants
       .sort(comparing(p => p.tags.location, nullsFirst(localeCompare)))
       .map(async (plant: Plant, i: number) => 
       {
         try {
-          await writeFile(
-            `${outputDir}/${plant.id}`,
-            "<!DOCTYPE html>\n" + renderToString(
-              <Html title={plant.name} assetHashes={assetHashes}>
-                <PublicPlantPage plant={plant} allPlants={plants} prev={plants[i-1]?.id} next={plants[i+1]?.id} />
-              </Html>
-            )
-          );
+          render(plant.id, { title: plant.name }, <PublicPlantPage plant={plant} allPlants={plants} prev={plants[i-1]?.id} next={plants[i+1]?.id} />);
           return { plant };
         } catch (e) {
           return { error: e as Error, plant };
         }
       })
-    ).then(results => [
-      `Plants: ${results.filter(({ error }) => error == null).length}`, 
-      `Errors: ${results.filter(({ error }) => error != null).length}`
-    ]),
-]))
+  ).then(results => [
+    `Plants: ${results.filter(({ error }) => error == null).length}`, 
+    `Errors: ${results.filter(({ error }) => error != null).length}`
+  ]),
+]));
 
 const tasks = [
   staticFilesWithHashes.then(result => result.join("\n")),

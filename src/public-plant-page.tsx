@@ -39,7 +39,7 @@ export function PublicPlantPage({
           <HamburgerIcon />
         </a>
       </header>
-      <a className="edit-button" href={`/edit?plantId=${plantId}`}>Edit</a>
+      <a className="edit-button" href={`/admin/plant?plantId=${plantId}`}>Edit</a>
       <section className="tags">
         <ul>
           {TAG_KEYS.filter(key => key in tags)

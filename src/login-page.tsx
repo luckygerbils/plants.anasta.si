@@ -22,6 +22,7 @@ export function LoginPage({ searchParams }: LoginPageProps) {
       setState({ submitting: true });
       try {
         await login(username, password);
+        localStorage.setItem("previously-logged-in", "true");
       } catch (e) {
         setState({ error: e instanceof Error ? e : new Error(String(e)) });
       }

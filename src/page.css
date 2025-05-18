@@ -118,7 +118,7 @@ nav {
   background-color: var(--bg-primary);
   color: var(--fg-dark);
   
-  body.editor & {
+  body.previously-logged-in &, main.edit & {
     display: block;
   }
 }
