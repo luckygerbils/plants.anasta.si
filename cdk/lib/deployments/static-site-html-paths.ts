@@ -1,4 +1,4 @@
-import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment";
+import { BucketDeployment, ISource, Source } from "aws-cdk-lib/aws-s3-deployment";
 import { Construct } from "constructs";
 import { IBucket } from "aws-cdk-lib/aws-s3";
 import { AppInstance } from "../instances";
@@ -6,9 +6,11 @@ import { IDistribution } from "aws-cdk-lib/aws-cloudfront";
 import { readFileSync } from "node:fs";
 import { EditorIdentityPool } from "../cognito/identity-pools";
 import { FunctionUrl } from "aws-cdk-lib/aws-lambda";
+import { basename } from "node:path";
 
 interface StaticSiteDeploymentProps {
   instance: AppInstance,
+  source: (filterFn: (path: string) => boolean) => ISource,
   buckets: {
     staticSite: IBucket,
   },
@@ -27,6 +29,7 @@ interface StaticSiteDeploymentProps {
 export class StaticSiteHtmlPathsDeployment extends BucketDeployment {
   constructor(scope: Construct, {
     instance,
+    source,
     buckets,
     distributions,
     lambdas,
@@ -34,7 +37,8 @@ export class StaticSiteHtmlPathsDeployment extends BucketDeployment {
   }: StaticSiteDeploymentProps) {
     super(scope, "DeployStaticSiteHtmlPaths", {
       sources: [
-        Source.asset(`../dist/website/${instance.name}`),
+        // HTML paths have no `.`s for extensions or hashes
+        source(path => /^[^.]*$/.test(basename(path))),
         ...["edit", "login"].map(page => Source.data(
           page,
           readFileSync(`../dist/website/${instance.name}/${page}`, { encoding: "utf-8"})
@@ -49,9 +53,6 @@ export class StaticSiteHtmlPathsDeployment extends BucketDeployment {
       ],
       destinationBucket: buckets.staticSite,
       distribution: distributions.primary,
-
-      // Exclude any file with a .
-      exclude: [ "*.*" ],
 
       contentType: "text/html",
     });

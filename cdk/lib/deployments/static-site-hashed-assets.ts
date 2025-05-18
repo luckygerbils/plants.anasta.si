@@ -1,12 +1,12 @@
-import { BucketDeployment, CacheControl, Source } from "aws-cdk-lib/aws-s3-deployment";
+import { BucketDeployment, CacheControl, ISource } from "aws-cdk-lib/aws-s3-deployment";
 import { Construct } from "constructs";
 import { IBucket } from "aws-cdk-lib/aws-s3";
-import { AppInstance } from "../instances";
 import { IDistribution } from "aws-cdk-lib/aws-cloudfront";
 import { Duration } from "aws-cdk-lib";
+import { basename } from "node:path";
 
 interface StaticSiteDeploymentProps {
-  instance: AppInstance,
+  source: (filterFn: (path: string) => boolean) => ISource,
   buckets: {
     staticSite: IBucket,
   },
@@ -21,20 +21,15 @@ interface StaticSiteDeploymentProps {
  */
 export class StaticSiteHashedAssetsDeployment extends BucketDeployment {
   constructor(scope: Construct, {
-    instance,
+    source,
     buckets,
     distributions,
   }: StaticSiteDeploymentProps) {
     super(scope, "DeployStaticSiteHashedAssets", {
-      sources: [
-        Source.asset(`../dist/website/${instance.name}`),
-      ],
+      // Non-hashed assets have names like {name}.{hash}.{extension}
+      sources: [ source(path => /^[^.]*\.[^.]*\.[^.]*$/.test(basename(path))) ],
       destinationBucket: buckets.staticSite,
       distribution: distributions.primary,
-
-      // Include only files with two .
-      exclude: ["*"],
-      include: ["*.*.*"], 
 
       cacheControl: [
         CacheControl.setPublic(),

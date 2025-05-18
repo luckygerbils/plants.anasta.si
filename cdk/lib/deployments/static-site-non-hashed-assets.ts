@@ -1,11 +1,11 @@
-import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment";
+import { BucketDeployment, ISource } from "aws-cdk-lib/aws-s3-deployment";
 import { Construct } from "constructs";
 import { IBucket } from "aws-cdk-lib/aws-s3";
-import { AppInstance } from "../instances";
 import { IDistribution } from "aws-cdk-lib/aws-cloudfront";
+import { basename } from "node:path";
 
 interface StaticSiteDeploymentProps {
-  instance: AppInstance,
+  source: (filterFn: (path: string) => boolean) => ISource,
   buckets: {
     staticSite: IBucket,
   },
@@ -18,22 +18,17 @@ interface StaticSiteDeploymentProps {
  * Copy static site files that aren't either content hashed or represent plain HTML paths
  * These have content type inferred but don't have long-lived cache-control headers added
  */
-export class StaticSiteDeployment extends BucketDeployment {
+export class StaticSiteNonHashedAssetsDeployment extends BucketDeployment {
   constructor(scope: Construct, {
-    instance,
+    source,
     buckets,
     distributions,
   }: StaticSiteDeploymentProps) {
-    super(scope, "DeployStaticSite", {
-      sources: [
-        Source.asset(`../dist/website/${instance.name}`),
-      ],
+    super(scope, "DeployStaticSiteNonHashedAssets", {
+      // Non-hashed assets have names like {name}.{extension}
+      sources: [ source(path => /^[^.]*\.[^.]*$/.test(basename(path))) ],
       destinationBucket: buckets.staticSite,
       distribution: distributions.primary,
-
-      // Include only files with a single .
-      exclude: ["*", "*.*.*"],
-      include: ["*.*"],
     });
   }
 }

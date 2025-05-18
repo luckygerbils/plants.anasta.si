@@ -3,11 +3,13 @@ import { Construct } from 'constructs';
 import { AppInstance } from '../instances';
 import { ApiRole, EditorRole } from '../iam/roles';
 import { DataBucket, StaticSiteBucket } from '../s3/buckets';
-import { StaticSiteDeployment, StaticSiteHtmlPathsDeployment } from '../deployments';
+import { StaticSiteNonHashedAssetsDeployment, StaticSiteHashedAssetsDeployment, StaticSiteHtmlPathsDeployment } from '../deployments';
 import { IBucket } from 'aws-cdk-lib/aws-s3';
 import { PrimaryCloudFrontDistribution } from '../cloudfront/distributions';
 import { EditorIdentityPool } from '../cognito/identity-pools';
 import { ApiFunction } from '../lambda/functions';
+import { readdirSync, statSync } from 'node:fs';
+import { Source, ISource } from "aws-cdk-lib/aws-s3-deployment";
 
 interface PrimaryStackProps {
   instance: AppInstance,
@@ -50,9 +52,18 @@ export class PrimaryStack extends Stack {
     const distributions = {
       primary: new PrimaryCloudFrontDistribution(this, { instance, buckets, lambdas }),
     };
+
+    // Allow the deployments to split up subsets of the static files to deploy with slightly different configurations
+    const websiteAssetsDir =  `../dist/website/${instance.name}`;
+    const staticSiteFiles = readdirSync(websiteAssetsDir, { recursive: true, encoding: "utf8" })
+    function source(filterFn: (path: string) => boolean) {
+      return Source.asset(websiteAssetsDir, { 
+        exclude: staticSiteFiles.filter(path => statSync(`${websiteAssetsDir}/${path}`).isFile() && !filterFn(path))
+      });
+    }
     
-    const staticSite = new StaticSiteDeployment(this, { instance, buckets, distributions, });
-    const htmlPaths = new StaticSiteHtmlPathsDeployment(this, { instance, buckets, distributions, lambdas, identityPool });
-    htmlPaths.node.addDependency(staticSite);
+    new StaticSiteHashedAssetsDeployment(this, { source, buckets, distributions, });
+    new StaticSiteNonHashedAssetsDeployment(this, { source, buckets, distributions, });
+    new StaticSiteHtmlPathsDeployment(this, { instance, source, buckets, distributions, lambdas, identityPool });
   }
 }
