@@ -25,8 +25,12 @@ import { extname } from "node:path";
 
 await Promise.all(
   [
-    ["src/admin-plant-page-script.ts", "dist/website/js/admin/plant.js"],
-    ["src/login-page-script.ts", "dist/website/js/login.js"]
+    ["src/admin-plant-page-script.ts", "dist/website/Beta/js/admin/plant.js"],
+    ["src/login-page-script.ts", "dist/website/Beta/js/login.js"],
+    [`src/admin-plant-page.css`, `dist/website/Beta/css/admin/plant.css`],
+    [`src/login-page.css`, `dist/website/Beta/css/login.css`],
+    [`src/public-index-page.css`, `dist/website/Beta/css/index.css`],
+    [`src/public-plant-page.css`, `dist/website/Beta/css/plant.css`],
   ].map(([ entryPoint, outfile ]) => build({
     entryPoints: [ entryPoint ],
     bundle: true,
@@ -100,7 +104,7 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
           return { 
             status: 200, 
             body: "<!DOCTYPE html>\n" + renderToString(
-                <Html title={plant.name}>
+                <Html title={plant.name} css="css/plant.css">
                   <PublicPlantPage {...props} />
                 </Html>
               ),
@@ -116,7 +120,7 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
           return { 
             status: 200, 
             body: "<!DOCTYPE html>\n" + renderToString(
-                <Html title="All Plants" className="index">
+                <Html title="All Plants" css="css/index.css">
                   <PublicIndexPage allPlants={publicPlants} />
                 </Html>
               ),
@@ -132,7 +136,7 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
           return { 
             status: 200, 
             body: "<!DOCTYPE html>\n" + renderToString(
-                <Html className="edit" title="Edit" script="js/admin/plant.js" props={props}>
+                <Html title="Edit" script="js/admin/plant.js" css="css/admin/plant.css" props={props}>
                   <AdminPlantPage />
                 </Html>
               ),
@@ -148,7 +152,7 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
           return { 
             status: 200, 
             body: "<!DOCTYPE html>\n" + renderToString(
-                <Html className="login" title="Login" script="js/login.js" props={props}>
+                <Html title="Login" script="js/login.js" css="css/login.css" props={props}>
                   <LoginPage />
                 </Html>
               ),
@@ -317,13 +321,13 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
         }
       },
       {
-        pattern: /^page.css$/,
-        handler: async () => {
+        pattern: /^css\/(?<filename>.*\.css)$/,
+        handler: async (match: RegExpMatchArray) => {
           return { 
             status: 200, 
-            body: await readFile("src/page.css"),
+            body: await readFile(`dist/website/Beta/css/${match.groups!["filename"]}`),
             headers: {
-              "content-type": "text/css",
+              "content-type": "text.css",
             }
           };
         }
@@ -346,11 +350,11 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
         }
       },
       {
-        pattern: /^(?<filename>js\/.*)$/,
+        pattern: /^(?<filename>js\/.*\.js)$/,
         handler: async (match: RegExpMatchArray) => {
           return { 
             status: 200, 
-            body: await readFile(`dist/website/${match.groups!["filename"]}`),
+            body: await readFile(`dist/website/Beta/${match.groups!["filename"]}`),
             headers: {
               "content-type": "application/javascript",
             }

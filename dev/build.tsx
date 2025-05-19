@@ -81,6 +81,7 @@ async function bundle(entryPoint: string, outfile: string) {
 
 async function render(outfile: string, htmlProps: Omit<Parameters<typeof Html>[0], "children"|"assetHashes">, page: ReactNode) {
   const outputPath = `${outputDir}/${outfile}`;
+  await mkdir(dirname(outputPath), { recursive: true });
   return writeFile(
     outputPath,
     "<!DOCTYPE html>\n" + renderToString(
@@ -92,7 +93,7 @@ async function render(outfile: string, htmlProps: Omit<Parameters<typeof Html>[0
 }
 
 const staticFilesWithHashes = Promise.all(
-  [ `${srcDir}/page.css`, `${srcDir}/images`, ]
+  [ `${srcDir}/images`, ]
     .map(path => copy(srcDir, path, { hash: true }))
 );
 
@@ -108,18 +109,27 @@ const scriptEntryPoints = Promise.all(
   ].map(([ entryPoint, outfile ]) => bundle(entryPoint, outfile))
 );
 
-const htmlFiles = Promise.all([staticFilesWithHashes, scriptEntryPoints])
+const cssFiles = Promise.all(
+  [
+    [`${srcDir}/admin-plant-page.css`, `css/admin/plant.css`],
+    [`${srcDir}/login-page.css`, `css/login.css`],
+    [`${srcDir}/public-index-page.css`, `css/index.css`],
+    [`${srcDir}/public-plant-page.css`, `css/plant.css`]
+  ].map(([ cssFile, outfile ]) => bundle(cssFile, outfile))
+);
+
+const htmlFiles = Promise.all([staticFilesWithHashes, scriptEntryPoints, cssFiles])
 .then(() => Promise.all([
-  render("index.html", { className: "index", title: "All Plants"}, <PublicIndexPage allPlants={publicPlants} />),
-  render("admin/plant", { className: "edit", title: "Edit", script: `js/admin/plant.js`, props: {}}, <AdminPlantPage />),
-  render("login", { className: "login", title: "Login", script: `js/login.js`, props: {}}, <LoginPage />),
+  render("index.html", { title: "All Plants", css: "css/index.css" }, <PublicIndexPage allPlants={publicPlants} />),
+  render("admin/plant", { title: "Edit", script: `js/admin/plant.js`, css: "css/admin/plant.css", props: {}}, <AdminPlantPage />),
+  render("login", { title: "Login", script: `js/login.js`, css: "css/login.css", props: {}}, <LoginPage />),
   Promise.all(
     plants
       .sort(comparing(p => p.tags.location, nullsFirst(localeCompare)))
       .map(async (plant: Plant, i: number) => 
       {
         try {
-          render(plant.id, { title: plant.name }, <PublicPlantPage plant={plant} allPlants={plants} prev={plants[i-1]?.id} next={plants[i+1]?.id} />);
+          render(plant.id, { title: plant.name, css: "css/plant.css" }, <PublicPlantPage plant={plant} allPlants={plants} prev={plants[i-1]?.id} next={plants[i+1]?.id} />);
           return { plant };
         } catch (e) {
           return { error: e as Error, plant };
@@ -135,7 +145,8 @@ const tasks = [
   staticFilesWithHashes.then(result => result.join("\n")),
   staticFilesWithoutHashes.then(result => result.join("\n")),
   scriptEntryPoints.then(result => result.join("\n")),
-  htmlFiles
+  cssFiles.then(result => result.join("\n")),
+  htmlFiles.then(result => result.join("\n")),
 ].flat();
 
 for (const result of await Promise.all(tasks)) {

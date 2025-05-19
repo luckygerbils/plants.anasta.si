@@ -1,0 +1,62 @@
+.camera-view {
+  width: 100vw;
+  height: 100dvh;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: black;
+
+  & video {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  & .buttons button.shutter {
+    width: calc(20*var(--spacing));
+    height: calc(20*var(--spacing));
+    background-color: var(--bg-light);
+    border-radius: calc(infinity * 1px);
+    border: 3px var(--bg-light);
+    padding: calc(1.5*var(--spacing));
+    background-clip: content-box;
+  }
+}
+
+.review-view {
+  width: 100vw;
+  height: 100dvh;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  background-color: black;
+  z-index: 10;
+  color: white;
+
+  & img {
+    object-fit: contain;
+  }
+}
+
+.review-view, .camera-view {
+  & .buttons {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    width: 100vw;
+    bottom: 0;
+    padding-bottom: calc(10*var(--spacing));
+
+    button {
+      background-color: transparent;
+      border: none;
+    }
+  }
+}

@@ -2,13 +2,13 @@ import React, { PropsWithChildren, use } from "react";
 
 interface HtmlProps {
   title: string;
-  className?: string;
   props?: object,
   script?: string,
+  css: string,
   assetHashes?: Record<string, string>,
 }
 
-export function Html({ title, children, className, props, script, assetHashes }: PropsWithChildren<HtmlProps>) {
+export function Html({ title, children, props, script, css, assetHashes }: PropsWithChildren<HtmlProps>) {
   function assetWithHash(asset: string) {
     if (assetHashes && assetHashes[asset] == null) {
       throw new Error(`No hashed asset for ${asset} (${JSON.stringify(assetHashes)})`)
@@ -27,11 +27,11 @@ export function Html({ title, children, className, props, script, assetHashes }:
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href={`/${assetWithHash("images/apple-touch-icon.png")}`} />
         <title>{title}</title>
-        <link rel="stylesheet" href={`/${assetWithHash("page.css")}`} />
+        <link rel="stylesheet" href={`/${assetWithHash(css)}`} />
         {props && <script>{`window.props = ${JSON.stringify(JSON.stringify(props))}`}</script>}
       </head>
       <body>  
-        <main id="root" className={className}>{children}</main>
+        <main id="root">{children}</main>
         {!script && (
           <script>{`
             if (typeof localStorage !== "undefined" && localStorage.getItem("previously-logged-in") === "true"){

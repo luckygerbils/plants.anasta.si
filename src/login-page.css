@@ -1,0 +1,26 @@
+@import "default.css";
+
+main {
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  & form {
+    display: grid;
+    grid-template: 1fr 1fr auto / auto 1fr;
+    gap: calc(2*var(--spacing));
+    margin: calc(10*var(--spacing));
+    margin-top: calc(-20*var(--spacing));
+  }
+
+  & label {
+    font-weight: bold;
+  }
+
+  & button {
+    grid-column: span 2;
+    padding: calc(2*var(--spacing));
+  }
+}
