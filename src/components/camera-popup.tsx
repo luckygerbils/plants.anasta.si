@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 import { ArrowClockwiseIcon, ArrowCounterclockwiseIcon, ArrowLeftIcon, EyeClosedIcon, EyeIcon, SaveIcon, Spinner } from "./icons";
 import { PhotoImg } from "./photo-img";
+
 function classNames(...args: (string|boolean)[]) {
   return "";
 }
@@ -18,40 +19,8 @@ interface PhotoAsDataUrl {
 export function CameraPopup({
   overlayPhotoId,
   onCancel,
-  onCapture,
-}: CameraPopupProps) {
-  const [ photo, setPhoto ] = useState<PhotoAsDataUrl|null>(null);
-
-  if (photo) {
-    return (
-      <ReviewView 
-        photo={photo}
-        onCancel={() => setPhoto(null)}
-        onAccept={onCapture}
-      />
-    );
-  } else {
-    return (
-      <CameraView 
-        overlayPhotoId={overlayPhotoId} 
-        onCancel={onCancel}
-        onCapture={setPhoto} 
-      />
-    )
-  }
-}
-
-interface CameraViewProps {
-  overlayPhotoId?: string,
-  onCancel: () => void,
-  onCapture: (photo: PhotoAsDataUrl) => void,
-}
-
-function CameraView({
-  overlayPhotoId,
-  onCancel,
   onCapture
-}: CameraViewProps) {
+}: CameraPopupProps) {
 
   const [ showOverlay, setShowOverlay ] = useState(true);
 
@@ -196,7 +165,7 @@ interface ReviewViewProps {
   onAccept: (photo: PhotoAsDataUrl, rotation: number) => void,
 }
 
-function ReviewView({
+export function ReviewView({
   photo,
   onCancel,
   onAccept

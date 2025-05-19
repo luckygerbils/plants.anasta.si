@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
-import { CameraPopup } from "./components/camera-popup";
+import { useEffect, useRef, useState } from "react";
+import { CameraPopup, ReviewView } from "./components/camera-popup";
 import { PhotoImg } from "./components/photo-img";
 import { comparing, dateCompare, nullsFirst, reversed } from "./util/sorting";
 import { Plant, Tag, TAG_KEYS, TagKey } from "./model/plant";
 import { loggedIn } from "./util/auth";
-import { Spinner } from "./components/icons";
+import { CalendarPlusIcon, CameraIcon, ImageIcon, PencilSquareIcon, PlusIcon, SaveIcon, Spinner, TrashIcon, UploadIcon, XIcon } from "./components/icons";
 import { deletePhoto, deletePlant, getPlant, putPlant, uploadPhoto } from "./util/api";
+import { FloatingButton } from "./components/floating-button";
 
 interface AdminPlantPageProps {
   plantId?: string,
@@ -65,6 +66,10 @@ interface AdminPlantPageInternalProps {
   next?: string,
 }
 
+interface PhotoAsDataUrl {
+  dataUrl: string,
+}
+
 function AdminPlantPageInternal({
   plant, 
   prev, 
@@ -76,6 +81,8 @@ function AdminPlantPageInternal({
   const [ selectedTag, setSelectedTag ] = useState<Tag|null>(null);
 
   const [ editing, setEditing ] = useState(false);
+  const [ addPhotoOpen, setAddPhotoOpen ] = useState(false);
+
   const [ saving, setSaving ] = useState(false);
   const [ deleting, setDeleting ] = useState(false);
   const [ deletingPhoto, setDeletingPhoto ] = useState(false);
@@ -99,11 +106,17 @@ function AdminPlantPageInternal({
     }
   }
 
+  const photoInput = useRef<HTMLInputElement>(null);
+  const [ reviewPhoto, setReviewPhoto ] = useState<PhotoAsDataUrl|null>(null);
+  const [ lastUploadedPhotoId, setLastUploadedPhotoId ] = useState<string|null>(null)
+
   async function doUploadPhoto({ dataUrl }: { dataUrl: string }, rotation?: number) {
     try {
       const photo = await uploadPhoto(plant.id, { dataUrl }, rotation);
       setPhotos(photos => [...photos, photo]);
-      setCameraOpen(false);
+      setLastUploadedPhotoId(photo.id);
+      setAddPhotoOpen(false);
+      setReviewPhoto(null);
     } catch (e) {
       setError((e as Error).message);
       return;
@@ -111,6 +124,7 @@ function AdminPlantPageInternal({
   }
 
   async function doDeletePhoto(photoId: string) {
+    setConfirmingDeletePhotoId(null);
     setDeletingPhoto(true);
     try {
       await deletePhoto(plant.id, photoId);
@@ -127,7 +141,7 @@ function AdminPlantPageInternal({
     }
   }
 
-  async function doPutPlant() {
+  async function doSavePlant() {
     setSaving(true);
     plant!.name = name;
     plant!.scientificName = scientificName;
@@ -155,6 +169,8 @@ function AdminPlantPageInternal({
   const sortedPhotos = [...(photos ?? [])].sort(reversed(comparing(p => p.modifyDate, nullsFirst(dateCompare))));
   const buttonsDisabled = saving || deleting || deletingPhoto;
 
+  const [ buttonsExpanded, setButtonsExpanded ] = useState(false);
+
   return (
     <>
       <header>
@@ -178,16 +194,39 @@ function AdminPlantPageInternal({
       </header>
       <a className="edit-button" href={`/${plant.id}`}>Public</a>
       <nav>
-        { prev ? <a href={`/edit?plantId=${prev}`}>Prev</a> : <div>Prev</div>}
-        <button disabled={buttonsDisabled} type="button" onClick={() => editing ? doPutPlant() : setEditing(true)}>{editing ? "Save" : "Edit"}</button>
-        <button disabled={buttonsDisabled} type="button" onClick={() => setCameraOpen(true)}>Add Photo</button>
-        <button disabled={buttonsDisabled} type="button" onClick={() => confirmingDelete ? doDeletePlant() : setConfirmingDelete(true)}>{confirmingDelete ? "Confirm?" : "Delete"}</button>
-        {next ? <a href={`/edit?plantId=${next}`}>Next</a> : <div>Next</div>}
+        { prev ? <a href={`/admin/plant?plantId=${prev}`}>Prev</a> : <div>Prev</div>}
+        {next ? <a href={`/admin/plant?plantId=${next}`}>Next</a> : <div>Next</div>}
       </nav>
       {cameraOpen && 
         <CameraPopup 
           onCancel={() => setCameraOpen(false)} 
-          onCapture={doUploadPhoto} />}
+          onCapture={(photo) => { 
+            setCameraOpen(false); 
+            setReviewPhoto(photo);
+          }} />}
+      <input type="file" className="hidden-photo-input"
+        ref={photoInput} 
+        accept="image/jpg,image/jpeg"
+        onChange={async e => {
+          const dataUrl = await new Promise<string>(resolve => {
+            const fr = new FileReader();
+            fr.onloadend = () => resolve(fr.result as string);
+            fr.readAsDataURL(e.target.files![0]);
+          });
+          setReviewPhoto({ dataUrl })
+        }} />
+      {reviewPhoto &&
+        <ReviewView
+          photo={reviewPhoto}
+          onCancel={() => {
+            setReviewPhoto(null);
+            if (photoInput?.current) {
+              photoInput.current.value = "";
+            }
+          }}
+          onAccept={doUploadPhoto}
+        />}
+        
       {error && <div className="error">{error}</div>}
       <section className="tags">
         {!editing && (
@@ -236,7 +275,7 @@ function AdminPlantPageInternal({
       <section className="photos">
         <ul>
           {sortedPhotos.map(({ id, modifyDate }, i) => (
-            <li key={id}>
+            <li key={id} ref={id === lastUploadedPhotoId ? e => e?.scrollIntoView() : undefined}>
               <div className="counter">
                 <span>{i+1}/{sortedPhotos.length}</span>
                 {editing && (
@@ -245,17 +284,77 @@ function AdminPlantPageInternal({
                   >
                     {deleting && <Spinner /> }
                     {!deleting && confirmingDeletePhotoId === id && "Confirm?"}
-                    {!deleting && !confirmingDeletePhotoId && "Delete"}
+                    {!deleting && confirmingDeletePhotoId !== id && "Delete"}
                   </button>
                 )}
               </div>
               <div className="date">{modifyDate?.substring(0, 10)}</div>
-              
               <PhotoImg loading="lazy" sizes="100vw" photoId={`${plant.id}/${id}`} />
             </li>
           ))}
         </ul>
       </section>
+      <div className="floating-buttons">
+        <div className={["button-list", buttonsExpanded ? "expanded" : ""].join(" ")}>
+          {editing && (
+            <>
+              <FloatingButton 
+                disabled={buttonsDisabled}
+                onClick={() => confirmingDelete ? doDeletePlant() : setConfirmingDelete(true)}
+                variant={confirmingDelete ? "danger" : "warning"}
+              >
+                {deleting ? <Spinner /> : <TrashIcon />}
+              </FloatingButton>
+              <FloatingButton
+                disabled={buttonsDisabled}
+                onClick={doSavePlant}
+                variant="save"
+              >
+                {saving ? <Spinner /> : <SaveIcon />}
+              </FloatingButton>
+            </>
+          )}
+          {addPhotoOpen && (
+            <>
+              <FloatingButton
+                onClick={() => photoInput.current?.click()}  
+              >
+                {saving ? <Spinner /> : <UploadIcon />}
+              </FloatingButton>
+              <FloatingButton
+                onClick={() => setCameraOpen(true)}
+              >
+                {saving ? <Spinner /> : <CameraIcon />}
+              </FloatingButton>
+            </>
+          )}
+          {!(editing || addPhotoOpen) && (
+            <>
+              <FloatingButton onClick={() => setEditing(true)}>
+                <PencilSquareIcon />
+              </FloatingButton>
+              <FloatingButton onClick={() => setAddPhotoOpen(true)}>
+                <ImageIcon />
+              </FloatingButton>
+            </>
+          )}
+        </div>
+        <FloatingButton 
+          disabled={buttonsDisabled}
+          variant={(buttonsExpanded || editing || addPhotoOpen) ? "secondary" : "primary"}
+          onClick={() => {
+            if (editing) {
+              setEditing(false);
+            }
+            if (addPhotoOpen) {
+              setAddPhotoOpen(false);
+            }
+            setButtonsExpanded(expanded => !expanded);
+          }}
+        >
+          {buttonsExpanded ? <XIcon /> : <PlusIcon />}
+        </FloatingButton>
+      </div>
     </>
   );
 }

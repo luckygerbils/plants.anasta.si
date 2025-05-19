@@ -1,5 +1,6 @@
 @import "default.css";
 @import "common-plant-page.css";
+@import "components/floating-button.css";
 
 .edit-button {
   display: block;
@@ -23,6 +24,37 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+}
+
+.hidden-photo-input {
+  display: none;
+}
+
+.floating-buttons {
+  position: fixed;
+  bottom: calc(10*var(--spacing));
+  right: calc(10*var(--spacing));
+  display: flex;
+
+  & .button-list {
+    display: flex;
+    overflow: hidden;
+
+    transition-property: transform, translate, scale, rotate;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    animation-direction: alternate-reverse;
+    transform-origin: right;
+
+    scale: 0% 1;
+    &.expanded {
+      scale: 100% 1;
+    }
+
+    & button {
+      margin-right: calc(2*var(--spacing));
+    }
   }
 }
 

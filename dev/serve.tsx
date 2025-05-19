@@ -327,7 +327,7 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
             status: 200, 
             body: await readFile(`dist/website/Beta/css/${match.groups!["filename"]}`),
             headers: {
-              "content-type": "text.css",
+              "content-type": "text/css",
             }
           };
         }
