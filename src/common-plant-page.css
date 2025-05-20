@@ -78,21 +78,17 @@ section.links {
   margin: 0 calc(2*var(--spacing));
   margin-bottom: calc(2*var(--spacing));
 
-  & li {
-    list-style-type: none;
-    
+  & a {
+    display: block;
+    color: var(--fg);
+    padding: calc(2*var(--spacing));
+
     &:nth-child(odd) {
       background-color: var(--bg-table-stripe-odd);
     }
     &:nth-child(even) {
       background-color: var(--bg-table-stripe-even);
     }
-  }
-
-  & a {
-    display: block;
-    color: var(--fg);
-    padding: calc(2*var(--spacing));
   }
 }
 

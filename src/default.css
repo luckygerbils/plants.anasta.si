@@ -71,6 +71,9 @@ body {
 main {
   max-width: 8.5in;
   width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
 }
 
 main > header {
@@ -86,4 +89,8 @@ main > header {
     margin: 0.25em;
     font-size: 3em;
   }
+}
+
+main > section:last-of-type {
+  flex-grow: 1;
 }

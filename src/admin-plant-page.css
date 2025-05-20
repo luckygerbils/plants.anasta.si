@@ -7,6 +7,10 @@
 }
 
 button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   &.primary {
     background-color: var(--primary);
   }
@@ -22,6 +26,10 @@ button {
   &.save {
     background-color: var(--bg-save);
   }
+}
+
+input[type=text], input:not([type]) {
+  padding: calc(1*var(--spacing));
 }
 
 main {
@@ -74,30 +82,17 @@ nav {
   display: none;
 }
 
-.floating-buttons {
-  position: fixed;
-  bottom: calc(10*var(--spacing));
-  right: calc(10*var(--spacing));
-  display: flex;
+section.links.editing {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: calc(2*var(--spacing));
 
-  & .button-list {
-    display: flex;
-    overflow: hidden;
+  * {
+    min-width: 0;
+  }
 
-    transition-property: transform, translate, scale, rotate;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
-    animation-direction: alternate-reverse;
-    transform-origin: right;
-
-    scale: 0% 1;
-    &.expanded {
-      scale: 100% 1;
-    }
-
-    & button {
-      margin-right: calc(2*var(--spacing));
-    }
+  & button.add-button {
+    grid-column: span 3;
   }
 }
 

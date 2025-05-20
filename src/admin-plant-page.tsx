@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { CameraPopup, ReviewView } from "./components/camera-popup";
 import { PhotoImg } from "./components/photo-img";
 import { comparing, dateCompare, nullsFirst, reversed } from "./util/sorting";
@@ -78,8 +78,6 @@ function AdminPlantPageInternal({
   next,
   defaultEditing,
 }: AdminPlantPageInternalProps) {
-  const { links } = plant;
-
   const [ cameraOpen, setCameraOpen ] = useState(false);
   const [ selectedTag, setSelectedTag ] = useState<Tag|null>(null);
 
@@ -97,6 +95,7 @@ function AdminPlantPageInternal({
   const [ scientificName, setScientificName ] = useState(plant.scientificName);
   const [ tags, setTags ] = useState(plant.tags);
   const [ photos, setPhotos ] = useState(plant.photos);
+  const [ links, setLinks ] = useState(plant.links);
 
   const [ error, setError ] = useState<string|null>(null);
 
@@ -165,11 +164,15 @@ function AdminPlantPageInternal({
 
   async function doSavePlant() {
     setSaving(true);
-    plant!.name = name;
-    plant!.scientificName = scientificName;
-    plant!.tags = tags;
     try {
-      await putPlant(plant!);
+      await putPlant({
+        id: plant.id,
+        name,
+        scientificName,
+        tags,
+        photos,
+        links,
+      });
     } catch (e) {
       setError((e as Error).message);
     }
@@ -281,11 +284,22 @@ function AdminPlantPageInternal({
         )}
       </section>
       {/* {selectedTag && <TagPopup allPlants={allPlants} tag={selectedTag} onClose={() => setSelectedTag(null)} />} */}
-      <section className="links">
-        <ul>
-          {(links ?? []).map(({site, url}) => 
-            <li key={site}><a href={url}>{site}</a></li>)}
-        </ul>
+      <section className={`links ${editing ? "editing" : ""}`}>
+        {(links ?? []).map(({site, url}, index) => 
+          // eslint-disable-next-line @eslint-react/no-array-index-key
+          <Fragment key={index}>
+            {!editing && <a href={url}>{site}</a>}
+            {editing && <>
+                <input value={site} onChange={e => setLinks(links => [...links.slice(0, index), { ...links[index], site: e.target.value }, ...links.slice(index+1)])} />
+                <input value={url} onChange={e => setLinks(links => [...links.slice(0, index), { ...links[index], url: e.target.value }, ...links.slice(index+1)])} />
+                <button type="button" onClick={() => setLinks(links => [...links.slice(0, index), ...links.slice(index+1)])}><XIcon /></button>
+              </>}
+          </Fragment>)}
+          {editing && (
+            <button type="button" className="add-button" onClick={() => setLinks(links => [...links, { site: "", url: "" }])}>
+              <PlusIcon /> Add Link
+            </button>
+          )}
       </section>
       <section className="photos">
         <ul>
