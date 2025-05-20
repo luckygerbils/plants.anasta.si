@@ -1,19 +1,20 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CameraPopup, ReviewView } from "./components/camera-popup";
 import { PhotoImg } from "./components/photo-img";
 import { comparing, dateCompare, nullsFirst, reversed } from "./util/sorting";
 import { Plant, Tag, TAG_KEYS, TagKey } from "./model/plant";
 import { loggedIn } from "./util/auth";
-import { CalendarPlusIcon, CameraIcon, ImageIcon, PencilSquareIcon, PlusIcon, SaveIcon, Spinner, TrashIcon, UploadIcon, XIcon } from "./components/icons";
+import { CameraIcon, ChevronLeft, ChevronRight, ImagePlusIcon, PencilSquareIcon, PeopleIcon, PlusIcon, SaveIcon, Spinner, TrashIcon, UploadIcon, XIcon } from "./components/icons";
 import { deletePhoto, deletePlant, getPlant, putPlant, uploadPhoto } from "./util/api";
-import { FloatingButton } from "./components/floating-button";
 
 interface AdminPlantPageProps {
   plantId?: string,
+  edit?: boolean,
 }
 
 export function AdminPlantPage({
-  plantId
+  plantId,
+  edit,
 }: AdminPlantPageProps) {
   const [ { result, loading, error }, setState ] = useState<{ 
     result?: Awaited<ReturnType<typeof getPlant>>, 
@@ -56,7 +57,7 @@ export function AdminPlantPage({
       </div>
     )
   } else {
-    return <AdminPlantPageInternal plant={result.plant} next={result.next} prev={result.prev} />
+    return <AdminPlantPageInternal plant={result.plant} next={result.next} prev={result.prev} defaultEditing={edit} />
   }
 }
 
@@ -64,6 +65,7 @@ interface AdminPlantPageInternalProps {
   plant: Plant, 
   prev?: string, 
   next?: string,
+  defaultEditing?: boolean,
 }
 
 interface PhotoAsDataUrl {
@@ -74,15 +76,17 @@ function AdminPlantPageInternal({
   plant, 
   prev, 
   next,
+  defaultEditing,
 }: AdminPlantPageInternalProps) {
   const { links } = plant;
 
   const [ cameraOpen, setCameraOpen ] = useState(false);
   const [ selectedTag, setSelectedTag ] = useState<Tag|null>(null);
 
-  const [ editing, setEditing ] = useState(false);
+  const [ editing, setEditing ] = useState(defaultEditing ?? false);
   const [ addPhotoOpen, setAddPhotoOpen ] = useState(false);
 
+  const [ creating, setCreating ] = useState(false);
   const [ saving, setSaving ] = useState(false);
   const [ deleting, setDeleting ] = useState(false);
   const [ deletingPhoto, setDeletingPhoto ] = useState(false);
@@ -141,6 +145,24 @@ function AdminPlantPageInternal({
     }
   }
 
+  async function createPlant() {
+    setCreating(true);
+    try {
+      const id = crypto.randomUUID().substring(0, 8);
+      await putPlant({
+        id,
+        name: "",
+        scientificName: "",
+        tags: {},
+        photos: [],
+        links: [],
+      });
+      location.assign(`/admin/plant?plantId=${id}&edit=true`);
+    } catch (e) {
+      setError((e as Error).message);
+    }
+  }
+
   async function doSavePlant() {
     setSaving(true);
     plant!.name = name;
@@ -169,34 +191,25 @@ function AdminPlantPageInternal({
   const sortedPhotos = [...(photos ?? [])].sort(reversed(comparing(p => p.modifyDate, nullsFirst(dateCompare))));
   const buttonsDisabled = saving || deleting || deletingPhoto;
 
-  const [ buttonsExpanded, setButtonsExpanded ] = useState(false);
-
   return (
     <>
       <header>
-        <div>
-          <h1
-            contentEditable={editing} 
+        <h1
+          contentEditable={editing} 
+          suppressContentEditableWarning={editing}
+          onBlur={e => setName(e.target.innerText)}
+        >
+            {name.length > 0 ? name : "No Name"}
+        </h1>
+        {(scientificName || editing) &&
+          <h2 className="scientific-name"
+            contentEditable={editing}
             suppressContentEditableWarning={editing}
-            onBlur={e => setName(e.target.innerText)}
+            onBlur={e => setScientificName(e.target.innerText)}
           >
-              {name}
-          </h1>
-          {(scientificName || editing) &&
-            <h2 className="scientific-name"
-              contentEditable={editing}
-              suppressContentEditableWarning={editing}
-              onBlur={e => setScientificName(e.target.innerText)}
-            >
-              {scientificName}
-            </h2>}
-        </div>
+            {(scientificName && scientificName.length > 0) ? scientificName : "No Scientific Name"}
+          </h2>}
       </header>
-      <a className="edit-button" href={`/${plant.id}`}>Public</a>
-      <nav>
-        { prev ? <a href={`/admin/plant?plantId=${prev}`}>Prev</a> : <div>Prev</div>}
-        {next ? <a href={`/admin/plant?plantId=${next}`}>Next</a> : <div>Next</div>}
-      </nav>
       {cameraOpen && 
         <CameraPopup 
           onCancel={() => setCameraOpen(false)} 
@@ -228,7 +241,7 @@ function AdminPlantPageInternal({
         />}
         
       {error && <div className="error">{error}</div>}
-      <section className="tags">
+      <section className={`tags ${editing ? "editing" : ""}`}>
         {!editing && (
           <ul>
             {TAG_KEYS.filter(key => key in tags).map(key => 
@@ -242,25 +255,27 @@ function AdminPlantPageInternal({
           TAG_KEYS.map(key => {
             const value = tags[key];
             return (
-              <div key={key}>{
+              <React.Fragment key={key}>{
                 {
-                  location: <label>Location: <input value={value ?? ""} onChange={e => setTag(key, e.target.value)} /></label>,
-                  planted: <label>Planted: <input value={value ?? ""} onChange={e => setTag(key, e.target.value)}  /></label>,
+                  location: <><label>Location:</label> <input value={value ?? ""} onChange={e => setTag(key, e.target.value)} /></>,
+                  planted: <><label>Planted:</label> <input value={value ?? ""} onChange={e => setTag(key, e.target.value)}  /></>,
                   confidence: (
-                    <span>
-                      Confidence:
-                      <label><input type="radio" checked={value === "high"} onChange={e => setTag(key, "high")} /> high</label>
-                      <label><input type="radio" checked={value === "medium"} onChange={e => setTag(key, "medium")}/> medium</label>
-                      <label><input type="radio" checked={value === "low"} onChange={e => setTag(key, "low")}/> low</label>
-                    </span>
+                    <>
+                      <span>Confidence:</span>
+                      <span className="radios">
+                        <label><input type="radio" checked={value === "high"} onChange={e => setTag(key, "high")} /> high</label>
+                        <label><input type="radio" checked={value === "medium"} onChange={e => setTag(key, "medium")}/> medium</label>
+                        <label><input type="radio" checked={value === "low"} onChange={e => setTag(key, "low")}/> low</label>
+                      </span>
+                    </>
                   ),
-                  public: <label>Public: <input  type="checkbox" checked={value === "true"} onChange={e => setTag(key, e.target.checked)}  /></label>,
-                  bonsai: <label>Bonsai: <input  type="checkbox" checked={value === "true"} onChange={e => setTag(key, e.target.checked)}  /></label>,
-                  likelyDead: <label>Likely Dead: <input  type="checkbox" checked={value === "true"}  onChange={e => setTag(key, e.target.checked)}  /></label>,
-                  needsIdentification: <label>Needs Identification: <input  type="checkbox" checked={value === "true"}  onChange={e => setTag(key, e.target.checked)}  /></label>,
-                  needsLabel: <label>Needs Label: <input  type="checkbox" checked={value === "true"}  onChange={e => setTag(key, e.target.checked)}  /></label>,
+                  public: <><label htmlFor="public">Public:</label> <input id="public" type="checkbox" checked={value === "true"} onChange={e => setTag(key, e.target.checked)}  /></>,
+                  bonsai: <><label htmlFor="bonsai">Bonsai:</label> <input id="bonsai" type="checkbox" checked={value === "true"} onChange={e => setTag(key, e.target.checked)}  /></>,
+                  likelyDead: <><label htmlFor="likelyDead">Likely Dead:</label> <input id="likelyDead" type="checkbox" checked={value === "true"}  onChange={e => setTag(key, e.target.checked)}  /></>,
+                  needsIdentification: <><label htmlFor="needsId">Needs ID:</label> <input id="needsId" type="checkbox" checked={value === "true"}  onChange={e => setTag(key, e.target.checked)}  /></>,
+                  needsLabel: <><label htmlFor="needsLabel">Needs Label:</label> <input id="needsLabel" type="checkbox" checked={value === "true"}  onChange={e => setTag(key, e.target.checked)}  /></>,
                 }[key]
-              }</div>
+              }</React.Fragment>
             )
           })
         )}
@@ -294,67 +309,56 @@ function AdminPlantPageInternal({
           ))}
         </ul>
       </section>
-      <div className="floating-buttons">
-        <div className={["button-list", buttonsExpanded ? "expanded" : ""].join(" ")}>
-          {editing && (
-            <>
-              <FloatingButton 
-                disabled={buttonsDisabled}
-                onClick={() => confirmingDelete ? doDeletePlant() : setConfirmingDelete(true)}
-                variant={confirmingDelete ? "danger" : "warning"}
-              >
-                {deleting ? <Spinner /> : <TrashIcon />}
-              </FloatingButton>
-              <FloatingButton
-                disabled={buttonsDisabled}
-                onClick={doSavePlant}
-                variant="save"
-              >
-                {saving ? <Spinner /> : <SaveIcon />}
-              </FloatingButton>
-            </>
-          )}
-          {addPhotoOpen && (
-            <>
-              <FloatingButton
-                onClick={() => photoInput.current?.click()}  
-              >
-                {saving ? <Spinner /> : <UploadIcon />}
-              </FloatingButton>
-              <FloatingButton
-                onClick={() => setCameraOpen(true)}
-              >
-                {saving ? <Spinner /> : <CameraIcon />}
-              </FloatingButton>
-            </>
-          )}
-          {!(editing || addPhotoOpen) && (
-            <>
-              <FloatingButton onClick={() => setEditing(true)}>
-                <PencilSquareIcon />
-              </FloatingButton>
-              <FloatingButton onClick={() => setAddPhotoOpen(true)}>
-                <ImageIcon />
-              </FloatingButton>
-            </>
-          )}
-        </div>
-        <FloatingButton 
-          disabled={buttonsDisabled}
-          variant={(buttonsExpanded || editing || addPhotoOpen) ? "secondary" : "primary"}
-          onClick={() => {
-            if (editing) {
-              setEditing(false);
-            }
-            if (addPhotoOpen) {
-              setAddPhotoOpen(false);
-            }
-            setButtonsExpanded(expanded => !expanded);
-          }}
-        >
-          {buttonsExpanded ? <XIcon /> : <PlusIcon />}
-        </FloatingButton>
-      </div>
+      <nav>
+        {editing && (
+          <>
+            <button type="button"
+              disabled={buttonsDisabled}
+              onClick={() => confirmingDelete ? doDeletePlant() : setConfirmingDelete(true)}
+              className={confirmingDelete ? "danger" : "warning"}
+            >
+              {deleting ? <Spinner /> : <TrashIcon />}
+            </button>
+            <button type="button"
+              disabled={buttonsDisabled}
+              onClick={doSavePlant}
+              className="save"
+            >
+              {saving ? <Spinner /> : <SaveIcon />}
+            </button>
+            <button type="button" onClick={() => setEditing(false)}>
+              <XIcon />
+            </button>
+          </>
+        )}
+        {addPhotoOpen && (
+          <>
+            <button type="button"
+              onClick={() => photoInput.current?.click()}  
+            >
+              {saving ? <Spinner /> : <UploadIcon />}
+            </button>
+            <button type="button"
+              onClick={() => setCameraOpen(true)}
+            >
+              {saving ? <Spinner /> : <CameraIcon />}
+            </button>
+            <button type="button" onClick={() => setAddPhotoOpen(false)}>
+              <XIcon />
+            </button>
+          </>
+        )}
+        {!(editing || addPhotoOpen) && (
+          <>
+            {prev ? <a href={`/admin/plant?plantId=${prev}`}><ChevronLeft /></a> : <div className="disabled"><ChevronLeft /></div>}
+            <a href={`/${plant.id}`}><PeopleIcon /></a>
+            <button type="button" onClick={createPlant}><PlusIcon /></button>
+            <button type="button" onClick={() => setEditing(true)}><PencilSquareIcon /></button>
+            <button type="button" onClick={() => setAddPhotoOpen(true)}><ImagePlusIcon /></button>
+            {next ? <a href={`/admin/plant?plantId=${next}`}><ChevronRight /></a> : <div className="disabled"><ChevronRight /></div>}
+          </>
+        )}
+      </nav>
     </>
   );
 }

@@ -7,8 +7,10 @@ declare global {
   var props: string;
 }
 
-const plantId = new URLSearchParams(location.search).get("plantId") ?? undefined;
+const search = new URLSearchParams(location.search);
+const plantId = search.get("plantId") ?? undefined;
+const edit = search.get("edit") === "true";
 hydrateRoot(
   document.getElementById("root")!, 
-  createElement(AdminPlantPage, { plantId })
+  createElement(AdminPlantPage, { plantId, edit, })
 );

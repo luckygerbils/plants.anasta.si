@@ -1,14 +1,27 @@
 @import "default.css";
 @import "common-plant-page.css";
-@import "components/floating-button.css";
-
-.edit-button {
-  display: block;
-}
 
 [contenteditable=true] {
   outline: 1px dashed white;
   border-radius: 2px;
+}
+
+button {
+  &.primary {
+    background-color: var(--primary);
+  }
+  &.secondary {
+    background-color: var(--bg-secondary);
+  }
+  &.danger {
+    background-color: var(--bg-danger);
+  }
+  &.warning {
+    background-color: var(--bg-warning);
+  }
+  &.save {
+    background-color: var(--bg-save);
+  }
 }
 
 main {
@@ -24,6 +37,36 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+}
+
+nav {
+  position: sticky;
+  bottom: 0;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: row;
+
+  & a, & div, & button {
+    padding: calc(3*var(--spacing));
+    background-color: var(--bg-primary);
+    color: var(--fg-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-color: var(--primary-light);
+    border-style: outset;
+    flex-grow: 1;
+
+    &:active {
+      border-style: inset;
+    }
+
+    &.disabled {
+      border-style: none;
+      color: gray;
+    }
   }
 }
 
@@ -54,6 +97,37 @@ main {
 
     & button {
       margin-right: calc(2*var(--spacing));
+    }
+  }
+}
+
+.tags {
+  &.editing {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    row-gap: calc(2*var(--spacing));
+  }
+}
+
+.radios {
+  margin-bottom: calc(1*var(--spacing));
+  display: flex;
+
+  & input[type=radio] {
+    display: none;
+  }
+
+  label {
+    padding: calc(1*var(--spacing));
+    background-color: var(--primary);
+    flex-grow: 1;
+    text-align: center;
+    border-color: var(--primary-light);
+    border-style: outset;
+
+    &:has(input[type=radio]:checked) {
+      background-color: var(--primary-light);
+      border-style: inset;
     }
   }
 }

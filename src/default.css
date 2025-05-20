@@ -78,9 +78,6 @@ main > header {
   color: var(--fg-dark);
   padding: calc(2*var(--spacing));
   margin-bottom: calc(2*var(--spacing));
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
 
   & a {
     display: flex;

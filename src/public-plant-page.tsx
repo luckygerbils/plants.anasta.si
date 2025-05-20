@@ -27,13 +27,11 @@ export function PublicPlantPage({
   return (
     <>
       <header>
-        <div>
-          <h1>{name}</h1>
-          {scientificName && 
-            <h2 className="scientific-name">
-              {scientificName}
-            </h2>}
-        </div>
+        <h1>{name}</h1>
+        {scientificName && 
+          <h2 className="scientific-name">
+            {scientificName}
+          </h2>}
       </header>
       <a className="edit-button" href={`/admin/plant?plantId=${plantId}`}>Edit</a>
       <section className="tags">

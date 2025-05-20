@@ -4,21 +4,6 @@
   font-style: italic;
 }
 
-nav {
-  margin: 0 calc(2*var(--spacing));
-  margin-bottom: calc(2*var(--spacing));
-
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  & a, & div, & button {
-    padding: calc(3*var(--spacing));
-    background-color: var(--bg-primary);
-    color: var(--fg-dark);
-  } 
-}
-
 .edit-button {
   display: none;
   padding: calc(2*var(--spacing));
@@ -37,7 +22,6 @@ section.tags {
   margin: 0 calc(2*var(--spacing));
   margin-bottom: calc(2*var(--spacing));
   padding: calc(2*var(--spacing));
-  padding-bottom: 0;
   background-color: var(--bg-table-stripe-odd);
 
   ul {
