@@ -4,7 +4,7 @@ import { PhotoImg } from "./components/photo-img";
 import { comparing, dateCompare, nullsFirst, reversed } from "./util/sorting";
 import { Plant, Tag, TAG_KEYS, TagKey } from "./model/plant";
 import { loggedIn } from "./util/auth";
-import { CameraIcon, ChevronLeft, ChevronRight, ImagePlusIcon, PencilSquareIcon, PeopleIcon, PlusIcon, SaveIcon, Spinner, TrashIcon, UploadIcon, XIcon } from "./components/icons";
+import { CameraIcon, ChevronLeft, ChevronRight, ImageIcon, ImagePlusIcon, PencilSquareIcon, PeopleIcon, PlusIcon, SaveIcon, Spinner, TrashIcon, UploadIcon, XIcon } from "./components/icons";
 import { deletePhoto, deletePlant, getPlant, putPlant, uploadPhoto } from "./util/api";
 
 interface AdminPlantPageProps {
@@ -302,26 +302,39 @@ function AdminPlantPageInternal({
           )}
       </section>
       <section className="photos">
-        <ul>
-          {sortedPhotos.map(({ id, modifyDate }, i) => (
-            <li key={id} ref={id === lastUploadedPhotoId ? e => e?.scrollIntoView() : undefined}>
-              <div className="counter">
-                <span>{i+1}/{sortedPhotos.length}</span>
-                {editing && (
-                  <button type="button" className="delete" disabled={buttonsDisabled}
-                    onClick={confirmingDeletePhotoId === id ? () => doDeletePhoto(confirmingDeletePhotoId) : () => setConfirmingDeletePhotoId(id)}
-                  >
-                    {deleting && <Spinner /> }
-                    {!deleting && confirmingDeletePhotoId === id && "Confirm?"}
-                    {!deleting && confirmingDeletePhotoId !== id && "Delete"}
-                  </button>
-                )}
-              </div>
-              <div className="date">{modifyDate?.substring(0, 10)}</div>
-              <PhotoImg loading="lazy" sizes="100vw" photoId={`${plant.id}/${id}`} />
-            </li>
-          ))}
-        </ul>
+        {sortedPhotos.length > 0 && (
+          <ul>
+            {sortedPhotos.map(({ id, modifyDate }, i) => (
+              <li key={id} ref={id === lastUploadedPhotoId ? e => e?.scrollIntoView() : undefined}>
+                <div className="counter">
+                  <span>{i+1}/{sortedPhotos.length}</span>
+                  {editing && (
+                    <button type="button" className="delete" disabled={buttonsDisabled}
+                      onClick={confirmingDeletePhotoId === id ? () => doDeletePhoto(confirmingDeletePhotoId) : () => setConfirmingDeletePhotoId(id)}
+                    >
+                      {deleting && <Spinner /> }
+                      {!deleting && confirmingDeletePhotoId === id && "Confirm?"}
+                      {!deleting && confirmingDeletePhotoId !== id && "Delete"}
+                    </button>
+                  )}
+                </div>
+                <div className="date">{modifyDate?.substring(0, 10)}</div>
+                <PhotoImg loading="lazy" sizes="100vw" photoId={`${plant.id}/${id}`} />
+              </li>
+            ))}
+          </ul>
+        )}
+        {sortedPhotos.length === 0 && (
+          <div className="no-photos-placeholder">
+            <ImageIcon size="2xl" />
+            <button type="button" onClick={() => setCameraOpen(true)}>
+              <CameraIcon className="mr-2"/> Take a Photo
+            </button>
+            <button type="button" onClick={() => photoInput.current?.click()}>
+              <UploadIcon className="mr-2" /> Upload existing Photos
+            </button>
+          </div>
+        )}
       </section>
       <nav>
         {editing && (

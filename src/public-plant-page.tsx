@@ -1,7 +1,7 @@
 import { PhotoImg } from "./components/photo-img";
 import { comparing, dateCompare, nullsFirst, reversed } from "./util/sorting";
 import { Plant, TAG_KEYS } from "./model/plant";
-import { HamburgerIcon, QuestionIcon } from "./components/icons";
+import { HamburgerIcon, ImageIcon, QuestionIcon } from "./components/icons";
 
 interface PublicPageProps {
   plant: Plant,
@@ -74,18 +74,25 @@ export function PublicPlantPage({
         </ul>
       </section>
       <section className="photos">
-        <ul>
-          {sortedPhotos.map(({ id, modifyDate }, i) => (
-            <li key={id}>
-              <div className="counter">
-                <span>{i+1}/{sortedPhotos.length}</span>
-              </div>
-              <div className="date">{modifyDate?.substring(0, 10)}</div>
-              
-              <PhotoImg loading="lazy" sizes="100vw" photoId={`${plantId}/${id}`} />
-            </li>
-          ))}
-        </ul>
+        {sortedPhotos.length > 0 && (
+          <ul>
+            {sortedPhotos.map(({ id, modifyDate }, i) => (
+              <li key={id}>
+                <div className="counter">
+                  <span>{i+1}/{sortedPhotos.length}</span>
+                </div>
+                <div className="date">{modifyDate?.substring(0, 10)}</div>
+                
+                <PhotoImg loading="lazy" sizes="100vw" photoId={`${plantId}/${id}`} />
+              </li>
+            ))}
+          </ul>
+        )}
+        {sortedPhotos.length === 0 && (
+          <div className="no-photos-placeholder">
+            <ImageIcon size="2xl" />
+          </div>
+        )}
       </section>
     </>
   )

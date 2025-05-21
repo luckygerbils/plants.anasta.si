@@ -93,6 +93,10 @@ section.links {
 }
 
 section.photos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   margin: 0 calc(2*var(--spacing));
   margin-bottom: calc(2*var(--spacing));
 
@@ -143,5 +147,24 @@ section.photos {
     padding: calc(2*var(--spacing));
     background-color: var(--bg-primary);
     color: var(--fg-dark);
+  }
+
+  &:has(.no-photos-placeholder) {
+    height: calc(72*var(--spacing));
+  }
+
+  .no-photos-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    button {
+      padding: calc(1*var(--spacing));
+      margin-bottom: calc(2*var(--spacing));
+
+      & svg {
+        margin-right: 0.5em;
+      }
+    }
   }
 }

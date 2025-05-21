@@ -48,7 +48,7 @@ main {
   }
 }
 
-nav {
+main > nav {
   position: sticky;
   bottom: 0;
   width: 100vw;
