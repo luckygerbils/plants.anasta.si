@@ -146,3 +146,10 @@ section.photos {
     align-items: center;
   }
 }
+
+section.description {
+  margin: 0 calc(2*var(--spacing));
+  margin-bottom: calc(2*var(--spacing));
+  padding: calc(2*var(--spacing));
+  background-color: var(--bg-table-stripe-odd);
+}

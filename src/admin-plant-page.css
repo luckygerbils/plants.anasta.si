@@ -101,6 +101,7 @@ section.links.editing {
     display: grid;
     grid-template-columns: auto 1fr;
     row-gap: calc(2*var(--spacing));
+    padding-bottom: calc(2*var(--spacing));
   }
 }
 
@@ -305,5 +306,24 @@ section.journal {
     &:nth-child(even) a {
       background-color: var(--bg-table-stripe-even);
     }
+  }
+}
+
+section.description {
+  display: grid;
+
+  &.editing div {
+    padding: calc(2*var(--spacing));
+    visibility: hidden;
+    grid-area: 1 / 1 / 2 / 2;
+  }
+
+  & textarea {
+    padding: calc(2*var(--spacing));
+    width: 100%;
+    font-size: inherit;
+    font-family: inherit;
+    resize: none;
+    grid-area: 1 / 1 / 2 / 2;
   }
 }

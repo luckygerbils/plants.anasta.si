@@ -34,6 +34,7 @@ export interface Plant {
   id: string,
   name: string,
   scientificName?: string,
+  description?: string,
   photos: Photo[],
   links: { site: string, url: string }[],
   tags: Partial<Record<TagKey, string>>,

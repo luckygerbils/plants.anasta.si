@@ -8,6 +8,7 @@ import { CalendarIcon, CalendarPlusIcon, CameraIcon, ChevronLeft, ChevronRight, 
 import { deletePhoto, deletePlant, getPlant, putPlant, uploadPhoto } from "./util/api";
 import { JournalEntryPopup } from "./journal-entry-popup";
 import { markdown } from "./util/markdown";
+import { AutosizeTextArea } from "./components/autosize-text-area";
 
 interface AdminPlantPageProps {
   plantId?: string,
@@ -95,6 +96,7 @@ function AdminPlantPageInternal({
 
   const [ name, setName ] = useState(plant.name);
   const [ scientificName, setScientificName ] = useState(plant.scientificName);
+  const [ description, setDescription ] = useState(plant.description ?? "");
   const [ tags, setTags ] = useState(plant.tags);
   const [ photos, setPhotos ] = useState(plant.photos);
   const [ links, setLinks ] = useState(plant.links);
@@ -157,6 +159,7 @@ function AdminPlantPageInternal({
         id,
         name: "",
         scientificName: "",
+        description: "",
         tags: {},
         photos: [],
         links: [],
@@ -174,6 +177,7 @@ function AdminPlantPageInternal({
         id: plant.id,
         name,
         scientificName,
+        description,
         tags,
         photos,
         links,
@@ -238,6 +242,7 @@ function AdminPlantPageInternal({
             {(scientificName && scientificName.length > 0) ? scientificName : "No Scientific Name"}
           </h2>}
       </header>
+
       {cameraOpen && 
         <CameraPopup 
           onCancel={() => setCameraOpen(false)} 
@@ -267,8 +272,8 @@ function AdminPlantPageInternal({
           }}
           onAccept={doUploadPhoto}
         />}
-        
       {error && <div className="error">{error}</div>}
+      
       <section className={`tags ${editing ? "editing" : ""}`}>
         {!editing && (
           <ul>
@@ -308,6 +313,15 @@ function AdminPlantPageInternal({
           })
         )}
       </section>
+      {description && description.length > 0 && (
+        <section className={`description ${editing ? "editing" : ""}`}>
+          {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml */}
+          <div dangerouslySetInnerHTML={{__html: markdown(description)}}></div>
+          {editing && (
+            <AutosizeTextArea wrap="hard" value={description} onChange={e => setDescription(e.target.value)} />
+          )}
+        </section>
+      )}
       {/* {selectedTag && <TagPopup allPlants={allPlants} tag={selectedTag} onClose={() => setSelectedTag(null)} />} */}
       <section className={`links ${editing ? "editing" : ""}`}>
         {(links ?? []).map(({site, url}, index) => 

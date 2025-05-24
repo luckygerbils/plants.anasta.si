@@ -2,6 +2,7 @@ import { PhotoImg } from "./components/photo-img";
 import { comparing, dateCompare, nullsFirst, reversed } from "./util/sorting";
 import { Plant, TAG_KEYS } from "./model/plant";
 import { HamburgerIcon, ImageIcon, PencilSquareIcon, QuestionIcon } from "./components/icons";
+import { markdown } from "./util/markdown";
 
 interface PublicPageProps {
   plant: Plant,
@@ -17,6 +18,7 @@ export function PublicPlantPage({
     id: plantId,
     name, 
     scientificName, 
+    description,
     links,
     photos,
     tags,
@@ -66,6 +68,12 @@ export function PublicPlantPage({
           </div>
         )}
       </section>
+      {description && description.length > 0 && (
+        <section className="description">
+          {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml */}
+          <div dangerouslySetInnerHTML={{__html: markdown(description)}}></div>
+        </section>
+      )}
       <section className="links">
         {(links ?? []).map(({site, url}) => 
           <a key={site} href={url}>{site}</a>)}
