@@ -127,6 +127,122 @@ section.links.editing {
   }
 }
 
+.photos {
+  & .no-photos-placeholder {
+    & button {
+      padding: calc(1*var(--spacing));
+      margin-bottom: calc(2*var(--spacing));
+
+      & svg {
+        margin-right: 0.5em;
+      }
+    }
+  }
+}
+
+section.journal {
+  display: flex;
+  flex-direction: column;
+
+  margin: 0 calc(2*var(--spacing));
+  margin-bottom: calc(2*var(--spacing));
+
+  &:has(.no-journal-placeholder) {
+    min-height: calc(36*var(--spacing));
+    justify-content: center;
+    align-items: center;
+  }
+
+  & .no-journal-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & > svg {
+      margin-bottom: calc(2*var(--spacing));
+    }
+
+    & button {
+      padding: calc(1*var(--spacing));
+      margin-bottom: calc(2*var(--spacing));
+
+      & svg {
+        margin-right: 0.5em;
+      }
+    }
+  }
+
+  & .journal-entry {
+    background-color: var(--bg-table-stripe-odd);
+    padding: calc(2*var(--spacing));
+    margin-bottom: calc(2*var(--spacing));
+
+    & .date {
+      float: right;
+      font-weight: bold;
+      margin-left: calc(2*var(--spacing));
+      margin-bottom: calc(2*var(--spacing));
+    }
+
+    & .text {
+      & ol, & ul {
+        margin-left: 2em;
+      }
+    }
+
+    & > button {
+      display: block;
+      clear: both;
+      width: 100%;
+      margin-top: calc(2*var(--spacing));
+    }
+  }
+}
+
+.journal-entry-dialog {
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  margin: 5dvh auto;
+  overflow: hidden;
+  width: 90vw;
+  height: 90dvh;
+  max-width: calc(8.5in - 10dvh);
+  border: none;
+
+  & .content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  & .body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: calc(2*var(--spacing));
+  }
+
+  & input[type=date] {
+    margin-bottom: calc(2*var(--spacing));
+  }
+  
+  & textarea {
+    min-height: 50%;
+    padding: calc(4*var(--spacing));
+    margin-bottom: calc(2*var(--spacing));
+  }
+
+  & .buttons {
+    display: flex;
+    & button {
+      flex-grow: 1;
+      padding: calc(2*var(--spacing));
+    }
+  }
+}
+
 .tag-dialog {
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.8);

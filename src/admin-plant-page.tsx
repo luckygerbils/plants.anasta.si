@@ -2,10 +2,12 @@ import React, { Fragment, useEffect, useRef, useState } from "react";
 import { CameraPopup, ReviewView } from "./components/camera-popup";
 import { PhotoImg } from "./components/photo-img";
 import { comparing, dateCompare, nullsFirst, reversed } from "./util/sorting";
-import { Plant, Tag, TAG_KEYS, TagKey } from "./model/plant";
+import { JournalEntry, PartialJournalEntry, Plant, Tag, TAG_KEYS, TagKey } from "./model/plant";
 import { loggedIn } from "./util/auth";
-import { CameraIcon, ChevronLeft, ChevronRight, ImageIcon, ImagePlusIcon, PencilSquareIcon, PeopleIcon, PlusIcon, SaveIcon, Spinner, TrashIcon, UploadIcon, XIcon } from "./components/icons";
+import { CalendarIcon, CalendarPlusIcon, CameraIcon, ChevronLeft, ChevronRight, ImageIcon, ImagePlusIcon, PencilSquareIcon, PeopleIcon, PlusIcon, SaveIcon, Spinner, TrashIcon, UploadIcon, XIcon } from "./components/icons";
 import { deletePhoto, deletePlant, getPlant, putPlant, uploadPhoto } from "./util/api";
+import { JournalEntryPopup } from "./journal-entry-popup";
+import { markdown } from "./util/markdown";
 
 interface AdminPlantPageProps {
   plantId?: string,
@@ -25,7 +27,7 @@ export function AdminPlantPage({
   useEffect(() => {
     if (!loggedIn()) {
       const redirect = `${location.pathname}${location.search}`
-      location.assign(`/login?${new URLSearchParams({ redirect })}`);
+      location.assign(`/journalin?${new URLSearchParams({ redirect })}`);
       return;
     }
 
@@ -96,6 +98,7 @@ function AdminPlantPageInternal({
   const [ tags, setTags ] = useState(plant.tags);
   const [ photos, setPhotos ] = useState(plant.photos);
   const [ links, setLinks ] = useState(plant.links);
+  const [ journal, setJournal ] = useState(plant.journal ?? []);
 
   const [ error, setError ] = useState<string|null>(null);
 
@@ -111,7 +114,9 @@ function AdminPlantPageInternal({
 
   const photoInput = useRef<HTMLInputElement>(null);
   const [ reviewPhoto, setReviewPhoto ] = useState<PhotoAsDataUrl|null>(null);
-  const [ lastUploadedPhotoId, setLastUploadedPhotoId ] = useState<string|null>(null)
+  const [ lastUploadedPhotoId, setLastUploadedPhotoId ] = useState<string|null>(null);
+
+  const [ editingJournalEntry, setEditingJournalEntry ] = useState<JournalEntry|PartialJournalEntry|null>(null);
 
   async function doUploadPhoto({ dataUrl }: { dataUrl: string }, rotation?: number) {
     try {
@@ -172,6 +177,7 @@ function AdminPlantPageInternal({
         tags,
         photos,
         links,
+        journal,
       });
     } catch (e) {
       setError((e as Error).message);
@@ -191,7 +197,26 @@ function AdminPlantPageInternal({
     setDeleting(false);
   }
 
+  async function doPutJournalEntry(journalEntry: JournalEntry|PartialJournalEntry) {
+    const fullJournalEntry: JournalEntry = !("id" in journalEntry) ?
+      { id: crypto.randomUUID().substring(0, 8), ...journalEntry } : journalEntry;
+    const index = journal.findIndex(({ id }) => id === fullJournalEntry.id);
+    const newJournal = index === -1 
+      ? [...journal, fullJournalEntry] 
+      : [ ...journal.slice(0, index), fullJournalEntry, ...journal.slice(index+1) ];
+    await putPlant({ id: plant.id, name, scientificName, tags, photos, links, journal: newJournal, });
+    setJournal(newJournal);
+  }
+
+  async function doDeleteJournalEntry(journalEntryId: string) {
+    const index = journal.findIndex(({ id }) => id === journalEntryId);
+    const newJournal = [ ...journal.slice(0, index), ...journal.slice(index+1) ];
+    await putPlant({ id: plant.id, name, scientificName, tags, photos, links, journal: newJournal, });
+    setJournal(newJournal);
+  }
+
   const sortedPhotos = [...(photos ?? [])].sort(reversed(comparing(p => p.modifyDate, nullsFirst(dateCompare))));
+  const sortedJournal = [...(journal ?? [])].sort(reversed(comparing(entry => entry.date, dateCompare)));
   const buttonsDisabled = saving || deleting || deletingPhoto;
 
   return (
@@ -336,6 +361,33 @@ function AdminPlantPageInternal({
           </div>
         )}
       </section>
+      <section className="journal">
+        {sortedJournal.length > 0 && sortedJournal.map(entry => (
+            <div key={entry.id} className="journal-entry">
+              <div className="date">{entry.date.substring(0, 10)}</div>
+              {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml */}
+              <div className="text" dangerouslySetInnerHTML={{__html: markdown(entry.text ?? "")}}></div>
+              {editing && <button type="button" onClick={() => setEditingJournalEntry(entry)}>Edit</button>}
+
+            </div>
+          ))}
+        {sortedJournal.length === 0 && (
+          <div className="no-journal-placeholder">
+            <CalendarIcon size="xl" />
+            <button type="button" onClick={() => setEditingJournalEntry({ date: new Date().toISOString().substring(0, 10) })}>
+              <CalendarPlusIcon className="mr-2"/> Add a Journal Entry
+            </button>
+          </div>
+        )}
+      </section>
+      {editingJournalEntry != null && (
+        <JournalEntryPopup 
+          journalEntry={editingJournalEntry}
+          onSave={doPutJournalEntry}
+          onDelete={doDeleteJournalEntry}
+          onClose={() => setEditingJournalEntry(null)} 
+        />
+      )}
       <nav>
         {editing && (
           <>
@@ -382,6 +434,7 @@ function AdminPlantPageInternal({
             <button type="button" onClick={createPlant}><PlusIcon /></button>
             <button type="button" onClick={() => setEditing(true)}><PencilSquareIcon /></button>
             <button type="button" onClick={() => setAddPhotoOpen(true)}><ImagePlusIcon /></button>
+            <button type="button" onClick={() => setEditingJournalEntry({ date: new Date().toISOString().substring(0, 10) })}><CalendarPlusIcon /></button>
             {next ? <a href={`/admin/plant?plantId=${next}`}><ChevronRight /></a> : <div className="disabled"><ChevronRight /></div>}
           </>
         )}

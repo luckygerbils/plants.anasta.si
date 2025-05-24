@@ -17,10 +17,19 @@ export interface Tag {
   value?: string,
 }
 
+export type PhotoId = string;
 export interface Photo { 
-  id: string, 
-  modifyDate: string 
+  id: PhotoId, 
+  modifyDate: string,
 }
+
+export interface JournalEntry {
+  id: string,
+  text?: string,
+  date: string,
+  photos?: PhotoId[],
+}
+export type PartialJournalEntry = Omit<JournalEntry, "id">;
 
 export interface Plant {
   id: string,
@@ -29,4 +38,5 @@ export interface Plant {
   photos: Photo[],
   links: { site: string, url: string }[],
   tags: Partial<Record<TagKey, string>>,
+  journal?: JournalEntry[],
 }
