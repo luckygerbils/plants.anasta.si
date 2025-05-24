@@ -1,3 +1,5 @@
+import { ref } from "process";
+
 let props: { userPoolClientId: string, userPoolId: string, identityPoolId: string, apiUrl: string, region: string }|null = null;
 function getProps() {
   if (props == null) {
@@ -53,8 +55,17 @@ interface CognitoIdpAuth {
   expires: number,
 }
 
+interface GetTokensFromRefreshTokenResponse {
+  AuthenticationResult: { 
+     AccessToken: string,
+     ExpiresIn: number,
+     IdToken: string,
+     RefreshToken?: string,
+  },
+}
+
 let cognitoIdpAuth: CognitoIdpAuth|null = null;
-function getIdToken() {
+async function getOrRefreshIdToken() {
   if (cognitoIdpAuth == null && typeof localStorage != "undefined") {
     const storedAuth = localStorage.getItem("cognitoIdpAuth");
     if (storedAuth != null) {
@@ -62,20 +73,50 @@ function getIdToken() {
     }
   }
 
-  if (cognitoIdpAuth != null && cognitoIdpAuth.expires < (+(new Date()) + 60)) {
+  if (cognitoIdpAuth == null) {
     return null;
   }
-  return cognitoIdpAuth?.idToken;
+  
+  if (cognitoIdpAuth.expires > (+(new Date()) - 60)) {
+    return cognitoIdpAuth.idToken;
+  }
+
+  const {
+    AuthenticationResult: {
+      IdToken: idToken,
+      RefreshToken: refreshToken,
+      ExpiresIn: expiresIn,
+    }
+  }: GetTokensFromRefreshTokenResponse = await (await fetch("https://cognito-idp.us-west-2.amazonaws.com/", {
+    method: "POST",
+    headers: {
+      "X-Amz-Target": "AWSCognitoIdentityProviderService.GetTokensFromRefreshToken",
+      "Content-Type": "application/x-amz-json-1.1"
+    },
+    body: JSON.stringify({
+      "ClientId": getProps().userPoolClientId,
+      "RefreshToken": cognitoIdpAuth.refreshToken
+    })
+  })).json();
+
+  const newCognitoIdpAuth: CognitoIdpAuth = {
+    idToken,
+    refreshToken: refreshToken ?? cognitoIdpAuth.refreshToken,
+    expires: +(new Date()) + (expiresIn*1000),
+  }
+
+  localStorage.setItem("cognitoIdpAuth", JSON.stringify(newCognitoIdpAuth));
+  return newCognitoIdpAuth.idToken;
 }
 
-export function loggedIn(): boolean {
-  return getIdToken() != null;
+export async function loggedIn(): Promise<boolean> {
+  return getOrRefreshIdToken() != null;
 }
 
 let identityId: string|null = null;
 async function getId() {
   if (identityId == null) {
-    const idToken = getIdToken();
+    const idToken = await getOrRefreshIdToken();
     if (idToken == null) {
       throw new Error("No id token. Need to re-login");
     }
@@ -117,7 +158,7 @@ interface AwsCredentials {
 let credentials: AwsCredentials|null = null;
 async function getCredentials(): Promise<AwsCredentials|null> {
   if (credentials == null) {
-    const idToken = getIdToken();
+    const idToken = await getOrRefreshIdToken();
     if (idToken == null) {
       throw new Error("No id token. Need to re-login");
     }

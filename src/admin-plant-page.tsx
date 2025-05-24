@@ -25,17 +25,17 @@ export function AdminPlantPage({
   }>({ loading: true })
   
   useEffect(() => {
-    if (!loggedIn()) {
-      const redirect = `${location.pathname}${location.search}`
-      location.assign(`/journalin?${new URLSearchParams({ redirect })}`);
-      return;
-    }
-
-    if (plantId == null) {
-      return;
-    }
-
     (async () => {
+      if (!await loggedIn()) {
+        const redirect = `${location.pathname}${location.search}`
+        location.assign(`/login?${new URLSearchParams({ redirect })}`);
+        return;
+      }
+
+      if (plantId == null) {
+        return;
+      }
+      
       try {
         setState({ result: await getPlant(plantId) });
       } catch (e) {
