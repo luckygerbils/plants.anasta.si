@@ -1,7 +1,7 @@
 import { PhotoImg } from "./components/photo-img";
 import { comparing, dateCompare, nullsFirst, reversed } from "./util/sorting";
 import { Plant, TAG_KEYS } from "./model/plant";
-import { HamburgerIcon, ImageIcon, QuestionIcon } from "./components/icons";
+import { HamburgerIcon, ImageIcon, PencilSquareIcon, QuestionIcon } from "./components/icons";
 
 interface PublicPageProps {
   plant: Plant,
@@ -33,7 +33,6 @@ export function PublicPlantPage({
             {scientificName}
           </h2>}
       </header>
-      <a className="edit-button" href={`/admin/plant?plantId=${plantId}`}>Edit</a>
       <section className="tags">
         <ul>
           {TAG_KEYS.filter(key => key in tags)
@@ -68,10 +67,8 @@ export function PublicPlantPage({
         )}
       </section>
       <section className="links">
-        <ul>
-          {(links ?? []).map(({site, url}) => 
-            <li key={site}><a href={url}>{site}</a></li>)}
-        </ul>
+        {(links ?? []).map(({site, url}) => 
+          <a key={site} href={url}>{site}</a>)}
       </section>
       <section className="photos">
         {sortedPhotos.length > 0 && (
@@ -94,6 +91,7 @@ export function PublicPlantPage({
           </div>
         )}
       </section>
+      <a className="edit-button" href={`/admin/plant?plantId=${plantId}`}><PencilSquareIcon /></a>
     </>
   )
 }

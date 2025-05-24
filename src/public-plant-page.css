@@ -1,2 +1,24 @@
 @import "default.css";
 @import "common-plant-page.css";
+
+.edit-button {
+  display: none;
+  body.previously-logged-in & {
+    display: flex;
+  }
+
+  position: fixed;
+  bottom: calc(5*var(--spacing));
+  right: calc(5*var(--spacing));
+  width: calc(16*var(--spacing));
+  height: calc(16*var(--spacing));
+  border-radius: calc(infinity * 1px);
+  border: none;
+
+  justify-content: center;
+  align-items: center;
+  
+  -webkit-tap-highlight-color: transparent;
+  background-color: var(--bg-primary);
+  color: var(--fg-dark);
+}

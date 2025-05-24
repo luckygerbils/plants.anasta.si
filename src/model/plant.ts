@@ -27,7 +27,6 @@ export interface JournalEntry {
   id: string,
   text?: string,
   date: string,
-  photos?: PhotoId[],
 }
 export type PartialJournalEntry = Omit<JournalEntry, "id">;
 

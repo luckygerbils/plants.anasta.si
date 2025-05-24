@@ -4,24 +4,11 @@
   font-style: italic;
 }
 
-.edit-button {
-  display: none;
-  padding: calc(2*var(--spacing));
-  padding-top: 0;
-  margin-top: calc(-2*var(--spacing));
-  margin-bottom: calc(2*var(--spacing));
-  background-color: var(--bg-primary);
-  color: var(--fg-dark);
-  
-  body.previously-logged-in & {
-    display: block;
-  }
-}
-
 section.tags {
   margin: 0 calc(2*var(--spacing));
   margin-bottom: calc(2*var(--spacing));
   padding: calc(2*var(--spacing));
+  padding-bottom: 0;
   background-color: var(--bg-table-stripe-odd);
 
   ul {
