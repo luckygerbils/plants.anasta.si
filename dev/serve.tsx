@@ -134,7 +134,7 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
         }
       },
       {
-        pattern: /^admin$/,
+        pattern: /^admin\/list$/,
         handler: async (_: unknown, url: URL) => {
           return { 
             status: 200, 

@@ -35,25 +35,17 @@ export class StaticSiteHtmlPathsDeployment extends BucketDeployment {
     super(scope, "DeployStaticSiteHtmlPaths", {
       sources: [
         Source.asset(`../dist/website/${instance.name}`),
-        ...[
-            ["admin/index.html", "admin"] as const, 
-            "admin/plant", 
-            "login"
-        ].map(page => {
-          const pageKey = typeof page === "string" ? page : page[1];
-          const pageFile = typeof page === "string" ? page : page[0];
-          return Source.data(
-            pageKey,
-            readFileSync(`../dist/website/${instance.name}/${pageFile}`, { encoding: "utf-8"})
-              .replace(/window.props = "{}"/m, 'window.props = ' + JSON.stringify(JSON.stringify({
-                userPoolId: identityPool.userPool.userPoolId,
-                userPoolClientId: identityPool.userPoolClient.userPoolClientId,
-                identityPoolId: identityPool.identityPoolId,
-                apiUrl: lambdas.api.url.url,
-                region: instance.region,
-              })))
-          );
-        }),
+        ...["admin/list", "admin/plant", "login"].map(page => Source.data(
+          page,
+          readFileSync(`../dist/website/${instance.name}/${page}`, { encoding: "utf-8"})
+            .replace(/window.props = "{}"/m, 'window.props = ' + JSON.stringify(JSON.stringify({
+              userPoolId: identityPool.userPool.userPoolId,
+              userPoolClientId: identityPool.userPoolClient.userPoolClientId,
+              identityPoolId: identityPool.identityPoolId,
+              apiUrl: lambdas.api.url.url,
+              region: instance.region,
+            })))
+        )),
       ],
       destinationBucket: buckets.staticSite,
       distribution: distributions.primary,

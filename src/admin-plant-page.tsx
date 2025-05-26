@@ -177,7 +177,7 @@ function AdminPlantPageInternal({
     } catch (e) {
       setError((e as Error).message);
     }
-    window.location.assign(`/admin`);
+    window.location.assign(`/admin/list`);
     setDeleting(false);
   }
 
@@ -424,7 +424,7 @@ function AdminPlantPageInternal({
         {!(editing || addPhotoOpen) && (
           <>
             {prev ? <a href={`/admin/plant?plantId=${prev}`}><ChevronLeft /></a> : <div className="disabled"><ChevronLeft /></div>}
-            <a href="/admin"><HamburgerIcon /></a>
+            <a href="/admin/list"><HamburgerIcon /></a>
             <a href={`/${plant.id}`}><PeopleIcon /></a>
             <button type="button" onClick={() => setEditing(true)}><PencilSquareIcon /></button>
             <button type="button" onClick={() => setAddPhotoOpen(true)}><ImagePlusIcon /></button>
