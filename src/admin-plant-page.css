@@ -52,6 +52,7 @@ main > nav {
   position: sticky;
   bottom: 0;
   width: 100vw;
+  max-width: 8.5in;
 
   display: flex;
   flex-direction: row;

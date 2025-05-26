@@ -63,6 +63,7 @@ main > nav {
   position: sticky;
   top: 0;
   width: 100vw;
+  max-width: 8.5in;
 
   & > div {
     display: flex;
