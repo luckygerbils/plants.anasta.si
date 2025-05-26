@@ -259,7 +259,7 @@ function AdminPlantPageInternal({
           <ul>
             {TAG_KEYS.filter(key => key in tags).map(key => 
               <li key={key} className="tag" onClick={() => setSelectedTag({ key, value: tags[key] })}>
-                {key}: {tags[key]}
+                <a href={`/admin/list?${new URLSearchParams({[key as string]: tags[key]!})}`}>{key}: {tags[key]}</a>
               </li>
             )}
           </ul>
@@ -293,33 +293,34 @@ function AdminPlantPageInternal({
           })
         )}
       </section>
-      {description && description.length > 0 && (
+      {((description && description.length > 0) || editing) && (
         <section className={`description ${editing ? "editing" : ""}`}>
           {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml */}
           <div dangerouslySetInnerHTML={{__html: markdown(description)}}></div>
           {editing && (
-            <AutosizeTextArea wrap="hard" value={description} onChange={e => setDescription(e.target.value)} />
+            <AutosizeTextArea value={description} onChange={e => setDescription(e.target.value)} />
           )}
         </section>
       )}
-      {/* {selectedTag && <TagPopup allPlants={allPlants} tag={selectedTag} onClose={() => setSelectedTag(null)} />} */}
-      <section className={`links ${editing ? "editing" : ""}`}>
-        {(links ?? []).map(({site, url}, index) => 
-          // eslint-disable-next-line @eslint-react/no-array-index-key
-          <Fragment key={index}>
-            {!editing && <a href={url}>{site}</a>}
-            {editing && <>
-                <input value={site} onChange={e => setLinks(links => [...links.slice(0, index), { ...links[index], site: e.target.value }, ...links.slice(index+1)])} />
-                <input value={url} onChange={e => setLinks(links => [...links.slice(0, index), { ...links[index], url: e.target.value }, ...links.slice(index+1)])} />
-                <button type="button" onClick={() => setLinks(links => [...links.slice(0, index), ...links.slice(index+1)])}><XIcon /></button>
-              </>}
-          </Fragment>)}
-          {editing && (
-            <button type="button" className="add-button" onClick={() => setLinks(links => [...links, { site: "", url: "" }])}>
-              <PlusIcon /> Add Link
-            </button>
-          )}
-      </section>
+      {((links && links.length > 0) || editing) && (
+        <section className={`links ${editing ? "editing" : ""}`}>
+          {links.map(({site, url}, index) => 
+            // eslint-disable-next-line @eslint-react/no-array-index-key
+            <Fragment key={index}>
+              {!editing && <a href={url}>{site}</a>}
+              {editing && <>
+                  <input value={site} onChange={e => setLinks(links => [...links.slice(0, index), { ...links[index], site: e.target.value }, ...links.slice(index+1)])} />
+                  <input value={url} onChange={e => setLinks(links => [...links.slice(0, index), { ...links[index], url: e.target.value }, ...links.slice(index+1)])} />
+                  <button type="button" onClick={() => setLinks(links => [...links.slice(0, index), ...links.slice(index+1)])}><XIcon /></button>
+                </>}
+            </Fragment>)}
+            {editing && (
+              <button type="button" className="add-button" onClick={() => setLinks(links => [...links, { site: "", url: "" }])}>
+                <PlusIcon /> Add Link
+              </button>
+            )}
+        </section>
+      )}
       <section className="photos">
         {sortedPhotos.length > 0 && (
           <ul>

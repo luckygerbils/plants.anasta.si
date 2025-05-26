@@ -7,6 +7,8 @@ import { PhotoImg } from "./components/photo-img";
 import { comparing, localeCompare, reversed } from "./util/sorting";
 
 interface AdminIndexPageProps {
+  defaultFilterKey?: string,
+  defaultFilterValue?: string,
 }
 
 export function AdminIndexPage(props: AdminIndexPageProps) {
@@ -41,20 +43,24 @@ export function AdminIndexPage(props: AdminIndexPageProps) {
   } else if (error) {
     return <div>{error.message}</div>;
   } else {
-    return <AdminIndexPageInternal plants={result!.plants} />
+    return <AdminIndexPageInternal {...props} plants={result!.plants} />
   }
 }
 
 interface AdminIndexPageInternalProps {
   plants: Plant[],
+  defaultFilterKey?: string,
+  defaultFilterValue?: string,
 }
 
 function AdminIndexPageInternal({
   plants,
+  defaultFilterKey,
+  defaultFilterValue,
 }: AdminIndexPageInternalProps) {
   
-  const [ filterKey, setFilterKey ] = useState<TagKey | "name">("name");
-  const [ filterValue, setFilterValue ] = useState("");
+  const [ filterKey, setFilterKey ] = useState<TagKey | "name">(defaultFilterKey as TagKey ?? "name");
+  const [ filterValue, setFilterValue ] = useState(defaultFilterValue ?? "");
   const [ creating, setCreating ] = useState(false);
   const [ error, setError ] = useState<Error|null>(null);
 
@@ -106,10 +112,7 @@ function AdminIndexPageInternal({
 
   return (
     <>
-      <nav>            
-        <div>
-          
-        </div>
+      <nav>
         <div>
           <select value={filterKey} onChange={e => { setFilterKey(e.target.value as typeof filterKey); setFilterValue(""); }}>
             <option value="name">Name</option>
@@ -128,7 +131,6 @@ function AdminIndexPageInternal({
                   <option key={tagValue}>{tagValue}</option>
                 )}
               </select>
-              <div className="filter-value-select-value">{filterValue}</div>
             </>}
           {["public", "bonsai", "needsIdentification", "needsLabel", "likelyDead"].includes(filterKey) && 
             <input type="checkbox" checked={filterValue !== "false"} onChange={e => setFilterValue(String(e.target.checked))} />}

@@ -8,7 +8,9 @@ declare global {
 }
 
 const search = new URLSearchParams(location.search);
+const defaultFilterKey = search.keys().next().value;
+const defaultFilterValue = (defaultFilterKey ? search.get(defaultFilterKey) : undefined) ?? undefined;
 hydrateRoot(
   document.getElementById("root")!, 
-  createElement(AdminIndexPage, {})
+  createElement(AdminIndexPage, { defaultFilterKey, defaultFilterValue })
 );
