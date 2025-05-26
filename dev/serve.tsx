@@ -22,11 +22,14 @@ import { existsSync } from "node:fs";
 import { LoginPage } from "../src/login-page";
 import { PublicIndexPage } from "../src/public-index-page";
 import { extname } from "node:path";
+import { AdminIndexPage } from "../src/admin-index-page";
 
 await Promise.all(
   [
+    ["src/admin-index-page-script.ts", "dist/website/Beta/js/admin/index.js"],
     ["src/admin-plant-page-script.ts", "dist/website/Beta/js/admin/plant.js"],
     ["src/login-page-script.ts", "dist/website/Beta/js/login.js"],
+    [`src/admin-index-page.css`, `dist/website/Beta/css/admin/index.css`],
     [`src/admin-plant-page.css`, `dist/website/Beta/css/admin/plant.css`],
     [`src/login-page.css`, `dist/website/Beta/css/login.css`],
     [`src/public-index-page.css`, `dist/website/Beta/css/index.css`],
@@ -131,6 +134,22 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
         }
       },
       {
+        pattern: /^admin$/,
+        handler: async (_: unknown, url: URL) => {
+          return { 
+            status: 200, 
+            body: "<!DOCTYPE html>\n" + renderToString(
+                <Html title="Admin" script="js/admin/index.js" css="css/admin/index.css" props={props}>
+                  <AdminIndexPage />
+                </Html>
+              ),
+            headers: {
+              "content-type": "text/html",
+            }
+          };
+        }
+      },
+      {
         pattern: /^admin\/plant/,
         handler: async (_: unknown, url: URL) => {
           return { 
@@ -161,6 +180,20 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
             }
           };
         }
+      },
+      {
+        pattern: /^api\/getAllPlants$/,
+        handler: async () => {
+          return {
+            status: 200,
+            body: JSON.stringify({ 
+              plants,
+            }),
+            headers: {
+              "content-type": "application/json"
+            }
+          };
+        },
       },
       {
         pattern: /^api\/getPlant$/,

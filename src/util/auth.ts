@@ -110,7 +110,7 @@ async function getOrRefreshIdToken() {
 }
 
 export async function loggedIn(): Promise<boolean> {
-  return getOrRefreshIdToken() != null;
+  return await getOrRefreshIdToken() != null;
 }
 
 let identityId: string|null = null;

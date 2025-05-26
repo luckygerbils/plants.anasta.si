@@ -41,6 +41,11 @@ export const handler: LambdaFunctionURLHandler = async (event: LambdaFunctionURL
 
 async function invoke(operation: string, input: unknown) {
   switch (operation) {
+    case "getAllPlants": {
+      return {
+        plants: await getPlants(),
+      };
+    }
     case "getPlant": {
       const { plantId } = JSON.parse(input as string);
       const plants = await getPlants();

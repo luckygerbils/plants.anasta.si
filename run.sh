@@ -106,7 +106,11 @@ release() {
 
 synth() {
     #/ build the CDK project
-    in:cdk npx cdk synth
+    if [ -z "${HAVE_TOOLS:-}" ] && [ -z "${CI:-}" ]; then 
+        sso-login-if-necessary
+        exec "$0" with:tools synth --profile cdk
+    fi
+    in:cdk npx cdk synth "$@"
 }
 
 clean() {
@@ -125,6 +129,12 @@ dev() {
         npx tsx watch --include './src/**/*' dev/serve.tsx -- --port=8443 --key="$DEV_HTTPS_KEY" --cert="$DEV_HTTPS_CERT"
 }
 
+sso-login-if-necessary() {
+    if $(cat ~/.aws/sso/cache/*.json | jq -s 'map(select(.startUrl == "https://d-92674aadf6.awsapps.com/start"))[0] | .expiresAt | fromdateiso8601 < now'); then
+        with:tools aws --profile AdministratorAccess sso login --use-device-code
+    fi
+}
+
 register-dns() {
     #/ register DEV_HOSTNAME as an A record pointing to this machine's local network IP
     #/ an actual hostname is necessary to test over HTTPS and this can't just be an /etc/hosts entry because I want to be able to test from my phone as well
@@ -138,6 +148,7 @@ register-dns() {
 }
 
 get-data-bucket-name() {
+    sso-login-if-necessary
     local stage=${1?Stage is required} 
      aws --region us-west-2 --profile AdministratorAccess \
             cloudformation describe-stack-resources \
@@ -147,6 +158,7 @@ get-data-bucket-name() {
 }
 
 copy-photos() {
+    sso-login-if-necessary
     local stage=${1?Stage is required} 
     local data_bucket_name
     data_bucket_name=$(get-data-bucket-name "$stage")
@@ -155,6 +167,7 @@ copy-photos() {
 }
 
 backup-plants() {
+    sso-login-if-necessary
     local stage=${1?Stage is required} 
     local data_bucket_name
     data_bucket_name=$(get-data-bucket-name "$stage")
@@ -163,6 +176,7 @@ backup-plants() {
 }
 
 restore-plants() {
+    sso-login-if-necessary
     local stage=${1?Stage is required} 
     local data_bucket_name
     data_bucket_name=$(get-data-bucket-name "$stage")
@@ -171,6 +185,7 @@ restore-plants() {
 }
 
 create-user() {
+    sso-login-if-necessary
     local stage=${1?Stage is required} username=${2?Username is required}
     local user_pool_id password
     user_pool_id=$(
@@ -199,6 +214,7 @@ create-user() {
 }
 
 tail() {
+    sso-login-if-necessary
     local stage=${1?-Stage is required}
     local lambda_name
     lambda_name=$(

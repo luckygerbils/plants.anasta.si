@@ -4,7 +4,7 @@ import { PhotoImg } from "./components/photo-img";
 import { comparing, dateCompare, nullsFirst, reversed } from "./util/sorting";
 import { JournalEntry, PartialJournalEntry, Plant, Tag, TAG_KEYS, TagKey } from "./model/plant";
 import { loggedIn } from "./util/auth";
-import { CalendarIcon, CalendarPlusIcon, CameraIcon, ChevronLeft, ChevronRight, ImageIcon, ImagePlusIcon, PencilSquareIcon, PeopleIcon, PlusIcon, SaveIcon, Spinner, TrashIcon, UploadIcon, XIcon } from "./components/icons";
+import { CalendarIcon, CalendarPlusIcon, CameraIcon, ChevronLeft, ChevronRight, HamburgerIcon, ImageIcon, ImagePlusIcon, PencilSquareIcon, PeopleIcon, PlusIcon, SaveIcon, Spinner, TrashIcon, UploadIcon, XIcon } from "./components/icons";
 import { deletePhoto, deletePlant, getPlant, putPlant, uploadPhoto } from "./util/api";
 import { JournalEntryPopup } from "./journal-entry-popup";
 import { markdown } from "./util/markdown";
@@ -87,7 +87,6 @@ function AdminPlantPageInternal({
   const [ editing, setEditing ] = useState(defaultEditing ?? false);
   const [ addPhotoOpen, setAddPhotoOpen ] = useState(false);
 
-  const [ creating, setCreating ] = useState(false);
   const [ saving, setSaving ] = useState(false);
   const [ deleting, setDeleting ] = useState(false);
   const [ deletingPhoto, setDeletingPhoto ] = useState(false);
@@ -151,25 +150,6 @@ function AdminPlantPageInternal({
     }
   }
 
-  async function createPlant() {
-    setCreating(true);
-    try {
-      const id = crypto.randomUUID().substring(0, 8);
-      await putPlant({
-        id,
-        name: "",
-        scientificName: "",
-        description: "",
-        tags: {},
-        photos: [],
-        links: [],
-      });
-      location.assign(`/admin/plant?plantId=${id}&edit=true`);
-    } catch (e) {
-      setError((e as Error).message);
-    }
-  }
-
   async function doSavePlant() {
     setSaving(true);
     try {
@@ -197,7 +177,7 @@ function AdminPlantPageInternal({
     } catch (e) {
       setError((e as Error).message);
     }
-    window.location.assign(`/${next}`);
+    window.location.assign(`/admin`);
     setDeleting(false);
   }
 
@@ -444,8 +424,8 @@ function AdminPlantPageInternal({
         {!(editing || addPhotoOpen) && (
           <>
             {prev ? <a href={`/admin/plant?plantId=${prev}`}><ChevronLeft /></a> : <div className="disabled"><ChevronLeft /></div>}
+            <a href="/admin"><HamburgerIcon /></a>
             <a href={`/${plant.id}`}><PeopleIcon /></a>
-            <button type="button" onClick={createPlant}><PlusIcon /></button>
             <button type="button" onClick={() => setEditing(true)}><PencilSquareIcon /></button>
             <button type="button" onClick={() => setAddPhotoOpen(true)}><ImagePlusIcon /></button>
             <button type="button" onClick={() => setEditingJournalEntry({ date: new Date().toISOString().substring(0, 10) })}><CalendarPlusIcon /></button>

@@ -1,6 +1,19 @@
 import { Photo, Plant } from "../model/plant";
 import { apiFetch } from "./auth";
 
+interface GetAllPlantsResponse {
+  plants: Plant[],
+}
+
+export async function getAllPlants(): Promise<GetAllPlantsResponse> {
+  const response = await apiFetch(`/api/getAllPlants`, { 
+    method: "POST", 
+    headers: { "content-type": "application/json" }, 
+    body: JSON.stringify({}) 
+  });
+  return response.json();
+}
+
 interface GetPlantResponse { 
   plantId: string,
   plant?: Plant, 

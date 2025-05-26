@@ -31,9 +31,11 @@ export function LoginPage({ searchParams }: LoginPageProps) {
   }  
 
   useEffect(() => {
-    if (loggedIn()) {
-      redirect();
-    }
+    (async () => {
+      if (await loggedIn()) {
+        redirect();
+      }
+    })();
   }, []);
 
   return (

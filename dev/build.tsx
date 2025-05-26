@@ -12,6 +12,7 @@ import { LoginPage } from "../src/login-page";
 import { basename, dirname, extname, normalize, relative } from "node:path";
 import { createHash } from "node:crypto";
 import { ReactNode } from "react";
+import { AdminIndexPage } from "../src/admin-index-page";
 
 const plantsFile = process.argv[2];
 if (plantsFile == null) {
@@ -104,6 +105,7 @@ const staticFilesWithoutHashes = Promise.all(
 
 const scriptEntryPoints = Promise.all(
   [
+    [`${srcDir}/admin-index-page-script.ts`, `js/admin/index.js`],
     [`${srcDir}/admin-plant-page-script.ts`, `js/admin/plant.js`],
     [`${srcDir}/login-page-script.ts`, `js/login.js`]
   ].map(([ entryPoint, outfile ]) => bundle(entryPoint, outfile))
@@ -111,6 +113,7 @@ const scriptEntryPoints = Promise.all(
 
 const cssFiles = Promise.all(
   [
+    [`${srcDir}/admin-index-page.css`, `css/admin/index.css`],
     [`${srcDir}/admin-plant-page.css`, `css/admin/plant.css`],
     [`${srcDir}/login-page.css`, `css/login.css`],
     [`${srcDir}/public-index-page.css`, `css/index.css`],
@@ -121,6 +124,7 @@ const cssFiles = Promise.all(
 const htmlFiles = Promise.all([staticFilesWithHashes, scriptEntryPoints, cssFiles])
 .then(() => Promise.all([
   render("index.html", { title: "All Plants", css: "css/index.css" }, <PublicIndexPage allPlants={publicPlants} />),
+  render("admin", { title: "Admin", script: `js/admin/index.js`, css: "css/admin/index.css", props: {}}, <AdminIndexPage />),
   render("admin/plant", { title: "Edit", script: `js/admin/plant.js`, css: "css/admin/plant.css", props: {}}, <AdminPlantPage />),
   render("login", { title: "Login", script: `js/login.js`, css: "css/login.css", props: {}}, <LoginPage />),
   Promise.all(
