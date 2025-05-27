@@ -74,7 +74,7 @@ export async function uploadPhoto(plantId: string, photo: { dataUrl: string, }, 
     photoId: string,
     modifyDate: string,
   };
-  return { ...photo, id, modifyDate, };
+  return { id, modifyDate, };
 }
 
 export async function deletePhoto(plantId: string, photoId: string) {
