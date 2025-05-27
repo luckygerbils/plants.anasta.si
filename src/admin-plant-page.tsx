@@ -98,7 +98,7 @@ function AdminPlantPageInternal({
   const [ description, setDescription ] = useState(plant.description ?? "");
   const [ tags, setTags ] = useState(plant.tags);
   const [ photos, setPhotos ] = useState(plant.photos);
-  const [ links, setLinks ] = useState(plant.links);
+  const [ links, setLinks ] = useState(plant.links ?? []);
   const [ journal, setJournal ] = useState(plant.journal ?? []);
 
   const [ error, setError ] = useState<string|null>(null);
@@ -225,7 +225,8 @@ function AdminPlantPageInternal({
 
       {cameraOpen && 
         <CameraPopup 
-          onCancel={() => setCameraOpen(false)} 
+          onCancel={() => setCameraOpen(false)}
+          overlayPhotoId={sortedPhotos.length > 0 ? `${plant.id}/${sortedPhotos[0].id}` : undefined}
           onCapture={(photo) => { 
             setCameraOpen(false); 
             setReviewPhoto(photo);
@@ -356,25 +357,18 @@ function AdminPlantPageInternal({
           </div>
         )}
       </section>
-      <section className="journal">
-        {sortedJournal.length > 0 && sortedJournal.map(entry => (
-            <div key={entry.id} className="journal-entry">
-              <div className="date">{entry.date.substring(0, 10)}</div>
-              {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml */}
-              <div className="text" dangerouslySetInnerHTML={{__html: markdown(entry.text ?? "")}}></div>
-              {editing && <button type="button" onClick={() => setEditingJournalEntry(entry)}>Edit</button>}
+      {sortedJournal.length > 0 && 
+        <section className="journal">
+          {sortedJournal.map(entry => (
+              <div key={entry.id} className="journal-entry">
+                <div className="date">{entry.date.substring(0, 10)}</div>
+                {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml */}
+                <div className="text" dangerouslySetInnerHTML={{__html: markdown(entry.text ?? "")}}></div>
+                {editing && <button type="button" onClick={() => setEditingJournalEntry(entry)}>Edit</button>}
 
-            </div>
-          ))}
-        {sortedJournal.length === 0 && (
-          <div className="no-journal-placeholder">
-            <CalendarIcon size="xl" />
-            <button type="button" onClick={() => setEditingJournalEntry({ date: new Date().toISOString().substring(0, 10) })}>
-              <CalendarPlusIcon className="mr-2"/> Add a Journal Entry
-            </button>
-          </div>
-        )}
-      </section>
+              </div>
+            ))}
+        </section>}
       {editingJournalEntry != null && (
         <JournalEntryPopup 
           journalEntry={editingJournalEntry}

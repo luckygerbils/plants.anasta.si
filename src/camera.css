@@ -1,18 +1,21 @@
 .camera-view {
   width: 100vw;
   height: 100dvh;
-  display: grid;
-  align-items: center;
-  justify-content: center;
   position: fixed;
-  top: 0;
-  left: 0;
   z-index: 10;
   background-color: black;
 
   & video {
-    max-width: 100%;
-    max-height: 100%;
+    position: fixed;
+    object-fit: fill;
+    width: 100vw;
+  }
+
+  & .overlay {
+    position: fixed;
+    object-fit: fill;
+    width: 100vw;
+    opacity: 30%;
   }
 
   & .buttons button.shutter {
@@ -23,6 +26,10 @@
     border: 3px var(--bg-light);
     padding: calc(1.5*var(--spacing));
     background-clip: content-box;
+  }
+
+  & .buttons button.overlay-toggle.invisible {
+    visibility: hidden;
   }
 }
 

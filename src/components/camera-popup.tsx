@@ -2,10 +2,6 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import { ArrowClockwiseIcon, ArrowCounterclockwiseIcon, ArrowLeftIcon, EyeClosedIcon, EyeIcon, SaveIcon, Spinner } from "./icons";
 import { PhotoImg } from "./photo-img";
 
-function classNames(...args: (string|boolean)[]) {
-  return "";
-}
-
 interface CameraPopupProps {
   overlayPhotoId?: string,
   onCancel: () => void,
@@ -67,12 +63,12 @@ export function CameraPopup({
     return () => screen.orientation.removeEventListener("change", onOrientationChange);
   }, []);
 
-  // const overlay = useRef<HTMLDivElement>(null);
-  // useEffect(() => {
-  //   if (!document.fullscreenElement) {
-  //     overlay?.current?.requestFullscreen().catch(() => {});
-  //   }
-  // });
+  const overlay = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!document.fullscreenElement) {
+      overlay?.current?.requestFullscreen().catch(() => {});
+    }
+  });
 
   const [overlayImgRef, setOverlayImageRef] = useState<{naturalWidth?: number, naturalHeight?: number}|null>(null);
   const overlayIsLandscape = overlayImgRef
@@ -100,47 +96,19 @@ export function CameraPopup({
     "portrait-secondary": "rotate-180",
     "portrait-primary": "",
   }[orientationType];
-  // className={classNames(
-  //   "w-screen h-dvh grid items-center justify-center fixed top-0 bg-black z-10", 
-  //   orientationType.startsWith("portrait") && "",
-  //   orientationType.startsWith("landscape") && "flex-col"
-  // )}
-  // classNames(
-  //   orientationType.startsWith("portrait") && "mb-10",
-  //   orientationType.startsWith("landscape") && "h-dvh mr-10",
-  // )
   return (
-    <div className={`camera-view ${`orientation-${orientationType.split("-")[0]}`}`}>
+    <div className={`camera-view ${`orientation-${orientationType.split("-")[0]}`}`} ref={overlay}>
       <video 
         ref={video} 
-        muted 
-        style={{gridRow: 1, gridColumn: 1}}  />
+        muted />
       
       {showOverlay && overlayPhotoId &&
         <PhotoImg ref={setOverlayImageRef}
           photoId={overlayPhotoId} 
           sizes="100vw"
-          style={{
-            gridRow: 1, 
-            gridColumn: 1, 
-            transform: overlayIsLandscape ? 
-              `scale(${window.innerWidth/overlayImgRef.naturalHeight!}) rotate(90deg)` : undefined,
-            // height: overlayIsLandscape ? "100dvh" : "100dvw",
-            // width: overlayIsLandscape ? "100dvw" : "100dvh",
-          }}
-          className={classNames(
-            "opacity-30 object-fill",
-            // overlayIsLandscape && "rotate-90",
-            // overlayIsLandscape && "h-[100dvw]",
-            orientationType.startsWith("portrait") && "mb-10",
-            orientationType.startsWith("landscape") && "h-dvh mr-10",
-          )}/>}
-      
-      {/* classNames(
-          "absolute flex items-center justify-evenly",
-          orientationType.startsWith("portrait") && "bottom-0 pb-10 w-screen",
-          orientationType.startsWith("landscape") && "flex-col-reverse right-0 pr-10 h-dvh"
-        ) */}
+          className="overlay"
+        />}
+
       <div className={`buttons`}>
         <button type="button"
           onClick={onCancel}
@@ -150,7 +118,7 @@ export function CameraPopup({
         <button type="button" className="shutter"onClick={capture}></button>
         <button type="button"
           onClick={() => setShowOverlay(s => !s)}
-          className={classNames(overlayPhotoId == null && "invisible")}
+          className={`overlay-toggle ${overlayPhotoId == null ? "invisible" : ""}`}
         >
           {showOverlay ? <EyeClosedIcon className={iconRotateClassName} /> : <EyeIcon className={iconRotateClassName} />}
         </button>
@@ -196,7 +164,6 @@ export function ReviewView({
     <div className={`review-view`}>
       <img src={photo.dataUrl} sizes="100vw"
             style={{
-              gridRow: 1, gridColumn: 1, 
               transform: `rotate(${rotation}deg)`,
               height: rotation % 180 === 0 ? "100dvh" : "100dvw",
               width: rotation % 180 === 0 ? "100dvw" : "100dvh",
