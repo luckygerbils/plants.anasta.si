@@ -340,38 +340,41 @@ function AdminPlantPageInternal({
         </section>
       )}
       <section className="photos">
-        <nav>
-          {photoTags
-            .map(tag => (
-              <label key={tag}>
-                <input type="radio" name="tags" defaultChecked={photoTags.includes("timeline") ? tag === "timeline" : tag === "all"} /> {tag}
-              </label>
-            ))}
-        </nav>
         {sortedPhotos.length > 0 && (
-          photoTags.map(tag =>
-            <ul key={tag}>
-              {sortedPhotosByTag.get(tag)!.map((photo, i) => (
-                <li key={photo.id} ref={photo.id === lastUploadedPhotoId ? e => e?.scrollIntoView() : undefined}>
-                  <div className="counter">
-                    <span>{i+1}/{sortedPhotosByTag.get(tag)!.length}</span>
-                    {editing && (
-                      <>
-                        <button type="button" className="edit" disabled={buttonsDisabled}
-                          onClick={() => setEditingPhoto(photo)}
-                        >
-                          <PencilSquareIcon />
-                        </button>
-                      </>
-                    )}
-                  </div>
-                  <div className="date">{photo.modifyDate?.substring(0, 10)}</div>
-                  <div className="tags">{(photo.tags ?? []).map(tag => <span key={tag}>{tag}</span>)}</div>
-                  <PhotoImg loading="lazy" sizes="100vw" photoId={`${plant.id}/${photo.id}`} />
-                </li>
-              ))}
-            </ul>)
-          )}
+          <>
+            <nav>
+              {photoTags
+                .map(tag => (
+                  <label key={tag}>
+                    <input type="radio" name="tags" defaultChecked={photoTags.includes("timeline") ? tag === "timeline" : tag === "all"} /> {tag}
+                  </label>
+                ))}
+            </nav>
+            {photoTags.map(tag =>
+              <ul key={tag}>
+                {sortedPhotosByTag.get(tag)!.map((photo, i) => (
+                  <li key={photo.id} ref={photo.id === lastUploadedPhotoId ? e => e?.scrollIntoView() : undefined}>
+                    <div className="counter">
+                      <span>{i+1}/{sortedPhotosByTag.get(tag)!.length}</span>
+                      {editing && (
+                        <>
+                          <button type="button" className="edit" disabled={buttonsDisabled}
+                            onClick={() => setEditingPhoto(photo)}
+                          >
+                            <PencilSquareIcon />
+                          </button>
+                        </>
+                      )}
+                    </div>
+                    <div className="date">{photo.modifyDate?.substring(0, 10)}</div>
+                    <div className="tags">{(photo.tags ?? []).map(tag => <span key={tag}>{tag}</span>)}</div>
+                    <PhotoImg loading="lazy" sizes="100vw" photoId={`${plant.id}/${photo.id}`} />
+                  </li>
+                ))}
+              </ul>
+            )}
+          </>
+        )}
         {sortedPhotos.length === 0 && (
           <div className="no-photos-placeholder">
             <ImageIcon size="2xl" />

@@ -93,33 +93,35 @@ export function PublicPlantPage({
           <a key={site} href={url}>{site}</a>)}
       </section>
       <section className="photos">
-        <nav>
-          {photoTags
-            .map(tag => (
-              <label key={tag}>
-                <input type="radio" name="tags" defaultChecked={photoTags.includes("timeline") ? tag === "timeline" : tag === "all"} /> {tag}
-              </label>
-            ))}
-        </nav>
         {sortedPhotos.length > 0 && (
-          photoTags.map(tag => (
-            <ul key={tag}>
-              {sortedPhotosByTag.get(tag)!.map(({ id, modifyDate }, i) => (
-                <li key={id}>
-                  <div className="counter">
-                    <span>{i+1}/{sortedPhotosByTag.get(tag)!.length}</span>
-                  </div>
-                  <div className="date">{modifyDate?.substring(0, 10)}</div>
-                  
-                  <PhotoImg loading="lazy" sizes="100vw" photoId={`${plantId}/${id}`} />
-                </li>
-              ))}
-            </ul>
-          ))
+          <>
+            <nav>
+              {photoTags
+                .map(tag => (
+                  <label key={tag}>
+                    <input type="radio" name="tags" defaultChecked={photoTags.includes("timeline") ? tag === "timeline" : tag === "all"} /> {tag}
+                  </label>
+                ))}
+            </nav>
+            {photoTags.map(tag => (
+              <ul key={tag}>
+                {sortedPhotosByTag.get(tag)!.map(({ id, modifyDate }, i) => (
+                  <li key={id}>
+                    <div className="counter">
+                      <span>{i+1}/{sortedPhotosByTag.get(tag)!.length}</span>
+                    </div>
+                    <div className="date">{modifyDate?.substring(0, 10)}</div>
+                    
+                    <PhotoImg loading="lazy" sizes="100vw" photoId={`${plantId}/${id}`} />
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </>
         )}
         {sortedPhotos.length === 0 && (
           <div className="no-photos-placeholder">
-            <ImageIcon size="2xl" />
+            <ImageIcon size="2xl" /> No Photos Yet
           </div>
         )}
       </section>
