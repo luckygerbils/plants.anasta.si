@@ -72,7 +72,8 @@ async function bundle(entryPoint: string, outfile: string) {
   const [ out ] = result.outputFiles;
   const extension = extname(outfile);
   const base = basename(outfile, extension);
-  const hashedPath = `${base}.${out.hash}${extension}`;
+  const hash = createHash('md5').update(out.contents).digest('hex').substring(0, 8);
+  const hashedPath = `${base}.${hash}${extension}`;
   assetHashes[outfile] = hashedPath;
   const outputPath = `${outputDir}/${hashedPath}`;
   await mkdir(dirname(outputPath), { recursive: true });
