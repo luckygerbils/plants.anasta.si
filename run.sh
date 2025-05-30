@@ -138,7 +138,7 @@ sso-login-if-necessary() {
 register-dns() {
     #/ register DEV_HOSTNAME as an A record pointing to this machine's local network IP
     #/ an actual hostname is necessary to test over HTTPS and this can't just be an /etc/hosts entry because I want to be able to test from my phone as well
-
+    sso-login-if-necessary
     LOCAL_IP=$(ip -json -family inet addr | jq -r 'map(select(.ifname != "lo" and (.ifname | test("^docker") | not))) | .[0].addr_info[0].local')
     if [ "$(dig +short "$DEV_HOSTNAME")" != "$LOCAL_IP" ]; then
         with:tools dev/register-dns.sh A "${DEV_HOSTNAME}" "$LOCAL_IP"

@@ -1,14 +1,15 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import { CameraPopup, ReviewView } from "./components/camera-popup";
 import { PhotoImg } from "./components/photo-img";
-import { comparing, dateCompare, nullsFirst, reversed } from "./util/sorting";
-import { JournalEntry, PartialJournalEntry, Plant, Tag, TAG_KEYS, TagKey } from "./model/plant";
+import { comparing, dateCompare, explicit, nullsFirst, reversed } from "./util/sorting";
+import { JournalEntry, PartialJournalEntry, Photo, Plant, Tag, TAG_KEYS, TagKey } from "./model/plant";
 import { loggedIn } from "./util/auth";
 import { CalendarIcon, CalendarPlusIcon, CameraIcon, ChevronLeft, ChevronRight, HamburgerIcon, ImageIcon, ImagePlusIcon, PencilSquareIcon, PeopleIcon, PlusIcon, SaveIcon, Spinner, TrashIcon, UploadIcon, XIcon } from "./components/icons";
 import { deletePhoto, deletePlant, getPlant, putPlant, uploadPhoto } from "./util/api";
 import { JournalEntryPopup } from "./journal-entry-popup";
 import { markdown } from "./util/markdown";
 import { AutosizeTextArea } from "./components/autosize-text-area";
+import { PhotoPopup } from "./photo-popup";
 
 interface AdminPlantPageProps {
   plantId?: string,
@@ -91,7 +92,6 @@ function AdminPlantPageInternal({
   const [ deleting, setDeleting ] = useState(false);
   const [ deletingPhoto, setDeletingPhoto ] = useState(false);
   const [ confirmingDelete, setConfirmingDelete ] = useState(false);
-  const [ confirmingDeletePhotoId, setConfirmingDeletePhotoId ] = useState<string|null>(null);
 
   const [ name, setName ] = useState(plant.name);
   const [ scientificName, setScientificName ] = useState(plant.scientificName);
@@ -118,6 +118,7 @@ function AdminPlantPageInternal({
   const [ lastUploadedPhotoId, setLastUploadedPhotoId ] = useState<string|null>(null);
 
   const [ editingJournalEntry, setEditingJournalEntry ] = useState<JournalEntry|PartialJournalEntry|null>(null);
+  const [ editingPhoto, setEditingPhoto ] = useState<Photo|null>(null);
 
   async function doUploadPhoto({ dataUrl }: { dataUrl: string }, rotation?: number) {
     try {
@@ -133,7 +134,6 @@ function AdminPlantPageInternal({
   }
 
   async function doDeletePhoto(photoId: string) {
-    setConfirmingDeletePhotoId(null);
     setDeletingPhoto(true);
     try {
       await deletePhoto(plant.id, photoId);
@@ -155,13 +155,8 @@ function AdminPlantPageInternal({
     try {
       await putPlant({
         id: plant.id,
-        name,
-        scientificName,
-        description,
-        tags,
-        photos,
-        links,
-        journal,
+        name, scientificName, description,
+        tags, photos, links, journal,
       });
     } catch (e) {
       setError((e as Error).message);
@@ -199,7 +194,29 @@ function AdminPlantPageInternal({
     setJournal(newJournal);
   }
 
-  const sortedPhotos = [...(photos ?? [])].sort(reversed(comparing(p => p.modifyDate, nullsFirst(dateCompare))));
+  async function doSavePhoto(photo: Photo) {
+    const index = photos.findIndex(({ id }) => id === photo.id);
+    const newPhotos = [ ...photos.slice(0, index), photo, ...photos.slice(index+1) ];
+    await putPlant({ id: plant.id, name, scientificName, tags, photos: newPhotos, links, journal, });
+    setPhotos(newPhotos);
+  }
+
+  const sortedPhotos = [...(photos ?? [])]
+    .sort(reversed(comparing(p => p.modifyDate, nullsFirst(dateCompare))));
+  const sortedPhotosByTag = sortedPhotos
+    .reduce((photosByTag, photo) => {
+      for (const tag of (photo.tags ?? [])) {
+        if (!photosByTag.has(tag)) {
+          photosByTag.set(tag, []);
+        }
+        photosByTag.get(tag)?.push(photo);
+      }
+      return photosByTag;
+    }, new Map<string, Photo[]>());
+  sortedPhotosByTag.set("all", sortedPhotos);
+  const photoTags = Array.from(sortedPhotosByTag.keys())
+    .sort(explicit(["all", "timeline"]));
+
   const sortedJournal = [...(journal ?? [])].sort(reversed(comparing(entry => entry.date, dateCompare)));
   const buttonsDisabled = saving || deleting || deletingPhoto;
 
@@ -323,28 +340,38 @@ function AdminPlantPageInternal({
         </section>
       )}
       <section className="photos">
-        {sortedPhotos.length > 0 && (
-          <ul>
-            {sortedPhotos.map(({ id, modifyDate }, i) => (
-              <li key={id} ref={id === lastUploadedPhotoId ? e => e?.scrollIntoView() : undefined}>
-                <div className="counter">
-                  <span>{i+1}/{sortedPhotos.length}</span>
-                  {editing && (
-                    <button type="button" className="delete" disabled={buttonsDisabled}
-                      onClick={confirmingDeletePhotoId === id ? () => doDeletePhoto(confirmingDeletePhotoId) : () => setConfirmingDeletePhotoId(id)}
-                    >
-                      {deleting && <Spinner /> }
-                      {!deleting && confirmingDeletePhotoId === id && "Confirm?"}
-                      {!deleting && confirmingDeletePhotoId !== id && "Delete"}
-                    </button>
-                  )}
-                </div>
-                <div className="date">{modifyDate?.substring(0, 10)}</div>
-                <PhotoImg loading="lazy" sizes="100vw" photoId={`${plant.id}/${id}`} />
-              </li>
+        <nav>
+          {photoTags
+            .map(tag => (
+              <label key={tag}>
+                <input type="radio" name="tags" defaultChecked={photoTags.includes("timeline") ? tag === "timeline" : tag === "all"} /> {tag}
+              </label>
             ))}
-          </ul>
-        )}
+        </nav>
+        {sortedPhotos.length > 0 && (
+          photoTags.map(tag =>
+            <ul key={tag}>
+              {sortedPhotosByTag.get(tag)!.map((photo, i) => (
+                <li key={photo.id} ref={photo.id === lastUploadedPhotoId ? e => e?.scrollIntoView() : undefined}>
+                  <div className="counter">
+                    <span>{i+1}/{sortedPhotosByTag.get(tag)!.length}</span>
+                    {editing && (
+                      <>
+                        <button type="button" className="edit" disabled={buttonsDisabled}
+                          onClick={() => setEditingPhoto(photo)}
+                        >
+                          <PencilSquareIcon />
+                        </button>
+                      </>
+                    )}
+                  </div>
+                  <div className="date">{photo.modifyDate?.substring(0, 10)}</div>
+                  <div className="tags">{(photo.tags ?? []).map(tag => <span key={tag}>{tag}</span>)}</div>
+                  <PhotoImg loading="lazy" sizes="100vw" photoId={`${plant.id}/${photo.id}`} />
+                </li>
+              ))}
+            </ul>)
+          )}
         {sortedPhotos.length === 0 && (
           <div className="no-photos-placeholder">
             <ImageIcon size="2xl" />
@@ -357,6 +384,15 @@ function AdminPlantPageInternal({
           </div>
         )}
       </section>
+      {editingPhoto != null && (
+        <PhotoPopup 
+          photo={editingPhoto}
+          onSave={doSavePhoto}
+          onDelete={doDeletePhoto}
+          onClose={() => setEditingPhoto(null)} 
+        />
+      )}
+
       {sortedJournal.length > 0 && 
         <section className="journal">
           {sortedJournal.map(entry => (

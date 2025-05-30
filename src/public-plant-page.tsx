@@ -1,6 +1,6 @@
 import { PhotoImg } from "./components/photo-img";
-import { comparing, dateCompare, nullsFirst, reversed } from "./util/sorting";
-import { Plant, TAG_KEYS } from "./model/plant";
+import { comparing, dateCompare, explicit, nullsFirst, reversed } from "./util/sorting";
+import { Photo, Plant, TAG_KEYS } from "./model/plant";
 import { HamburgerIcon, ImageIcon, PencilSquareIcon, QuestionIcon } from "./components/icons";
 import { markdown } from "./util/markdown";
 
@@ -24,7 +24,21 @@ export function PublicPlantPage({
     tags,
   } = plant;
 
-  const sortedPhotos = [...(photos ?? [])].sort(reversed(comparing(p => p.modifyDate, nullsFirst(dateCompare))));
+  const sortedPhotos = [...(photos ?? [])]
+    .sort(reversed(comparing(p => p.modifyDate, nullsFirst(dateCompare))));
+  const sortedPhotosByTag = sortedPhotos
+    .reduce((photosByTag, photo) => {
+      for (const tag of (photo.tags ?? [])) {
+        if (!photosByTag.has(tag)) {
+          photosByTag.set(tag, []);
+        }
+        photosByTag.get(tag)?.push(photo);
+      }
+      return photosByTag;
+    }, new Map<string, Photo[]>());
+  sortedPhotosByTag.set("all", sortedPhotos);
+  const photoTags = Array.from(sortedPhotosByTag.keys())
+    .sort(explicit(["all", "timeline"]));
 
   return (
     <>
@@ -79,19 +93,29 @@ export function PublicPlantPage({
           <a key={site} href={url}>{site}</a>)}
       </section>
       <section className="photos">
-        {sortedPhotos.length > 0 && (
-          <ul>
-            {sortedPhotos.map(({ id, modifyDate }, i) => (
-              <li key={id}>
-                <div className="counter">
-                  <span>{i+1}/{sortedPhotos.length}</span>
-                </div>
-                <div className="date">{modifyDate?.substring(0, 10)}</div>
-                
-                <PhotoImg loading="lazy" sizes="100vw" photoId={`${plantId}/${id}`} />
-              </li>
+        <nav>
+          {photoTags
+            .map(tag => (
+              <label key={tag}>
+                <input type="radio" name="tags" defaultChecked={photoTags.includes("timeline") ? tag === "timeline" : tag === "all"} /> {tag}
+              </label>
             ))}
-          </ul>
+        </nav>
+        {sortedPhotos.length > 0 && (
+          photoTags.map(tag => (
+            <ul key={tag}>
+              {sortedPhotosByTag.get(tag)!.map(({ id, modifyDate }, i) => (
+                <li key={id}>
+                  <div className="counter">
+                    <span>{i+1}/{sortedPhotosByTag.get(tag)!.length}</span>
+                  </div>
+                  <div className="date">{modifyDate?.substring(0, 10)}</div>
+                  
+                  <PhotoImg loading="lazy" sizes="100vw" photoId={`${plantId}/${id}`} />
+                </li>
+              ))}
+            </ul>
+          ))
         )}
         {sortedPhotos.length === 0 && (
           <div className="no-photos-placeholder">

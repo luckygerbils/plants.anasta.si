@@ -51,7 +51,7 @@ export function JournalEntryPopup({
   }
 
   return (
-    <dialog ref={dialogRef} className="journal-entry-dialog" onClick={onClose}>
+    <dialog ref={dialogRef} className="journal-entry-dialog" onClick={onClose} onClose={onClose}>
       <div className="content" onClick={e => e.stopPropagation()}>
         <div className="body">
           <textarea value={text} onChange={e => setText(e.target.value)} />

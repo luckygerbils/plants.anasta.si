@@ -21,6 +21,7 @@ export type PhotoId = string;
 export interface Photo { 
   id: PhotoId, 
   modifyDate: string,
+  tags?: string[]
 }
 
 export interface JournalEntry {
