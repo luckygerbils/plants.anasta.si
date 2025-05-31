@@ -159,11 +159,16 @@ get-data-bucket-name() {
 
 copy-photos() {
     sso-login-if-necessary
-    local stage=${1?Stage is required} 
-    local data_bucket_name
-    data_bucket_name=$(get-data-bucket-name "$stage")
+    local from=${1?From is required} 
+    local to=${2?To is required}
+    if [ "$from" != photos ]; then
+        from="s3://$(get-data-bucket-name "$from")/data/photos/"
+    fi
+    if [ "$to" != photos ]; then
+        to="s3://$(get-data-bucket-name "$to")/data/photos/"
+    fi
     aws --profile AdministratorAccess --region us-west-2 \
-        s3 sync photos "s3://$data_bucket_name/data/photos/"
+        s3 sync "$from" "$to"
 }
 
 backup-plants() {

@@ -14,6 +14,9 @@ interface StaticSiteDeploymentProps {
   },
 }
 
+// Non-hashed, non-html path assets are a limited list we can hard-code
+const paths = [ "favicon.ico", "index.html" ];
+
 /**
  * Copy static site files that aren't either content hashed or represent plain HTML paths
  * These have content type inferred but don't have long-lived cache-control headers added
@@ -28,9 +31,9 @@ export class StaticSiteNonHashedAssetsDeployment extends BucketDeployment {
       sources: [ Source.asset(`../dist/website/${instance.name}`) ],
       destinationBucket: buckets.staticSite,
       distribution: distributions.primary,
+      distributionPaths: paths.map(path => `/${path}`),
       exclude: [ "*" ],
-      // Non-hashed, non-html path assets should be a limited list we can hard-code
-      include: [ "favicon.ico", "index.html" ]
+      include: paths,
     });
   }
 }

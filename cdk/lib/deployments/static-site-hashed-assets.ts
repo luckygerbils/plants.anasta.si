@@ -10,9 +10,6 @@ interface StaticSiteDeploymentProps {
   buckets: {
     staticSite: IBucket,
   },
-  distributions: {
-    primary: IDistribution,
-  },
 }
 
 /*
@@ -23,12 +20,10 @@ export class StaticSiteHashedAssetsDeployment extends BucketDeployment {
   constructor(scope: Construct, {
     instance,
     buckets,
-    distributions,
   }: StaticSiteDeploymentProps) {
     super(scope, "DeployStaticSiteHashedAssets", {
       sources: [ Source.asset(`../dist/website/${instance.name}`) ],
       destinationBucket: buckets.staticSite,
-      distribution: distributions.primary,
 
       // Hashed assets have names like {name}.{hash}.{extension}
       exclude: [ "*" ],
