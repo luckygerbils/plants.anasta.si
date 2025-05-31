@@ -1,10 +1,10 @@
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { createContext, Fragment, use, useEffect, useRef, useState } from "react";
 import { CameraPopup, ReviewView } from "./components/camera-popup";
 import { PhotoImg } from "./components/photo-img";
 import { comparing, dateCompare, explicit, nullsFirst, reversed } from "./util/sorting";
-import { JournalEntry, PartialJournalEntry, Photo, Plant, Tag, TAG_KEYS, TagKey } from "./model/plant";
+import { JournalEntry, PartialJournalEntry, Photo, Plant, TAG_KEYS, TagKey } from "./model/plant";
 import { loggedIn } from "./util/auth";
-import { CalendarIcon, CalendarPlusIcon, CameraIcon, ChevronLeft, ChevronRight, HamburgerIcon, ImageIcon, ImagePlusIcon, PencilSquareIcon, PeopleIcon, PlusIcon, SaveIcon, Spinner, TrashIcon, UploadIcon, XIcon } from "./components/icons";
+import { CalendarPlusIcon, CameraIcon, ChevronLeft, ChevronRight, HamburgerIcon, ImageIcon, ImagePlusIcon, PencilSquareIcon, PeopleIcon, PlusIcon, SaveIcon, Spinner, TrashIcon, UploadIcon, XIcon } from "./components/icons";
 import { deletePhoto, deletePlant, getPlant, putPlant, uploadPhoto } from "./util/api";
 import { JournalEntryPopup } from "./journal-entry-popup";
 import { markdown } from "./util/markdown";
@@ -15,6 +15,8 @@ interface AdminPlantPageProps {
   plantId?: string,
   edit?: boolean,
 }
+
+const LocationContext = createContext<(url: string) => void>(() => {})
 
 export function AdminPlantPage({
   plantId,
@@ -46,6 +48,26 @@ export function AdminPlantPage({
     })();
   }, []);
 
+  async function loadPlantFromUrl() {
+    setState({ loading: true });
+    const plantId = new URL(location.href).searchParams.get("plantId")!;
+    try {
+        setState({ result: await getPlant(plantId) });
+    } catch (e) {
+      setState({ error: e as Error });
+    }
+  }
+
+  function goTo(url: string) {
+    history.pushState(url, "", url);
+    loadPlantFromUrl();
+  }
+
+  useEffect(() => {
+    window.addEventListener("popstate", loadPlantFromUrl);
+    return () => window.removeEventListener("popstate", loadPlantFromUrl);
+  }, []);
+
   if (loading) {
     return (
       <div className="loading-page">
@@ -61,13 +83,20 @@ export function AdminPlantPage({
       </div>
     )
   } else {
-    return <AdminPlantPageInternal plant={result.plant} next={result.next} prev={result.prev} defaultEditing={edit} />
+    return (
+      <LocationContext value={goTo}>
+        <AdminPlantPageInternal plant={result.plant} 
+          next={result.next} 
+          prev={result.prev}
+          defaultEditing={edit} />
+      </LocationContext>
+    )
   }
 }
 
 interface AdminPlantPageInternalProps {
   plant: Plant, 
-  prev?: string, 
+  prev?: string,
   next?: string,
   defaultEditing?: boolean,
 }
@@ -83,7 +112,6 @@ function AdminPlantPageInternal({
   defaultEditing,
 }: AdminPlantPageInternalProps) {
   const [ cameraOpen, setCameraOpen ] = useState(false);
-  const [ selectedTag, setSelectedTag ] = useState<Tag|null>(null);
 
   const [ editing, setEditing ] = useState(defaultEditing ?? false);
   const [ addPhotoOpen, setAddPhotoOpen ] = useState(false);
@@ -102,6 +130,7 @@ function AdminPlantPageInternal({
   const [ journal, setJournal ] = useState(plant.journal ?? []);
 
   const [ error, setError ] = useState<string|null>(null);
+  const goTo = use(LocationContext);
 
   function setTag(key: TagKey, value: string|boolean) {
     if (typeof value === "string") {
@@ -276,7 +305,7 @@ function AdminPlantPageInternal({
         {!editing && (
           <ul>
             {TAG_KEYS.filter(key => key in tags).map(key => 
-              <li key={key} className="tag" onClick={() => setSelectedTag({ key, value: tags[key] })}>
+              <li key={key} className="tag">
                 <a href={`/admin/list?${new URLSearchParams({[key as string]: tags[key]!})}`}>{key}: {tags[key]}</a>
               </li>
             )}
@@ -457,13 +486,13 @@ function AdminPlantPageInternal({
         )}
         {!(editing || addPhotoOpen) && (
           <>
-            {prev ? <a href={`/admin/plant?plantId=${prev}`}><ChevronLeft /></a> : <div className="disabled"><ChevronLeft /></div>}
+            {prev ? <a href={`/admin/plant?plantId=${prev}`} onClick={e => { e.preventDefault(); goTo(e.currentTarget.href); }}><ChevronLeft /></a> : <div className="disabled"><ChevronLeft /></div>}
             <a href="/admin/list"><HamburgerIcon /></a>
             <a href={`/${plant.id}`}><PeopleIcon /></a>
             <button type="button" onClick={() => setEditing(true)}><PencilSquareIcon /></button>
             <button type="button" onClick={() => setAddPhotoOpen(true)}><ImagePlusIcon /></button>
             <button type="button" onClick={() => setEditingJournalEntry({ date: new Date().toISOString().substring(0, 10) })}><CalendarPlusIcon /></button>
-            {next ? <a href={`/admin/plant?plantId=${next}`}><ChevronRight /></a> : <div className="disabled"><ChevronRight /></div>}
+            {next ? <a href={`/admin/plant?plantId=${next}`} onClick={e => { e.preventDefault(); goTo(e.currentTarget.href); }}><ChevronRight /></a> : <div className="disabled"><ChevronRight /></div>}
           </>
         )}
       </nav>
