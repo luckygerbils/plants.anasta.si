@@ -1,7 +1,9 @@
 import { LambdaFunctionURLEvent, LambdaFunctionURLHandler, LambdaFunctionURLResult } from 'aws-lambda';
 
-import { DeleteObjectCommand, DeleteObjectsCommand, GetObjectCommand, ListObjectsV2Command, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
-import { Plant } from '../model/plant';
+import { DeleteObjectsCommand, GetObjectCommand, ListObjectsV2Command, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { getSignedUrl, } from "@aws-sdk/s3-request-presigner";
+
+import { Plant, UploadPhotoInput } from '../model/plant';
 import sharp from 'sharp';
 import { getExifModifyDate } from './exif';
 
@@ -39,7 +41,7 @@ export const handler: LambdaFunctionURLHandler = async (event: LambdaFunctionURL
   };
 }
 
-async function invoke(operation: string, input: unknown) {
+export async function invoke(operation: string, input: unknown) {
   switch (operation) {
     case "getAllPlants": {
       return {
@@ -79,15 +81,32 @@ async function invoke(operation: string, input: unknown) {
       console.log(`Deleted ${JSON.stringify(deletedPlant)}`);
       return {}
     }
+    case "requestPresignedUpload": {
+      const key = `uploads/${crypto.randomUUID()}`;
+      return {
+        key,
+        presignedUrl: await s3GetPresignedPutUrl(key)
+      };
+    }
     case "uploadPhoto": {
-      const { photo: { dataUrl, }, rotation, plantId, } = JSON.parse(input as string);
+      const { photo, rotation, plantId, } = JSON.parse(input as string) as UploadPhotoInput;;
 
       const plants = await getPlants();
 
-      const dataUrlWithoutPrefix =
-      dataUrl.substring(dataUrl.indexOf(";base64,") + ";base64,".length);
-      const original = sharp(Buffer.from(dataUrlWithoutPrefix, "base64"));
+      let uploadedBuffer;
+      if ("dataUrl" in photo) {
+        const dataUrlWithoutPrefix =
+          photo.dataUrl.substring(photo.dataUrl.indexOf(";base64,") + ";base64,".length);
+        uploadedBuffer = Buffer.from(dataUrlWithoutPrefix, "base64")
+      } else {
+        const response = await s3.send(new GetObjectCommand({ Key: photo.key, Bucket: DATA_BUCKET, }));
+        if (response.Body == null) {
+          throw new Error("Body is missing in response " + response);
+        }
+        uploadedBuffer = Buffer.from(await response.Body.transformToByteArray());
+      }
 
+      const original = sharp(uploadedBuffer);
       const metadata = await original.metadata();
       if (!(metadata.format === "jpeg" || metadata.format === "jpg")) {
         throw new Error(`Format ${metadata.format} unsupported. JPEG only for now`);
@@ -202,4 +221,8 @@ async function s3Get<T>(key: string): Promise<T> {
 async function s3List(prefix: string): Promise<string[]> {
   const response = await s3.send(new ListObjectsV2Command({ Prefix: prefix, Bucket: DATA_BUCKET }));
   return (response.Contents ?? []).map(o => o.Key!);
+}
+
+async function s3GetPresignedPutUrl(key: string) {
+  return getSignedUrl(s3, new PutObjectCommand({ Key: key, Bucket: DATA_BUCKET }), { expiresIn: 60 });
 }

@@ -41,3 +41,9 @@ export interface Plant {
   tags: Partial<Record<TagKey, string>>,
   journal?: JournalEntry[],
 }
+
+export interface UploadPhotoInput {
+  photo: { dataUrl: string } | { key: string },
+  rotation: number,
+  plantId: string,
+}

@@ -52,7 +52,7 @@ export class PrimaryStack extends Stack {
     };
 
     // Split up subsets of the static files to deploy with slightly different configurations
-    new StaticSiteHashedAssetsDeployment(this, { instance, buckets, distributions, });
+    new StaticSiteHashedAssetsDeployment(this, { instance, buckets, });
     new StaticSiteNonHashedAssetsDeployment(this, { instance, buckets, distributions, });
     new StaticSiteHtmlPathsDeployment(this, { instance, buckets, distributions, lambdas, identityPool, });
   }

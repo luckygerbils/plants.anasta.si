@@ -1,5 +1,5 @@
 import { Duration, RemovalPolicy } from "aws-cdk-lib";
-import { Bucket } from "aws-cdk-lib/aws-s3";
+import { Bucket, HttpMethods } from "aws-cdk-lib/aws-s3";
 import { Construct } from "constructs";
 import { AppInstance, Beta, Prod } from "../../instances";
 import { IRole } from "aws-cdk-lib/aws-iam";
@@ -20,6 +20,20 @@ export class DataBucket extends Bucket {
       lifecycleRules: [
         {
           noncurrentVersionExpiration: Duration.days(7),
+        },
+        {
+          prefix: "uploads/",
+          expiration: Duration.days(1),
+        }
+      ],
+      cors: [
+        {
+          allowedHeaders: [ "*" ],
+          allowedMethods: [ HttpMethods.PUT ],
+          allowedOrigins: [ 
+            `https://${instance.domainName}`,
+            ...(instance === Beta ? ["https://dev.plants.anasta.si:8443"] : [])
+          ],
         }
       ]
     });
