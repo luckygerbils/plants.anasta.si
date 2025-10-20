@@ -13,6 +13,7 @@ import { basename, dirname, extname, normalize, relative } from "node:path";
 import { createHash } from "node:crypto";
 import { ReactNode } from "react";
 import { AdminIndexPage } from "../src/admin-index-page";
+import { webmanifest } from "../src/webmanifest";
 
 const plantsFile = process.argv[2];
 if (plantsFile == null) {
@@ -20,7 +21,8 @@ if (plantsFile == null) {
 }
 
 const srcDir = `src`;
-const outputDir = `dist/website/${basename(plantsFile, ".json")}`
+const instance = basename(plantsFile, ".json");
+const outputDir = `dist/website/${instance}`
 
 const plants = (JSON.parse(await readFile(plantsFile, "utf8")) as Plant[]);
 const [ publicPlants, privatePlants ] = plants.reduce((result: [Plant[], Plant[]], plant) => {
@@ -94,10 +96,31 @@ async function render(outfile: string, htmlProps: Omit<Parameters<typeof Html>[0
   ).then(() => `Built ${outfile}`)
 }
 
+async function generateWebmanifest() {
+  const contents = JSON.stringify(webmanifest(instance, assetHashes), null, "  ");
+
+  const outfile = "webmanifest.json";
+  const extension = extname(outfile);
+  const base = basename(outfile, extension);
+  const hash = createHash('md5').update(contents).digest('hex').substring(0, 8);
+  const hashedPath = `${base}.${hash}${extension}`;
+  assetHashes[outfile] = hashedPath;
+  const outputPath = `${outputDir}/${hashedPath}`;
+
+  await mkdir(dirname(outputPath), { recursive: true });
+  return writeFile(
+    outputPath,
+    contents
+  ).then(() => `Generated webmanifest.json`)
+}
+
 const staticFilesWithHashes = Promise.all(
-  [ `${srcDir}/images`, ]
+  [ `${srcDir}/images` ]
     .map(path => copy(srcDir, path, { hash: true }))
 );
+
+const webmanifestFile = staticFilesWithHashes
+  .then(() => generateWebmanifest());
 
 const staticFilesWithoutHashes = Promise.all(
   [ `${srcDir}/favicon.ico` ]
@@ -148,6 +171,7 @@ const htmlFiles = Promise.all([staticFilesWithHashes, scriptEntryPoints, cssFile
 
 const tasks = [
   staticFilesWithHashes.then(result => result.join("\n")),
+  webmanifestFile,
   staticFilesWithoutHashes.then(result => result.join("\n")),
   scriptEntryPoints.then(result => result.join("\n")),
   cssFiles.then(result => result.join("\n")),

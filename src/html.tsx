@@ -26,6 +26,7 @@ export function Html({ title, children, props, script, css, assetHashes }: Props
         <link rel="icon" type="image/svg+xml" href={`/${assetWithHash("images/favicon.svg")}`} sizes="any"  />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href={`/${assetWithHash("images/apple-touch-icon.png")}`} />
+        <link rel="manifest" href={`/${assetWithHash("webmanifest.json")}`} />
         <title>{title}</title>
         <link rel="stylesheet" href={`/${assetWithHash(css)}`} />
         {props && <script>{`window.props = ${JSON.stringify(JSON.stringify(props))}`}</script>}

@@ -23,6 +23,7 @@ import { LoginPage } from "../src/login-page";
 import { PublicIndexPage } from "../src/public-index-page";
 import { extname } from "node:path";
 import { AdminIndexPage } from "../src/admin-index-page";
+import { webmanifest } from "../src/webmanifest";
 // import { invoke } from "../src/lambda/api";
 
 await Promise.all(
@@ -92,7 +93,12 @@ if (existsSync("dev-props.json")) {
     apiUrl: getFunctionUrl(getResourceId("AWS::Lambda::Function", "ApiFunction")),
   };
   await writeFile("dev-props.json", JSON.stringify(props, null, " "))
-} 
+}
+
+await writeFile(
+  `dist/website/Beta/webmanifest.json`,
+  JSON.stringify(webmanifest("Dev"), null, "  ")
+);
 
 const server = https.createServer({ key, cert, }, async (req, res) => {
   const url = req.url ?? "/";
@@ -218,6 +224,18 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
           body: await readFile(`dist/website/Beta/${match.groups!["filename"]}`),
           headers: {
             "content-type": "application/javascript",
+          }
+        };
+      }
+    },
+    {
+      pattern: /^(?<filename>.*\.json)$/,
+      handler: async (match: RegExpMatchArray) => {
+        return { 
+          status: 200, 
+          body: await readFile(`dist/website/Beta/${match.groups!["filename"]}`),
+          headers: {
+            "content-type": "application/json",
           }
         };
       }

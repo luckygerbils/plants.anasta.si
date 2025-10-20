@@ -4,3 +4,4 @@
 /plants
 *.bak
 /dev-props.json
+/*.code-workspace
