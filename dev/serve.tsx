@@ -97,191 +97,168 @@ if (existsSync("dev-props.json")) {
 const server = https.createServer({ key, cert, }, async (req, res) => {
   const url = req.url ?? "/";
 
-  try {
-    const patterns = [
-      {
-        pattern: /^(?<id>[a-z0-9]{8})$/,
-        handler: async (match: RegExpMatchArray) => {
-          const plantIndex = plants.findIndex(({id}) => match.groups!["id"] === id);
-          const plant = plants[plantIndex];
-          const props = { plant, allPlants: plants, prev: plants[plantIndex-1]?.id, next: plants[plantIndex+1]?.id };
-          return { 
-            status: 200, 
-            body: "<!DOCTYPE html>\n" + renderToString(
-                <Html title={plant.name} css="css/plant.css">
-                  <PublicPlantPage {...props} />
-                </Html>
-              ),
-            headers: {
-              "content-type": "text/html",
-            }
-          };
-        }
-      },
-      {
-        pattern: /^$/,
-        handler: async () => {
-          return { 
-            status: 200, 
-            body: "<!DOCTYPE html>\n" + renderToString(
-                <Html title="All Plants" css="css/index.css">
-                  <PublicIndexPage allPlants={publicPlants} />
-                </Html>
-              ),
-            headers: {
-              "content-type": "text/html",
-            }
-          };
-        }
-      },
-      {
-        pattern: /^admin\/list/,
-        handler: async (_: unknown, url: URL) => {
-          return { 
-            status: 200, 
-            body: "<!DOCTYPE html>\n" + renderToString(
-                <Html title="Admin" script="js/admin/index.js" css="css/admin/index.css" props={props}>
-                  <AdminIndexPage />
-                </Html>
-              ),
-            headers: {
-              "content-type": "text/html",
-            }
-          };
-        }
-      },
-      {
-        pattern: /^admin\/plant/,
-        handler: async (_: unknown, url: URL) => {
-          return { 
-            status: 200, 
-            body: "<!DOCTYPE html>\n" + renderToString(
-                <Html title="Edit" script="js/admin/plant.js" css="css/admin/plant.css" props={props}>
-                  <AdminPlantPage />
-                </Html>
-              ),
-            headers: {
-              "content-type": "text/html",
-            }
-          };
-        }
-      },
-      {
-        pattern: /^login/,
-        handler: async (_: unknown, url: URL) => {
-          return { 
-            status: 200, 
-            body: "<!DOCTYPE html>\n" + renderToString(
-                <Html title="Login" script="js/login.js" css="css/login.css" props={props}>
-                  <LoginPage />
-                </Html>
-              ),
-            headers: {
-              "content-type": "text/html",
-            }
-          };
-        }
-      },
-      {
-        pattern: /^api\/.*$/,
-        handler: async (_: unknown, _2: URL, req: IncomingMessage) => {
-          const url = `${props.apiUrl}${req.url?.replace(/^\//, "")}`;
-          const request = new Request(url, {
-            method: req.method,
-            headers: {
-              "content-type": req.headers["content-type"]!,
-              host: new URL(props.apiUrl).host,
-              "x-amz-date": req.headers["x-amz-date"] as string,
-              "x-amz-content-sha256": req.headers["x-amz-content-sha256"] as string,
-              "x-amz-security-token": req.headers["x-amz-security-token"] as string,
-              "authorization": req.headers["authorization"] as string,
-            },
-            body: await getBody(req),
-          });
-          const response = await fetch(request);
-          return {
-            status: response.status,
-            body: await response.text(),
-            headers: response.headers,
-          };
-        },
-      },
-      {
-        pattern: /^css\/(?<filename>.*\.css)$/,
-        handler: async (match: RegExpMatchArray) => {
-          return { 
-            status: 200, 
-            body: await readFile(`dist/website/Beta/css/${match.groups!["filename"]}`),
-            headers: {
-              "content-type": "text/css",
-            }
-          };
-        }
-      },
-      {
-        pattern: /^images\/(?<filename>.*)$/,
-        handler: async (match: RegExpMatchArray) => {
-          const filename = match.groups!["filename"];
-          const extension = extname(filename);
-          return { 
-            status: 200, 
-            body: await readFile(`src/images/${filename}`),
-            headers: {
-              "content-type": `image/${{
-                ".svg": "svg+xml",
-                ".jpg": "jpeg",
-              }[extension] ?? extname(filename).substring(1)}`
-            }
-          };
-        }
-      },
-      {
-        pattern: /^(?<filename>js\/.*\.js)$/,
-        handler: async (match: RegExpMatchArray) => {
-          return { 
-            status: 200, 
-            body: await readFile(`dist/website/Beta/${match.groups!["filename"]}`),
-            headers: {
-              "content-type": "application/javascript",
-            }
-          };
-        }
-      },
-      {
-        pattern: /^data\/photos\/(?<filename>.*)$/,
-        handler: async (match: RegExpMatchArray) => {
-          let body;
-          try {
-            body = await readFile(`photos/${match.groups!["filename"]}`);
-          } catch (e) {
-            if ((e as NodeJS.ErrnoException).code == "ENOENT") {
-              return {
-                status: 404,
-                body: "Not found",
-              };
-            }
-            throw e;
+  const patterns = [
+    {
+      pattern: /^(?<id>[a-z0-9]{8})$/,
+      handler: async (match: RegExpMatchArray) => {
+        const plantIndex = plants.findIndex(({id}) => match.groups!["id"] === id);
+        const plant = plants[plantIndex];
+        const props = { plant, allPlants: plants, prev: plants[plantIndex-1]?.id, next: plants[plantIndex+1]?.id };
+        return { 
+          status: 200, 
+          body: "<!DOCTYPE html>\n" + renderToString(
+              <Html title={plant.name} css="css/plant.css">
+                <PublicPlantPage {...props} />
+              </Html>
+            ),
+          headers: {
+            "content-type": "text/html",
           }
-          return { 
-            status: 200, 
-            body: body,
-            headers: {
-              "content-type": "image/jpeg",
-            }
-          };
-        }
-      },
-    ];
-    
+        };
+      }
+    },
+    {
+      pattern: /^$/,
+      handler: async () => {
+        return { 
+          status: 200, 
+          body: "<!DOCTYPE html>\n" + renderToString(
+              <Html title="All Plants" css="css/index.css">
+                <PublicIndexPage allPlants={publicPlants} />
+              </Html>
+            ),
+          headers: {
+            "content-type": "text/html",
+          }
+        };
+      }
+    },
+    {
+      pattern: /^admin\/list/,
+      handler: async (_: unknown, url: URL) => {
+        return { 
+          status: 200, 
+          body: "<!DOCTYPE html>\n" + renderToString(
+              <Html title="Admin" script="js/admin/index.js" css="css/admin/index.css" props={props}>
+                <AdminIndexPage />
+              </Html>
+            ),
+          headers: {
+            "content-type": "text/html",
+          }
+        };
+      }
+    },
+    {
+      pattern: /^admin\/plant/,
+      handler: async (_: unknown, url: URL) => {
+        return { 
+          status: 200, 
+          body: "<!DOCTYPE html>\n" + renderToString(
+              <Html title="Edit" script="js/admin/plant.js" css="css/admin/plant.css" props={props}>
+                <AdminPlantPage />
+              </Html>
+            ),
+          headers: {
+            "content-type": "text/html",
+          }
+        };
+      }
+    },
+    {
+      pattern: /^login/,
+      handler: async (_: unknown, url: URL) => {
+        return { 
+          status: 200, 
+          body: "<!DOCTYPE html>\n" + renderToString(
+              <Html title="Login" script="js/login.js" css="css/login.css" props={props}>
+                <LoginPage />
+              </Html>
+            ),
+          headers: {
+            "content-type": "text/html",
+          }
+        };
+      }
+    },
+    {
+      pattern: /^css\/(?<filename>.*\.css)$/,
+      handler: async (match: RegExpMatchArray) => {
+        return { 
+          status: 200, 
+          body: await readFile(`dist/website/Beta/css/${match.groups!["filename"]}`),
+          headers: {
+            "content-type": "text/css",
+          }
+        };
+      }
+    },
+    {
+      pattern: /^images\/(?<filename>.*)$/,
+      handler: async (match: RegExpMatchArray) => {
+        const filename = match.groups!["filename"];
+        const extension = extname(filename);
+        return { 
+          status: 200, 
+          body: await readFile(`src/images/${filename}`),
+          headers: {
+            "content-type": `image/${{
+              ".svg": "svg+xml",
+              ".jpg": "jpeg",
+            }[extension] ?? extname(filename).substring(1)}`
+          }
+        };
+      }
+    },
+    {
+      pattern: /^(?<filename>js\/.*\.js)$/,
+      handler: async (match: RegExpMatchArray) => {
+        return { 
+          status: 200, 
+          body: await readFile(`dist/website/Beta/${match.groups!["filename"]}`),
+          headers: {
+            "content-type": "application/javascript",
+          }
+        };
+      }
+    },
+  ];
+
+  try {
     let response: { status: number, body: string|Buffer, headers?: Record<string, string> } = {
       status: 404,
       body: `Not found`,
     };
-    for (const { pattern, handler } of patterns) {
-      const match = url.replace(/^\//, "").match(pattern);
-      if (match != null) {
-        response = await Promise.resolve(handler(match, new URL(url, "http://dev.plants.anasta.si"), req));
-        break;
+
+    if (url.match(/^\/data\/.*/) || url.match(/^\/api\/.*/)) {
+      // There is probably a better way to proxy this with Node APIs, but I keep getting openssl errors when doing that
+      console.log(`Proxying ${url}`);
+      const targetUrl = `https://beta.plants.anasta.si/${req.url?.replace(/^\//, "")}`;
+      const request = new Request(targetUrl, {
+          method: req.method,
+          headers: Object.fromEntries(Object.entries(req.headersDistinct).map(([k, v]) => [k, v![0]])),
+          body: await getBody(req),
+        });
+      const r = await fetch(request);
+      const responseHeaders: Record<string, string> = {};
+      r.headers.forEach((value, key) => {
+        // Skip headers that shouldn't apply when developing (or because we are proxying the way we are)
+        if (!["cache-control", "content-encoding"].includes(key.toLowerCase())) {
+          responseHeaders[key] = value;
+        }
+      });
+      response = {
+        status: r.status,
+        body: Buffer.from(await (await r.blob()).arrayBuffer()),
+        headers: responseHeaders,
+      };
+    } else {
+      for (const { pattern, handler } of patterns) {
+        const match = url.replace(/^\//, "").match(pattern);
+        if (match != null) {
+          response = await Promise.resolve(handler(match, new URL(url, "http://dev.plants.anasta.si")));
+          break;
+        }
       }
     }
 
@@ -307,7 +284,12 @@ server.listen(parseInt(options["--port"]), () => {
   console.log(`Server is running on https://0.0.0.0:${options["--port"]}`);
 });
 
-async function getBody(req: http.IncomingMessage): Promise<string> {
+async function getBody(req: http.IncomingMessage): Promise<string|undefined> {
+  const contentLength = req.headers["content-length"];
+  if (contentLength == null || contentLength === "0") {
+    return undefined;
+  }
+
   const contentType = req.headers["content-type"];
   if (contentType?.split(";")?.[0] != "application/json") {
     throw new Error(`Unexpected content type ${contentType}`);
