@@ -145,7 +145,7 @@ const server = https.createServer({ key, cert, }, async (req, res) => {
         return { 
           status: 200, 
           body: "<!DOCTYPE html>\n" + renderToString(
-              <Html title="Admin" script="js/admin/index.js" css="css/admin/index.css" props={props}>
+              <Html title="Admin" script="js/admin/index.js" css="css/admin/index.css" props={props} includeManifest={true}>
                 <AdminIndexPage />
               </Html>
             ),

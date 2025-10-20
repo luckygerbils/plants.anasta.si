@@ -15,7 +15,7 @@ export function webmanifest(instance: string, assetHashes?: Record<string, strin
   return {
     "id": `https://${host}`,
     "name": host,
-    "short_name": `Plants${instance != "Prod" ? `(${instance})` : ""}`,
+    "short_name": `Plants${instance != "Prod" ? ` (${instance})` : ""}`,
     "start_url": "/",
     "icons": [
       {
