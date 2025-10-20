@@ -6,9 +6,10 @@ interface HtmlProps {
   script?: string,
   css: string,
   assetHashes?: Record<string, string>,
+  includeManifest?: boolean
 }
 
-export function Html({ title, children, props, script, css, assetHashes }: PropsWithChildren<HtmlProps>) {
+export function Html({ title, children, props, script, css, assetHashes, includeManifest }: PropsWithChildren<HtmlProps>) {
   function assetWithHash(asset: string) {
     if (assetHashes && assetHashes[asset] == null) {
       throw new Error(`No hashed asset for ${asset} (${JSON.stringify(assetHashes)})`)
@@ -26,7 +27,7 @@ export function Html({ title, children, props, script, css, assetHashes }: Props
         <link rel="icon" type="image/svg+xml" href={`/${assetWithHash("images/favicon.svg")}`} sizes="any"  />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href={`/${assetWithHash("images/apple-touch-icon.png")}`} />
-        <link rel="manifest" href={`/${assetWithHash("webmanifest.json")}`} />
+        {includeManifest && <link rel="manifest" href={`/${assetWithHash("webmanifest.json")}`} />}
         <title>{title}</title>
         <link rel="stylesheet" href={`/${assetWithHash(css)}`} />
         {props && <script>{`window.props = ${JSON.stringify(JSON.stringify(props))}`}</script>}

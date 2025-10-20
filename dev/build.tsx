@@ -148,7 +148,7 @@ const cssFiles = Promise.all(
 const htmlFiles = Promise.all([staticFilesWithHashes, scriptEntryPoints, cssFiles])
 .then(() => Promise.all([
   render("index.html", { title: "All Plants", css: "css/index.css" }, <PublicIndexPage allPlants={publicPlants} />),
-  render("admin/list", { title: "Admin", script: `js/admin/index.js`, css: "css/admin/index.css", props: {}}, <AdminIndexPage />),
+  render("admin/list", { title: "Admin", script: `js/admin/index.js`, css: "css/admin/index.css", props: {}, includeManifest: true }, <AdminIndexPage />),
   render("admin/plant", { title: "Edit", script: `js/admin/plant.js`, css: "css/admin/plant.css", props: {}}, <AdminPlantPage />),
   render("login", { title: "Login", script: `js/login.js`, css: "css/login.css", props: {}}, <LoginPage />),
   Promise.all(
