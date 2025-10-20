@@ -144,7 +144,6 @@ function AdminPlantPageInternal({
 
   const photoInput = useRef<HTMLInputElement>(null);
   const [ reviewPhoto, setReviewPhoto ] = useState<PhotoAsDataUrl|null>(null);
-  const [ lastUploadedPhotoId, setLastUploadedPhotoId ] = useState<string|null>(null);
 
   const [ editingJournalEntry, setEditingJournalEntry ] = useState<JournalEntry|PartialJournalEntry|null>(null);
   const [ editingPhoto, setEditingPhoto ] = useState<Photo|null>(null);
@@ -153,7 +152,6 @@ function AdminPlantPageInternal({
     try {
       const photo = await uploadPhoto(plant.id, { dataUrl }, rotation);
       setPhotos(photos => [...photos, photo]);
-      setLastUploadedPhotoId(photo.id);
       setAddPhotoOpen(false);
       setReviewPhoto(null);
     } catch (e) {
@@ -382,7 +380,7 @@ function AdminPlantPageInternal({
             {photoTags.map(tag =>
               <ul key={tag}>
                 {sortedPhotosByTag.get(tag)!.map((photo, i) => (
-                  <li key={photo.id} ref={photo.id === lastUploadedPhotoId ? e => e?.scrollIntoView() : undefined}>
+                  <li key={photo.id}>
                     <div className="counter">
                       <span>{i+1}/{sortedPhotosByTag.get(tag)!.length}</span>
                       {editing && (
