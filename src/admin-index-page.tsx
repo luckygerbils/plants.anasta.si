@@ -157,7 +157,12 @@ function AdminIndexPageInternal({
                       <a href={`/admin/plant?plantId=${plant.id}`} id={plant.id}>
                         {latestPhotoId &&
                           <PhotoImg
-                            loading="lazy" sizes="50vw"
+                            loading="lazy" sizes="
+                              (width <= 200px) 100vw,
+                              (200px < width <= 400px) 50vw,
+                              (400px < width <= 600px) 33vw,
+                              (600px < width <= 800px) 25vw,
+                              (800px < width) 20vw"
                             photoId={`${plant.id}/${latestPhotoId}`} />}
                         <div className="name">{plant.name}</div>
                       </a>
